@@ -15,6 +15,27 @@ public class Cine {
 	private static List<Pelicula> peliculas= new ArrayList<Pelicula>();
 	private float dineroGanado;
 	
+	
+	//
+	//methods
+	//
+	
+	public static void verFuncion(Pelicula pelicula) { //??? aquí o en main
+		for(Funcion funcion:cartelera) {
+			if(funcion.getPelicula()==pelicula){
+				System.out.println(funcion);
+			}
+		}
+	}
+	
+	public static void verFuncion(Pelicula pelicula, String horario) {
+		for(Funcion funcion:cartelera) {
+			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
+				System.out.println(funcion);
+			}
+		}
+	}
+	
 	//
 	//getting and setting
 	//

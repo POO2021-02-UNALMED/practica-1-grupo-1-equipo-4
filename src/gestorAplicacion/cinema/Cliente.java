@@ -67,6 +67,10 @@ public class Cliente {
 	}
 	
 	
+	//
+	//methods
+	//
+	
 	
 
 }
