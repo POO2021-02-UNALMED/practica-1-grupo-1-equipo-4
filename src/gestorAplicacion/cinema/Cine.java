@@ -1,18 +1,19 @@
 package gestorAplicacion.cinema;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicacion.boleteria.*;
 //import gestorAplicacion.cinema.*;
 
 //!!!
-public class Cine {
-	
+public class Cine implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//!!! same question about BD
 	private String nombre;//??? 
-	private static List<Cliente> clientes= new ArrayList<Cliente>();
-	private static List<Funcion> cartelera= new ArrayList<Funcion>();
-	private static List<Pelicula> peliculas= new ArrayList<Pelicula>();
+	private List<Cliente> clientes= new ArrayList<Cliente>();
+	private List<Funcion> cartelera= new ArrayList<Funcion>();
+	private List<Pelicula> peliculas= new ArrayList<Pelicula>();
 	private float dineroGanado;
 	
 	
@@ -46,24 +47,24 @@ public class Cine {
 		this.nombre = nombre;
 	}
 	
-	public static List<Cliente> getClientes() {
+	public List<Cliente> getClientes() {
 		return clientes;
 	}
-	public static void setClientes(List<Cliente> clientes) {
+	public void setClientes(List<Cliente> clientes) {
 		Cine.clientes = clientes;
 	}
 	
-	public static List<Funcion> getCartelera() {
+	public List<Funcion> getCartelera() {
 		return cartelera;
 	}
-	public static void setCartelera(List<Funcion> cartelera) {
+	public void setCartelera(List<Funcion> cartelera) {
 		Cine.cartelera = cartelera;
 	}
 	
-	public static List<Pelicula> getPeliculas() {
+	public List<Pelicula> getPeliculas() {
 		return peliculas;
 	}
-	public static void setPeliculas(List<Pelicula> peliculas) {
+	public void setPeliculas(List<Pelicula> peliculas) {
 		Cine.peliculas = peliculas;
 	}
 	
