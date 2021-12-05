@@ -12,6 +12,25 @@ public class Cliente {
 	private List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
 	private int referidos;
 	
+	//
+	//methods
+	//
+	
+	//!!! Falta declarar clase Funcion.
+	return string mostWatchedGenre() {
+		List<Boleto> genreList=new ArrayList<Boleto>();
+		for(Boleto boleto: historialCompras) {
+			genreList.add(boleto.getFuncion().getPelicula().getGenero());
+		}
+		List<Integer> cuenta=new ArrayList<Integer>();
+		for(String genre: genreList) {
+			int occ = Collections.frequency(genreList, genre);
+			cuenta.add(occ);
+		}
+		
+		return genreList.get(cuenta.indexOf(Collections.max(cuenta)));
+		
+	}
 	
 	//
 	//getting and setting
@@ -66,10 +85,6 @@ public class Cliente {
 		this.historialCompras = historialCompras;
 	}
 	
-	
-	//
-	//methods
-	//
 	
 	
 

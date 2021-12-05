@@ -2,6 +2,7 @@ package gestorAplicacion.boleteria;
 
 public class Pelicula {
 	private String nombre;
+	private String genero;
 	private int duracion;
 	private String lenguaje;
 	private int clasificacion;
@@ -18,6 +19,13 @@ public class Pelicula {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public String getGenero() {
+		return genero;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 	
 	public int getDuracion() {
