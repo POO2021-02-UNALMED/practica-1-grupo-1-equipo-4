@@ -7,13 +7,11 @@ public class Funcion{
 	
 	private int dia;
 	private int mes;
-	private String horario;
-	private int duracion;
+	private Horario horario;
 	private Pelicula pelicula;
-	private List<String> lenguajes = new ArrayList<String>();
 	private int cantidadBoletosVendidos;
 	
-	public Funcion() {
+	public Funcion(int dia, int mes, Horario horario, int duracion, Pelicula pelicula, ) {
 		
 	}
 	
@@ -24,28 +22,13 @@ public class Funcion{
 	
 
 	public String getHorario() {
-		return horario;
-	}
-	public void setHorario(String horario) {
-		this.horario = horario;
-	}
-	public int getDuracion() {
-		return duracion;
-	}
-	public void setDuracion(int duracion) {
-		this.duracion = duracion;
+		return horario.getHora();
 	}
 	public Pelicula getPelicula() {
 		return pelicula;
 	}
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
-	}
-	public List<String> getLenguajes() {
-		return lenguajes;
-	}
-	public void setLenguajes(List<String> lenguajes) {
-		this.lenguajes = lenguajes;
 	}
 	public int getCantidadBoletosVendidos() {
 		return cantidadBoletosVendidos;
