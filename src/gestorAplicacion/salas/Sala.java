@@ -1,26 +1,26 @@
 package gestorAplicacion.salas;
 
 import java.util.ArrayList;
+
 import gestorAplicacion.boleteria.Funcion;
 
-public class Sala {
-	private int numero;
-	private int filas;
-	private int columnas;
-	private int filasvip;
-	private float precio;
-	private ArrayList<Silla> sillas = new ArrayList<Silla>();
-	private ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+public abstract class Sala {
+	protected int numero;
+	protected int filas;
+	protected int columnas;
+	protected int filasvip;
+	protected float precio;
+	protected ArrayList<Silla> sillas = new ArrayList<Silla>();
+	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 	
 	public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
 		this.numero = numero;
 		this.filas = filas;
 		this.columnas = columnas;
 		this.filasvip = filasvip;
+		this.precio=precio;
 	}
 
-	
-	
 	public void crearSilleteria() {
 		
 		int total = filas*columnas; 		//número de filas
@@ -39,6 +39,27 @@ public class Sala {
 			Silla silla = new Silla(tipo,i+1);
 			sillas.add(silla);
 		}
+	}
+	
+	public abstract int cantidadSillas();
+	
+	//verificar disponibilidad
+	public boolean verificarDisponibilidad(int dia, int mes, String hora) {
+		String consulta=dia+mes+hora;
+		ArrayList<String>totalfunciones = new ArrayList<String>();
+		
+		for (Funcion func:funciones) {
+			String info=func.getDia()+func.getMes()+func.getHorario();	
+			totalfunciones.add(info);				//se almacena en una lista la informacion
+			info="";								//de las funciones creadas
+			
+		}
+		for (String i:totalfunciones) {
+			if (i.equals(consulta)) {			//si cuando se quiere crear la funcion ya hay otra fecha ahi
+				return false;					//devuelve falso y no se puede crear
+			}
+		}
+		return true;
 	}
 	
 	public int getNumero() {
