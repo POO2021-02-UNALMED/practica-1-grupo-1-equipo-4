@@ -1,9 +1,15 @@
 package gestorAplicacion.boleteria;
 
 public class Boleto {
+	
+	//
+	//Atributos 
+	//
+	
 	private long id;
 	private float precioTotal;
 	private boolean disponibilidad;
+	private Funcion funcion;
 
 	//
 	// getting and setting:
@@ -28,4 +34,11 @@ public class Boleto {
 	public void setDisponibilidad(boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
+	public Funcion getFuncion() {
+		return funcion;
+	}
+	public void setFuncion(Funcion funcion) {
+		this.funcion = funcion;
+	}
+	
 }
