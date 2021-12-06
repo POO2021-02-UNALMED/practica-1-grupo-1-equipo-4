@@ -3,29 +3,26 @@ package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import java.util.*;
 
-public class Funcion implements Serializable{
-	private static final long serialVersionUID = 2L;
+public class Funcion{
 	
-	private Date fecha;
+	private int dia;
+	private int mes;
 	private String horario;
 	private int duracion;
 	private Pelicula pelicula;
 	private List<String> lenguajes = new ArrayList<String>();
 	private int cantidadBoletosVendidos;
 	
+	public Funcion() {
+		
+	}
+	
+	
 	//
 	//getting and setting
 	//
 	
-	public Date getFecha() {
-		return fecha;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+
 	public String getHorario() {
 		return horario;
 	}
@@ -56,7 +53,22 @@ public class Funcion implements Serializable{
 	public void setCantidadBoletosVendidos(int cantidadBoletosVendidos) {
 		this.cantidadBoletosVendidos = cantidadBoletosVendidos;
 	}
-	
+
+	public int getDia() {
+		return dia;
+	}
+
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+
+	public int getMes() {
+		return mes;
+	}
+
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
 	
 	//
 	//methods
