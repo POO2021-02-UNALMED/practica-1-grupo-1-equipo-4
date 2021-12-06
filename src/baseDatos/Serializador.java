@@ -18,6 +18,8 @@ public class Serializador {
 		ObjectOutputStream oos;
 		File[] docs = rutaTemp.listFiles();
 		PrintWriter pw;
+		
+		
 		for (File file: docs) {
 			try {
 				pw = new PrintWriter(file);
@@ -27,31 +29,11 @@ public class Serializador {
 		}
 		
 		for (File file: docs) {
-			if (file.getAbsolutePath().contains("cartelera")) {
+			if (file.getAbsolutePath().contains("Cine")) {
 				try {
 					fos = new FileOutputStream(file);
 					oos = new ObjectOutputStream(fos);
-					oos.writeObject(cine.getCartelera());
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch(IOException e) {
-					e.printStackTrace();
-				}
-			}else if (file.getAbsolutePath().contains("peliculas")) {
-				try {
-					fos = new FileOutputStream(file);
-					oos = new ObjectOutputStream(fos);
-					oos.writeObject(cine.getPeliculas());
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch(IOException e) {
-					e.printStackTrace();
-				}
-			}else if (file.getAbsolutePath().contains("clientes")) {
-				try {
-					fos = new FileOutputStream(file);
-					oos = new ObjectOutputStream(fos);
-					oos.writeObject(cine.getClientes());
+					oos.writeObject(cine);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch(IOException e) {

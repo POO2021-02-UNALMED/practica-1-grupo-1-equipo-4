@@ -74,7 +74,5 @@ public class Cine implements Serializable{
 	public void setDineroGanado(float dineroGanado) {
 		this.dineroGanado = dineroGanado;
 	}
-	
-	
 
 }
