@@ -12,6 +12,7 @@ public abstract class Sala {
 	protected float precio;
 	protected ArrayList<Silla> sillas = new ArrayList<Silla>();
 	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+	protected boolean validar = true;
 	
 	public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
 		this.numero = numero;
@@ -19,6 +20,9 @@ public abstract class Sala {
 		this.columnas = columnas;
 		this.filasvip = filasvip;
 		this.precio=precio;
+	}
+	public Sala(boolean validar) { // metodo auxiliar para crear función, ignorar porfa
+		this.validar = validar;
 	}
 
 	public void crearSilleteria() {
@@ -116,6 +120,10 @@ public abstract class Sala {
 
 	public void setFilasVip(int vip) {
 		this.filasvip = vip;
+	}
+	
+	public boolean isValidar() {
+		return validar;
 	}
 	
 }

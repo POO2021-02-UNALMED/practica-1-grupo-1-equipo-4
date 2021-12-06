@@ -3,19 +3,26 @@ package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import java.util.*;
 
+import gestorAplicacion.cinema.Cine;
+import gestorAplicacion.salas.Sala;
+
 public class Funcion{
 	
 	private int dia;
 	private int mes;
 	private Horario horario;
 	private Pelicula pelicula;
-	private int cantidadBoletosVendidos;
+	private Sala sala;
+	private int cantidadBoletosVendidos = 0;
+	private Cine cine;
 	
-	public Funcion(int dia, int mes, Horario horario, int duracion, Pelicula pelicula, ) {
+	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, int sala) {
+		this.dia = dia;
+		this.mes = mes;
+		this.horario = horario;
+		this.pelicula = pelicula;
 		
 	}
-	
-	
 	//
 	//getting and setting
 	//

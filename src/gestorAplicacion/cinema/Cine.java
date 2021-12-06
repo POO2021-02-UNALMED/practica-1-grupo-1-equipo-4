@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicacion.boleteria.*;
+import gestorAplicacion.salas.Sala;
+import gestorAplicacion.salas.Sala2D;
 //import gestorAplicacion.cinema.*;
 
 //!!!
@@ -14,6 +16,7 @@ public class Cine implements Serializable{
 	private List<Cliente> clientes= new ArrayList<Cliente>();
 	private List<Funcion> cartelera= new ArrayList<Funcion>();
 	private List<Pelicula> peliculas= new ArrayList<Pelicula>();
+	private List<Sala> salas = new ArrayList<Sala>();
 	private float dineroGanado;
 	
 	
@@ -35,6 +38,33 @@ public class Cine implements Serializable{
 				System.out.println(funcion);
 			}
 		}
+	}
+	//
+	//Metodos para agregar elementos a las listas
+	//
+	public void agregarCliente(Cliente nuevo) {
+		clientes.add(nuevo);
+	}
+	public void agregarPelicula(Pelicula nuevo) {
+		peliculas.add(nuevo);
+	}
+	public void agregarSala(Sala nuevo){
+		salas.add(nuevo);
+	}
+	
+	// metodo para obtener la sala por numero
+	public Sala buscarSala(int num) {
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		for(Sala sala: salas) {
+			lista.add(sala.getNumero());
+		}
+		
+		if (lista.contains(num)) {
+			return salas.get(lista.indexOf(num));
+		}else {
+			return new Sala2D(false);
+		}
+		
 	}
 	
 	//
@@ -73,6 +103,14 @@ public class Cine implements Serializable{
 	}
 	public void setDineroGanado(float dineroGanado) {
 		this.dineroGanado = dineroGanado;
+	}
+
+	public List<Sala> getSalas() {
+		return salas;
+	}
+
+	public void setSalas(List<Sala> salas) {
+		this.salas = salas;
 	}
 
 }
