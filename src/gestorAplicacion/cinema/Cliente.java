@@ -16,9 +16,8 @@ public class Cliente {
 	//methods
 	//
 	
-	//!!! Falta declarar clase Funcion.
-	return string mostWatchedGenre() {
-		List<Boleto> genreList=new ArrayList<Boleto>();
+	public String mostWatchedGenre() {
+		List<String> genreList=new ArrayList<String>();
 		for(Boleto boleto: historialCompras) {
 			genreList.add(boleto.getFuncion().getPelicula().getGenero());
 		}
