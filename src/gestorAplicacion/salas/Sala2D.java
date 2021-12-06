@@ -1,5 +1,5 @@
 package gestorAplicacion.salas;
 
-public class Sala4D extends Sala{
+public class Sala2D extends Sala {
 
 }
