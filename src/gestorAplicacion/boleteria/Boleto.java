@@ -25,7 +25,7 @@ public class Boleto {
 	}
 
 	private float calcularPrecio() { // PENDIENTE							 
-										// PENDIENTE
+									// PENDIENTE
 		return 0;
 	}
 

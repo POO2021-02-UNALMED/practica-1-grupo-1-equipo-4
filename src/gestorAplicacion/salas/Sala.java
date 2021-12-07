@@ -21,8 +21,7 @@ public abstract class Sala {
 		this.precio=precio;
 	}
 	
-
-	public void crearSilleteria() {
+	public void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
 		
 		int total = filas*columnas; 		//número de filas
 		int totalvip = filasvip*columnas;	//número de filas vip
