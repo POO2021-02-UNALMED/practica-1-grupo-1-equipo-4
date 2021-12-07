@@ -62,7 +62,7 @@ public class Cine implements Serializable{
 		if (lista.contains(num)) {
 			return salas.get(lista.indexOf(num));
 		}else {
-			return new Sala2D(false);
+			return null;
 		}
 		
 	}
