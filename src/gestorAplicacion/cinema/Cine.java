@@ -24,7 +24,7 @@ public class Cine implements Serializable{
 	//methods
 	//
 	
-	public static void verFuncion(Pelicula pelicula) { //??? aquí o en main
+	public void verFuncion(Pelicula pelicula) { //??? aquí o en main
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula){
 				System.out.println(funcion);
@@ -32,7 +32,7 @@ public class Cine implements Serializable{
 		}
 	}
 	
-	public static void verFuncion(Pelicula pelicula, String horario) {
+	public void verFuncion(Pelicula pelicula, String horario) {
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
 				System.out.println(funcion);
@@ -81,21 +81,21 @@ public class Cine implements Serializable{
 		return clientes;
 	}
 	public void setClientes(List<Cliente> clientes) {
-		Cine.clientes = clientes;
+		this.clientes = clientes;
 	}
 	
 	public List<Funcion> getCartelera() {
 		return cartelera;
 	}
 	public void setCartelera(List<Funcion> cartelera) {
-		Cine.cartelera = cartelera;
+		this.cartelera = cartelera;
 	}
 	
 	public List<Pelicula> getPeliculas() {
 		return peliculas;
 	}
 	public void setPeliculas(List<Pelicula> peliculas) {
-		Cine.peliculas = peliculas;
+		this.peliculas = peliculas;
 	}
 	
 	public float getDineroGanado() {

@@ -1,10 +1,10 @@
 package gestorAplicacion.boleteria;
 
-import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicacion.cinema.Cine;
 import gestorAplicacion.salas.Sala;
+import gestorAplicacion.salas.Silla;
 
 public class Funcion{
 	
@@ -13,6 +13,7 @@ public class Funcion{
 	private Horario horario;
 	private Pelicula pelicula;
 	private Sala sala;
+	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
 	private int cantidadBoletosVendidos = 0;
 	private Cine cine;
 	
@@ -21,29 +22,42 @@ public class Funcion{
 		this.mes = mes;
 		this.horario = horario;
 		this.pelicula = pelicula;
-		this.sala = sala;
+		this.setSala(sala);
 		sala.agregarFuncion(this);
+		this.crearBoleteria();
 	}
 	
-	
 	//
-	//metodo para crear sala verificando existencia de sala y disponibilidad de esta
+	//methods
+	//
+	
 	//
 	// PARA CREAR FUNCIÓN SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
 	public Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num) { 
-		Sala sala = cine.buscarSala(num);
-		if(sala != null) {
-			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) {
-				return new Funcion(dia, mes, horario, pelicula, sala);
-			}
+		Sala sala = cine.buscarSala(num);                                   //acá se revisa si la sala existe en cine
+		if(sala != null) {												    				
+			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
+				return new Funcion(dia, mes, horario, pelicula, sala);		// crea la función
+			}		
 			else {
-				return null;
+				return null;												// no la crea
 			}
 			
 		}
 		else{
-			return null;
+			return null;													// sala inexistente
+		}
+		
+	}
+	// 
+	// metodo para crear los boletos de la sala
+	private void crearBoleteria(){
+		ArrayList<Silla> sillas = sala.getSillas(); 
+		
+		for(int i = 0; i <= sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde según cantidad de sillas
+			Boleto boleto = new Boleto(this, sillas.get(i));
+			boletos.add(boleto);
 		}
 		
 	}
@@ -83,8 +97,21 @@ public class Funcion{
 	public void setMes(int mes) {
 		this.mes = mes;
 	}
+
+	public Sala getSala() {
+		return sala;
+	}
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+
+	public ArrayList<Boleto> getBoletos() {
+		return boletos;
+	}
+
+	public void setBoletos(ArrayList<Boleto> boletos) {
+		this.boletos = boletos;
+	}
 	
-	//
-	//methods
-	//
+
 }

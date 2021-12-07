@@ -1,5 +1,8 @@
 package gestorAplicacion.boleteria;
 
+import gestorAplicacion.salas.Silla;
+import gestorAplicacion.salas.Tipo;
+
 public class Boleto {
 	
 	//
@@ -7,9 +10,24 @@ public class Boleto {
 	//
 	
 	private long id;
+	private int num_silla;
+	private Tipo tipo_silla; 
 	private float precioTotal;
 	private boolean disponibilidad;
 	private Funcion funcion;
+	
+	
+	public Boleto(Funcion funcion, Silla silla) {
+		this.funcion = funcion;
+		this.setNum_silla(silla);
+		this.disponibilidad = true;
+		this.precioTotal = this.calcularPrecio();
+	}
+
+	private float calcularPrecio() { // PENDIENTE							 
+										// PENDIENTE
+		return 0;
+	}
 
 	//
 	// getting and setting:
@@ -39,6 +57,23 @@ public class Boleto {
 	}
 	public void setFuncion(Funcion funcion) {
 		this.funcion = funcion;
+	}
+
+	public int getNum_silla() {
+		return num_silla;
+	}
+
+	public void setNum_silla(Silla silla) {
+		this.num_silla = silla.getNumero();
+		this.setTipo_silla(silla.getTipo());
+	}
+
+	public Tipo getTipo_silla() {
+		return tipo_silla;
+	}
+
+	public void setTipo_silla(Tipo tipo_silla) {
+		this.tipo_silla = tipo_silla;
 	}
 	
 }

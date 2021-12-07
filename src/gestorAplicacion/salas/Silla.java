@@ -1,7 +1,6 @@
 package gestorAplicacion.salas;
 
 public class Silla {
-	private enum Tipo {VIP, SENCILLA};
 	private Tipo tipo;
 	private int numero;
 	private int precio;
