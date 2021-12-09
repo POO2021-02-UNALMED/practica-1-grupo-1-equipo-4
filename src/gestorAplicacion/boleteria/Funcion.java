@@ -5,6 +5,7 @@ import java.util.*;
 import gestorAplicacion.cinema.Cine;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Silla;
+import gestorAplicacion.salas.Sala2D;
 
 public class Funcion{
 	
@@ -141,5 +142,13 @@ public class Funcion{
 		this.boletos = boletos;
 	}
 	
+
+	public static void main(String[] args){
+		Pelicula rey_leon = new Pelicula();
+		Sala2D sala1 = new Sala2D(1, 5, 7, 2);
+		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
+		System.out.println(funcion_1.verDisponibilidad());
+
+	}
 
 }
