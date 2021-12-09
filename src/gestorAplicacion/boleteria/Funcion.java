@@ -85,10 +85,14 @@ public class Funcion{
 		}
 		return formato;
 	}
+
+
+
+
+	
 	//
 	//getting and setting
 	//
-	
 
 	public String getHorario() {
 		return horario.getHora();
