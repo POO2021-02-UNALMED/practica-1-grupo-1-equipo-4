@@ -17,6 +17,8 @@ public class Funcion{
 	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
 	private int cantidadBoletosVendidos = 0;
 	private Cine cine;
+	private static int cantidadFunciones;
+	private int numero;
 	
 	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala) {
 		this.dia = dia;
@@ -26,6 +28,8 @@ public class Funcion{
 		this.setSala(sala);
 		sala.agregarFuncion(this);
 		this.crearBoleteria();
+		cantidadFunciones++;
+		this.numero=cantidadFunciones;
 	}
 	
 	//
@@ -146,6 +150,16 @@ public class Funcion{
 	public void setBoletos(ArrayList<Boleto> boletos) {
 		this.boletos = boletos;
 	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public static int getCantidadFunciones() {
+		return cantidadFunciones;
+	}
+	
+	
 	
 	// MAIN PARA ENSAYAR
 	/*
