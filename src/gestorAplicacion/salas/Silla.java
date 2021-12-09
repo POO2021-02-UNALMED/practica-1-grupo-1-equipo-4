@@ -3,7 +3,7 @@ package gestorAplicacion.salas;
 public class Silla {
 	private Tipo tipo;
 	private int numero;
-	private int precio;
+	private float precio;
 	
 	
 	public Silla(String tipo, int numero) {
@@ -29,7 +29,7 @@ public class Silla {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public int getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 	public void setPrecio(int precio) {
