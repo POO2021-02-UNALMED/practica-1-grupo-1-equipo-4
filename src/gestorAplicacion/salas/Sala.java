@@ -19,12 +19,13 @@ public abstract class Sala {
 		this.columnas = columnas;
 		this.filasvip = filasvip;
 		this.precio=precio;
+		this.crearSilleteria();
 	}
 	
 	public void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
 		
-		int total = filas*columnas; 		//número de filas
-		int totalvip = filasvip*columnas;	//número de filas vip
+		int total = filas*columnas; 		//nï¿½mero de filas
+		int totalvip = filasvip*columnas;	//nï¿½mero de filas vip
 		String tipo = "VIP";
 		
 		for(int i = 0;i<total;i++) {

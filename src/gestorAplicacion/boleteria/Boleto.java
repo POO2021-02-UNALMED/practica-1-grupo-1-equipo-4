@@ -27,23 +27,23 @@ public class Boleto {
 	}
 
 	private float calcularPrecio() {						 
-		float bruto=funcion.getSala().getPrecio()+precio_silla;		//falta añadir el descuento
+		float bruto=funcion.getSala().getPrecio()+precio_silla;		//falta aï¿½adir el descuento
 		
 		return bruto;
 	}
 	
 	public String disponibilidad() {
 		if(disponibilidad) {
-			return "D";
+			return "O";
 		}
 		return "X";
 	}
 	
 	public String tipoString() {
 		if(tipo_silla==Tipo.VIP) {
-			return "V";
+			return "V-";
 		}
-		return "S";
+		return "S-";
 	}
 	//
 	// getting and setting:

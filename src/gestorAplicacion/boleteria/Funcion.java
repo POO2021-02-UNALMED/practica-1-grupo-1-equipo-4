@@ -5,7 +5,7 @@ import java.util.*;
 import gestorAplicacion.cinema.Cine;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Silla;
-import gestorAplicacion.salas.Sala2D;
+//import gestorAplicacion.salas.Sala2D;
 
 public class Funcion{
 	
@@ -56,7 +56,7 @@ public class Funcion{
 	private void crearBoleteria(){
 		ArrayList<Silla> sillas = sala.getSillas(); 
 		
-		for(int i = 0; i <= sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde seg�n cantidad de sillas
+		for(int i = 0; i < sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde seg�n cantidad de sillas
 			Boleto boleto = new Boleto(this, sillas.get(i));
 			boletos.add(boleto);
 		}
@@ -80,14 +80,19 @@ public class Funcion{
 		String formato = "";
 
 		// for para formatear un string con la silletería para imprimir
+
 		for(ArrayList<String> fila: total){
-			String patron = "%5s ".repeat(sala.getColumnas());
-			formato += String.format(patron, fila) + "\n";
+			String patron = "%-6s   ".repeat(sala.getColumnas()); // se crea el formato con la cantidad de variables necesarias por fila
+			Object[] array = fila.toArray(new String[0]); // se crea una lista para pasar como *args
+			formato += String.format(patron,array) + "\n"; // se le agrega a el string resultante la fila
 		}
+		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n";
 		return formato;
 	}
 
-
+	public static String centerString (int width, String s) {
+		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+	}
 
 
 	
@@ -142,13 +147,15 @@ public class Funcion{
 		this.boletos = boletos;
 	}
 	
-
+	// MAIN PARA ENSAYAR
+	/*
 	public static void main(String[] args){
 		Pelicula rey_leon = new Pelicula();
-		Sala2D sala1 = new Sala2D(1, 5, 7, 2);
+		Sala2D sala1 = new Sala2D(1, 30, 2, 2);
 		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
+		funcion_1.getBoletos().get(3).setDisponibilidad(false);
 		System.out.println(funcion_1.verDisponibilidad());
 
-	}
+	}*/
 
 }
