@@ -28,7 +28,20 @@ public class Boleto {
 									// PENDIENTE
 		return 0;
 	}
-
+	
+	public String disponibilidad() {
+		if(disponibilidad) {
+			return "D";
+		}
+		return "X";
+	}
+	
+	public String tipostring() {
+		if(tipo_silla==Tipo.VIP) {
+			return "V";
+		}
+		return "S";
+	}
 	//
 	// getting and setting:
 	//
