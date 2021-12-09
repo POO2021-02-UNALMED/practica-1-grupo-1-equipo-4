@@ -66,7 +66,13 @@ public abstract class Sala {
 		}
 		return true;
 	}
-	
+	public String getTipo(){
+		if(this instanceof Sala2D){
+			return "2D";
+		}else{
+			return "3D";
+		}
+	}
 	public int getNumero() {
 		return numero;
 	}

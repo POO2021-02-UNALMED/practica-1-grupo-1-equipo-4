@@ -24,21 +24,53 @@ public class Cine implements Serializable{
 	//methods
 	//
 	
-	public void verFuncion(Pelicula pelicula) { //??? aqu� o en main
+
+	// ???  funciones por pelicula no debería llevar el día (?) by : Daza
+
+	public String verFuncion(Pelicula pelicula) { //??? aqu� o en main
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula){
-				System.out.println(funcion);
+				funciones.add(funcion);
 			}
 		}
+
+		return formatearFunciones(funciones);
 	}
 	
-	public void verFuncion(Pelicula pelicula, String horario) {
+	public String verFuncion(Pelicula pelicula, String horario) {
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
-				System.out.println(funcion);
+				funciones.add(funcion);
 			}
 		}
+		return formatearFunciones(funciones);
 	}
+
+
+	// funcion para formatear el texto para imprimir en pantallas las funciones
+	// este es llamado desde la función verFuncion()
+	private String formatearFunciones(ArrayList<Funcion> funciones){
+		String resultado = "";
+		for(Funcion funcion: funciones){
+			String formato = "%s|%s|%s";
+			resultado += funcion.getPelicula().getNombre() + "\n";
+			resultado += String.format(
+				formato, 
+				centerString(6,funcion.getHorario()), 
+				centerString(9,"Sala "+funcion.getSala().getNumero()),
+				centerString(4,funcion.getSala().getTipo())
+				 );
+			resultado += "\n\n";
+		}
+		return resultado;
+	}
+
+	public static String centerString (int width, String s) {
+		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+	}
+
 	//
 	//Metodos para agregar elementos a las listas
 	//
@@ -51,7 +83,23 @@ public class Cine implements Serializable{
 	public void agregarSala(Sala nuevo){
 		salas.add(nuevo);
 	}
-	
+
+	// funcion para ver si el cliente ya se encuentar inscrito en el cine
+	public Boolean verificarCliente(int num) {
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		for(Cliente cliente: clientes) {
+			lista.add(cliente.getCedula());
+		}
+		
+		if (lista.contains(num)) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+
 	// metodo para obtener la sala por numero
 	public Sala buscarSala(int num) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
