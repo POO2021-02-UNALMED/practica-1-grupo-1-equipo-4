@@ -23,13 +23,14 @@ public class Boleto {
 	
 	public Boleto(Funcion funcion, Silla silla) {
 		this.funcion = funcion;
-		this.setNum_silla(silla);
+		this.setAtr_silla(silla);
 		this.disponibilidad = true;
 		this.precioTotal = this.calcularPrecio();
 	}
 
-	private float calcularPrecio() { // PENDIENTE							 
-		float bruto=funcion.getSala().getPrecio()+precio_silla;							// PENDIENTE
+	private float calcularPrecio() {						 
+		float bruto=funcion.getSala().getPrecio()+precio_silla;		//falta añadir el descuento
+		
 		return bruto;
 	}
 	
@@ -80,8 +81,8 @@ public class Boleto {
 		return num_silla;
 	}
 
-	public void setNum_silla(Silla silla) {
-		this.num_silla = silla.getNumero();
+	private void setAtr_silla(Silla silla) {		//se setean los atributos de la silla para accederlos
+		this.num_silla = silla.getNumero();			//facilmente
 		this.setTipo_silla(silla.getTipo());
 		this.setPrecio_silla(silla.getPrecio());
 	}
