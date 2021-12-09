@@ -1,7 +1,10 @@
 package gestorAplicacion.boleteria;
 
 import gestorAplicacion.salas.Silla;
+
 import gestorAplicacion.salas.Tipo;
+
+import gestorAplicacion.salas.Sala;
 
 public class Boleto {
 	
@@ -15,6 +18,7 @@ public class Boleto {
 	private float precioTotal;
 	private boolean disponibilidad;
 	private Funcion funcion;
+	private float precio_silla;
 	
 	
 	public Boleto(Funcion funcion, Silla silla) {
@@ -25,8 +29,8 @@ public class Boleto {
 	}
 
 	private float calcularPrecio() { // PENDIENTE							 
-									// PENDIENTE
-		return 0;
+		float bruto=funcion.getSala().getPrecio()+precio_silla;							// PENDIENTE
+		return bruto;
 	}
 	
 	public String disponibilidad() {
@@ -36,7 +40,7 @@ public class Boleto {
 		return "X";
 	}
 	
-	public String tipostring() {
+	public String Tipostring() {
 		if(tipo_silla==Tipo.VIP) {
 			return "V";
 		}
@@ -79,6 +83,11 @@ public class Boleto {
 	public void setNum_silla(Silla silla) {
 		this.num_silla = silla.getNumero();
 		this.setTipo_silla(silla.getTipo());
+		this.setPrecio_silla(silla.getPrecio());
+	}
+
+	public void setPrecio_silla(float precio) {
+		this.precio_silla=precio;
 	}
 
 	public Tipo getTipo_silla() {
