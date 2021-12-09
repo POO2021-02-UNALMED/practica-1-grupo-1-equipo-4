@@ -39,7 +39,7 @@ public class Boleto {
 		return "X";
 	}
 	
-	public String Tipostring() {
+	public String tipoString() {
 		if(tipo_silla==Tipo.VIP) {
 			return "V";
 		}
