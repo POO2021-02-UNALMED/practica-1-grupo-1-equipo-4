@@ -32,13 +32,13 @@ public class Funcion{
 	//
 	
 	//
-	// PARA CREAR FUNCIÓN SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
+	// PARA CREAR FUNCIï¿½N SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
 	public Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num) { 
-		Sala sala = cine.buscarSala(num);                                   //acá se revisa si la sala existe en cine
+		Sala sala = cine.buscarSala(num);                                   //acï¿½ se revisa si la sala existe en cine
 		if(sala != null) {												    				
 			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
-				return new Funcion(dia, mes, horario, pelicula, sala);		// crea la función
+				return new Funcion(dia, mes, horario, pelicula, sala);		// crea la funciï¿½n
 			}		
 			else {
 				return null;												// no la crea
@@ -55,11 +55,35 @@ public class Funcion{
 	private void crearBoleteria(){
 		ArrayList<Silla> sillas = sala.getSillas(); 
 		
-		for(int i = 0; i <= sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde según cantidad de sillas
+		for(int i = 0; i <= sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde segï¿½n cantidad de sillas
 			Boleto boleto = new Boleto(this, sillas.get(i));
 			boletos.add(boleto);
 		}
 		
+	}
+
+	public String verDisponibilidad(){
+		ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>(); // lista de filas
+
+		// for para hacer una lista de listas, cada lista corresponde a una fila de sillas
+		for(int i = 0 ; i<sala.getFilas(); i++){
+			ArrayList<String> fila = new ArrayList<String>();
+			for(int j = 0; j<sala.getColumnas() ; j++){
+				Boleto boleto = boletos.get((i)*sala.getColumnas()+j); 
+				String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
+				fila.add(formato_boleto);
+			}
+			total.add(fila);
+		}
+
+		String formato = "";
+
+		// for para formatear un string con la silleterÃ­a para imprimir
+		for(ArrayList<String> fila: total){
+			String patron = "%5s ".repeat(sala.getColumnas());
+			formato += String.format(patron, fila) + "\n";
+		}
+		return formato;
 	}
 	//
 	//getting and setting
