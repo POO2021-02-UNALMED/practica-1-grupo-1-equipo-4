@@ -4,8 +4,6 @@ import gestorAplicacion.salas.Silla;
 
 import gestorAplicacion.salas.Tipo;
 
-import gestorAplicacion.salas.Sala;
-
 public class Boleto {
 	
 	//
