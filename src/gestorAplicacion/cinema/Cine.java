@@ -65,23 +65,29 @@ public class Cine implements Serializable{
 
 	// funcion para formatear el texto para imprimir en pantallas las funciones
 	// este es llamado desde la función verFuncion()
-	private String formatearFunciones(ArrayList<Funcion> funciones){
-		String resultado = "";
+	public static String formatearFunciones(ArrayList<Funcion> funciones){
+		String resultado = "\n\n"; // string en el que va todo el texto
 		for(Funcion funcion: funciones){
+			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
 			String formato = "%s|%s|%s|%s";
-			resultado += funcion.getPelicula().getNombre() + "\n";
-			resultado += String.format(
+			String fecha = "Fecha: " + String.format("%02d/%02d",funcion.getDia(),funcion.getMes());
+			resultado += funcion.getPelicula().getNombre() + "\n"; // añade nombre de la pelicula y salto de linea
+			
+			
+			resultado += String.format(							   // añade la linea con la info
 				formato, 
-				centerString(6,funcion.getHorario()), 
-				centerString(9,"Sala "+funcion.getSala().getNumero()),
-				centerString(4,funcion.getSala().getTipo()),
-				centerString(5,/*numero formateado a la derecha con 0*/);
-				 );
+				centerString(6,funcion.getHorario()), 						// pone el horario	centrado	 
+				centerString(8,"Sala "+funcion.getSala().getNumero()),		// pone la sala centrada
+				centerString(4,funcion.getSala().getTipo()),				// pone el tipo de sala centrada
+				centerString(5,String.format("%03d", funcion.getNumero())));// pone el número de sala centrada
+			resultado += "\n"+ fecha;
 			resultado += "\n\n";
 		}
 		return resultado;
 	}
+	
 
+	// función para centrar el texto a un tamaño minimo
 	public static String centerString (int width, String s) {
 		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}
