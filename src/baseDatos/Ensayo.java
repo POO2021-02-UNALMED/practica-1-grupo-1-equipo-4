@@ -17,7 +17,7 @@ public class Ensayo {
 
 
         // cine 
-        Cine vizcaya = new Cine();
+        Cine vizcaya = new Cine("Vizcaya");
 
 		Sala2D sala1 = new Sala2D(1, 7, 8, 2);
         Sala3D sala2 = new Sala3D(2, 9, 9, 2, 36);
