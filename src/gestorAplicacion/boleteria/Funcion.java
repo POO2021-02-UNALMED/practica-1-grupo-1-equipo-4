@@ -1,5 +1,5 @@
 package gestorAplicacion.boleteria;
-
+import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicacion.cinema.Cine;
@@ -8,7 +8,8 @@ import gestorAplicacion.salas.Silla;
 import gestorAplicacion.salas.Sala2D;
 import gestorAplicacion.salas.Sala3D;
 
-public class Funcion{
+public class Funcion implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private int dia;
 	private int mes;
@@ -21,7 +22,7 @@ public class Funcion{
 	private static int cantidadFunciones;
 	private int numero;
 	
-	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala) {
+	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala, Cine cine) {
 		this.dia = dia;
 		this.mes = mes;
 		this.horario = horario;
@@ -31,20 +32,22 @@ public class Funcion{
 		this.crearBoleteria();
 		cantidadFunciones++;
 		this.numero=cantidadFunciones;
+		this.setCine(cine);
 	}
 	
 	//
-	//methods
+	//		METODOS
 	//
 	
 	//
 	// PARA CREAR FUNCI�N SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
-	public Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num) { 
+
+	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num, Cine cine) { 
 		Sala sala = cine.buscarSala(num);                                   //ac� se revisa si la sala existe en cine
 		if(sala != null) {												    				
 			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
-				return new Funcion(dia, mes, horario, pelicula, sala);		// crea la funci�n
+				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funci�n
 			}		
 			else {
 				return null;												// no la crea
@@ -54,8 +57,9 @@ public class Funcion{
 		else{
 			return null;													// sala inexistente
 		}
-		
 	}
+
+
 	// 
 	// metodo para crear los boletos de la sala
 	private void crearBoleteria(){
@@ -171,7 +175,14 @@ public class Funcion{
 		return cantidadFunciones;
 	}
 	
+	public void setCine(Cine cine){
+		this.cine = cine;
+		cine.agregarFuncion(this);
+	}
 	
+	public Cine getCine(){
+		return cine;
+	}
 	
 	// MAIN PARA ENSAYAR
 	

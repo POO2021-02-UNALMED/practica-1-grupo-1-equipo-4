@@ -1,5 +1,5 @@
 package gestorAplicacion.cinema;
-
+import java.io.Serializable;
 import java.io.Serializable;
 import java.util.*;
 
@@ -49,6 +49,7 @@ public class Cine implements Serializable{
 	}
 
 
+
 	// funcion para formatear el texto para imprimir en pantallas las funciones
 	// este es llamado desde la función verFuncion()
 	public static String formatearFunciones(ArrayList<Funcion> funciones){
@@ -89,6 +90,9 @@ public class Cine implements Serializable{
 	}
 	public void agregarSala(Sala nuevo){
 		salas.add(nuevo);
+	}
+	public void agregarFuncion(Funcion nuevo){
+		cartelera.add(nuevo);
 	}
 
 	// funcion para ver si el cliente ya se encuentar inscrito en el cine

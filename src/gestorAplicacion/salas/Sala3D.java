@@ -1,6 +1,7 @@
 package gestorAplicacion.salas;
-
-public class Sala3D extends Sala{
+import java.io.Serializable;
+public class Sala3D extends Sala implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private int cantidadGafas;
 	

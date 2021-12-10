@@ -1,6 +1,7 @@
 package gestorAplicacion.boleteria;
-
-public class Pelicula {
+import java.io.Serializable;
+public class Pelicula implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String genero;
 	private int duracion;

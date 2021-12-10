@@ -1,4 +1,5 @@
 package baseDatos;
+import java.io.Serializable;
 import gestorAplicacion.boleteria.*;
 import gestorAplicacion.cinema.*;
 import gestorAplicacion.salas.*;
@@ -21,13 +22,15 @@ public class Ensayo {
 		Sala2D sala1 = new Sala2D(1, 7, 8, 2);
         Sala3D sala2 = new Sala3D(2, 9, 9, 2, 36);
 
-		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
+        vizcaya.agregarSala(sala1);
+        vizcaya.agregarSala(sala2);
+
+		Funcion funcion_1 = Funcion.crearFuncion(1, 3, Horario.UNO, rey_leon, 1, vizcaya);
 		//funcion_1.getBoletos().get(3).setDisponibilidad(false);
 		//System.out.println(funcion_1.verDisponibilidad());
-		Funcion funcion_2 = new Funcion(1,3,Horario.DOS, avenger, sala1);
-		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
-		funciones.add(funcion_1);
-		funciones.add(funcion_2);
-		System.out.println(Cine.formatearFunciones(funciones));
+		Funcion funcion_2 = Funcion.crearFuncion(1,3,Horario.DOS, avenger, 2, vizcaya);
+
+		Serializador.serializar(vizcaya);
+		
 	}    
 }
