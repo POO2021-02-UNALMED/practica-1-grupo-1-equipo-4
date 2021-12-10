@@ -16,6 +16,19 @@ public class Funciones {
 			//llamar funcion cliente referido, luego llamar funcion buscar por
 		}
 	}
+	
+	public static void clienteNuevoOViejo() {
+		int opcion=0;
+		System.out.println("¿El cliente es nuevo o viejo?\n"
+				+"1. Viejo\n"
+				+"2. Nuevo\n");
+		Scanner x = new Scanner(System.in);
+		opcion=x.nextInt();
+		
+		
+		
+	}
+	
 	public static void buscarpor(int a) {
 		int opcion=0;
 		System.out.print("Quiere buscar película por:\n"

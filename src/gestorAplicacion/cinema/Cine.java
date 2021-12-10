@@ -25,12 +25,16 @@ public class Cine implements Serializable{
 	//
 	
 
-	// ???  funciones por pelicula no debería llevar el día (?) by : Daza
-
-	public String verFuncion(Pelicula pelicula, int dia) { //??? aqu� o en main
+	public String verFuncion(Pelicula pelicula, int dia, int mes) { 
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
-			if(funcion.getPelicula()==pelicula){
+			if(funcion.getPelicula()==pelicula && funcion.getDia()>=dia && funcion.getMes()==mes ){
+				funciones.add(funcion);
+			}
+		}
+		
+		for(Funcion funcion:cartelera) {
+			if(funcion.getPelicula()==pelicula && funcion.getMes()>mes ){
 				funciones.add(funcion);
 			}
 		}
@@ -42,6 +46,16 @@ public class Cine implements Serializable{
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
+				funciones.add(funcion);
+			}
+		}
+		return formatearFunciones(funciones);
+	}
+	
+	public String verFuncion(Pelicula pelicula, String horario, int dia, int mes) {
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+		for(Funcion funcion:cartelera) {
+			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario && funcion.getDia()==dia && funcion.getMes()==mes){
 				funciones.add(funcion);
 			}
 		}
