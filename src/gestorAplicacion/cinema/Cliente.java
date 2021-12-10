@@ -12,6 +12,7 @@ public class Cliente implements Serializable{
 	private float descuento;
 	public List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
 	private int referidos;
+	private Cine cine;
 	
 	///Constructor
 	
@@ -20,6 +21,7 @@ public class Cliente implements Serializable{
 		this.nombre = nombre;
 		this.edad = edad;
 		this.ocupacion = ocupacion;
+		cine.agregarCliente(this);
 	}
 	
 	
@@ -95,6 +97,15 @@ public class Cliente implements Serializable{
 	}
 	public void setHistorialCompras(List<Boleto> historialCompras) {
 		this.historialCompras = historialCompras;
+	}
+
+
+	public Cine getCine() {
+		return cine;
+	}
+
+	public void setCine(Cine cine) {
+		this.cine = cine;
 	}
 	
 	
