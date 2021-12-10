@@ -3,6 +3,7 @@ package gestorAplicacion.boleteria;
 import java.util.*;
 
 import gestorAplicacion.cinema.Cine;
+import gestorAplicacion.cinema.Cliente;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Silla;
 import gestorAplicacion.salas.Sala2D;
@@ -98,6 +99,12 @@ public class Funcion{
 	}
 
 
+	//Método de venta de boletos 
+	public void VentaBoleto(Boleto boleto, Cliente cliente ) {
+		boleto.setDisponibilidad(false);
+		cliente.historialCompras.add(boleto);
+		cantidadBoletosVendidos++;
+	}
 	
 	//
 	//getting and setting

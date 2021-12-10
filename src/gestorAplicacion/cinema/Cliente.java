@@ -9,7 +9,7 @@ public class Cliente {
 	private int edad;
 	private String ocupacion;
 	private float descuento;
-	private List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
+	public List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
 	private int referidos;
 	
 	//
