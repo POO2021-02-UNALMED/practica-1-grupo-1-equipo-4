@@ -70,10 +70,10 @@ public class Funcion{
 	public String verDisponibilidad(){
 		ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>(); // lista de filas
 
-		// for para hacer una lista de listas, cada lista corresponde a una fila de sillas
+		// for para hacer una lista de listas, cada lista corresponde a una fila de boletos
 		for(int i = 0 ; i<sala.getFilas(); i++){
-			ArrayList<String> fila = new ArrayList<String>();
-			for(int j = 0; j<sala.getColumnas() ; j++){
+			ArrayList<String> fila = new ArrayList<String>(); 
+			for(int j = 0; j<sala.getColumnas() ; j++){		 
 				Boleto boleto = boletos.get((i)*sala.getColumnas()+j); 
 				String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
 				fila.add(formato_boleto);
@@ -84,11 +84,10 @@ public class Funcion{
 		String formato = "";
 
 		// for para formatear un string con la silletería para imprimir
-
 		for(ArrayList<String> fila: total){
-			String patron = "%-6s   ".repeat(sala.getColumnas()); // se crea el formato con la cantidad de variables necesarias por fila
-			Object[] array = fila.toArray(new String[0]); // se crea una lista para pasar como *args
-			formato += String.format(patron,array) + "\n"; // se le agrega a el string resultante la fila
+			String patron = "%-6s   ".repeat(sala.getColumnas()); // se crea el formato con la cantidad de variables necesarias (columnas) por fila
+			Object[] fila_args = fila.toArray(new String[0]); // se crea una lista para pasar como *args
+			formato += String.format(patron,fila_args) + "\n"; // se le agrega a el string resultante la fila
 		}
 		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n";
 		return formato;
@@ -165,7 +164,7 @@ public class Funcion{
 	/*
 	public static void main(String[] args){
 		Pelicula rey_leon = new Pelicula();
-		Sala2D sala1 = new Sala2D(1, 30, 2, 2);
+		Sala2D sala1 = new Sala2D(1, 7, 8, 2);
 		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
 		funcion_1.getBoletos().get(3).setDisponibilidad(false);
 		System.out.println(funcion_1.verDisponibilidad());

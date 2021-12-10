@@ -34,9 +34,9 @@ public class Boleto {
 	
 	public String disponibilidad() {
 		if(disponibilidad) {
-			return "O";
+			return "O|";
 		}
-		return "X";
+		return "X|";
 	}
 	
 	public String tipoString() {
