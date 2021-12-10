@@ -18,6 +18,9 @@ public abstract class Sala implements Serializable{
 	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 	protected Cine cine;
 	
+	
+	//Constructores 
+	
 	public Sala(int numero, int filas, int columnas, int filasvip, int precio, Cine cine) {
 		this.numero = numero;
 		this.filas = filas;
@@ -27,6 +30,18 @@ public abstract class Sala implements Serializable{
 		this.crearSilleteria();
 		this.cine=cine;
 	}
+	
+	public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
+		this.numero = numero;
+		this.filas = filas;
+		this.columnas = columnas;
+		this.filasvip = filasvip;
+		this.precio=precio;
+		this.crearSilleteria();
+	}
+	
+	
+	//Métodos 
 	
 	public void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
 		
