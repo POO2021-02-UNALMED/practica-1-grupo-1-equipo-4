@@ -27,7 +27,7 @@ public class Cine implements Serializable{
 
 	// ???  funciones por pelicula no debería llevar el día (?) by : Daza
 
-	public String verFuncion(Pelicula pelicula) { //??? aqu� o en main
+	public String verFuncion(Pelicula pelicula, int dia) { //??? aqu� o en main
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula){
@@ -54,13 +54,14 @@ public class Cine implements Serializable{
 	private String formatearFunciones(ArrayList<Funcion> funciones){
 		String resultado = "";
 		for(Funcion funcion: funciones){
-			String formato = "%s|%s|%s";
+			String formato = "%s|%s|%s|%s";
 			resultado += funcion.getPelicula().getNombre() + "\n";
 			resultado += String.format(
 				formato, 
 				centerString(6,funcion.getHorario()), 
 				centerString(9,"Sala "+funcion.getSala().getNumero()),
-				centerString(4,funcion.getSala().getTipo())
+				centerString(4,funcion.getSala().getTipo()),
+				centerString(5,/*numero formateado a la derecha con 0*/);
 				 );
 			resultado += "\n\n";
 		}
