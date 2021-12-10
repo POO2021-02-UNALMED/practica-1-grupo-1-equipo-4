@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import gestorAplicacion.boleteria.Funcion;
 
+import gestorAplicacion.cinema.Cine;
+
 public abstract class Sala implements Serializable{
 	private static final long serialVersionUID = 1L;
 	protected int numero;
@@ -13,14 +15,16 @@ public abstract class Sala implements Serializable{
 	protected float precio;
 	protected ArrayList<Silla> sillas = new ArrayList<Silla>();
 	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+	protected Cine cine;
 	
-	public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
+	public Sala(int numero, int filas, int columnas, int filasvip, int precio, Cine cine) {
 		this.numero = numero;
 		this.filas = filas;
 		this.columnas = columnas;
 		this.filasvip = filasvip;
 		this.precio=precio;
 		this.crearSilleteria();
+		this.cine=cine;
 	}
 	
 	public void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS

@@ -16,12 +16,13 @@ public class Cliente implements Serializable{
 	
 	///Constructor
 	
-	public Cliente(int cedula, String nombre, int edad, String ocupacion) {
+	public Cliente(int cedula, String nombre, int edad, String ocupacion, Cine cine) {
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.edad = edad;
 		this.ocupacion = ocupacion;
 		cine.agregarCliente(this);
+		this.cine=cine;
 	}
 	
 	
