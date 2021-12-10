@@ -150,6 +150,18 @@ public class Cine implements Serializable{
 		}
 		
 	}
+	
+	// funcion para encontrar el cliente ingresando la cédula
+	public Cliente BuscadorCliente(int num) {
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		for(Cliente cliente: clientes) {
+			lista.add(cliente.getCedula());
+			if (cliente.getCedula()==num) {
+				return cliente;
+			}
+		}
+		return null ;
+	}
 
 
 	// metodo para obtener la sala por numero
