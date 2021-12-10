@@ -12,6 +12,17 @@ public class Cliente {
 	public List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
 	private int referidos;
 	
+	///Constructor
+	
+	public Cliente(int cedula, String nombre, int edad, String ocupacion) {
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.ocupacion = ocupacion;
+	}
+	
+	
+	
 	//
 	//methods
 	//
@@ -30,7 +41,8 @@ public class Cliente {
 		return genreList.get(cuenta.indexOf(Collections.max(cuenta)));
 		
 	}
-	
+
+
 	//
 	//getting and setting
 	//

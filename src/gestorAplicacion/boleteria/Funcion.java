@@ -100,10 +100,13 @@ public class Funcion{
 
 
 	//Método de venta de boletos 
-	public void VentaBoleto(Boleto boleto, Cliente cliente ) {
-		boleto.setDisponibilidad(false);
-		cliente.historialCompras.add(boleto);
-		cantidadBoletosVendidos++;
+	public void VentaBoleto(Boleto boleto, Cliente cliente,Cine cine ) {
+		boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
+		cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprará al historial del cliente
+		cantidadBoletosVendidos++;				
+		boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo
+		float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
+		cine.setDineroGanado(ganancia); // se establece el nuevo valor
 	}
 	
 	//

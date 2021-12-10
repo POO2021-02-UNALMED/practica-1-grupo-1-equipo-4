@@ -19,6 +19,11 @@ public class Cine implements Serializable{
 	private List<Sala> salas = new ArrayList<Sala>();
 	private float dineroGanado;
 	
+	//Constructor
+	public Cine(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	
 	//
 	//methods
@@ -42,6 +47,8 @@ public class Cine implements Serializable{
 		return formatearFunciones(funciones);
 	}
 	
+
+
 	public String verFuncion(Pelicula pelicula, String horario) {
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
