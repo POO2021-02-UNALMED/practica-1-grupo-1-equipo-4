@@ -19,7 +19,9 @@ public class Pelicula implements Serializable{
 		this.clasificacion=clasificacion;
 	}
 
-	
+	public Pelicula(){
+		
+	}
 	//
 	//getting and setting:
 	//
