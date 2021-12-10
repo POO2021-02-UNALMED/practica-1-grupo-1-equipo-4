@@ -31,22 +31,33 @@ public class Cliente implements Serializable{
 	//methods
 	//
 	
+	
+	//Reflejar la película más vista
 	public String mostWatchedGenre() {
 		List<String> genreList=new ArrayList<String>();
 		for(Boleto boleto: historialCompras) {
-			genreList.add(boleto.getFuncion().getPelicula().getGenero());
+			genreList.add(boleto.getFuncion().getPelicula().getGenero()); 	//Recorre el historial de compras del cliente y anexa de los boletos sus generos
 		}
 		List<Integer> cuenta=new ArrayList<Integer>();
 		for(String genre: genreList) {
-			int occ = Collections.frequency(genreList, genre);
+			int occ = Collections.frequency(genreList, genre);	//De la lista de géneros extrae la frecuencia de cada elemento
 			cuenta.add(occ);
 		}
 		
-		return genreList.get(cuenta.indexOf(Collections.max(cuenta)));
+		return genreList.get(cuenta.indexOf(Collections.max(cuenta))); 
 		
 	}
 
-
+	
+	//Sumar referidos al cliente(?)
+	
+	public void referidos() {
+		this.referidos++;
+	}
+	
+	//Revisar
+	
+	
 	//
 	//getting and setting
 	//
