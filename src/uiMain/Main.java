@@ -1,11 +1,13 @@
 package uiMain;
 import java.util.*;
 
+import gestorAplicacion.cinema.Cine;
+
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("BIENVENIDO AL CINE BAHIA");
 		//agregar opciones
-		//Cine cine = new Cine(/*nombre archivo*/)
+		Cine cine = new Cine();//Ojo con este cine
 		int opcion;
 		
 		do {
@@ -15,7 +17,7 @@ public class Main {
 			Scanner entrada = new Scanner(System.in);
 			opcion=entrada.nextInt();
 			switch (opcion) {
-				case 1:System.out.println("Vender seleccionado");
+				case 1: Funciones.clienteNuevoOViejo(cine);
 				//pedir datos del cliente y preguntar si es referido
 				break;
 				case 2:System.out.println("Administrar seleccionado");

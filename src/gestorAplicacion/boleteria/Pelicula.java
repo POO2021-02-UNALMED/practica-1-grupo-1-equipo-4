@@ -10,7 +10,6 @@ public class Pelicula implements Serializable{
 	private int cantidadTotalBoletosVendidos;
 	private int expectativaVentas;
 
-
 	//Constructor
 	public Pelicula(String nombre, String genero, int duracion, String lenguaje, int clasificacion) {
 		this.nombre=nombre;
@@ -19,9 +18,7 @@ public class Pelicula implements Serializable{
 		this.lenguaje=lenguaje;
 		this.clasificacion=clasificacion;
 	}
-	public Pelicula(){
 
-	}
 	
 	//
 	//getting and setting:

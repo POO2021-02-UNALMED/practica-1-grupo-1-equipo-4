@@ -10,8 +10,21 @@ public class Cliente implements Serializable{
 	private int edad;
 	private String ocupacion;
 	private float descuento;
-	private List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
+	public List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
 	private int referidos;
+	private Cine cine;
+	
+	///Constructor
+	
+	public Cliente(int cedula, String nombre, int edad, String ocupacion) {
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.ocupacion = ocupacion;
+		cine.agregarCliente(this);
+	}
+	
+	
 	
 	//
 	//methods
@@ -31,7 +44,8 @@ public class Cliente implements Serializable{
 		return genreList.get(cuenta.indexOf(Collections.max(cuenta)));
 		
 	}
-	
+
+
 	//
 	//getting and setting
 	//
@@ -83,6 +97,15 @@ public class Cliente implements Serializable{
 	}
 	public void setHistorialCompras(List<Boleto> historialCompras) {
 		this.historialCompras = historialCompras;
+	}
+
+
+	public Cine getCine() {
+		return cine;
+	}
+
+	public void setCine(Cine cine) {
+		this.cine = cine;
 	}
 	
 	

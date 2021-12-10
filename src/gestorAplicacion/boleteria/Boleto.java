@@ -38,9 +38,10 @@ public class Boleto implements Serializable{
 	}
 	
 	// Se realiza el respectivo descuento con el atributo de descuento del cliente 
-	public float calcularPrecioDefinitivo(Cliente cliente) {
+	//Se establece el nuevo precio al atributo PrecioTotal
+	public void calcularPrecioDefinitivo(Cliente cliente) {
 		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento()/100));
-		return total ;
+		this.setPrecioTotal(total);
 	}
 	
 	public String disponibilidad() {
