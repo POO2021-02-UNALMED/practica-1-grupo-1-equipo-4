@@ -1,9 +1,10 @@
 package gestorAplicacion.salas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import gestorAplicacion.boleteria.Funcion;
-
+import gestorAplicacion.boleteria.Horario;
 import gestorAplicacion.cinema.Cine;
 
 public abstract class Sala implements Serializable{
@@ -71,6 +72,40 @@ public abstract class Sala implements Serializable{
 		}
 		return true;
 	}
+	
+	public String verHorarios(int dia, int mes) {
+		String consulta=""+dia+mes;
+		ArrayList<String>fechas = new ArrayList<String>();
+		ArrayList<String>horarios = new ArrayList<String>();
+		ArrayList<String>disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+		
+		for (Funcion func:funciones) {
+			String info=""+func.getDia()+func.getMes();		//del atributo funcion se almacenan en modo string
+			fechas.add(info);								//el dia y mes de las funciones
+			info="";								
+			
+		}
+		
+		for (int i=0;i<fechas.size();i++) {
+			if (fechas.get(i).equals(consulta)) {				//si la fecha de las funciones que hay coincide con la fecha y hora de consulta
+				horarios.add(funciones.get(i).getHorario());	//se almacena
+			}
+		}
+		
+		for (String horario:horarios) {
+			disponibles.remove(horario);		//se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
+		}
+		
+		String respuesta="";
+		
+		for(String d:disponibles) {			//se hace un string que devuelve los horarios disponibles
+			respuesta+=d+"\n";
+		}
+		
+		return respuesta;		//se devuelve ese string
+		
+	}
+	
 	public String getTipo(){
 		if(this instanceof Sala2D){
 			return "2D";
@@ -78,6 +113,7 @@ public abstract class Sala implements Serializable{
 			return "3D";
 		}
 	}
+	
 	public int getNumero() {
 		return numero;
 	}

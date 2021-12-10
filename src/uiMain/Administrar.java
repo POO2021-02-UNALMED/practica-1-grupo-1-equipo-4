@@ -70,5 +70,9 @@ public class Administrar {
 		}
 	}
 	
-	
+	public static void generarFuncionManual() {
+		//aca se va a mostrar los horarios disponibles de x dia (ya esta la funcion)
+		//para que el empleado llame a crear funcion y melo
+	}
+		
 }
