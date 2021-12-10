@@ -1,13 +1,13 @@
 package gestorAplicacion.boleteria;
-
+import java.io.Serializable;
 import gestorAplicacion.salas.Silla;
 
 import gestorAplicacion.salas.Tipo;
 
 import gestorAplicacion.cinema.Cliente;
 
-public class Boleto {
-	
+public class Boleto implements Serializable{
+	private static final long serialVersionUID = 1L;
 	//
 	//Atributos 
 	//

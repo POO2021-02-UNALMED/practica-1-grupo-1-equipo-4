@@ -1,5 +1,5 @@
 package gestorAplicacion.boleteria;
-
+import java.io.Serializable;
 import java.util.*;
 
 import gestorAplicacion.cinema.Cine;
@@ -7,8 +7,10 @@ import gestorAplicacion.cinema.Cliente;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Silla;
 import gestorAplicacion.salas.Sala2D;
+import gestorAplicacion.salas.Sala3D;
 
-public class Funcion{
+public class Funcion implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private int dia;
 	private int mes;
@@ -21,7 +23,7 @@ public class Funcion{
 	private static int cantidadFunciones;
 	private int numero;
 	
-	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala) {
+	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala, Cine cine) {
 		this.dia = dia;
 		this.mes = mes;
 		this.horario = horario;
@@ -31,20 +33,22 @@ public class Funcion{
 		this.crearBoleteria();
 		cantidadFunciones++;
 		this.numero=cantidadFunciones;
+		this.setCine(cine);
 	}
 	
 	//
-	//methods
+	//		METODOS
 	//
 	
 	//
 	// PARA CREAR FUNCI�N SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
-	public Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num) { 
+
+	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num, Cine cine) { 
 		Sala sala = cine.buscarSala(num);                                   //ac� se revisa si la sala existe en cine
 		if(sala != null) {												    				
 			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
-				return new Funcion(dia, mes, horario, pelicula, sala);		// crea la funci�n
+				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funci�n
 			}		
 			else {
 				return null;												// no la crea
@@ -54,16 +58,23 @@ public class Funcion{
 		else{
 			return null;													// sala inexistente
 		}
-		
 	}
+
+
 	// 
 	// metodo para crear los boletos de la sala
 	private void crearBoleteria(){
 		ArrayList<Silla> sillas = sala.getSillas(); 
-		
-		for(int i = 0; i < sala.cantidadSillas();i++) {    //crear la cantidad de boletos que corresponde seg�n cantidad de sillas
-			Boleto boleto = new Boleto(this, sillas.get(i));
-			boletos.add(boleto);
+		int disponibles = sala.cantidadSillas();
+
+		for(int i = 0; i < sala.getSillas().size();i++) {    //crear la cantidad de boletos que corresponde seg�n cantidad de sillas
+			if(disponibles > 0){
+				Boleto boleto = new Boleto(this, sillas.get(i));
+				boletos.add(boleto);
+				disponibles--;
+			}else{
+				boletos.add(null);
+			}
 		}
 		
 	}
@@ -76,8 +87,14 @@ public class Funcion{
 			ArrayList<String> fila = new ArrayList<String>(); 
 			for(int j = 0; j<sala.getColumnas() ; j++){		 
 				Boleto boleto = boletos.get((i)*sala.getColumnas()+j); 
-				String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
-				fila.add(formato_boleto);
+				if (boleto != null){
+					String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
+					fila.add(formato_boleto);
+				}else{
+					String formato_boleto = "";
+					fila.add(formato_boleto);
+				}
+
 			}
 			total.add(fila);
 		}
@@ -168,24 +185,31 @@ public class Funcion{
 		return cantidadFunciones;
 	}
 	
+	public void setCine(Cine cine){
+		this.cine = cine;
+		cine.agregarFuncion(this);
+	}
 	
+	public Cine getCine(){
+		return cine;
+	}
 	
 	// MAIN PARA ENSAYAR
-	/*
+	
 	public static void main(String[] args){
 		Pelicula rey_leon = new Pelicula();
 		Pelicula avenger = new Pelicula();
 		rey_leon.setNombre("El Rey Leon");
 		avenger.setNombre("Avengers End Game");
-		Sala2D sala1 = new Sala2D(1, 7, 8, 2);
+		Sala3D sala1 = new Sala3D(1, 7, 8, 2, 49);
 		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
-		//funcion_1.getBoletos().get(3).setDisponibilidad(false);
-		//System.out.println(funcion_1.verDisponibilidad());
-		Funcion funcion_2 = new Funcion(1,3,Horario.DOS, avenger, sala1);
+		funcion_1.getBoletos().get(3).setDisponibilidad(false);
+		System.out.println(funcion_1.verDisponibilidad());
+		/*Funcion funcion_2 = new Funcion(1,3,Horario.DOS, avenger, sala1);
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		funciones.add(funcion_1);
 		funciones.add(funcion_2);
-		System.out.println(Cine.formatearFunciones(funciones));
+		System.out.println(Cine.formatearFunciones(funciones));*/
 	}
-	*/
+	
 }

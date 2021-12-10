@@ -1,10 +1,11 @@
 package gestorAplicacion.salas;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.boleteria.Funcion;
 
-public abstract class Sala {
+public abstract class Sala implements Serializable{
+	private static final long serialVersionUID = 1L;
 	protected int numero;
 	protected int filas;
 	protected int columnas;

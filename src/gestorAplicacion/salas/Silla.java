@@ -1,6 +1,7 @@
 package gestorAplicacion.salas;
-
-public class Silla {
+import java.io.Serializable;
+public class Silla implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Tipo tipo;
 	private int numero;
 	private float precio;

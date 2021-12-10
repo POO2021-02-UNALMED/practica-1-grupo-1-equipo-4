@@ -1,9 +1,10 @@
 package gestorAplicacion.cinema;
-
+import java.io.Serializable;
 import java.util.*;
 import gestorAplicacion.boleteria.*;
 
-public class Cliente {
+public class Cliente implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int cedula;
 	private String nombre;
 	private int edad;
