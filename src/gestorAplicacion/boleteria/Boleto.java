@@ -4,6 +4,8 @@ import gestorAplicacion.salas.Silla;
 
 import gestorAplicacion.salas.Tipo;
 
+import gestorAplicacion.cinema.Cliente;
+
 public class Boleto {
 	
 	//
@@ -25,11 +27,20 @@ public class Boleto {
 		this.disponibilidad = true;
 		this.precioTotal = this.calcularPrecio();
 	}
-
+	
+	// Se calcula el precio bruto 
+	// Se suma el precio de la sala y el precio de la silla
+	// El precio de la silla puede ser VIP o sencilla los precios de estas son fijos
 	private float calcularPrecio() {						 
-		float bruto=funcion.getSala().getPrecio()+precio_silla;		//falta a�adir el descuento
+		float bruto=funcion.getSala().getPrecio()+precio_silla;	
 		
 		return bruto;
+	}
+	
+	// Se realiza el respectivo descuento con el atributo de descuento del cliente 
+	public float calcularPrecioDefinitivo(Cliente cliente) {
+		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento()/100));
+		return total ;
 	}
 	
 	public String disponibilidad() {
@@ -52,6 +63,10 @@ public class Boleto {
 	public long getId() {
 		return id;
 	}
+	public float getPrecio_silla() {
+		return precio_silla;
+	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
