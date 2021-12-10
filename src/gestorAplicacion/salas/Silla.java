@@ -23,17 +23,24 @@ public class Silla {
 			this.tipo = Tipo.SENCILLA;
 		}
 	}
+
 	public int getNumero() {
 		return numero;
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public float getPrecio() {
-		return precio;
+	public void setPrecio(float precio) {
+		this.precio=precio;
 	}
-	public void setPrecio(int precio) {
-		this.precio = precio;
+	
+	//Se ponen los precios de VIP como 7000 y 5000
+	public float getPrecio() {
+		if(this.tipo == Tipo.VIP) {
+			return 7000;
+		}else {
+			return 5000;
+		}
 	}
 	
 }
