@@ -30,7 +30,7 @@ public class Cine implements Serializable{
 	//
 	
 
-	public String verFuncion(Pelicula pelicula, int dia, int mes) { 
+	public String verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un día de un mes de una película
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getDia()>=dia && funcion.getMes()==mes ){
@@ -44,6 +44,16 @@ public class Cine implements Serializable{
 			}
 		}
 
+		return formatearFunciones(funciones);
+	}
+	
+	public String verFuncion(Cliente cliente) { //Ver funcion por las recomendaciones del cliente
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+		for(Funcion funcion:cartelera) {
+			if(funcion.getPelicula().getGenero()== cliente.mostWatchedGenre()){
+				funciones.add(funcion);
+			}
+		}
 		return formatearFunciones(funciones);
 	}
 	
@@ -63,6 +73,16 @@ public class Cine implements Serializable{
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario && funcion.getDia()==dia && funcion.getMes()==mes){
+				funciones.add(funcion);
+			}
+		}
+		return formatearFunciones(funciones);
+	}
+	
+	public String verFuncion( int dia, int mes) { //peliculas del dia 
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
+		for(Funcion funcion:cartelera) {
+			if( funcion.getDia()==dia && funcion.getMes()==mes){
 				funciones.add(funcion);
 			}
 		}

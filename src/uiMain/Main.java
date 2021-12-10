@@ -1,14 +1,15 @@
 package uiMain;
 import java.util.*;
 
+
 import gestorAplicacion.cinema.Cine;
 
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("BIENVENIDO AL CINE BAHIA");
 		//agregar opciones
-		Cine cine = new Cine();//Ojo con este cine
 		int opcion;
+		Cine cine = new Cine("hola");
 		
 		do {
 			System.out.println("Que quiere hacer?\n"
