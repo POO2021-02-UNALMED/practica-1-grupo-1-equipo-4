@@ -116,7 +116,7 @@ public class Funcion implements Serializable{
 	}
 
 
-	//Método de venta de boletos 
+	//Método de venta de boletos ???Maybe this should be a Boleto's method
 	public void VentaBoleto(Boleto boleto, Cliente cliente,Cine cine ) {
 		boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
 		cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprará al historial del cliente

@@ -49,7 +49,7 @@ public class Funciones {
 		Scanner entrada = new Scanner(System.in);
 		opcion=entrada.nextInt();
 		switch (opcion) {
-		case 0: break;
+		case 0: break; //TODO: Falta implementar que al cliente se le sume 51 al field referidos
 		default://cine.getCliente().setReferidos( cine.getCliente().getReferidos() + 1);
 			;
 		}
@@ -173,6 +173,29 @@ public class Funciones {
 	
 	//Method para comprar boleta luego de ver funciones
 	public static void comprar(Cine cine, int cedula) {
+		int numeroFuncion;
+		int numeroBoleto;
+		Scanner entrada = new Scanner(System.in);
+		
+		System.out.print("Ingrese el código de la función a la que desea asistir: ");
+		numeroFuncion=entrada.nextInt();
+		//TODO: Get Funcion with the field numero 
+		//System.out.println((numeroFuncion).verDisponibildad);
+		//TODO:
+		//System.out.println(funcion.verDisponibilidad())
+		
+		//???A nivel de sistema no es raro que primero no se de el precio
+		//Creo que no porque el precio debería darse en físico, 
+		//lo que se calcula siempre será menor debido a que es un descuento
+		System.out.print("Ingrese el código del boleto que desea comprar: ");
+		numeroBoleto=entrada.nextInt();
+		//TODO: Get boleto by its number
+		//funcion.ventaBoleto(getBoleto(numBoleto),BuscadorCliente(cedula),cine)
+		System.out.print("El preico final de su boleto es:");
+		//TODO: Get boleto by its number
+		//System.out.print(getBoleto(numBoleto).getPrecioTotal());
+		//??? Que podríamos hacer para este 
+		
 		
 	}
 }

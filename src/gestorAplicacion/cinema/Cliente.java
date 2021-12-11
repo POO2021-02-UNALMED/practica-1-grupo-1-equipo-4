@@ -10,7 +10,7 @@ public class Cliente implements Serializable{
 	private int edad;
 	private String ocupacion;
 	private float descuento;
-	public List<Boleto> historialCompras= new ArrayList<Boleto>();//!!!
+	public List<Boleto> historialCompras= new ArrayList<Boleto>();//??? Why is this public?
 	private int referidos;
 	private Cine cine;
 	
