@@ -18,6 +18,7 @@ public class Cine implements Serializable{
 	private List<Pelicula> peliculas= new ArrayList<Pelicula>();
 	private List<Sala> salas = new ArrayList<Sala>();
 	private float dineroGanado;
+	private static final int descuentoMVC=40;	//Descuento al cliente mas fiel
 	
 	//Constructor
 	public Cine(String nombre) {
@@ -30,19 +31,20 @@ public class Cine implements Serializable{
 	//
 	
 	
-	//Reflejar cliente mas fiel
+	//Reflejar cliente mas fiel y aplicarle el descuento
 	public String mostValueClient() {
 		List<Integer> clienteList=new ArrayList<Integer>();
 		for(Cliente cliente: clientes) {
 			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamaño de su historial de compra
 		}
-		int valormax=Collections.max(clienteList);
+		int valormax=Collections.max(clienteList);		//Se establece el mayor numero de boletos comprados por parte de un cliente
 		for (Cliente cliente: clientes) {
-			if (valormax==cliente.historialCompras.size()) {
+			if (valormax==cliente.historialCompras.size()) {	//Si la cantidad de boletos comprados es igual a valor max conseguir el nombre de este
+				cliente.setDescuento(descuentoMVC);
 				return cliente.getNombre();
 			}
 		}
-		return "";
+		return "Se ha aplicado el descuentos  a nuestro cliente mas fiel ";
 	}
 
 	public String verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un día de un mes de una película
@@ -249,6 +251,11 @@ public class Cine implements Serializable{
 
 	public void setSalas(List<Sala> salas) {
 		this.salas = salas;
+	}
+
+
+	public static int getDescuentomvc() {
+		return descuentoMVC;
 	}
 
 }
