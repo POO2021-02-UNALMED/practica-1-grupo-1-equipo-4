@@ -1,6 +1,8 @@
 package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import java.util.*;
+import gestorAplicacion.cinema.Cine;
+//import gestorAplicacion.cinema.Cliente;
 
 public class Pelicula implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -11,15 +13,29 @@ public class Pelicula implements Serializable{
 	private int clasificacion;
 	private int cantidadTotalBoletosVendidos;
 	private int expectativaVentas;
-
-	//Constructor
-	public Pelicula(String nombre, String genero, int duracion, String lenguaje, int clasificacion) {
+	private Cine cine;
+	
+	//Constructores
+	public Pelicula(String nombre, String genero, int duracion, String lenguaje, int clasificacion,Cine cine) {
 		this.nombre=nombre;
 		this.genero=genero;
 		this.duracion=duracion;
 		this.lenguaje=lenguaje;
 		this.clasificacion=clasificacion;
+		this.cine=cine;
 	}
+	
+	
+	public Pelicula(String nombre, String genero, int duracion, String lenguaje, int clasificacion) {
+		super();
+		this.nombre = nombre;
+		this.genero = genero;
+		this.duracion = duracion;
+		this.lenguaje = lenguaje;
+		this.clasificacion = clasificacion;
+	}
+
+
 
 	public Pelicula(){
 		
@@ -29,7 +45,7 @@ public class Pelicula implements Serializable{
 	//methods
 	//
 	
-	
+
 	
 	//
 	//getting and setting:

@@ -162,7 +162,18 @@ public class Cine implements Serializable{
 		}
 		return null ;
 	}
-
+	
+	// funcion para encontrar la pelicula ingresando el nombre
+	public Pelicula BuscadorPelicula(String nombre) {
+		ArrayList<String> lista = new ArrayList<String>();
+		for(Pelicula pelicula: peliculas) {
+			lista.add(pelicula.getNombre());
+			if (pelicula.getNombre()==nombre) {
+				return pelicula;
+			}
+		}
+		return null ;
+	}
 
 	// metodo para obtener la sala por numero
 	public Sala buscarSala(int num) {
