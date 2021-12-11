@@ -6,6 +6,7 @@ import gestorAplicacion.boleteria.Boleto;
 import gestorAplicacion.boleteria.Pelicula;
 import gestorAplicacion.cinema.Cine;
 
+//TODO: Falta agregar una funcion de landing donde se pregunte si se quire agregarPeli, quitar, AgregarFuncion, quitar, and so on. 
 public class Administrar {
 	
 	static Scanner sc = new Scanner(System.in); 
