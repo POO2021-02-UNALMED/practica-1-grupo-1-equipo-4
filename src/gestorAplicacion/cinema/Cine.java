@@ -106,7 +106,25 @@ public class Cine implements Serializable{
 		return formatearFunciones(funciones);
 	}
 
-
+	public String verFuncion(int numero) {	//Mostrar funcion por el numero de la funcion
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
+		for(Funcion funcion:cartelera) {
+			if( funcion.getNumero()==numero) {
+				funciones.add(funcion);
+			}
+		}
+		return formatearFunciones(funciones);
+	}
+	
+	public String verFuncion(Boleto boleto) {  //Mostrar funcion por boleto
+		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
+		for(Funcion funcion:cartelera) {
+			if(funcion==boleto.getFuncion()) {
+				funciones.add(funcion);
+			}
+		}
+		return formatearFunciones(funciones);
+	}
 
 	// funcion para formatear el texto para imprimir en pantallas las funciones
 	// este es llamado desde la función verFuncion()
