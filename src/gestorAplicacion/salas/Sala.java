@@ -67,6 +67,7 @@ public abstract class Sala implements Serializable{
 		funciones.add(funcion);
 	}
 	
+	//Metodos abtractos
 	public abstract int cantidadSillas();
 	
 	//verificar disponibilidad
