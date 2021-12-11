@@ -29,6 +29,21 @@ public class Cine implements Serializable{
 	//methods
 	//
 	
+	
+	//Reflejar cliente mas fiel
+	public String mostValueClient() {
+		List<Integer> clienteList=new ArrayList<Integer>();
+		for(Cliente cliente: clientes) {
+			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamaño de su historial de compra
+		}
+		int valormax=Collections.max(clienteList);
+		for (Cliente cliente: clientes) {
+			if (valormax==cliente.historialCompras.size()) {
+				return cliente.getNombre();
+			}
+		}
+		return "";
+	}
 
 	public String verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un día de un mes de una película
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
