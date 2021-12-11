@@ -122,14 +122,35 @@ public class Funciones {
 				+ "2. volver");
 		opcion=x.nextInt();
 		switch (opcion) {
-		case 1: //aquí compra;
-			;
-		case 2: //aquí se devuelve
+		case 1: Funciones.comprar(cine, cedula);
+			
+		case 2: if(cine.verificarCliente(cedula)) {
+			Funciones.buscarPorViejo(cine, cedula);
+		}else {
+			Funciones.buscarPorNuevo(cine, cedula);
+		}
+		
 		}
 	}
 	
 	public static void recomendadas(Cine cine,int cedula) {
-		//System.out.println(cine.verFuncion(cine.getCliente(cedula)));
-		System.out.println("a");
+		int opcion=0;
+		System.out.println(cine.verFuncion(cine.BuscadorCliente(cedula)));
+		System.out.println("¿Que desea hacer?"
+				+ "1. comprar"
+				+ "2. volver");
+		Scanner x = new Scanner(System.in);
+		opcion=x.nextInt();
+		switch(opcion) {
+		case 1: Funciones.comprar(cine, cedula);
+		
+		case 2: Funciones.buscarPorViejo(cine, cedula);
+		}
+		
+		
+	}
+	
+	public static void comprar(Cine cine, int cedula) {
+		
 	}
 }

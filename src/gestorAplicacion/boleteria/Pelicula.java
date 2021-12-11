@@ -1,5 +1,7 @@
 package gestorAplicacion.boleteria;
 import java.io.Serializable;
+import java.util.*;
+
 public class Pelicula implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nombre;
@@ -22,6 +24,13 @@ public class Pelicula implements Serializable{
 	public Pelicula(){
 		
 	}
+	
+	//
+	//methods
+	//
+	
+	
+	
 	//
 	//getting and setting:
 	//
