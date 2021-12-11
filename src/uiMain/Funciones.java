@@ -16,8 +16,9 @@ public class Funciones {
 		Scanner entrada = new Scanner(System.in);
 		cedula=entrada.nextInt();
 		if (cine.verificarCliente(cedula)) {
+			System.out.println(cine.BuscadorCliente(cedula)); //Print algunos atributos del cliente viejo
 			Funciones.buscarPorViejo(cine,cedula); //En caso de que el cliente sea viejo se llamará a la función de buscarPorViejo
-			//TODO:mostrar atributos del cliente
+		
 		}
 		else { //En caso de que el cliente sea nuevo:
 			Funciones.referido(cine); //Se llama a la función referido.

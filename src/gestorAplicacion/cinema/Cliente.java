@@ -3,11 +3,11 @@ import java.io.Serializable;
 import java.util.*;
 import gestorAplicacion.boleteria.*;
 
-public class Cliente implements Serializable{
+public class Cliente implements Serializable{ //??? should this implements Serializable
 	private static final long serialVersionUID = 1L;
 	private int cedula;
 	private String nombre;
-	private int edad;
+	private int edad; //??? Es necesaria una edad para el cliente
 	private String ocupacion;
 	private float descuento;
 	public List<Boleto> historialCompras= new ArrayList<Boleto>();//??? Why is this public?
@@ -53,9 +53,14 @@ public class Cliente implements Serializable{
 	
 	public void referidos() {
 		this.referidos++;
-	}
+	}//!!!Revisar
 	
-	//Revisar
+	// Method toString en cliente para facilitar el print de algunos de sus atributos en el UI.
+	@Override
+	public String toString() { 
+		return "Cliente: " + nombre + "-" + String.valueOf(edad) + "-" + ocupacion;
+		
+	}
 	
 	
 	//
