@@ -59,23 +59,35 @@ public class Cine implements Serializable{
 		return "Se ha aplicado el descuentos  a nuestro cliente mas fiel ";
 	}
 
+	
+	
 	//Al 10 por ciento de los clientes mas fieles aplicarle un 10% de descuento a cada uno de ellos 
 	
 	public String clientesValiosos() {
+		
 		List<Integer> clienteList=new ArrayList<Integer>();
+		
 		for(Cliente cliente: clientes) {
-			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tama�o de su historial de compra
+			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
 		}
+		
 		int cantidad= clienteList.size();
 		
 		Collections.sort(clienteList, Collections.reverseOrder());
 		
-		for(int=0,(Math.round(cantidad),i++) {
-			return "";
+		int top10= Math.round(cantidad/10);
+		List<String> mejoresCompas=new ArrayList<String>();
+		
+		for(int i=0; i<=top10; i++) {
+			int valor =clienteList.get(i);
+		
+			for(Cliente cliente: clientes) {
+			if(cliente.historialCompras.size()==valor) {
+				mejoresCompas.add(cliente.getNombre());
+			}
 		}
-		
-		
-		return "";
+		}
+		return "Lista de los mas firmes ";
 	}
 	
 	
