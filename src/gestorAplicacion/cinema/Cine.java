@@ -40,6 +40,8 @@ public class Cine implements Serializable{
 	}
 	
 
+	//??? Podemos mejor retornar una lista de los clientes que cumplan el máximo,
+	//??? Hacerlo al mes
 
 	//Reflejar cliente mas fiel y aplicarle el descuento
 	public String mostValueClient() {
