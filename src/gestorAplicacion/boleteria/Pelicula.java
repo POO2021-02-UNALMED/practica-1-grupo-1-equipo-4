@@ -46,18 +46,20 @@ public class Pelicula implements Serializable{
 	//
 
 	//funcion para sumar la cantidad de boletos vendidos
-	public void añadirCantidadBoletos(){
+	public void anadirCantidadBoletos(){
 
 
 		cantidadTotalBoletosVendidos++;
 
 
+		
 	}
 
 	
 	//
 	//getting and setting:
 	//
+	
 	
 	public String getNombre() {
 		return nombre;
@@ -66,12 +68,14 @@ public class Pelicula implements Serializable{
 		this.nombre = nombre;
 	}
 	
+	
 	public String getGenero() {
 		return genero;
 	}
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+	
 	
 	public int getDuracion() {
 		return duracion;
@@ -80,12 +84,14 @@ public class Pelicula implements Serializable{
 		this.duracion = duracion;
 	}
 	
+	
 	public String getLenguaje() {
 		return lenguaje;
 	}
 	public void setLenguaje(String lenguaje) {
 		this.lenguaje = lenguaje;
 	}
+	
 	
 	public int getClasificacion() {
 		return clasificacion;
@@ -94,12 +100,14 @@ public class Pelicula implements Serializable{
 		this.clasificacion = clasificacion;
 	}
 	
+	
 	public int getCantidadTotalBoletosVendidos() {
 		return cantidadTotalBoletosVendidos;
 	}
 	public void setCantidadTotalBoletosVendidos(int cantidadTotalBoletosVendidos) {
 		this.cantidadTotalBoletosVendidos = cantidadTotalBoletosVendidos;
 	}
+	
 	
 	public int getExpectativaVentas() {
 		return expectativaVentas;
