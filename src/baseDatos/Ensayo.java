@@ -31,9 +31,26 @@ public class Ensayo {
 		Funcion funcion_2 = Funcion.crearFuncion(1,3,Horario.DOS, avenger, 2, vizcaya);
 
 		Serializador.serializar(vizcaya);*/
-		Cine cine = Deserializador.deserializar();
+		/*Cine cine = Deserializador.deserializar();
 		
 		System.out.println(cine.getPeliculas().get(0).verDisponibilidad());
+		
+		public String verHorarios(int dia, int mes){
+			String fechaAVerificar=dia+mes;
+			ArrayList<String> fechas = new ArrayList<String>();
+			ArrayList<Horario> horarios = new ArrayList<Horario>();
 
+			for (Funcion func:funciones) {
+				String info=func.getDia()+func.getMes();	
+				totalfunciones.add(info);				//se almacena en una lista la informacion
+				info="";								//de las funciones creadas
+			}
+
+			for(int i =0; i<fechas.size();i++){ 	//lista de indices de funciones de la fecha dada
+				if(fechas.get(i).equals(consulta)){
+					horarios.add(funciones.get(i).getHorario().getHora());
+				}
+			}
+		}*/
 	}    
 }
