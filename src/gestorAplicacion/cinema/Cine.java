@@ -31,17 +31,17 @@ public class Cine implements Serializable{
 	//
 	public void programarFuncionesAuto(int dias_atras,int dia, int mes){
 		//debo hacer una lista de las peliculas más vendidas en funciones de 3 días antes
-		int dia_aux = dia;
+		ArrayList<Funcion> funciones = verFuncion(mes);
+		ArrayList<Object> holi = new ArrayList<Object>();
 
-		for(int i = 0; i < dias_atras; i++){
-			dia_aux -= 1;
-
+		for(Funcion funcion: funciones){
+			ArrayList<Object> peli_ventas = new ArrayList<>(List.of(funcion.getPelicula(),funcion.getCantidadBoletosVendidos()));
+			
 		}
+
 	}
 	
 
-	//??? Podemos mejor retornar una lista de los clientes que cumplan el m�ximo,
-	//??? Hacerlo al mes
 
 	//Reflejar cliente mas fiel y aplicarle el descuento
 	public String mostValueClient() {
@@ -147,10 +147,10 @@ public class Cine implements Serializable{
 
 
 
-	public ArrayList<Funcion> verFuncion(int numero) {	//Mostrar funcion por el numero de la funcion
+	public ArrayList<Funcion> verFuncion(int mes) {	//Mostrar funcion por el mes
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
-			if( funcion.getNumero()==numero) {
+			if( funcion.getMes()==mes) {
 				funciones.add(funcion);
 			}
 		}
