@@ -29,7 +29,7 @@ public class Cine implements Serializable{
 	//
 	//methods
 	//
-	public void programarFuncionesAuto(int dias_atras,int dia, int mes){
+	public void programarFuncionesAuto(int mes){
 		//debo hacer una lista de las peliculas más vendidas en funciones de 3 días antes
 		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
 		List<Pelicula> peliculas = new ArrayList<Pelicula>();
@@ -62,6 +62,12 @@ public class Cine implements Serializable{
 		// reasigno los valores de peliculas por ventas de mayor a menor 
 		for(int i = 0; i < peliculas.size() ; i++){
 			peliculas.set(i, (Pelicula) pelicula_boletos[i][0]);
+		}
+
+		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+
+		if ( peliculas.size() > 6){
+
 		}
 
 	}
