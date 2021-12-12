@@ -2,7 +2,7 @@ package gestorAplicacion.cinema;
 import java.io.Serializable;
 import java.io.Serializable;
 import java.util.*;
-
+import java.util.stream.Collectors;
 import gestorAplicacion.boleteria.*;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Sala2D;
@@ -31,26 +31,54 @@ public class Cine implements Serializable{
 	//
 	public void programarFuncionesAuto(int dias_atras,int dia, int mes){
 		//debo hacer una lista de las peliculas más vendidas en funciones de 3 días antes
-		ArrayList<Funcion> funciones = verFuncion(mes);
-		ArrayList<Object> holi = new ArrayList<Object>();
+		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
+		List<Pelicula> peliculas = new ArrayList<Pelicula>();
+		
+		for(Funcion funcion: funciones){		 
+			peliculas.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese mes
+		}
 
-		for(Funcion funcion: funciones){
-			ArrayList<Object> peli_ventas = new ArrayList<>(List.of(funcion.getPelicula(),funcion.getCantidadBoletosVendidos()));
-			
+		peliculas = peliculas.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
+
+		Object[][] pelicula_boletos = new Object[peliculas.size()][2];
+
+		// lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes
+		// 
+		for(int i = 0; i < peliculas.size() ; i++){		// se recorre la lista pelicula
+			pelicula_boletos[i][0] = peliculas.get(i);	// se asigna al primer elemeto de la fila  i el valor de la pelicula
+			pelicula_boletos[i][1] = 0;					// se asigna al segundo elemento de la fila i un 0
+
+			for(Funcion funcion: funciones){			// se recorren las funciones de dicho mes para 
+														// hacer cuenta de cuantas boletas ha vendido la pelicula i
+
+				if( peliculas.get(i) == funcion.getPelicula()){
+					pelicula_boletos[i][1] = (int) pelicula_boletos[i][1] + funcion.getCantidadBoletosVendidos(); // se suman la cantidad de boletos
+				}																								  // 
+			}
+		}
+
+		Arrays.sort(pelicula_boletos, (b, a) -> Integer.compare((int) a[1],(int) b[1])); //ordeno de mayor a menor por ventas
+		for(int i = 0; i < peliculas.size() ; i++){
+			peliculas.set(i,pelicula_boletos[i][0]);
 		}
 
 	}
 	
 
 
-	//Reflejar cliente mas fiel y aplicarle el descuento
+	//Reflejar cliente mas fiel y aplicarle el descuento de 40%
 	public String mostValueClient() {
+		
 		List<Integer> clienteList=new ArrayList<Integer>();
+		
 		for(Cliente cliente: clientes) {
 			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tama�o de su historial de compra
 		}
+		
 		int valormax=Collections.max(clienteList);		//Se establece el mayor numero de boletos comprados por parte de un cliente
+		
 		for (Cliente cliente: clientes) {
+			
 			if (valormax==cliente.historialCompras.size()) {	//Si la cantidad de boletos comprados es igual a valor max conseguir el nombre de este
 				cliente.setDescuento(descuentoMVC);
 				return cliente.getNombre();
@@ -63,31 +91,32 @@ public class Cine implements Serializable{
 	
 	//Al 10 por ciento de los clientes mas fieles aplicarle un 10% de descuento a cada uno de ellos 
 	
-	public String clientesValiosos() {
+	public List<Cliente> clientesValiosos() {
 		
-		List<Integer> clienteList=new ArrayList<Integer>();
+		List<Integer> clienteList=new ArrayList<Integer>();		//Aca estaran los tamanos de historial de compra de cada cliente
 		
 		for(Cliente cliente: clientes) {
 			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
 		}
 		
-		int cantidad= clienteList.size();
+		int cantidad= clienteList.size();					//Cantidad de clientes que se tiene
 		
-		Collections.sort(clienteList, Collections.reverseOrder());
-		
-		int top10= Math.round(cantidad/10);
-		List<String> mejoresCompas=new ArrayList<String>();
-		
-		for(int i=0; i<=top10; i++) {
-			int valor =clienteList.get(i);
+		Collections.sort(clienteList, Collections.reverseOrder());		//Ordenar la lista de mayor a menor
+				
+		int top10= Math.round(cantidad/10);								// El 10% de los clientes 
+		List<Cliente> mejoresCompas=new ArrayList<Cliente>();			//Clientes mas fieles
+			
+		for(int i=0; i<=top10; i++) {						
+			int valor =clienteList.get(i);								//Conseguir el 10% de los tamanos de historial de compra mas grandes
 		
 			for(Cliente cliente: clientes) {
-			if(cliente.historialCompras.size()==valor) {
-				mejoresCompas.add(cliente.getNombre());
+			
+			if(cliente.historialCompras.size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores compas
+				mejoresCompas.add(cliente);
 			}
 		}
 		}
-		return "Lista de los mas firmes ";
+		return mejoresCompas;
 	}
 	
 	
@@ -95,6 +124,7 @@ public class Cine implements Serializable{
 	
 	public ArrayList<Funcion> verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un d�a de un mes de una pel�cula
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
+		
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getDia()>=dia && funcion.getMes()==mes ){
 				funciones.add(funcion);
