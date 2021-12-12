@@ -117,13 +117,14 @@ public class Funcion implements Serializable{
 
 
 	//M�todo de venta de boletos ???Maybe this should be a Boleto's method
-	public void VentaBoleto(Boleto boleto, Cliente cliente,Cine cine ) {
+	public void VentaBoleto(Boleto boleto, Cliente cliente) {
 		boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
 		cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprar� al historial del cliente
 		cantidadBoletosVendidos++;				
 		boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo
 		float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
 		cine.setDineroGanado(ganancia); // se establece el nuevo valor
+		pelicula.añadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
 	}
 	
 	//

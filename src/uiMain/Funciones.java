@@ -3,12 +3,13 @@ import java.util.*;
 
 import gestorAplicacion.cinema.Cine;
 import gestorAplicacion.cinema.Cliente;
+import gestorAplicacion.boleteria.Funcion;
 
 //Methods relacionados a la compra y vista de boleteria del Main y UI
 public class Funciones {
 	
 	//Al ingresar a la parte de venta se espera reconocer si el cliente es viejo o nuevo
-	//ingresando la cédula
+	//ingresando la cï¿½dula
 	public static void clienteNuevoOViejo(Cine cine) {
 		int cedula;
 		int opcion;
@@ -17,14 +18,14 @@ public class Funciones {
 		cedula=entrada.nextInt();
 		if (cine.verificarCliente(cedula)) {
 			System.out.println(cine.BuscadorCliente(cedula)); //Print algunos atributos del cliente viejo
-			Funciones.buscarPorViejo(cine,cedula); //En caso de que el cliente sea viejo se llamará a la función de buscarPorViejo
+			Funciones.buscarPorViejo(cine,cedula); //En caso de que el cliente sea viejo se llamarï¿½ a la funciï¿½n de buscarPorViejo
 		
 		}
 		else { //En caso de que el cliente sea nuevo:
-			Funciones.referido(cine); //Se llama a la función referido.
-			Funciones.datos(cine,cedula); //Se llama a la función para ingresar datos.
+			Funciones.referido(cine); //Se llama a la funciï¿½n referido.
+			Funciones.datos(cine,cedula); //Se llama a la funciï¿½n para ingresar datos.
 			System.out.println("");
-			Funciones.buscarPorNuevo(cine,cedula); //Se llama a la función para la sección de ver películas para un nuevo cliente.
+			Funciones.buscarPorNuevo(cine,cedula); //Se llama a la funciï¿½n para la secciï¿½n de ver pelï¿½culas para un nuevo cliente.
 		}
 	}
 	
@@ -56,10 +57,10 @@ public class Funciones {
 		}
 	}
 	
-	//Method para entrar a la visualización del metodo de busqueda para el viejo cliente.
+	//Method para entrar a la visualizaciï¿½n del metodo de busqueda para el viejo cliente.
 	public static void buscarPorViejo(Cine cine,int cedula) {
 		int opcion=0;
-		System.out.print("Quiere buscar película por:\n"
+		System.out.print("Quiere buscar pelï¿½cula por:\n"
 				+ "1. Recomendadas\n"
 				+ "2. Funciones\n"
 				+ "3. Pelicula");
@@ -77,7 +78,7 @@ public class Funciones {
 	
 	public static void buscarPorNuevo(Cine cine,int cedula) {
 		int opcion=0;
-		System.out.print("Quiere buscar película por:\n"
+		System.out.print("Quiere buscar pelï¿½cula por:\n"
 				+ "1. Funciones\n"
 				+ "2. Pelicula");
 		Scanner x = new Scanner(System.in);
@@ -91,7 +92,7 @@ public class Funciones {
 		
 	}
 	
-	//Method para ver funciones por película para un día en específico
+	//Method para ver funciones por pelï¿½cula para un dï¿½a en especï¿½fico
 	public static void funcionesPelicula(Cine cine, int cedula) {
 		int opcion=0;
 		int dia, mes;
@@ -107,24 +108,24 @@ public class Funciones {
 		System.out.println(cine.verFuncion(null, dia, mes));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?\n"
+		System.out.println("ï¿½Que desea hacer?\n"
 				+ "1. comprar"
 				+ "2. volver");
 		opcion=entrada.nextInt();
 		switch (opcion) {
 		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
 		break;
-		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de búsqueda si se es cliente viejo.
+		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente viejo.
 			Funciones.buscarPorViejo(cine, cedula);
 		}else {
-			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de búsqueda si se es cliente nuevo.
+			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente nuevo.
 		}
 		break; }
 		
 		
 	}
 	
-	//Method para ver todas las funciones de un día y mes especifico
+	//Method para ver todas las funciones de un dï¿½a y mes especifico
 	public static void funcionesDia(Cine cine,int cedula) {
 		int opcion=0;
 		int dia, mes;
@@ -137,17 +138,17 @@ public class Funciones {
 		System.out.println(cine.verFuncion(dia, mes));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?\n"
+		System.out.println("ï¿½Que desea hacer?\n"
 				+ "1. comprar"
 				+ "2. volver");
 		opcion=entrada.nextInt();
 		switch (opcion) {
 		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
 		break;
-		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de búsqueda si se es cliente viejo.
+		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente viejo.
 			Funciones.buscarPorViejo(cine, cedula);
 		}else {
-			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de búsqueda si se es cliente nuevo.
+			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente nuevo.
 		}
 		break; }
 	}
@@ -155,10 +156,10 @@ public class Funciones {
 	//Method para ver preguntas recomendadas a cliente viejo
 	public static void recomendadas(Cine cine,int cedula) {
 		int opcion=0;
-		System.out.println(cine.verFuncion(cine.BuscadorCliente(cedula))); //Busca al cliente por la cedula en el cine, luego llama al método de funcion
+		System.out.println(cine.verFuncion(cine.BuscadorCliente(cedula))); //Busca al cliente por la cedula en el cine, luego llama al mï¿½todo de funcion
 		//??? I think methods verFuncion and BuscadorCliente are not part of cine but of their own Classes: Funcion and Cliente respectively.
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?"
+		System.out.println("ï¿½Que desea hacer?"
 				+ "1. comprar"
 				+ "2. volver");
 		Scanner entrada = new Scanner(System.in);
@@ -166,7 +167,7 @@ public class Funciones {
 		switch(opcion) {
 		case 1: Funciones.comprar(cine, cedula);
 		break;
-		case 2: Funciones.buscarPorViejo(cine, cedula); //Vuelve a la sección de búsqueda de cliente viejo
+		case 2: Funciones.buscarPorViejo(cine, cedula); //Vuelve a la secciï¿½n de bï¿½squeda de cliente viejo
 		break; }
 		
 		
@@ -178,7 +179,7 @@ public class Funciones {
 		int numeroBoleto;
 		Scanner entrada = new Scanner(System.in);
 		
-		System.out.print("Ingrese el código de la función a la que desea asistir: ");
+		System.out.print("Ingrese el cï¿½digo de la funciï¿½n a la que desea asistir: ");
 		numeroFuncion=entrada.nextInt();
 		//TODO: Get Funcion with the field numero 
 		//System.out.println((numeroFuncion).verDisponibildad);
@@ -186,17 +187,44 @@ public class Funciones {
 		//System.out.println(funcion.verDisponibilidad())
 		
 		//???A nivel de sistema no es raro que primero no se de el precio
-		//Creo que no porque el precio debería darse en físico, 
-		//lo que se calcula siempre será menor debido a que es un descuento
-		System.out.print("Ingrese el código del boleto que desea comprar: ");
+		//Creo que no porque el precio deberï¿½a darse en fï¿½sico, 
+		//lo que se calcula siempre serï¿½ menor debido a que es un descuento
+		System.out.print("Ingrese el cï¿½digo del boleto que desea comprar: ");
 		numeroBoleto=entrada.nextInt();
 		//TODO: Get boleto by its number
 		//funcion.ventaBoleto(getBoleto(numBoleto),BuscadorCliente(cedula),cine)
 		System.out.print("El preico final de su boleto es:");
 		//TODO: Get boleto by its number
 		//System.out.print(getBoleto(numBoleto).getPrecioTotal());
-		//??? Que podríamos hacer para este 
+		//??? Que podrï¿½amos hacer para este 
 		
 		
+	}
+
+	public static String formatearFunciones(ArrayList<Funcion> funciones){
+		String resultado = "\n\n"; // string en el que va todo el texto
+		for(Funcion funcion: funciones){
+			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
+			String formato = "%s|%s|%s|%s";
+			String fecha = "Fecha: " + String.format("%02d/%02d",funcion.getDia(),funcion.getMes());
+			resultado += funcion.getPelicula().getNombre() + "\n"; // aÃ±ade nombre de la pelicula y salto de linea
+			
+			
+			resultado += String.format(							   // aÃ±ade la linea con la info
+				formato, 
+				centerString(6,funcion.getHorario()), 						// pone el horario	centrado	 
+				centerString(8,"Sala "+funcion.getSala().getNumero()),		// pone la sala centrada
+				centerString(4,funcion.getSala().getTipo()),				// pone el tipo de sala centrada
+				centerString(5,String.format("%03d", funcion.getNumero())));// pone el nÃºmero de sala centrada
+			resultado += "\n"+ fecha;
+			resultado += "\n\n";
+		}
+		return resultado;
+	}
+	
+
+	// funciÃ³n para centrar el texto a un tamaÃ±o minimo
+	public static String centerString (int width, String s) {
+		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}
 }

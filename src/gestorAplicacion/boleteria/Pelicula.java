@@ -44,7 +44,15 @@ public class Pelicula implements Serializable{
 	//
 	//methods
 	//
-	
+
+	//funcion para sumar la cantidad de boletos vendidos
+	public void añadirCantidadBoletos(){
+
+
+		cantidadTotalBoletosVendidos++;
+
+
+	}
 
 	
 	//

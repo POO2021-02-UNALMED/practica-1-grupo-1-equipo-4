@@ -29,13 +29,23 @@ public class Cine implements Serializable{
 	//
 	//methods
 	//
+	public void programarFuncionesAuto(int dias_atras,int dia, int mes){
+		//debo hacer una lista de las peliculas más vendidas en funciones de 3 días antes
+		int dia_aux = dia;
+
+		for(int i = 0; i < dias_atras; i++){
+			dia_aux -= 1;
+
+		}
+	}
 	
-	
+
+
 	//Reflejar cliente mas fiel y aplicarle el descuento
 	public String mostValueClient() {
 		List<Integer> clienteList=new ArrayList<Integer>();
 		for(Cliente cliente: clientes) {
-			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tama�o de su historial de compra
+			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tama�o de su historial de compra
 		}
 		int valormax=Collections.max(clienteList);		//Se establece el mayor numero de boletos comprados por parte de un cliente
 		for (Cliente cliente: clientes) {
@@ -47,7 +57,7 @@ public class Cine implements Serializable{
 		return "Se ha aplicado el descuentos  a nuestro cliente mas fiel ";
 	}
 
-	public String verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un d�a de un mes de una pel�cula
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un d�a de un mes de una pel�cula
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getDia()>=dia && funcion.getMes()==mes ){
@@ -61,99 +71,85 @@ public class Cine implements Serializable{
 			}
 		}
 
-		return formatearFunciones(funciones);
+		return funciones;
 	}
 	
-	public String verFuncion(Cliente cliente) { //Ver funcion por las recomendaciones del cliente
+
+	public ArrayList<Funcion> verFuncion(Cliente cliente) { //Ver funcion por las recomendaciones del cliente
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula().getGenero()== cliente.mostWatchedGenre()){	//Compara genero mas visto del historial de compra del cliente
 				funciones.add(funcion);											//con los generos del las peliculas en cartelera
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
 	
 
 
-	public String verFuncion(Pelicula pelicula, String horario) {				//Mostrar funciones de una pelicula en un horario especifico
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario) {				//Mostrar funciones de una pelicula en un horario especifico
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
 				funciones.add(funcion);
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
 	
-	public String verFuncion(Pelicula pelicula, String horario, int dia, int mes) {		//Mostrar funcion en una fecha y hora de una pelicula en especifico
+
+
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario, int dia, int mes) {		//Mostrar funcion en una fecha y hora de una pelicula en especifico
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario && funcion.getDia()==dia && funcion.getMes()==mes){
 				funciones.add(funcion);
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
+
 	
-	public String verFuncion( int dia, int mes) { //peliculas del dia 
+
+	public ArrayList<Funcion> verFuncion( int dia, int mes) { //peliculas del dia 
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if( funcion.getDia()==dia && funcion.getMes()==mes){
 				funciones.add(funcion);
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
 
-	public String verFuncion(int numero) {	//Mostrar funcion por el numero de la funcion
+
+
+	public ArrayList<Funcion> verFuncion(int numero) {	//Mostrar funcion por el numero de la funcion
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if( funcion.getNumero()==numero) {
 				funciones.add(funcion);
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
 	
-	public String verFuncion(Boleto boleto) {  //Mostrar funcion por boleto
+
+
+	public ArrayList<Funcion> verFuncion(Boleto boleto) {  //Mostrar funcion por boleto
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if(funcion==boleto.getFuncion()) {
 				funciones.add(funcion);
 			}
 		}
-		return formatearFunciones(funciones);
+		return funciones;
 	}
+
+
 
 	// funcion para formatear el texto para imprimir en pantallas las funciones
 	// este es llamado desde la función verFuncion()
-	public static String formatearFunciones(ArrayList<Funcion> funciones){
-		String resultado = "\n\n"; // string en el que va todo el texto
-		for(Funcion funcion: funciones){
-			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
-			String formato = "%s|%s|%s|%s";
-			String fecha = "Fecha: " + String.format("%02d/%02d",funcion.getDia(),funcion.getMes());
-			resultado += funcion.getPelicula().getNombre() + "\n"; // añade nombre de la pelicula y salto de linea
-			
-			
-			resultado += String.format(							   // añade la linea con la info
-				formato, 
-				centerString(6,funcion.getHorario()), 						// pone el horario	centrado	 
-				centerString(8,"Sala "+funcion.getSala().getNumero()),		// pone la sala centrada
-				centerString(4,funcion.getSala().getTipo()),				// pone el tipo de sala centrada
-				centerString(5,String.format("%03d", funcion.getNumero())));// pone el número de sala centrada
-			resultado += "\n"+ fecha;
-			resultado += "\n\n";
-		}
-		return resultado;
-	}
-	
 
-	// función para centrar el texto a un tamaño minimo
-	public static String centerString (int width, String s) {
-		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
-	}
 
 	//
 	//Metodos para agregar elementos a las listas
@@ -186,7 +182,7 @@ public class Cine implements Serializable{
 		
 	}
 	
-	// funcion para encontrar el cliente ingresando la c�dula
+	// funcion para encontrar el cliente ingresando la c�dula
 	public Cliente BuscadorCliente(int num) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		for(Cliente cliente: clientes) {
