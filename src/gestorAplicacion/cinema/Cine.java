@@ -127,7 +127,21 @@ public class Cine implements Serializable{
 		return mejoresCompas;
 	}
 	
+	//Rifa de un boletos entre los clientes mas fieles
 	
+	
+	public void rifarBoleto() {
+		
+		List<Cliente> top10= clientesValiosos();
+		
+		int tamano= top10.size();
+		
+		int ganador= (int)(Math.random()*tamano);
+		
+		Cliente panitaGanador= top10.get(ganador);
+		
+		
+	}
 	
 	
 	public ArrayList<Funcion> verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un d�a de un mes de una pel�cula
