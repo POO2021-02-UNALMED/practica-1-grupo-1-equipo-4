@@ -2,7 +2,7 @@ package gestorAplicacion.cinema;
 import java.io.Serializable;
 import java.io.Serializable;
 import java.util.*;
-
+import java.util.stream.Collectors;
 import gestorAplicacion.boleteria.*;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Sala2D;
@@ -31,12 +31,35 @@ public class Cine implements Serializable{
 	//
 	public void programarFuncionesAuto(int dias_atras,int dia, int mes){
 		//debo hacer una lista de las peliculas más vendidas en funciones de 3 días antes
-		ArrayList<Funcion> funciones = verFuncion(mes);
-		ArrayList<Object> holi = new ArrayList<Object>();
+		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
+		List<Pelicula> peliculas = new ArrayList<Pelicula>();
+		
+		for(Funcion funcion: funciones){		 
+			peliculas.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese mes
+		}
 
-		for(Funcion funcion: funciones){
-			ArrayList<Object> peli_ventas = new ArrayList<>(List.of(funcion.getPelicula(),funcion.getCantidadBoletosVendidos()));
-			
+		peliculas = peliculas.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
+
+		Object[][] pelicula_boletos = new Object[peliculas.size()][2];
+
+		// lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes
+		// 
+		for(int i = 0; i < peliculas.size() ; i++){		// se recorre la lista pelicula
+			pelicula_boletos[i][0] = peliculas.get(i);	// se asigna al primer elemeto de la fila  i el valor de la pelicula
+			pelicula_boletos[i][1] = 0;					// se asigna al segundo elemento de la fila i un 0
+
+			for(Funcion funcion: funciones){			// se recorren las funciones de dicho mes para 
+														// hacer cuenta de cuantas boletas ha vendido la pelicula i
+
+				if( peliculas.get(i) == funcion.getPelicula()){
+					pelicula_boletos[i][1] = (int) pelicula_boletos[i][1] + funcion.getCantidadBoletosVendidos(); // se suman la cantidad de boletos
+				}																								  // 
+			}
+		}
+
+		Arrays.sort(pelicula_boletos, (b, a) -> Integer.compare((int) a[1],(int) b[1])); //ordeno de mayor a menor por ventas
+		for(int i = 0; i < peliculas.size() ; i++){
+			peliculas.set(i,pelicula_boletos[i][0]);
 		}
 
 	}
