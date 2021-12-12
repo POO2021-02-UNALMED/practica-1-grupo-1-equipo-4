@@ -26,6 +26,7 @@ public class Funciones {
 		else { //En caso de que el cliente sea nuevo:
 			Funciones.referido(cine); //Se llama a la funcion referido.
 			Funciones.datos(cine,cedula); //Se llama a la funcion para ingresar datos.
+			System.out.println("**El cliente ha sido registrado con exito**");
 			System.out.println("");
 			Funciones.buscarPorNuevo(cine,cedula); //Se llama a la funcion para la seccion de ver peliculas para un nuevo cliente.
 		}
@@ -54,7 +55,8 @@ public class Funciones {
 		opcion=entrada.nextInt();
 		switch (opcion) {
 		case 0: break; 
-		default: cine.BuscadorCliente(opcion).referidos();
+		default: if(cine.verificarCliente(opcion)){cine.BuscadorCliente(opcion).referidos();}
+		else {Funciones.referido(cine);}
 		break; }
 	}
 	
@@ -82,7 +84,7 @@ public class Funciones {
 		int opcion=0;
 		System.out.print("Quiere buscar pelicula por:\n"
 				+ "1. Funciones\n"
-				+ "2. Pelicula");
+				+ "2. Pelicula\n");
 		Scanner entrada = new Scanner(System.in);
 		opcion=entrada.nextInt();
 		switch (opcion) {
@@ -117,10 +119,10 @@ public class Funciones {
 		switch (opcion) {
 		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
 		break;
-		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente viejo.
+		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de busqueda si se es cliente viejo.
 			Funciones.buscarPorViejo(cine, cedula);
 		}else {
-			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de bï¿½squeda si se es cliente nuevo.
+			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de busqueda si se es cliente nuevo.
 		}
 		break; }
 		
@@ -140,7 +142,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("ï¿½Que desea hacer?\n"
+		System.out.println("¿Que desea hacer?\n"
 				+ "1. comprar"
 				+ "2. volver");
 		opcion=entrada.nextInt();
