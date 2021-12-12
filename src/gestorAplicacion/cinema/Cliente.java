@@ -49,8 +49,7 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 	}
 
 	
-	//Sumar referidos al cliente(?)
-	
+	//Sumar referidos al cliente
 	public void referidos() {
 		this.referidos++;
 	}//!!!Revisar
