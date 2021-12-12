@@ -19,6 +19,31 @@ public class Administrar {
 		return sc.nextInt();
 	}
 	
+	public static void Ejecucion(Cine cine) {
+		
+		int opcion;
+		
+		do {
+			System.out.println("¿Que quiere hacer?\n"
+					+ "1: Agregar una pelicula\n"
+					+ "2: Quitar una pelicual\n"
+					+ "3: Agregar una funcion");
+			
+			opcion=readInt();
+			
+			switch (opcion) {
+			case 1: agregarPeli(cine);
+			break;
+			case 2: quitarPeli(cine);
+			break;
+		}
+				
+		}while (opcion!= 3);	
+	}
+
+		
+	
+	
 	public static void agregarPeli(Cine cine) {
 		System.out.println("Ingrese el nombre de la pelicula:");		//se piden los datos para crear la pelicula
 		String nombre= readStr();
