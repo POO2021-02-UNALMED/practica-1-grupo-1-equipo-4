@@ -124,7 +124,7 @@ public class Funcion implements Serializable{
 		boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo
 		float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
 		cine.setDineroGanado(ganancia); // se establece el nuevo valor
-		pelicula.añadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
+		pelicula.anadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
 	}
 	
 	//
