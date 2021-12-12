@@ -21,8 +21,8 @@ public class Main {
 				case 1: Funciones.clienteNuevoOViejo(cine);
 				//pedir datos del cliente y preguntar si es referido
 				break;
-				case 2:System.out.println("Administrar seleccionado");
-				//llamar metodo crear funciones
+				case 2:System.out.println("Administrar seleccionado\n");
+				Administrar.Ejecucion(cine);
 				break;
 			}
 		} while (opcion!= 3);
