@@ -27,6 +27,7 @@ public class Boleto implements Serializable{
 		this.disponibilidad = true;
 		this.precioTotal = this.calcularPrecio();
 	}
+	// hola mundo
 	
 	// Se calcula el precio bruto 
 	// Se suma el precio de la sala y el precio de la silla
