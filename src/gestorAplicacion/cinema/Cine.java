@@ -196,6 +196,34 @@ public class Cine implements Serializable{
 		return null ;
 	}
 	
+	
+	//
+	//metodo para encontrar una funcion
+	public Funcion BuscadorFuncion(int numero) {
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		for(Funcion funcion: cartelera) {
+			lista.add(funcion.getNumero());
+			if (funcion.getNumero()==numero) {
+				return funcion;
+			}
+		}
+		return null ;
+	}
+	
+	
+	//metodo para encontrar un boleto con su id y una funcion determinada
+	public Boleto BuscadorBoleto(long id,Funcion funcion) {
+		ArrayList<Long> lista= new ArrayList<Long>();
+		for (Boleto boleto : funcion.getBoletos()) {
+			lista.add(boleto.getId());
+			if(boleto.getId()==id) {
+				return boleto;
+			}
+		}
+		return null;
+	}
+	
+	
 	// funcion para encontrar la pelicula ingresando el nombre
 	public Pelicula BuscadorPelicula(String nombre) {
 		ArrayList<String> lista = new ArrayList<String>();
