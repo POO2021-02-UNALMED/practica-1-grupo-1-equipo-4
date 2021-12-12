@@ -58,8 +58,10 @@ public class Cine implements Serializable{
 		}
 
 		Arrays.sort(pelicula_boletos, (b, a) -> Integer.compare((int) a[1],(int) b[1])); //ordeno de mayor a menor por ventas
+
+		// reasigno los valores de peliculas por ventas de mayor a menor 
 		for(int i = 0; i < peliculas.size() ; i++){
-			peliculas.set(i,pelicula_boletos[i][0]);
+			peliculas.set(i, (Pelicula) pelicula_boletos[i][0]);
 		}
 
 	}
