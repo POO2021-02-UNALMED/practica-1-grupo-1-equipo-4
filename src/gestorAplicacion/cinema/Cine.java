@@ -149,9 +149,6 @@ public class Cine implements Serializable{
 
 
 
-	// funcion para formatear el texto para imprimir en pantallas las funciones
-	// este es llamado desde la función verFuncion()
-
 
 	//
 	//Metodos para agregar elementos a las listas
