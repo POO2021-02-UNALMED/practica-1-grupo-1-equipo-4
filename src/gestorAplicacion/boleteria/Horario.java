@@ -6,6 +6,18 @@ public enum Horario {
 	private Horario(String hora) {
 		this.setHora(hora);
 	}
+	
+	public static Horario getHorario(String hora) {
+		Horario[] horarios = {UNO,DOS,TRES,CUATRO,CINCO,SEIS};
+		for(Horario horario: horarios) {
+			if(hora.equals(horario.getHora())) {
+				return horario;
+			}
+		
+		}
+		return null;
+	}
+	
 	public String getHora() {
 		return hora;
 	}

@@ -29,29 +29,30 @@ public class Cine implements Serializable{
 	//
 	//methods
 	//
-	public void programarFuncionesAuto(int mes){
-		//debo hacer una lista de las peliculas mÃ¡s vendidas en funciones de 3 dÃ­as antes
+	public void programarFuncionesAuto(int mes,int dia){
+		//debo hacer una lista de las peliculas mas vendidas en funciones de 3 dias antes
+		
 		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
-		List<Pelicula> peliculas = new ArrayList<Pelicula>();
+		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
 		
 		for(Funcion funcion: funciones){		 
-			peliculas.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese mes
+			peliculasMes.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese mes
 		}
 
-		peliculas = peliculas.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
+		peliculasMes = peliculasMes.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
 
-		Object[][] pelicula_boletos = new Object[peliculas.size()][2];
+		Object[][] pelicula_boletos = new Object[peliculasMes.size()][2];
 
 		// lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes
 		// 
-		for(int i = 0; i < peliculas.size() ; i++){		// se recorre la lista pelicula
-			pelicula_boletos[i][0] = peliculas.get(i);	// se asigna al primer elemeto de la fila  i el valor de la pelicula
+		for(int i = 0; i < peliculasMes.size() ; i++){		// se recorre la lista pelicula
+			pelicula_boletos[i][0] = peliculasMes.get(i);	// se asigna al primer elemeto de la fila  i el valor de la pelicula
 			pelicula_boletos[i][1] = 0;					// se asigna al segundo elemento de la fila i un 0
 
 			for(Funcion funcion: funciones){			// se recorren las funciones de dicho mes para 
 														// hacer cuenta de cuantas boletas ha vendido la pelicula i
 
-				if( peliculas.get(i) == funcion.getPelicula()){
+				if( peliculasMes.get(i) == funcion.getPelicula()){
 					pelicula_boletos[i][1] = (int) pelicula_boletos[i][1] + funcion.getCantidadBoletosVendidos(); // se suman la cantidad de boletos
 				}																								  // 
 			}
@@ -60,14 +61,27 @@ public class Cine implements Serializable{
 		Arrays.sort(pelicula_boletos, (b, a) -> Integer.compare((int) a[1],(int) b[1])); //ordeno de mayor a menor por ventas
 
 		// reasigno los valores de peliculas por ventas de mayor a menor 
-		for(int i = 0; i < peliculas.size() ; i++){
-			peliculas.set(i, (Pelicula) pelicula_boletos[i][0]);
+		for(int i = 0; i < peliculasMes.size() ; i++){
+			peliculasMes.set(i, (Pelicula) pelicula_boletos[i][0]);
 		}
 
-		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
-
-		if ( peliculas.size() > 6){
-
+		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("22:00","20:00","18:00","16:00","14:00","12:00"));
+		
+		//??? Aquí podríamos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
+		Sala salaAuto=null;
+		//Se busca una sala sala disponible para ese dia y mes
+		for(Sala sala: salas) { //
+			if(sala.verificarDisponibilidad(dia, mes)) {
+				salaAuto=sala;
+				break;
+			}
+		}
+		// Con la sala disponible creamos funcion automatica para las peliculas organizadas por ventas 
+		for(int i=0;i<6;i++) {
+			Pelicula p =peliculasMes.get(i);
+			Horario h= Horario.getHorario(disponibles.get(i));
+			Funcion.crearFuncion(dia,mes, h, p , salaAuto.getNumero(), this);
+			
 		}
 
 	}
