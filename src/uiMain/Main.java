@@ -3,13 +3,15 @@ import java.util.*;
 
 
 import gestorAplicacion.cinema.Cine;
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
 
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("BIENVENIDO AL CINE BAHIA");
 		//agregar opciones
 		int opcion;
-		Cine cine = new Cine("hola");
+		Cine cine = Deserializador.deserializar();
 		
 		do {
 			System.out.println("Que quiere hacer?\n"
