@@ -107,12 +107,12 @@ public class Funciones {
 		System.out.print("Mes: ");
 		mes=entrada.nextInt();
 		System.out.print("Pelicula: ");
-		peliculaNombre=entrada.next(); 
+		peliculaNombre=entrada.nextLine(); 
 		Pelicula pelicula= cine.BuscadorPelicula(peliculaNombre);
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?\n"
+		System.out.println("ï¿½Que desea hacer?\n"
 				+ "1. comprar"
 				+ "2. volver");
 		opcion=entrada.nextInt();
@@ -163,7 +163,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(cine.BuscadorCliente(cedula)))); //Busca al cliente por la cedula en el cine, luego llama al metodo de funcion
 		//??? I think methods verFuncion and BuscadorCliente are not part of cine but of their own Classes: Funcion and Cliente respectively.
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?"
+		System.out.println("ï¿½Que desea hacer?"
 				+ "1. comprar"
 				+ "2. volver");
 		Scanner entrada = new Scanner(System.in);
@@ -199,7 +199,7 @@ public class Funciones {
 		
 		System.out.print("El precio final de su boleto es:");
 		System.out.print(boleto.getPrecioTotal());
-		//??? Que más podriamos hacer para este 
+		//??? Que mï¿½s podriamos hacer para este 
 		
 		
 	}
@@ -228,7 +228,7 @@ public class Funciones {
 	}
 	
 
-	// funcion para centrar el texto a un tamaño minimo
+	// funcion para centrar el texto a un tamaï¿½o minimo
 	public static String centerString (int width, String s) {
 		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}

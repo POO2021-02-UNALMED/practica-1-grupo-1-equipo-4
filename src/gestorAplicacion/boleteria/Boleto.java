@@ -12,7 +12,6 @@ public class Boleto implements Serializable{
 	//Atributos 
 	//
 	
-	private long id;
 	private int num_silla;
 	private Tipo tipo_silla; 
 	private float precioTotal;
@@ -62,16 +61,11 @@ public class Boleto implements Serializable{
 	// getting and setting:
 	//
 	
-	public long getId() {
-		return id;
-	}
+
 	public float getPrecio_silla() {
 		return precio_silla;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 	public float getPrecioTotal() {
 		return precioTotal;
 	}

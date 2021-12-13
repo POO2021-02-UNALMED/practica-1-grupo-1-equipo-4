@@ -44,20 +44,17 @@ public class Funcion implements Serializable{
 	// PARA CREAR FUNCI�N SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
 
-	public static Object crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num_sala, Cine cine) { 
+	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num_sala, Cine cine) { 
 		Sala sala = cine.buscarSala(num_sala);                                   //ac� se revisa si la sala existe en cine
 		if(sala != null) {												    				
 			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
 				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funci�n
 			}		
 			else {
-				return "la sala no tiene disponibilidad en ese horario";// no la crea
+				return null;// no la crea
 			}
 			
-		}
-		else{
-			return "la sala no existe";				// sala inexistente
-		}
+		}else{return null;}
 	}
 
 

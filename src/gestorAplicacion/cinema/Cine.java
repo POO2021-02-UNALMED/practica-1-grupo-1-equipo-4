@@ -309,14 +309,16 @@ public class Cine implements Serializable{
 	
 	
 	//metodo para encontrar un boleto con su id y una funcion determinada
-	public Boleto BuscadorBoleto(long id,Funcion funcion) {
-		ArrayList<Long> lista= new ArrayList<Long>();
+	public Boleto BuscadorBoleto(int num_silla,Funcion funcion) {
+		ArrayList<Integer> lista= new ArrayList<Integer>();
+
 		for (Boleto boleto : funcion.getBoletos()) {
-			lista.add(boleto.getId());
-			if(boleto.getId()==id) {
+			lista.add(boleto.getNum_silla());
+			if(boleto.getNum_silla()==num_silla) {
 				return boleto;
 			}
 		}
+
 		return null;
 	}
 	
