@@ -84,7 +84,7 @@ public class Cine implements Serializable{
 			
 		}
 
-	}
+	}//TODO: Considerar el tema de los generos podría pensarse en el futuro
 	
 
 
