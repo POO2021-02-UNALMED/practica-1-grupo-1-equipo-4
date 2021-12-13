@@ -154,7 +154,32 @@ public class Cine implements Serializable{
 		
 		Cliente panitaGanador= top10.get(ganador);
 		
+		int aleatoriofuncion= (int)(Math.random()*cartelera.size());
 		
+		Funcion fescogida= cartelera.get(aleatoriofuncion);
+		
+		int aleatorioboleto= (int)(Math.random()*fescogida.getBoletos().size());
+		
+		Boleto bescogido= fescogida.getBoletos().get(aleatorioboleto);
+		
+		if(bescogido.isDisponibilidad()==true) {
+			
+			fescogida.VentaBoleto(bescogido,panitaGanador);
+			fescogida.cantidadBoletosVendidos--;
+		}
+		else {
+			//Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
+			
+			for (Boleto boleto: fescogida.getBoletos()) {
+				
+				if (boleto.isDisponibilidad()==true) {
+					
+					fescogida.VentaBoleto(boleto, panitaGanador);
+					fescogida.cantidadBoletosVendidos--;
+				}
+			}
+			
+		}
 	}
 	
 	

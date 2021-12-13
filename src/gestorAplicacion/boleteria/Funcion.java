@@ -18,7 +18,7 @@ public class Funcion implements Serializable{
 	private Pelicula pelicula;
 	private Sala sala;
 	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
-	private int cantidadBoletosVendidos = 0;
+	public int cantidadBoletosVendidos = 0;
 	private Cine cine;
 	private static int cantidadFunciones;
 	private int numero;
@@ -114,15 +114,29 @@ public class Funcion implements Serializable{
 
 
 	//Mï¿½todo de venta de boletos ???Maybe this should be a Boleto's method
-	public void VentaBoleto(Boleto boleto, Cliente cliente) {
+	public Boolean VentaBoleto(Boleto boleto, Cliente cliente) {
 		//TODO: Hacer que esto esté dentro de un condicional, y que devuelva un true o un false
-		boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
-		cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprarï¿½ al historial del cliente
-		cantidadBoletosVendidos++;				
-		boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo
-		float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
-		cine.setDineroGanado(ganancia); // se establece el nuevo valor
-		pelicula.anadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
+		if (boleto.isDisponibilidad()==true) {
+			
+			boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
+			
+			cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprarï¿½ al historial del cliente
+			
+			cantidadBoletosVendidos++;				
+			boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo
+			
+			float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
+			
+			cine.setDineroGanado(ganancia); // se establece el nuevo valor
+			pelicula.anadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
+			
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 	
 	//
