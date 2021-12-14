@@ -18,7 +18,7 @@ public class Funcion implements Serializable{
 	private Pelicula pelicula;
 	private Sala sala;
 	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
-	public int cantidadBoletosVendidos = 0;
+	public int cantidadBoletosVendidos = 0;  //??? porque esto esta pÃºblico??
 	private Cine cine;
 	private static int cantidadFunciones;
 	private int numero;
@@ -115,7 +115,7 @@ public class Funcion implements Serializable{
 
 	//Mï¿½todo de venta de boletos ???Maybe this should be a Boleto's method
 	public Boolean VentaBoleto(Boleto boleto, Cliente cliente) {
-		//TODO: Hacer que esto esté dentro de un condicional, y que devuelva un true o un false
+		//TODO: Hacer que esto estï¿½ dentro de un condicional, y que devuelva un true o un false
 		if (boleto.isDisponibilidad()==true) {
 			
 			boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
