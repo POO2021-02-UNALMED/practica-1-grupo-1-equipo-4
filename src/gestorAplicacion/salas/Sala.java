@@ -43,7 +43,7 @@ public abstract class Sala implements Serializable{
 	
 	//M�todos 
 	
-	public void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
+	private void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
 		
 		int total = filas*columnas; 		//n�mero de filas
 		int totalvip = filasvip*columnas;	//n�mero de filas vip
