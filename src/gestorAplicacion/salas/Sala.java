@@ -122,7 +122,42 @@ public abstract class Sala implements Serializable,Agregar{
 		return respuesta.equals("12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n");
 	}
 	
-	
+	public boolean almenosUnoDisponible(int dia, int mes) {
+        String consulta=""+dia+mes;
+        ArrayList<String>fechas = new ArrayList<String>();
+        ArrayList<String>horarios = new ArrayList<String>();
+        ArrayList<String>disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+
+        for (Funcion func:funciones) {
+            String info=""+func.getDia()+func.getMes();        //del atributo funcion se almacenan en modo string
+            fechas.add(info);                                //el dia y mes de las funciones
+            info="";
+
+        }
+
+        for (int i=0;i<fechas.size();i++) {
+            if (fechas.get(i).equals(consulta)) {                //si la fecha de las funciones que hay coincide con la fecha y hora de consulta
+                horarios.add(funciones.get(i).getHorario());    //se almacena
+            }
+        }
+
+        for (String horario:horarios) {
+            disponibles.remove(horario);        //se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
+        }
+
+        String respuesta="";
+
+        for(String d:disponibles) {            //se hace un string que devuelve los horarios disponibles
+            respuesta+=d+"\n";
+        }
+
+        if( respuesta.length() >= 5){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 	public String verHorarios(int dia, int mes) {
 		String consulta=""+dia+mes;
 		ArrayList<String>fechas = new ArrayList<String>();
