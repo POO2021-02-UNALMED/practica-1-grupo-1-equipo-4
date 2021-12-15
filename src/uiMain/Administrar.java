@@ -32,8 +32,8 @@ public class Administrar {
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
 					+ "4: Agregar una funcion automaticamente\n"
-					+ "6: Rifar un boleto\n"
-					+ "7: Atras");
+					+ "5: Rifar un boleto\n"
+					+ "6: Atras");
 			
 			opcion=readInt();
 			
@@ -46,7 +46,7 @@ public class Administrar {
 			break;
 			case 4: generarAuto(cine);
 			break;
-			case 5: //aca va lo de rifar boleto
+			case 5: rifa(cine);
 			break;
 			case 6: break;
 		}
@@ -133,7 +133,7 @@ public class Administrar {
 		
 		System.out.println(seleccionada.verHorarios(dia, mes));		//se muestran los horarios disponibles
 		
-		System.out.println("Ingrese el horario en el formato que se le presento arriba");
+		System.out.print("Ingrese el horario en el formato que se le presento arriba: ");
 		String hora=readStr();
 		
 		Horario h=Horario.getHorario(hora);
@@ -156,13 +156,29 @@ public class Administrar {
 	}
 	
 	public static void generarAuto(Cine cine) {
-		System.out.println("Digite el dia que quiere crear la funcion:");
+		System.out.print("Digite el dia que quiere crear la funcion: ");
 		int dia=readInt();
 		
-		System.out.println("Digite el mes que quiere crear la funcion:");
+		System.out.print("Digite el mes que quiere crear la funcion: ");
 		int mes=readInt();
 		
 		cine.programarFuncionesAuto(mes, dia);
+	}
+	
+	public static void rifa(Cine cine) {
+		System.out.print("Digite el dia para el que quiere el rifar el boleto de la funcion: ");
+		int dia=readInt();
+		
+		System.out.print("Digite el mes para el que quiere rifar el boleto de la funcion: ");
+		int mes=readInt();
+		
+		System.out.println("Funciones de ese dia");
+		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
+		
+		System.out.print("Digite el codigo de la funcion para la que quiere hacer el sorteo: ");
+		int rand=readInt();
+		
+		cine.rifarBoleto(rand);
 	}
 		
 }
