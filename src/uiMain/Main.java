@@ -12,9 +12,6 @@ public class Main {
 		//agregar opciones
 		int opcion;
 		Cine cine = Deserializador.deserializar();
-		for(Pelicula peli: cine.getPeliculas()) {
-			System.out.println(peli);
-		}
 		do {
 			System.out.println("Que quiere hacer?\n"
 					+ "1. Vender\n"

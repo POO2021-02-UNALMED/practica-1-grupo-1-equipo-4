@@ -67,7 +67,7 @@ public class Cine implements Serializable{
 
 		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("22:00","20:00","18:00","16:00","14:00","12:00"));
 		
-		//??? Aqu� podr�amos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
+		//??? Aqui podriamos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
 		Sala salaAuto=null;
 		//Se busca una sala sala disponible para ese dia y mes
 		for(Sala sala: salas) { //
@@ -178,6 +178,7 @@ public class Cine implements Serializable{
 			fescogida.cantidadBoletosVendidos--;		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
 														// Se tendria que anular esa suma
 		}
+		//TODO: Que pasa si la funcion no tiene disponibilidad?
 		else {
 			//Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
 			
@@ -376,12 +377,10 @@ public class Cine implements Serializable{
 	// funcion para encontrar la pelicula ingresando el nombre
 	public Pelicula BuscadorPelicula(String nombre) {
 		ArrayList<String> lista = new ArrayList<String>();
-		for(Pelicula pelicula: peliculas) {
-			
-			lista.add(pelicula.getNombre());
-			System.out.println(pelicula.getNombre());//borrar
-			if (pelicula.getNombre()==nombre) {
-				return pelicula;
+		for(Funcion funcion: cartelera) {
+			lista.add(funcion.getPelicula().getNombre());
+			if (funcion.getPelicula().getNombre().equals(nombre)) {
+				return funcion.getPelicula();
 			}
 		}
 		return null ;
