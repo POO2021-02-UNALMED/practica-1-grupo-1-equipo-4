@@ -43,15 +43,15 @@ public abstract class Sala implements Serializable,Agregar{
 	
 	//M�todos 
 	
-	private void crearSilleteria() {			//  pendiente asignar "fila-columna" a cada sillaS
+	private void crearSilleteria() {			
 		
-		int total = filas*columnas; 		//n�mero de filas
-		int totalvip = filasvip*columnas;	//n�mero de filas vip
-		String tipo = "VIP";
+		int total = filas*columnas; 		//numero de sillas
+		int totalvip = filasvip*columnas;	//numero de sillas vip
+		String tipo = "VIP";				//tipo de silla auxiliar
 		
-		for(int i = 0;i<total;i++) {
+		for(int i = 0;i<total;i++) {		//for que itera la cantidad de sillas 
 			
-			if(totalvip<=0) {
+			if(totalvip<=0) {				//si la 
 				tipo = "SENCILLA";
 			}
 			else {

@@ -66,7 +66,7 @@ public class Funciones {
 		System.out.print("Quiere buscar pelicula por:\n"
 				+ "1. Recomendadas\n"
 				+ "2. Funciones\n"
-				+ "3. Pelicula");
+				+ "3. Pelicula\n");
 		Scanner entrada = new Scanner(System.in);
 		opcion=entrada.nextInt();
 		switch (opcion) {
@@ -101,20 +101,23 @@ public class Funciones {
 		int dia, mes;
 		String peliculaNombre;
 		Scanner entrada= new Scanner(System.in);
+		Scanner entrada1= new Scanner(System.in);
 		System.out.println("Ingrese el dia, mes y la pelicula de las funciones que desea ver: ");
 		System.out.print("Dia: ");
 		dia=entrada.nextInt();
 		System.out.print("Mes: ");
 		mes=entrada.nextInt();
 		System.out.print("Pelicula: ");
-		peliculaNombre=entrada.nextLine(); 
+		peliculaNombre=entrada1.nextLine(); 
+		System.out.println(peliculaNombre);
+		System.out.println(cine.BuscadorPelicula("El Rey Leon"));
 		Pelicula pelicula= cine.BuscadorPelicula(peliculaNombre);
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("ï¿½Que desea hacer?\n"
-				+ "1. comprar"
-				+ "2. volver");
+		System.out.println("¿Que desea hacer?\n"
+				+ "1. comprar\n"
+				+ "2. volver\n");
 		opcion=entrada.nextInt();
 		switch (opcion) {
 		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
@@ -143,8 +146,8 @@ public class Funciones {
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
 		System.out.println("¿Que desea hacer?\n"
-				+ "1. comprar"
-				+ "2. volver");
+				+ "1. comprar\n"
+				+ "2. volver\n");
 		opcion=entrada.nextInt();
 		switch (opcion) {
 		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
@@ -198,7 +201,7 @@ public class Funciones {
 		funcion.VentaBoleto(boleto,cine.BuscadorCliente(cedula));
 		
 		System.out.print("El precio final de su boleto es:");
-		System.out.print(boleto.getPrecioTotal());
+		System.out.println(boleto.getPrecioTotal());
 		//??? Que mas podriamos hacer para este 
 		//TODO: Falta hacer lo de si la silla está disponible
 		
