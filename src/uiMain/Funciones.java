@@ -39,7 +39,7 @@ public class Funciones {
 		String ocupacion;
 		Scanner entrada = new Scanner(System.in);
 		System.out.print("Digite el nombre del cliente: ");
-		nombre=entrada.next();
+		nombre=entrada.nextLine();
 		System.out.print("Digite la edad del cliente: ");
 		edad=entrada.nextInt();
 		System.out.print("Digite la ocupacion del cliente: ");
