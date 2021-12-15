@@ -31,7 +31,7 @@ public class Administrar {
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicual\n"
 					+ "3: Agregar una funcion manualmente\n"
-					+ "4: Agregar una funcion automaticamente\\n"
+					+ "4: Agregar una funcion automaticamente\n"
 					+ "5: Atras");
 			
 			opcion=readInt();
