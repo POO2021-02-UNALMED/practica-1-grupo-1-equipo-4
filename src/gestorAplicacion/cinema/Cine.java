@@ -88,7 +88,9 @@ public class Cine implements Serializable{
 	
 	public ArrayList<Sala> salasDisponibles(int mes, int dia){
 		ArrayList<Sala> disponibles=new ArrayList<>();
-		for(Sala sala: salas) { //
+		System.out.println(salas);
+		for(Sala sala: salas) { 
+			System.out.println(sala.verificarDisponibilidad(dia, mes));	
 			if(sala.verificarDisponibilidad(dia, mes)) {
 				disponibles.add(sala);
 			}

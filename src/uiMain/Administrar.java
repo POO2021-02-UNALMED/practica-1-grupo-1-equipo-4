@@ -15,6 +15,7 @@ public class Administrar {
 	static Scanner sc = new Scanner(System.in); 
 	
 	static String readStr() {
+		Scanner sc= new Scanner(System.in);
 		return sc.nextLine();
 	}
 	
