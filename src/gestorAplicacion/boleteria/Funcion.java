@@ -24,16 +24,21 @@ public class Funcion implements Serializable{
 	private int numero;
 	
 	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala, Cine cine) {
+
+		// se establecen parametros
 		this.dia = dia;
 		this.mes = mes;
 		this.horario = horario;
 		this.pelicula = pelicula;
-		this.setSala(sala);
-		sala.agregarFuncion(this);
-		this.crearBoleteria();
-		cantidadFunciones++;
 		this.numero=cantidadFunciones;
+		this.setSala(sala);
 		this.setCine(cine);
+		this.crearBoleteria();
+		// agrega la funcion a sala y a el cine
+		cine.agregarFuncion(this);
+		sala.agregarFuncion(this);	
+		// aumenta la cantidad de funciones creadas
+		cantidadFunciones++;
 	}
 	
 	//
@@ -61,61 +66,71 @@ public class Funcion implements Serializable{
 	// 
 	// metodo para crear los boletos de la sala
 	private void crearBoleteria(){
-		ArrayList<Silla> sillas = sala.getSillas(); 
-		int disponibles = sala.cantidadSillas();
-
-		for(int i = 0; i < sala.getSillas().size();i++) {    //crear la cantidad de boletos que corresponde seg�n cantidad de sillas
-			if(disponibles > 0){
+		ArrayList<Silla> sillas = sala.getSillas(); 			//lista de las sillas de la sala correspondiente
+		int disponibles = sala.cantidadSillas();				//cantidad de sillas disponible (es diferente) 
+		
+		//
+		//crear la cantidad de boletos que corresponde segun cantidad de sillas
+		//
+		//se va a restar en una unidad a disponibles cada que se crea un objeto boleto
+		for(int i = 0; i < sala.getSillas().size();i++) {   	
+			if(disponibles > 0){								//si es mayor que 0 crea el boleto, lo añade a la lista boletos y disponibles--			
 				Boleto boleto = new Boleto(this, sillas.get(i));
 				boletos.add(boleto);
 				disponibles--;
-			}else{
+			}else{												//de lo contrario añade un objeto nulo, (esto es para que verDisponibilidad funcione)
 				boletos.add(null);
 			}
 		}
 		
 	}
+	
 
+	//Metodo que devuelve las sillas de una sala con tipo y disponibilidad de silla para una función dada
 	public String verDisponibilidad(){
 		ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>(); // lista de filas
 
 		// for para hacer una lista de listas, cada lista corresponde a una fila de boletos
 		for(int i = 0 ; i<sala.getFilas(); i++){
-			ArrayList<String> fila = new ArrayList<String>(); 
+			ArrayList<String> fila = new ArrayList<String>(); 				//fila acumula los elementos de la fila para luego convertirlo en string
 			for(int j = 0; j<sala.getColumnas() ; j++){		 
 				Boleto boleto = boletos.get((i)*sala.getColumnas()+j); 
-				if (boleto != null){
+				if (boleto != null){										//si el boleto no es nulo, crea el string y se añade a la fila
+																			//se crea un string de la forma disponibilidad/tipo/numerosilla
 					String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
-					fila.add(formato_boleto);
+					fila.add(formato_boleto);								 
 				}else{
-					String formato_boleto = "";
-					fila.add(formato_boleto);
+					String formato_boleto = "";								//se crea un String vacio si el elemento es null
+					fila.add(formato_boleto);								//
 				}
 
 			}
-			total.add(fila);
+			total.add(fila);												// se añade a total que es la lista de filas
 		}
 
 		String formato = "";
 
 		// for para formatear un string con la silletería para imprimir
-		for(ArrayList<String> fila: total){
-			String patron = "%-6s   ".repeat(sala.getColumnas()); // se crea el formato con la cantidad de variables necesarias (columnas) por fila
-			Object[] fila_args = fila.toArray(new String[0]); // se crea una lista para pasar como *args
-			formato += String.format(patron,fila_args) + "\n"; // se le agrega a el string resultante la fila
+		for(ArrayList<String> fila: total){							
+																	//%-6s es una variable que recibe string y se llena con minimo 6 espacios y justifica a la izquierda
+			String patron = "%-6s   ".repeat(sala.getColumnas()); 	// se crea el formato con la cantidad de variables necesarias (columnas)
+			Object[] fila_args = fila.toArray(new String[0]); 		// se crea una lista para pasar como *args
+			formato += String.format(patron,fila_args) + "\n"; 		// se le agrega a el string resultante la fila mas un salto de linea
 		}
-		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n";
+		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n"; //se le agrega al string final una linea con la palabra PANTALLA centrado
 		return formato;
 	}
-
+	
+	//Funcion que centra un string s a una cantidad de caracteres minima width
 	public static String centerString (int width, String s) {
 		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}
 
 
-	//M�todo de venta de boletos ???Maybe this should be a Boleto's method
+	//Metodo que vende un boleto, es decir, cambia valores, y devuelve un bool de si se pudo vender o no el boleto
 	public Boolean VentaBoleto(Boleto boleto, Cliente cliente) {
-		//TODO: Hacer que esto est� dentro de un condicional, y que devuelva un true o un false
+		
+		//Si el boleto se encuentra disponible
 		if (boleto.isDisponibilidad()==true) {
 			
 			boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
@@ -127,7 +142,7 @@ public class Funcion implements Serializable{
 			
 			float ganancia= cine.getDineroGanado()+boleto.getPrecioTotal(); //Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
 			
-			cine.setDineroGanado(ganancia); // se establece el nuevo valor
+			cine.setDineroGanado(ganancia); 	// se establece el nuevo valor
 			pelicula.anadirCantidadBoletos();  // se suma en uno el valor de los boletos vendidos por pelicula
 			
 			
@@ -200,31 +215,9 @@ public class Funcion implements Serializable{
 	
 	public void setCine(Cine cine){
 		this.cine = cine;
-		cine.agregarFuncion(this);
 	}
 	
 	public Cine getCine(){
 		return cine;
 	}
-	
-	// MAIN PARA ENSAYAR
-
-	/*
-	 	public static void main(String[] args){
-		Pelicula rey_leon = new Pelicula();
-		Pelicula avenger = new Pelicula();
-		rey_leon.setNombre("El Rey Leon");
-		avenger.setNombre("Avengers End Game");
-		Sala3D sala1 = new Sala3D(1, 7, 8, 2, 49);
-		Funcion funcion_1 = new Funcion(1, 3, Horario.UNO, rey_leon, sala1);
-		funcion_1.getBoletos().get(3).setDisponibilidad(false);
-		System.out.println(funcion_1.verDisponibilidad());
-		Funcion funcion_2 = new Funcion(1,3,Horario.DOS, avenger, sala1);
-		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
-		funciones.add(funcion_1);
-		funciones.add(funcion_2);
-		System.out.println(Cine.formatearFunciones(funciones));
-	} 
-	*/
-	
 }
