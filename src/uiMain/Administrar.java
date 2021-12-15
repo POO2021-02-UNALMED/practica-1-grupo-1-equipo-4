@@ -178,7 +178,7 @@ public class Administrar {
 		System.out.print("Digite el codigo de la funcion para la que quiere hacer el sorteo: ");
 		int rand=readInt();
 		
-		cine.rifarBoleto(rand);
+		System.out.print("CLIENTE GANADOR: "+cine.rifarBoleto(rand)+"\n");
 	}
 		
 }

@@ -154,7 +154,7 @@ public class Cine implements Serializable{
 	//Rifa de un boletos entre los clientes mas fieles
 	
 	
-	public void rifarBoleto(int numeroFuncion) {
+	public String rifarBoleto(int numeroFuncion) {
 		
 		List<Cliente> top10= clientesValiosos();	//Saco la lista del 10% de los clientes mas fieles
 		
@@ -195,6 +195,7 @@ public class Cine implements Serializable{
 			}
 			
 		}
+		return panitaGanador.getNombre();
 	}
 	
 	

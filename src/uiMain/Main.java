@@ -3,6 +3,7 @@ import java.util.*;
 
 import gestorAplicacion.boleteria.Pelicula;
 import gestorAplicacion.cinema.Cine;
+import gestorAplicacion.cinema.Cliente;
 import baseDatos.Deserializador;
 import baseDatos.Serializador;
 
@@ -15,7 +16,8 @@ public class Main {
 		do {
 			System.out.println("Que quiere hacer?\n"
 					+ "1. Vender\n"
-					+ "2. Administrar\n");
+					+ "2. Administrar\n"
+					+ "3. Cerrar el programa");
 			Scanner entrada = new Scanner(System.in);
 			opcion=entrada.nextInt();
 			Serializador.serializar(cine);
