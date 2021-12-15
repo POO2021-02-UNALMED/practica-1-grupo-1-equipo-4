@@ -154,7 +154,7 @@ public class Cine implements Serializable{
 	//Rifa de un boletos entre los clientes mas fieles
 	
 	
-	public void rifarBoleto() {
+	public void rifarBoleto(int numeroFuncion) {
 		
 		List<Cliente> top10= clientesValiosos();	//Saco la lista del 10% de los clientes mas fieles
 		
@@ -164,9 +164,9 @@ public class Cine implements Serializable{
 		
 		Cliente panitaGanador= top10.get(ganador);	// Con el numero conseguido sacar al cliente escogido
 		
-		int aleatoriofuncion= (int)(Math.random()*cartelera.size());	//Numero aleatorio de la lista de cartelera
+		//int aleatoriofuncion= (int)(Math.random()*cartelera.size());	//Numero aleatorio de la lista de cartelera
 		
-		Funcion fescogida= cartelera.get(aleatoriofuncion);	//Funcion escogida de la cartelera con el numero aleatorio
+		Funcion fescogida= BuscadorFuncion(numeroFuncion);	//Funcion escogida de la cartelera con el numero de la funcion
 		
 		int aleatorioboleto= (int)(Math.random()*fescogida.getBoletos().size());	//Otro numero aleatorio con base al tamano de la lista de boletos
 		
@@ -178,7 +178,8 @@ public class Cine implements Serializable{
 			fescogida.cantidadBoletosVendidos--;		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
 														// Se tendria que anular esa suma
 		}
-		//TODO: Que pasa si la funcion no tiene disponibilidad?
+		//TODO: Que pasa si la funcion no tiene disponibilidad? Creo que ya esta listo
+		
 		else {
 			//Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
 			
