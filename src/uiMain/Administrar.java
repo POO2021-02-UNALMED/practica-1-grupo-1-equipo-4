@@ -3,8 +3,11 @@ package uiMain;
 import java.util.*;
 
 import gestorAplicacion.boleteria.Boleto;
+import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Pelicula;
 import gestorAplicacion.cinema.Cine;
+import gestorAplicacion.salas.*;
+import gestorAplicacion.boleteria.Horario;
 
 //TODO: Falta agregar una funcion de landing donde se pregunte si se quire agregarPeli, quitar, AgregarFuncion, quitar, and so on. 
 public class Administrar {
@@ -96,9 +99,51 @@ public class Administrar {
 		}
 	}
 	
-	public static void generarFuncionManual() {
+	public static void generarFuncionManual(Cine cine) {
 		//aca se va a mostrar los horarios disponibles de x dia (ya esta la funcion)
 		//para que el empleado llame a crear funcion y melo
+		System.out.println("Digite el dia que quiere crear la funcion:");
+		int dia=readInt();
+		
+		System.out.println("Digite el mes que quiere crear la funcion:");
+		int mes=readInt();
+		
+		ArrayList<Sala> disponibles=cine.salasDisponibles(mes,dia);		//se agrega a una lista las salas disponibles del dia y mes
+		
+		System.out.println("Salas disponibles para el dia/mes: "+dia+"/"+mes);
+		for(Sala d:disponibles) {
+			System.out.println("Sala "+d.getNumero());				//se imprimen los numeros de las salas disponibles
+		}
+		
+		System.out.println("Seleccione el numero de la sala que quiere: ");
+		int sala=readInt();
+		
+		Sala seleccionada = cine.buscarSala(sala);		//se busca la sala por su numero
+		
+		System.out.println("Horarios disponibles de la sala: ");
+		
+		System.out.println(seleccionada.verHorarios(dia, mes));		//se muestran los horarios disponibles
+		
+		System.out.println("Ingrese el horario en el formato que se le presento arriba");
+		String hora=readStr();
+		
+		Horario h=Horario.getHorario(hora);
+		
+		System.out.println("Peliculas en el cine");
+		
+		int i=1;
+		
+		for(Pelicula p:cine.getPeliculas()) {
+			System.out.println(i+": "+p.getNombre());
+			i++;
+		}
+		
+		System.out.println("Digite el numero de la pelicula seleccionada");
+		int peli=readInt();
+		
+		Pelicula pelicula=cine.getPeliculas().get(peli-1);
+			
+		Funcion.crearFuncion(dia, mes, h, pelicula, seleccionada.getNumero(), cine);
 	}
 		
 }

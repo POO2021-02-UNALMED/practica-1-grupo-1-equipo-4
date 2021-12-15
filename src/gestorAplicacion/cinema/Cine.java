@@ -86,6 +86,16 @@ public class Cine implements Serializable{
 
 	}//TODO: Considerar el tema de los generos podría pensarse en el futuro
 	
+	public ArrayList<Sala> salasDisponibles(int mes, int dia){
+		ArrayList<Sala> disponibles=new ArrayList<>();
+		for(Sala sala: salas) { //
+			if(sala.verificarDisponibilidad(dia, mes)) {
+				disponibles.add(sala);
+			}
+		}
+		
+		return disponibles;
+	}
 
 
 	//Reflejar cliente mas fiel y aplicarle el descuento de 40%
