@@ -199,7 +199,7 @@ public class Funciones {
 		
 		System.out.print("El precio final de su boleto es:");
 		System.out.print(boleto.getPrecioTotal());
-		//??? Que m�s podriamos hacer para este 
+		//??? Que mas podriamos hacer para este 
 		//TODO: Falta hacer lo de si la silla est� disponible
 		
 	}
@@ -212,10 +212,10 @@ public class Funciones {
 			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
 			String formato = "%s|%s|%s|%s";
 			String fecha = "Fecha: " + String.format("%02d/%02d",funcion.getDia(),funcion.getMes());
-			resultado += funcion.getPelicula().getNombre() + "\n"; // añade nombre de la pelicula y salto de linea
+			resultado += funcion.getPelicula().getNombre() + "\n"; // anade nombre de la pelicula y salto de linea
 			
 			
-			resultado += String.format(							   // añade la linea con la info
+			resultado += String.format(							   // anade la linea con la info
 				formato, 
 				centerString(6,funcion.getHorario()), 						// pone el horario	centrado	 
 				centerString(8,"Sala "+funcion.getSala().getNumero()),		// pone la sala centrada
@@ -228,7 +228,7 @@ public class Funciones {
 	}
 	
 
-	// funcion para centrar el texto a un tama�o minimo
+	// funcion para centrar el texto a un tamano minimo
 	public static String centerString (int width, String s) {
 		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}
