@@ -119,7 +119,7 @@ public abstract class Sala implements Serializable,Agregar{
 			respuesta+=d+"\n";
 		}
 		
-		return respuesta.equals("12:00\n14:00\n16:00\n18:00\n20:00\n22:00");
+		return respuesta.equals("12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n");
 	}
 	
 	
