@@ -19,6 +19,7 @@ public class Main {
 					+ "2. Administrar\n");
 			Scanner entrada = new Scanner(System.in);
 			opcion=entrada.nextInt();
+			Serializador.serializar(cine);
 			switch (opcion) {
 				case 1: Funciones.clienteNuevoOViejo(cine);
 				//pedir datos del cliente y preguntar si es referido
@@ -26,6 +27,7 @@ public class Main {
 				case 2:System.out.println("Administrar seleccionado\n");
 				Administrar.Ejecucion(cine);
 				break;
+			
 			}
 		} while (opcion!= 3);
 		
