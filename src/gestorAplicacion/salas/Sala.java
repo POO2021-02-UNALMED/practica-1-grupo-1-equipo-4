@@ -7,7 +7,7 @@ import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Horario;
 import gestorAplicacion.cinema.Cine;
 
-public abstract class Sala implements Serializable{
+public abstract class Sala implements Serializable,Agregar{
 	private static final long serialVersionUID = 1L;
 	protected int numero;
 	protected int filas;
