@@ -109,6 +109,8 @@ public class Funciones {
 		mes=entrada.nextInt();
 		System.out.print("Pelicula: ");
 		peliculaNombre=entrada1.nextLine(); 
+		System.out.println(peliculaNombre);
+		System.out.println(cine.BuscadorPelicula("El Rey Leon"));
 		Pelicula pelicula= cine.BuscadorPelicula(peliculaNombre);
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));
 		

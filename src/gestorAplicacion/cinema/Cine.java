@@ -369,6 +369,7 @@ public class Cine implements Serializable{
 		for(Pelicula pelicula: peliculas) {
 			
 			lista.add(pelicula.getNombre());
+			System.out.println(pelicula.getNombre());//borrar
 			if (pelicula.getNombre()==nombre) {
 				return pelicula;
 			}
