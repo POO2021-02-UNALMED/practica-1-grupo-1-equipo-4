@@ -2,7 +2,7 @@ package uiMain;
 
 import java.util.*;
 
-import gestorAplicacion.boleteria.Boleto;
+//import gestorAplicacion.boleteria.Boleto;
 import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Pelicula;
 import gestorAplicacion.cinema.Cine;
@@ -30,7 +30,8 @@ public class Administrar {
 			System.out.println("¿Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicual\n"
-					+ "3: Agregar una funcion");
+					+ "3: Agregar una funcion manualmente\n"
+					+ "4: Agregar una funcion automaticamente");
 			
 			opcion=readInt();
 			
@@ -39,9 +40,12 @@ public class Administrar {
 			break;
 			case 2: quitarPeli(cine);
 			break;
+			case 3: generarFuncionManual(cine);
+			break;
+			case 4: generarAuto(cine);
 		}
 				
-		}while (opcion!= 3);	
+		}while (opcion!= 5);	
 	}
 
 		
@@ -144,6 +148,16 @@ public class Administrar {
 		Pelicula pelicula=cine.getPeliculas().get(peli-1);
 			
 		Funcion.crearFuncion(dia, mes, h, pelicula, seleccionada.getNumero(), cine);
+	}
+	
+	public static void generarAuto(Cine cine) {
+		System.out.println("Digite el dia que quiere crear la funcion:");
+		int dia=readInt();
+		
+		System.out.println("Digite el mes que quiere crear la funcion:");
+		int mes=readInt();
+		
+		cine.programarFuncionesAuto(mes, dia);
 	}
 		
 }
