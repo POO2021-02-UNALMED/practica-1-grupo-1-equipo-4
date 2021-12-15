@@ -67,7 +67,7 @@ public class Cine implements Serializable{
 
 		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("22:00","20:00","18:00","16:00","14:00","12:00"));
 		
-		//??? Aquí podríamos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
+		//??? Aquï¿½ podrï¿½amos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
 		Sala salaAuto=null;
 		//Se busca una sala sala disponible para ese dia y mes
 		for(Sala sala: salas) { //
@@ -84,7 +84,7 @@ public class Cine implements Serializable{
 			
 		}
 
-	}//TODO: Considerar el tema de los generos podría pensarse en el futuro
+	}//TODO: Considerar el tema de los generos podrï¿½a pensarse en el futuro
 	
 
 
