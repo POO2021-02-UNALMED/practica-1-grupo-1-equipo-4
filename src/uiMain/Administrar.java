@@ -27,12 +27,12 @@ public class Administrar {
 		
 		int opcion;
 		
-		do {
 			System.out.println("¿Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicual\n"
 					+ "3: Agregar una funcion manualmente\n"
-					+ "4: Agregar una funcion automaticamente");
+					+ "4: Agregar una funcion automaticamente"
+					+ "5: Atras");
 			
 			opcion=readInt();
 			
@@ -44,9 +44,10 @@ public class Administrar {
 			case 3: generarFuncionManual(cine);
 			break;
 			case 4: generarAuto(cine);
+			break;
+			case 5: break;
 		}
-				
-		}while (opcion!= 5);	
+					
 	}
 
 		
