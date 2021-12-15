@@ -146,36 +146,39 @@ public class Cine implements Serializable{
 	
 	public void rifarBoleto() {
 		
-		List<Cliente> top10= clientesValiosos();
+		List<Cliente> top10= clientesValiosos();	//Saco la lista del 10% de los clientes mas fieles
 		
-		int tamano= top10.size();
+		int tamano= top10.size();			//tamano de esa lista
 		
-		int ganador= (int)(Math.random()*tamano);
+		int ganador= (int)(Math.random()*tamano);	//Un numero aleatorio entre 0 y el tamano de la lista
 		
-		Cliente panitaGanador= top10.get(ganador);
+		Cliente panitaGanador= top10.get(ganador);	// Con el numero conseguido sacar al cliente escogido
 		
-		int aleatoriofuncion= (int)(Math.random()*cartelera.size());
+		int aleatoriofuncion= (int)(Math.random()*cartelera.size());	//Numero aleatorio de la lista de cartelera
 		
-		Funcion fescogida= cartelera.get(aleatoriofuncion);
+		Funcion fescogida= cartelera.get(aleatoriofuncion);	//Funcion escogida de la cartelera con el numero aleatorio
 		
-		int aleatorioboleto= (int)(Math.random()*fescogida.getBoletos().size());
+		int aleatorioboleto= (int)(Math.random()*fescogida.getBoletos().size());	//Otro numero aleatorio con base al tamano de la lista de boletos
 		
-		Boleto bescogido= fescogida.getBoletos().get(aleatorioboleto);
+		Boleto bescogido= fescogida.getBoletos().get(aleatorioboleto);	//Boleto escogido con el numero aleatorio
 		
-		if(bescogido.isDisponibilidad()==true) {
+		if(bescogido.isDisponibilidad()==true) {	//Si este boleto esta disponible se puede rifar ese boleto al cliente ganador
 			
 			fescogida.VentaBoleto(bescogido,panitaGanador);
-			fescogida.cantidadBoletosVendidos--;
+			fescogida.cantidadBoletosVendidos--;		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
+														// Se tendria que anular esa suma
 		}
 		else {
 			//Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
 			
 			for (Boleto boleto: fescogida.getBoletos()) {
 				
-				if (boleto.isDisponibilidad()==true) {
+				if (boleto.isDisponibilidad()==true) {	//Se va recorriendo los boletos de la funcion escogida aleatoriamente 
+														//hasta encontrar el primero disponible 
 					
-					fescogida.VentaBoleto(boleto, panitaGanador);
+					fescogida.VentaBoleto(boleto, panitaGanador);	//Se vende el boleto
 					fescogida.cantidadBoletosVendidos--;
+					break;		//Solo voy a rifar uno entonces rompo el for
 				}
 			}
 			
@@ -217,7 +220,7 @@ public class Cine implements Serializable{
 	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario) {				//Mostrar funciones de una pelicula en un horario especifico
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
-			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){
+			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){	
 				funciones.add(funcion);
 			}
 		}
@@ -298,9 +301,11 @@ public class Cine implements Serializable{
 			lista.add(cliente.getCedula());
 		}
 		
-		if (lista.contains(num)) {
+		if (lista.contains(num)) {		//Si el numero esta contenido de la lista de todas las cedulas si esta registrado
+			
 			return true;
-		}else {
+		}
+		else {
 			return false;
 		}
 		
@@ -309,9 +314,12 @@ public class Cine implements Serializable{
 	// funcion para encontrar el cliente ingresando la c�dula
 	public Cliente BuscadorCliente(int num) {
 		ArrayList<Integer> lista = new ArrayList<Integer>();
+		
 		for(Cliente cliente: clientes) {
 			lista.add(cliente.getCedula());
+		
 			if (cliente.getCedula()==num) {
+			
 				return cliente;
 			}
 		}
@@ -322,10 +330,14 @@ public class Cine implements Serializable{
 	//
 	//metodo para encontrar una funcion
 	public Funcion BuscadorFuncion(int numero) {
+		
 		ArrayList<Integer> lista = new ArrayList<Integer>();
+		
 		for(Funcion funcion: cartelera) {
+			
 			lista.add(funcion.getNumero());
-			if (funcion.getNumero()==numero) {
+			
+			if (funcion.getNumero()==numero) {	//Si el numero de la funcion es igual al numero que se ingreso es la que se estaba buscando
 				return funcion;
 			}
 		}
@@ -338,8 +350,11 @@ public class Cine implements Serializable{
 		ArrayList<Integer> lista= new ArrayList<Integer>();
 
 		for (Boleto boleto : funcion.getBoletos()) {
+			
 			lista.add(boleto.getNum_silla());
-			if(boleto.getNum_silla()==num_silla) {
+			
+			if(boleto.getNum_silla()==num_silla) {			//Si el numero que se ingreso concuerda con el numero de la silla del boleto 
+															//es el que se estaba buscando
 				return boleto;
 			}
 		}
@@ -352,6 +367,7 @@ public class Cine implements Serializable{
 	public Pelicula BuscadorPelicula(String nombre) {
 		ArrayList<String> lista = new ArrayList<String>();
 		for(Pelicula pelicula: peliculas) {
+			
 			lista.add(pelicula.getNombre());
 			if (pelicula.getNombre()==nombre) {
 				return pelicula;
