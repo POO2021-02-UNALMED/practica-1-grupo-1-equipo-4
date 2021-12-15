@@ -29,10 +29,11 @@ public class Administrar {
 		
 			System.out.println("¿Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
-					+ "2: Quitar una pelicual\n"
+					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
 					+ "4: Agregar una funcion automaticamente\n"
-					+ "5: Atras");
+					+ "6: Rifar un boleto\n"
+					+ "7: Atras");
 			
 			opcion=readInt();
 			
@@ -45,7 +46,9 @@ public class Administrar {
 			break;
 			case 4: generarAuto(cine);
 			break;
-			case 5: break;
+			case 5: //aca va lo de rifar boleto
+			break;
+			case 6: break;
 		}
 					
 	}
