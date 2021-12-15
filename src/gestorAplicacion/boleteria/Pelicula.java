@@ -23,6 +23,7 @@ public class Pelicula implements Serializable{
 		this.lenguaje=lenguaje;
 		this.clasificacion=clasificacion;
 		this.cine=cine;
+		cine.agregarPelicula(this);
 	}
 	
 	
