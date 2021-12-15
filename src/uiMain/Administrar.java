@@ -12,7 +12,7 @@ public class Administrar {
 	static Scanner sc = new Scanner(System.in); 
 	
 	static String readStr() {
-		return sc.next();
+		return sc.nextLine();
 	}
 	
 	static int readInt() {
