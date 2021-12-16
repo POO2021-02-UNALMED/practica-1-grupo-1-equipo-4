@@ -46,14 +46,14 @@ public class Funcion implements Serializable{
 	//
 	
 	//
-	// PARA CREAR FUNCI�N SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
+	// PARA CREAR FUNCION SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
 
 	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num_sala, Cine cine) { 
-		Sala sala = cine.buscarSala(num_sala);                                   //ac� se revisa si la sala existe en cine
+		Sala sala = cine.buscarSala(num_sala);                                   //aqui se revisa si la sala existe en cine
 		if(sala != null) {												    				
 			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
-				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funci�n
+				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funcion
 			}		
 			else {
 				return null;// no la crea
@@ -74,11 +74,11 @@ public class Funcion implements Serializable{
 		//
 		//se va a restar en una unidad a disponibles cada que se crea un objeto boleto
 		for(int i = 0; i < sala.getSillas().size();i++) {   	
-			if(disponibles > 0){								//si es mayor que 0 crea el boleto, lo añade a la lista boletos y disponibles--			
+			if(disponibles > 0){								//si es mayor que 0 crea el boleto, lo anade a la lista boletos y disponibles--			
 				Boleto boleto = new Boleto(this, sillas.get(i));
 				boletos.add(boleto);
 				disponibles--;
-			}else{												//de lo contrario añade un objeto nulo, (esto es para que verDisponibilidad funcione)
+			}else{												//de lo contrario ande un objeto nulo, (esto es para que verDisponibilidad funcione)
 				boletos.add(null);
 			}
 		}
@@ -95,7 +95,7 @@ public class Funcion implements Serializable{
 			ArrayList<String> fila = new ArrayList<String>(); 				//fila acumula los elementos de la fila para luego convertirlo en string
 			for(int j = 0; j<sala.getColumnas() ; j++){		 
 				Boleto boleto = boletos.get((i)*sala.getColumnas()+j); 
-				if (boleto != null){										//si el boleto no es nulo, crea el string y se añade a la fila
+				if (boleto != null){										//si el boleto no es nulo, crea el string y se anade a la fila
 																			//se crea un string de la forma disponibilidad/tipo/numerosilla
 					String formato_boleto = boleto.disponibilidad()+boleto.tipoString()+String.valueOf(boleto.getNum_silla());
 					fila.add(formato_boleto);								 
@@ -105,7 +105,7 @@ public class Funcion implements Serializable{
 				}
 
 			}
-			total.add(fila);												// se añade a total que es la lista de filas
+			total.add(fila);												// se anade a total que es la lista de filas
 		}
 
 		String formato = "";
