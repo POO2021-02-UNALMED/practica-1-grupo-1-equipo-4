@@ -17,7 +17,6 @@ public abstract class Sala implements Serializable,Agregar{
 	protected ArrayList<Silla> sillas = new ArrayList<Silla>();
 	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 	protected Cine cine;
-	private static int cantidadSalas = 0;
 	
 	
 	//Constructores 
@@ -31,8 +30,7 @@ public abstract class Sala implements Serializable,Agregar{
 		cine.agregarSala(this);
 		
 		
-		Sala.cantidadSalas++;
-		this.numero = Sala.cantidadSalas;
+		this.numero = cine.getSalas().size();
 	}
 	
 	
