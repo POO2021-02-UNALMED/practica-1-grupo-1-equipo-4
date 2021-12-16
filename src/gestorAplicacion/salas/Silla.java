@@ -17,6 +17,7 @@ public class Silla implements Serializable{
 	public Tipo getTipo() {
 		return tipo;
 	}
+	
 	public void setTipo(String tipo) {
 		if(tipo.equals("VIP")) {
 			this.tipo = Tipo.VIP;

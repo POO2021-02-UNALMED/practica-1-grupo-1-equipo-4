@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.xml.namespace.QName;
+
 import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Horario;
 import gestorAplicacion.cinema.Cine;
@@ -14,9 +16,13 @@ public abstract class Sala implements Serializable,Agregar{
 	protected int columnas;
 	protected int filasvip;
 	protected float precio;
-	protected ArrayList<Silla> sillas = new ArrayList<Silla>();
-	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 	protected Cine cine;
+
+	protected ArrayList<Silla> sillas = new ArrayList<Silla>();			//contiene objetos silla que corresponden a las sillas de la sala
+																		//esta depende de las filas y las columnas
+
+	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();	//contiene las funciones creadas en dicho cine
+	
 	
 	
 	//Constructores 
@@ -33,45 +39,45 @@ public abstract class Sala implements Serializable,Agregar{
 		this.numero = cine.getSalas().size();
 	}
 	
-	
-	/*public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
-		this.numero = numero;
-		this.filas = filas;
-		this.columnas = columnas;
-		this.filasvip = filasvip;
-		this.precio=precio;
-		this.crearSilleteria();
-	}*/
-	
-	
-	//M�todos 
+	//Metodos
 	
 	private void crearSilleteria() {			
+	/*No recibe ningun parametro y no retorna nada
+	Es la encargada de crear cada silla dependiendo la cantidad de filasvip, filas, y columnas*/
 		
-		int total = filas*columnas; 		//numero de sillas
-		int totalvip = filasvip*columnas;	//numero de sillas vip
-		String tipo = "VIP";				//tipo de silla auxiliar
+	
+		int total = filas*columnas; 			//numero de sillas
+
+		int totalvip = filasvip*columnas;		//numero de sillas vip, este será reducido en uno cada que se
+												//cree una nueva silla vip 
+											
+
+		String tipo = "VIP";					//tipo de silla sera cambiado cuando totalvip sea = a 0
 		
-		for(int i = 0;i<total;i++) {		//for que itera la cantidad de sillas 
+		for(int i = 0;i<total;i++) {			//for que itera la cantidad de sillas 
 			
-			if(totalvip<=0) {				//si la 
+			if(totalvip<=0) {					//si se acabaron las sillas vip cambia tipo a SENCILLA
 				tipo = "SENCILLA";
 			}
-			else {
+			else {								//de lo contrario se reduce totalvip en uno
 				totalvip--;
 			}
 			
-			Silla silla = new Silla(tipo,i+1);
-			sillas.add(silla);
+			Silla silla = new Silla(tipo,i+1);	//se crea un nuevo objeto le parametro tipo= al tipo que teniamos
+												//anteriormente y un número que corresponde al numero de la iteracion + 1
+
+			sillas.add(silla);					//se añade el objeto a la lista de sillas
 		}
 	}
+
 	
 	public void agregarFuncion(Funcion funcion) {
-		funciones.add(funcion);
+	/*Recibe como parametro la funcion que se agregará a la lista de funciones 
+	y no retorna nada*/
+
+		funciones.add(funcion);	//se agrega la funcion a la lista de funciones
 	}
 	
-	//Metodos abtractos
-	public abstract int cantidadSillas();
 	
 	//verificar disponibilidad
 	public boolean verificarDisponibilidad(int dia, int mes, String hora) {

@@ -8,12 +8,16 @@ public class Sala2D extends Sala implements Serializable{
 		super(filas, columnas, filasvip, 2000,cine);
 	}
 	
-	//Sala 2D para un tamaño de sala default
+	//Sala 2D para un tamaï¿½o de sala default
 	public Sala2D(int vip, Cine cine) {
 		this(8, 12, vip, cine);
 	}
 	
 	public int cantidadSillas() {
+	/*No recibe nada y devuelve un entero el cual corresponde a la cantidad de sillas
+	disponibles para la creaciÃ³n de los boletos de la funcion es decir la cantidad de 
+	sillas*/
+
 		return super.sillas.size();
 	}
 	
