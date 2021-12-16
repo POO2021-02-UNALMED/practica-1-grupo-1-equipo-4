@@ -19,7 +19,7 @@ public class Sala3D extends Sala implements Serializable{
 
 	public int cantidadSillas() {
 	/*No recibe nada y devuelve un entero el cual corresponde a la cantidad de sillas
-	disponibles para la creación de los boletos de la funcion
+	disponibles para la creacion de los boletos de la funcion
 	esta se encuentra limitada por la cantidad de gafas 3d disponibles para dicha sala*/
 		
 		int totalsillas=sillas.size();	 //corresponde a la cantidad de sillas del cine
