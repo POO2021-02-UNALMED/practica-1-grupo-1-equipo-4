@@ -113,7 +113,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("�Que desea hacer?\n"
+		System.out.println("Que desea hacer?\n"
 				+ "1. comprar\n"
 				+ "2. volver\n");
 		opcion=entrada.nextInt();
@@ -164,7 +164,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(cine.BuscadorCliente(cedula)))); //Busca al cliente por la cedula en el cine, luego llama al metodo de funcion
 		//??? I think methods verFuncion and BuscadorCliente are not part of cine but of their own Classes: Funcion and Cliente respectively.
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("�Que desea hacer?\n"
+		System.out.println("Que desea hacer?\n"
 				+ "1. comprar\n"
 				+ "2. volver\n");
 		Scanner entrada = new Scanner(System.in);
