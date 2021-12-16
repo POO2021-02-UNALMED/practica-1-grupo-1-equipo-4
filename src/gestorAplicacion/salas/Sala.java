@@ -38,7 +38,12 @@ public abstract class Sala implements Serializable,Agregar{
 		
 		this.numero = cine.getSalas().size();
 	}
-	
+
+	//Metodos abtractos
+
+	public abstract int cantidadSillas();
+
+
 	//Metodos
 	
 	private void crearSilleteria() {			
@@ -79,7 +84,6 @@ public abstract class Sala implements Serializable,Agregar{
 	}
 	
 	
-	//verificar disponibilidad
 	public boolean verificarDisponibilidad(int dia, int mes, String hora) {
 		String consulta=dia+mes+hora;
 		ArrayList<String>totalfunciones = new ArrayList<String>();
@@ -98,8 +102,9 @@ public abstract class Sala implements Serializable,Agregar{
 		return true;
 	}
 	
-	//Verificar disponibilidad total para un dia de un mes
+	
 	public boolean verificarDisponibilidad(int dia, int mes) {
+	
 		String consulta=""+dia+mes;
 		ArrayList<String>fechas = new ArrayList<String>();
 		ArrayList<String>horarios = new ArrayList<String>();
