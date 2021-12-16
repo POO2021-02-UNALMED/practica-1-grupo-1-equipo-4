@@ -130,8 +130,8 @@ public class Funcion implements Serializable{
 	//Metodo que vende un boleto, es decir, cambia valores, y devuelve un bool de si se pudo vender o no el boleto
 	public Boolean VentaBoleto(Boleto boleto, Cliente cliente) {
 		
-		//Si el boleto se encuentra disponible
-		if (boleto.isDisponibilidad()==true) {
+		//Si el boleto se encuentra disponible y la edad del cliente es mayor a la clasificacion de la pelicula
+		if (boleto.isDisponibilidad()==true && cliente.getEdad()>=this.getPelicula().getClasificacion()) {
 			
 			boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
 			

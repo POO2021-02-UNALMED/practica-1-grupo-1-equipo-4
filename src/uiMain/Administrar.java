@@ -6,6 +6,7 @@ import java.util.*;
 import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Pelicula;
 import gestorAplicacion.cinema.Cine;
+import gestorAplicacion.cinema.Cliente;
 import gestorAplicacion.salas.*;
 import gestorAplicacion.boleteria.Horario;
 
@@ -200,6 +201,13 @@ public class Administrar {
 		
 		System.out.print("Digite el codigo de la funcion para la que quiere hacer el sorteo: ");
 		int rand=readInt();
+		
+		System.out.println("Clientes mas fieles candidatos a ganar el boleto:");
+		for(Cliente c:cine.clientesValiosos()) {
+			System.out.println(c.getNombre());
+		}
+		
+		System.out.println();
 		
 		System.out.print("CLIENTE GANADOR: "+cine.rifarBoleto(rand)+"\n");
 	}
