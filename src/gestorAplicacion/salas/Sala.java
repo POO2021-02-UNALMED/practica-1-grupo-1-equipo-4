@@ -120,11 +120,12 @@ public abstract class Sala implements Serializable,Agregar{
 		ArrayList<String>fechas = new ArrayList<String>();	//lista para guardar las fechas de todas las funciones dadas 
 															//en dicha sala
 
-		ArrayList<String>horarios = new ArrayList<String>();//lista que guarda 
+		ArrayList<String>horarios = new ArrayList<String>();//lista que guarda los horarios en los cuales la sala tiene funcion
+															//dicho dia 
 		
-		ArrayList<String>disponibles= new ArrayList<>(
-			Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00")
-			);
+		ArrayList<String>disponibles= new ArrayList<>(		//lista con todos los horarios, a la cual se le restara
+			Arrays.asList("12:00","14:00",					//los elementos de la lista anterior, de manera que queden 
+			"16:00","18:00","20:00","22:00"));				//los horarios disponibles
 		
 		for (Funcion func:funciones) {
 			String info=""+func.getDia()+func.getMes();		//del atributo funcion se almacenan en modo string
