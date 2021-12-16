@@ -31,7 +31,7 @@ public class Boleto implements Serializable{
 	// Se calcula el precio bruto 
 	// Se suma el precio de la sala y el precio de la silla
 	// El precio de la silla puede ser VIP o sencilla los precios de estas son fijos
-	private float calcularPrecio() {						 
+	public float calcularPrecio() {						 
 		float bruto=funcion.getSala().getPrecio()+precio_silla;	
 		
 		return bruto;
@@ -40,7 +40,7 @@ public class Boleto implements Serializable{
 	// Se realiza el respectivo descuento con el atributo de descuento del cliente 
 	//Se establece el nuevo precio al atributo PrecioTotal
 	public void calcularPrecioDefinitivo(Cliente cliente) {
-		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento()/100));
+		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento()));
 		this.setPrecioTotal(total);
 	}
 	

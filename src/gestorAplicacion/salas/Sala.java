@@ -30,8 +30,9 @@ public abstract class Sala implements Serializable,Agregar{
 		this.cine=cine;
 		cine.agregarSala(this);
 		
-		cantidadSalas++;
-		this.numero = cantidadSalas;
+		
+		Sala.cantidadSalas++;
+		this.numero = Sala.cantidadSalas;
 	}
 	
 	

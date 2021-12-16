@@ -23,6 +23,9 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 		this.ocupacion = ocupacion;
 		cine.agregarCliente(this);
 		this.cine=cine;
+		if (this.ocupacion.equals("Estudiante")) {
+			this.descuento=(float)0.1;
+		}
 	}
 	
 	
@@ -31,8 +34,22 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 	//methods
 	//
 	
+	//Aplicacion de descuentos
+	public String descuentoCliente() {
+		cine.mostValueClient();
+		if (this.ocupacion.equals("Estudiante") && descuento<= (float) 0.3 ) { //Si los descuentos no sobrepasan el 0.4, se aplican 
+			this.descuento+=(float)0.1;
+		}
+		
+		if(descuento<=(float)0.39) {      					//Si los descuentos no sobrepasan el 0.4, se aplican
+			this.descuento+=(float) (0.01*referidos);
+		}
+		
+		return "Descuento aplicado";
+	}
 	
-	//Reflejar la película más vista
+	
+	//Reflejar la pelicula más vista
 	public String mostWatchedGenre() {
 		List<String> genreList=new ArrayList<String>();
 		for(Boleto boleto: historialCompras) {
@@ -52,7 +69,8 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 	//Sumar referidos al cliente
 	public void referidos() {
 		this.referidos++;
-	}//!!!Revisar
+		this.descuentoCliente();
+	}
 	
 	// Method toString en cliente para facilitar el print de algunos de sus atributos en el UI.
 	@Override
