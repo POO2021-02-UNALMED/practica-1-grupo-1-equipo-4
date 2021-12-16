@@ -29,8 +29,8 @@ public class Cine implements Serializable{
 	//
 	//methods
 	//
-	public void programarFuncionesAuto(int mes,int dia){
-		//debo hacer una lista de las peliculas mas vendidas en funciones de 3 dias antes
+	public void programarFuncionesAuto(int mes,int dia, Sala sala){
+		
 		
 		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
 		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
@@ -68,21 +68,30 @@ public class Cine implements Serializable{
 		ArrayList<String> disponibles= new ArrayList<>(Arrays.asList("22:00","20:00","18:00","16:00","14:00","12:00"));
 		
 		//??? Aqui podriamos hacer otra sobrecarga si contamos que el verificar verifique que la sala tenga gafas 
-		Sala salaAuto=null;
+		/*Sala salaAuto=null;
 		//Se busca una sala sala disponible para ese dia y mes
 		for(Sala sala: salas) { //
 			if(sala.verificarDisponibilidad(dia, mes)) {
 				salaAuto=sala;
 				break;
 			}
-		}
+		}*/
 		// Con la sala disponible creamos funcion automatica para las peliculas organizadas por ventas 
-		for(int i=0;i<6;i++) {
-			Pelicula p =peliculasMes.get(i);
-			Horario h= Horario.getHorario(disponibles.get(i));
-			Funcion.crearFuncion(dia,mes, h, p , salaAuto.getNumero(), this);
-			
+		if(peliculasMes.size()>=6){
+			for(int i=0;i<6;i++) {
+				Pelicula p =peliculasMes.get(i);
+				Horario h= Horario.getHorario(disponibles.get(i));
+				Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this);
+			}
+		}else{
+			for(int i=0;i<peliculasMes.size();i++) {
+				Pelicula p =peliculasMes.get(i);
+				Horario h= Horario.getHorario(disponibles.get(i));
+				Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this);
+			}
 		}
+
+
 
 	}//TODO: Considerar el tema de los generos podr�a pensarse en el futuro
 	
@@ -168,7 +177,7 @@ public class Cine implements Serializable{
 		
 		Funcion fescogida= BuscadorFuncion(numeroFuncion);	//Funcion escogida de la cartelera con el numero de la funcion
 		
-		int aleatorioboleto= (int)(Math.random()*fescogida.getBoletos().size());	//Otro numero aleatorio con base al tamano de la lista de boletos
+		int aleatorioboleto= (int)(Math.random()*fescogida.getSala().cantidadSillas());	//Otro numero aleatorio con base al tamano de la lista de boletos
 		
 		Boleto bescogido= fescogida.getBoletos().get(aleatorioboleto);	//Boleto escogido con el numero aleatorio
 		

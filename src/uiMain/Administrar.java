@@ -27,7 +27,7 @@ public class Administrar {
 		
 		int opcion;
 		
-			System.out.println("¿Que quiere hacer?\n"
+			System.out.println("ï¿½Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
@@ -71,7 +71,7 @@ public class Administrar {
 				break;
 			}
 			else {
-				System.out.println("Ingrese una duración valida");
+				System.out.println("Ingrese una duraciï¿½n valida");
 			}
 		}
 		
@@ -81,7 +81,7 @@ public class Administrar {
 		System.out.println("Ingrese la edad minima para ver la pelicula:");
 		int edad=readInt();
 		
-		Pelicula pelicula= new Pelicula(nombre,genero,duracion,idioma,edad);	//se crea la pelicula y se añade a la lista de peliculas del cine
+		Pelicula pelicula= new Pelicula(nombre,genero,duracion,idioma,edad);	//se crea la pelicula y se aï¿½ade a la lista de peliculas del cine
 		
 		cine.agregarPelicula(pelicula);
 	}
@@ -155,6 +155,9 @@ public class Administrar {
 		Funcion.crearFuncion(dia, mes, h, pelicula, seleccionada.getNumero(), cine);
 	}
 	
+
+
+
 	public static void generarAuto(Cine cine) {
 		System.out.print("Digite el dia que quiere crear la funcion: ");
 		int dia=readInt();
@@ -162,7 +165,27 @@ public class Administrar {
 		System.out.print("Digite el mes que quiere crear la funcion: ");
 		int mes=readInt();
 		
-		cine.programarFuncionesAuto(mes, dia);
+
+		ArrayList<Sala> disponibles= new ArrayList<Sala>();
+		//Se busca una sala sala disponible para ese dia y mes
+		for(Sala sala: cine.getSalas()) { //
+			if(sala.verificarDisponibilidad(dia, mes)) {
+				disponibles.add(sala);
+			}
+		}
+		
+		if( disponibles.size() == 0){
+			System.out.println("No ha salas totalmente disponibles para este dÃ­a, seleccione nuevamente dÃ­a y mes");
+		}else{
+			System.out.println("Salas disponibles completamente disponibles para el dia/mes: "+dia+"/"+mes);
+			for(Sala d:disponibles) {
+				System.out.println("Sala "+d.getNumero());				//se imprimen los numeros de las salas disponibles
+			}
+		}
+		System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
+		Sala sala = cine.buscarSala(readInt());
+		cine.programarFuncionesAuto(mes, dia, sala);
+
 	}
 	
 	public static void rifa(Cine cine) {
