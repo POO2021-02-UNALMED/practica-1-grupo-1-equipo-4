@@ -28,7 +28,7 @@ public class Administrar {
 		
 		int opcion;
 		
-			System.out.println("¿Que quiere hacer?\n"
+			System.out.println("ï¿½Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
@@ -61,8 +61,15 @@ public class Administrar {
 		System.out.println("Ingrese el nombre de la pelicula:");		//se piden los datos para crear la pelicula
 		String nombre= readStr();
 		
-		System.out.println("Ingrese el genero de la pelicula:");
-		String genero=readStr();
+		ArrayList<String> generos = new ArrayList<>(Arrays.asList("Animada","Accion","Clasica","Terror","Fantasia","Drama"));
+
+		for(int i = 0; i<=6; i++){
+			System.out.println(String.valueOf(i+1)+" "+generos.get(i));
+		}
+
+		System.out.println("Ingrese nÃºmero del genero que deseo");
+		
+		String genero=generos.get(readInt()-1);
 
 		int duracion=0;
 		while (true) {
@@ -228,7 +235,7 @@ public class Administrar {
 	public static void agregarSala2D(Cine cine) {
 		System.out.print("Ingresar cantidad de filas vip de la sala: ");
 		int filasVip=Administrar.readInt();
-		System.out.print("En caso de que la sala sea de tamaño normal ingrese \"0\" para filas y columnas");
+		System.out.print("En caso de que la sala sea de tamaï¿½o normal ingrese \"0\" para filas y columnas");
 		System.out.print("Ingresar cantidad de filas: ");
 		int filas=Administrar.readInt();
 		System.out.print("Ingresar cantidad de columnas: ");
@@ -238,7 +245,7 @@ public class Administrar {
 		}else {
 			new Sala2D( filas,  columnas, filasVip, cine);
 		}
-		System.out.println("La nueva sala ha sido creada con éxito!");		
+		System.out.println("La nueva sala ha sido creada con ï¿½xito!");		
 	}
 	
 	public static void agregarSala3D(Cine cine) {
@@ -255,7 +262,7 @@ public class Administrar {
 		}else {
 			new Sala3D( filas,  columnas, filasVip, gafas, cine);
 		}
-		System.out.println("La nueva sala ha sido creada con éxito!");		
+		System.out.println("La nueva sala ha sido creada con ï¿½xito!");		
 	}
 		
 }
