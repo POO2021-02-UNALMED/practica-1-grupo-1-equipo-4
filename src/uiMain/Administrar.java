@@ -226,9 +226,9 @@ public class Administrar {
 				+ "2. Sala 2D\n");
 		int opcion=Administrar.readInt();
 		switch(opcion) {
-		case 1: agregarSala2D(cine);
+		case 1: agregarSala3D(cine);
 		break;
-		case 2: agregarSala3D(cine);
+		case 2: agregarSala2D(cine);
 		break; }
 		
 	}
