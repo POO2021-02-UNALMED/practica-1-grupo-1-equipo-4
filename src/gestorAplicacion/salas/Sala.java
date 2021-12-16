@@ -83,32 +83,48 @@ public abstract class Sala implements Serializable,Agregar{
 		funciones.add(funcion);	//se agrega la funcion a la lista de funciones
 	}
 	
-	
+	//TODO: debuj
 	public boolean verificarDisponibilidad(int dia, int mes, String hora) {
-		String consulta=dia+mes+hora;
-		ArrayList<String>totalfunciones = new ArrayList<String>();
+	/*recibe dia, mes y hora para verificar si la sala esta disponible para 
+	programar una funcion en la fecha dada, devuelve verdadero si cuenta con
+	disponibilidad de lo contrario devuelve falso*/
+
+		String consulta=dia+"/"+mes+"/"+hora;							//se crea un string con el dia mes y horario
 		
-		for (Funcion func:funciones) {
-			String info=func.getDia()+func.getMes()+func.getHorario();	
-			totalfunciones.add(info);				//se almacena en una lista la informacion
-			info="";								//de las funciones creadas
+		ArrayList<String>	fechasfunciones = new ArrayList<String>();	//lista que se usara para guardar las fechas de todas
+																		//las funciones dadas en dicha sala 
+		
+		for (Funcion func:funciones) {									
+			String info=func.getDia()+"/"+func.getMes()+"/"+func.getHorario();	//se crea el string de la fecha de la funcion
+			fechasfunciones.add(info);											//y se añade a fechasfunciones
 			
+			info="";															//se resetea el string	
 		}
-		for (String i:totalfunciones) {
-			if (i.equals(consulta)) {			//si cuando se quiere crear la funcion ya hay otra fecha ahi
-				return false;					//devuelve falso y no se puede crear
+
+		for (String i:fechasfunciones) {
+			if (i.equals(consulta)) {							//si el stringes igual a la fecha dada por la entrada
+				return false;									//la sala esta ocupada en dicha fecha
 			}
 		}
-		return true;
+
+		return true;											// de lo contrario devuelve verdadero, es decir libre
 	}
 	
 	
 	public boolean verificarDisponibilidad(int dia, int mes) {
+	/*recibe dia y mes devueve un boolean diciendo si la sala tiene todos los horarios disponibles
+	dicha fecha o no*/
 	
-		String consulta=""+dia+mes;
-		ArrayList<String>fechas = new ArrayList<String>();
-		ArrayList<String>horarios = new ArrayList<String>();
-		ArrayList<String>disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+		String consulta=""+dia+mes;							//crea un estring con la fecha
+		
+		ArrayList<String>fechas = new ArrayList<String>();	//lista para guardar las fechas de todas las funciones dadas 
+															//en dicha sala
+
+		ArrayList<String>horarios = new ArrayList<String>();//lista que guarda 
+		
+		ArrayList<String>disponibles= new ArrayList<>(
+			Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00")
+			);
 		
 		for (Funcion func:funciones) {
 			String info=""+func.getDia()+func.getMes();		//del atributo funcion se almacenan en modo string
