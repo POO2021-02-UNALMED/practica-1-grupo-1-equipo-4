@@ -1,3 +1,8 @@
+//Funcionalidad de la clase:
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
 package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import gestorAplicacion.salas.Silla;
@@ -26,36 +31,44 @@ public class Boleto implements Serializable{
 		this.disponibilidad = true;
 		this.precioTotal = this.calcularPrecio();
 	}
-	// hola mundo
-	
-	// Se calcula el precio bruto 
-	// Se suma el precio de la sala y el precio de la silla
-	// El precio de la silla puede ser VIP o sencilla los precios de estas son fijos
-	public float calcularPrecio() {						 
-		float bruto=funcion.getSala().getPrecio()+precio_silla;	
+
+
+
+	public float calcularPrecio() {		
+		/*No recibe nada y devuelve un float el cual corresponde al calculo del precio bruto del boleto 
+		 el cual depende del precio de la sala y el precio de la silla 
+		 
+		 */
+		float bruto=funcion.getSala().getPrecio()+precio_silla;	 	// Se suma el precio de la sala y el precio de la silla
 		
 		return bruto;
 	}
 	
-	// Se realiza el respectivo descuento con el atributo de descuento del cliente 
-	//Se establece el nuevo precio al atributo PrecioTotal
+	
 	public void calcularPrecioDefinitivo(Cliente cliente) {
-		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento()));
-		this.setPrecioTotal(total);
+		/*Recibe a un cliente  y no devuelve nada, este precio se le descuenta un descuento(Si este cliente lo tiene)
+		 */
+		float total= calcularPrecio()-(calcularPrecio()*(cliente.getDescuento())); //Al precio bruto le resta el descuento del cliente si este lo posee
+		this.setPrecioTotal(total);				//Se establece el resultado de la linea anterior al atributo PrecioTotal
 	}
 	
 	public String disponibilidad() {
-		if(disponibilidad) {
+	/*No recibe nada y devuelve String el cual corresponde al simbolo de la disponibilidad
+	 del boleto, en caso de que esté libre entrara en el if de lo contrario return X	
+	 */
+		if(disponibilidad) {	//Si la disponibilidad del boleto es true imprime 0 
 			return "O|";
 		}
-		return "X|";
+		return "X|";		
 	}
 	
 	public String tipoString() {
-		if(tipo_silla==Tipo.VIP) {
+		/*No recibe nada  y  devuelve un String el cual indica si el tipo de la silla al cual esta relacionado el boleto
+		 */
+		if(tipo_silla==Tipo.VIP) {	//El tipo de la silla es VIP retornara V-
 			return "V-";
 		}
-		return "S-";
+		return "S-";		//En caso de que sea sencilla retornara S-
 	}
 	//
 	// getting and setting:
@@ -90,10 +103,13 @@ public class Boleto implements Serializable{
 		return num_silla;
 	}
 
-	private void setAtr_silla(Silla silla) {		//se setean los atributos de la silla para accederlos
-		this.num_silla = silla.getNumero();			//facilmente
-		this.setTipo_silla(silla.getTipo());
-		this.setPrecio_silla(silla.getPrecio());
+	private void setAtr_silla(Silla silla) {	
+		/*Recibe la silla con la que deseo asignarle los atributos de numero,tipo de silla y precio de silla  y no devuelve nada	
+		 */
+
+		this.num_silla = silla.getNumero();			// Se establece al atributo de num_silla  el numero de la silla que recibe
+		this.setTipo_silla(silla.getTipo());		//Se establece al atributo tipo_silla el tipo de la silla que recibe 
+		this.setPrecio_silla(silla.getPrecio());	//Se establece al atributo precio_silla el precio de la silla que recibe
 	}
 
 	public void setPrecio_silla(float precio) {
