@@ -201,7 +201,7 @@ public class Funciones {
 		System.out.print("El precio final de su boleto es:");
 		System.out.println(boleto.getPrecioTotal());
 		//??? Que mas podriamos hacer para este 
-		//TODO: Falta hacer lo de si la silla est� disponible
+		//TODO: Falta hacer lo de si la silla esta disponible
 		
 	}
 	

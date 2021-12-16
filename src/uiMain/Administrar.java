@@ -203,5 +203,51 @@ public class Administrar {
 		
 		System.out.print("CLIENTE GANADOR: "+cine.rifarBoleto(rand)+"\n");
 	}
+	
+	public static void agregarSala(Cine cine) {
+		System.out.println("Que tipo de sala quieres agregar?: \n"
+				+ "1. Sala 3D\n"
+				+ "2. Sala 2D\n");
+		int opcion=Administrar.readInt();
+		switch(opcion) {
+		case 1: agregarSala2D(cine);
+		break;
+		case 2: agregarSala3D(cine);
+		break; }
+		
+	}
+	
+	public static void agregarSala2D(Cine cine) {
+		System.out.print("Ingresar cantidad de filas vip de la sala: ");
+		int filasVip=Administrar.readInt();
+		System.out.print("En caso de que la sala sea de tamaño normal ingrese \"0\" para filas y columnas");
+		System.out.print("Ingresar cantidad de filas: ");
+		int filas=Administrar.readInt();
+		System.out.print("Ingresar cantidad de columnas: ");
+		int columnas=Administrar.readInt();
+		if(filas==0 && columnas==0) {
+			new Sala2D(filasVip, cine);
+		}else {
+			new Sala2D( filas,  columnas, filasVip, cine);
+		}
+		System.out.println("La nueva sala ha sido creada con éxito!");		
+	}
+	
+	public static void agregarSala3D(Cine cine) {
+		System.out.print("Ingresar cantidad de filas vip de la sala: ");
+		int filasVip=Administrar.readInt();
+		System.out.print("Ingresar cantidad de filas: ");
+		int filas=Administrar.readInt();
+		System.out.print("Ingresar cantidad de columnas: ");
+		int columnas=Administrar.readInt();
+		System.out.print("Ingresar cantidad de gafas disponibles de la sala, en caso de que se tengan suficientes ingrese \"0\": ");
+		int gafas=Administrar.readInt();
+		if(gafas==0) {
+			new Sala3D( filas,  columnas,  filasVip, cine);
+		}else {
+			new Sala3D( filas,  columnas, filasVip, gafas, cine);
+		}
+		System.out.println("La nueva sala ha sido creada con éxito!");		
+	}
 		
 }
