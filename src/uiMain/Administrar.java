@@ -27,7 +27,7 @@ public class Administrar {
 		
 		int opcion;
 		
-			System.out.println("ï¿½Que quiere hacer?\n"
+			System.out.println("¿Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"

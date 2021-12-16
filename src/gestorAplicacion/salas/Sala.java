@@ -21,7 +21,6 @@ public abstract class Sala implements Serializable,Agregar{
 	
 	
 	//Constructores 
-	//??? Porque no hacer la creación de Sala como la de de función, se usa un static que guarde la cantidad de salas y se va sumando, para no tener que pasar número de sala
 	public Sala(int filas, int columnas, int filasvip, int precio, Cine cine) {
 		this.filas = filas;
 		this.columnas = columnas;
@@ -34,6 +33,7 @@ public abstract class Sala implements Serializable,Agregar{
 		cantidadSalas++;
 		this.numero = cantidadSalas;
 	}
+	
 	
 	/*public Sala(int numero, int filas, int columnas, int filasvip, int precio) {
 		this.numero = numero;
