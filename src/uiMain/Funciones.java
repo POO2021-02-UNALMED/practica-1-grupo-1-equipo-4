@@ -6,6 +6,7 @@ import gestorAplicacion.cinema.Cliente;
 import gestorAplicacion.boleteria.Boleto;
 import gestorAplicacion.boleteria.Funcion;
 import gestorAplicacion.boleteria.Pelicula;
+import java.util.stream.Collectors;
 
 //Methods relacionados a la compra y vista de boleteria del Main y UI
 public class Funciones {
@@ -107,9 +108,25 @@ public class Funciones {
 		dia=entrada.nextInt();
 		System.out.print("Mes: ");
 		mes=entrada.nextInt();
-		System.out.print("Pelicula: ");
-		peliculaNombre=entrada1.nextLine();
-		Pelicula pelicula= cine.BuscadorPelicula(peliculaNombre);
+
+
+
+		ArrayList<Funcion> funciones = cine.verFuncion(dia, mes);	//realizo una lista de las funciones dadas ese mes
+		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
+
+		for(Funcion funcion: funciones){		 
+			peliculasMes.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese mes
+		}
+		peliculasMes = peliculasMes.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
+		System.out.println("Peliculas en el cine");
+		int i=1;
+		for(Pelicula p:peliculasMes) {
+			System.out.println(i+": "+p.getNombre());
+			i++;
+		}
+		System.out.println("Digite el numero de la pelicula seleccionada");
+		int peli=entrada.nextInt();
+		Pelicula pelicula = peliculasMes.get(peli-1);
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
@@ -143,7 +160,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("¿Que desea hacer?\n"
+		System.out.println("ï¿½Que desea hacer?\n"
 				+ "1. comprar\n"
 				+ "2. volver\n");
 		opcion=entrada.nextInt();

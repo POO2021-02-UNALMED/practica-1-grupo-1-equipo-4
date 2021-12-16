@@ -66,7 +66,7 @@ public class Administrar {
 		
 		ArrayList<String> generos = new ArrayList<>(Arrays.asList("Animada","Accion","Clasica","Terror","Fantasia","Drama"));
 
-		for(int i = 0; i<=6; i++){
+		for(int i = 0; i<6; i++){
 			System.out.println(String.valueOf(i+1)+" "+generos.get(i));
 		}
 
