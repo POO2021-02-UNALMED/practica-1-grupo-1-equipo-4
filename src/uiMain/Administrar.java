@@ -32,9 +32,10 @@ public class Administrar {
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
-					+ "4: Agregar una funcion automaticamente\n"
+					+ "4: Generar funciones automaticamente para una fecha\n"
 					+ "5: Rifar un boleto\n"
-					+ "6: Atras");
+					+ "6: Agregar una sala\n"
+					+ "7: Atras");
 			
 			opcion=readInt();
 			
@@ -49,7 +50,9 @@ public class Administrar {
 			break;
 			case 5: rifa(cine);
 			break;
-			case 6: break;
+			case 6: agregarSala(cine);
+			break;
+			case 7: break;
 		}
 					
 	}
@@ -185,7 +188,12 @@ public class Administrar {
 		}
 		System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
 		Sala sala = cine.buscarSala(readInt());
-		cine.programarFuncionesAuto(mes, dia, sala);
+		
+		System.out.print("Estas fueron las funciones creadas automaticamente: ");
+		
+		System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));
+		
+		
 
 	}
 	
@@ -213,7 +221,7 @@ public class Administrar {
 	}
 	
 	public static void agregarSala(Cine cine) {
-		System.out.println("Que tipo de sala quieres agregar?: \n"
+		System.out.println("Que tipo de sala quiere agregar?: \n"
 				+ "1. Sala 3D\n"
 				+ "2. Sala 2D\n");
 		int opcion=Administrar.readInt();

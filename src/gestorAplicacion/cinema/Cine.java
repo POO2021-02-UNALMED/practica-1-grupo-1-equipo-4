@@ -29,9 +29,9 @@ public class Cine implements Serializable{
 	//
 	//methods
 	//
-	public void programarFuncionesAuto(int mes,int dia, Sala sala){
+	public ArrayList<Funcion> programarFuncionesAuto(int mes,int dia, Sala sala){
 		
-		
+		ArrayList<Funcion> programadas = new ArrayList<Funcion>();
 		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
 		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
 		
@@ -81,16 +81,17 @@ public class Cine implements Serializable{
 			for(int i=0;i<6;i++) {
 				Pelicula p =peliculasMes.get(i);
 				Horario h= Horario.getHorario(disponibles.get(i));
-				Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this);
+				programadas.add(Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this));
 			}
 		}else{
 			for(int i=0;i<peliculasMes.size();i++) {
 				Pelicula p =peliculasMes.get(i);
 				Horario h= Horario.getHorario(disponibles.get(i));
-				Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this);
+				programadas.add(Funcion.crearFuncion(dia,mes, h, p , sala.getNumero(), this));
 			}
 		}
-
+		
+		return programadas;
 
 
 	}//TODO: Considerar el tema de los generos podr�a pensarse en el futuro
