@@ -1,3 +1,5 @@
+//Funcionalidad: 
+
 package uiMain;
 
 import java.util.*;
@@ -28,7 +30,7 @@ public class Administrar {
 		
 		int opcion;
 		
-			System.out.println("�Que quiere hacer?\n"
+			System.out.println("Que quiere hacer?\n"
 					+ "1: Agregar una pelicula\n"
 					+ "2: Quitar una pelicula\n"
 					+ "3: Agregar una funcion manualmente\n"
@@ -70,7 +72,7 @@ public class Administrar {
 			System.out.println(String.valueOf(i+1)+" "+generos.get(i));
 		}
 
-		System.out.println("Ingrese número del genero que deseo");
+		System.out.println("Ingrese numero del genero que desea");
 		
 		String genero=generos.get(readInt()-1);
 
@@ -82,7 +84,7 @@ public class Administrar {
 				break;
 			}
 			else {
-				System.out.println("Ingrese una duraci�n valida");
+				System.out.println("Ingrese una duracion valida");
 			}
 		}
 		
@@ -186,7 +188,7 @@ public class Administrar {
 		}
 		
 		if( disponibles.size() == 0){
-			System.out.println("No ha salas totalmente disponibles para este día, seleccione nuevamente día y mes");
+			System.out.println("No hay salas totalmente disponibles para este dia, seleccione nuevamente dia y mes");
 		}else{
 			System.out.println("Salas disponibles completamente disponibles para el dia/mes: "+dia+"/"+mes);
 			for(Sala d:disponibles) {
@@ -243,7 +245,7 @@ public class Administrar {
 	public static void agregarSala2D(Cine cine) {
 		System.out.print("Ingresar cantidad de filas vip de la sala: ");
 		int filasVip=Administrar.readInt();
-		System.out.print("En caso de que la sala sea de tama�o normal ingrese \"0\" para filas y columnas");
+		System.out.print("En caso de que la sala sea de tamano normal ingrese \"0\" para filas y columnas");
 		System.out.print("Ingresar cantidad de filas: ");
 		int filas=Administrar.readInt();
 		System.out.print("Ingresar cantidad de columnas: ");
@@ -253,7 +255,7 @@ public class Administrar {
 		}else {
 			new Sala2D( filas,  columnas, filasVip, cine);
 		}
-		System.out.println("La nueva sala ha sido creada con �xito!");		
+		System.out.println("La nueva sala ha sido creada con Exito!");		
 	}
 	
 	public static void agregarSala3D(Cine cine) {
@@ -270,7 +272,7 @@ public class Administrar {
 		}else {
 			new Sala3D( filas,  columnas, filasVip, gafas, cine);
 		}
-		System.out.println("La nueva sala ha sido creada con �xito!");		
+		System.out.println("La nueva sala ha sido creada con Exito!");		
 	}
 		
 }
