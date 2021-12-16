@@ -18,7 +18,7 @@ public class Cine implements Serializable{
 	private List<Pelicula> peliculas= new ArrayList<Pelicula>();
 	private List<Sala> salas = new ArrayList<Sala>();
 	private float dineroGanado;
-	private static final int descuentoMVC=40;	//Descuento al cliente mas fiel
+	private static final float descuentoMVC=(float)0.4;	//Descuento al cliente mas fiel
 	
 	//Constructor
 	public Cine(String nombre) {
@@ -460,7 +460,7 @@ public class Cine implements Serializable{
 	}
 
 
-	public static int getDescuentomvc() {
+	public static float getDescuentomvc() {
 		return descuentoMVC;
 	}
 

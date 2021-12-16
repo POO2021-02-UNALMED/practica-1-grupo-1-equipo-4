@@ -23,8 +23,8 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 		this.ocupacion = ocupacion;
 		cine.agregarCliente(this);
 		this.cine=cine;
-		if (this.ocupacion.equals("Estudiante")) {
-			this.descuento=(float)0.1;
+		if (this.ocupacion.equals("Estudiante") ) { //Si los descuentos no sobrepasan el 0.4, se aplican 
+			this.descuento+=(float)0.1;
 		}
 	}
 	
@@ -37,11 +37,8 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 	//Aplicacion de descuentos
 	public String descuentoCliente() {
 		cine.mostValueClient();
-		if (this.ocupacion.equals("Estudiante") && descuento<= (float) 0.3 ) { //Si los descuentos no sobrepasan el 0.4, se aplican 
-			this.descuento+=(float)0.1;
-		}
 		
-		if(descuento<=(float)0.39) {      					//Si los descuentos no sobrepasan el 0.4, se aplican
+		if(descuento<=(float)0.39 && referidos>0) {      					//Si los descuentos no sobrepasan el 0.4, se aplican
 			this.descuento+=(float) (0.01*referidos);
 		}
 		
