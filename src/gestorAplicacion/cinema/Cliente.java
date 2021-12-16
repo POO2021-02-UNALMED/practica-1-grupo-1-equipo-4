@@ -23,6 +23,9 @@ public class Cliente implements Serializable{ //??? should this implements Seria
 		this.ocupacion = ocupacion;
 		cine.agregarCliente(this);
 		this.cine=cine;
+		if (this.ocupacion.equals("Estudiante")) {
+			this.descuento=(float)0.1;
+		}
 	}
 	
 	
