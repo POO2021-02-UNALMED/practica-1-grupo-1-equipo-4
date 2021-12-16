@@ -143,7 +143,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("ï¿½Que desea hacer?\n"
+		System.out.println("¿Que desea hacer?\n"
 				+ "1. comprar\n"
 				+ "2. volver\n");
 		opcion=entrada.nextInt();
@@ -213,7 +213,7 @@ public class Funciones {
 			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
 			String formato = "%s|%s|%s|%s";
 			String fecha = "Fecha: " + String.format("%02d/%02d",funcion.getDia(),funcion.getMes());
-			resultado += funcion.getPelicula().getNombre() + "\n"; // anade nombre de la pelicula y salto de linea
+			resultado += funcion.getPelicula().getNombre()+" "+funcion.getPelicula().getClasificacion()+"+" + "\n"; // anade nombre de la pelicula y salto de linea
 			
 			
 			resultado += String.format(							   // anade la linea con la info
