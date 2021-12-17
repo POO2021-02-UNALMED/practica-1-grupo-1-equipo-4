@@ -206,7 +206,7 @@ public class Cine implements Serializable{
 		if(bescogido.isDisponibilidad()==true) {	//Si este boleto esta disponible se puede rifar ese boleto al cliente ganador
 			
 			fescogida.VentaBoleto(bescogido,panitaGanador);
-			fescogida.cantidadBoletosVendidos--;		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
+			fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1);		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
 														// Se tendria que anular esa suma
 		}
 
@@ -220,7 +220,7 @@ public class Cine implements Serializable{
 														//hasta encontrar el primero disponible 
 					
 					fescogida.VentaBoleto(boleto, panitaGanador);	//Se vende el boleto
-					fescogida.cantidadBoletosVendidos--;
+					fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1);	
 					break;		//Solo voy a rifar uno entonces rompo el for
 				}
 			}

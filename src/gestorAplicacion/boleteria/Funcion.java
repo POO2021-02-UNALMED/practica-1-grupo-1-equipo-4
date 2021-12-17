@@ -22,7 +22,7 @@ public class Funcion implements Serializable{
 	private Pelicula pelicula;
 	private Sala sala;
 	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
-	public int cantidadBoletosVendidos = 0;  
+	private int cantidadBoletosVendidos = 0;  
 	private Cine cine;
 	private static int cantidadFunciones;
 	private int numero;
