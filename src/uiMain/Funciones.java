@@ -194,21 +194,23 @@ public class Funciones {
 		}
 		else {
 			System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
+			System.out.println("Que desea hacer?\n"
+			+ "1. comprar\n"
+			+ "2. volver\n");
+			opcion=entrada.nextInt();
+
+			//Pregunta para ver a que seccion se desea ir luego de ver funciones
+			switch (opcion) {
+			case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
+			break;
+			case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de busqueda si se es cliente viejo.
+				Funciones.buscarPorViejo(cine, cedula);
+			}else {
+				Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de busqueda si se es cliente nuevo.
+			}
+			break; }
 		}
-		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("Que desea hacer?\n"
-				+ "1. comprar\n"
-				+ "2. volver\n");
-		opcion=entrada.nextInt();
-		switch (opcion) {
-		case 1: Funciones.comprar(cine, cedula); //seccion para comprar boletas
-		break;
-		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de busqueda si se es cliente viejo.
-			Funciones.buscarPorViejo(cine, cedula);
-		}else {
-			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de busqueda si se es cliente nuevo.
-		}
-		break; }
+		
 	}
 	
 	//Method para ver preguntas recomendadas a cliente viejo
