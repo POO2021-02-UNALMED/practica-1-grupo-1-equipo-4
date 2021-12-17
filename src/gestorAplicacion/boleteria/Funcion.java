@@ -1,4 +1,6 @@
-//Funcionalidad de la clase:
+//Funcionalidad de la clase: Es la funcion que se presenta de una pelicula respectiva
+//esta va asociada a una sala en la que se presenta la pelicula y cuenta con una fecha y
+//horario, esta cuenta con una cantidad de boletos los cuales son los vendidos a los clientes
 
 //Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 
@@ -10,8 +12,6 @@ import gestorAplicacion.cinema.Cine;
 import gestorAplicacion.cinema.Cliente;
 import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Silla;
-import gestorAplicacion.salas.Sala2D;
-import gestorAplicacion.salas.Sala3D;
 
 public class Funcion implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class Funcion implements Serializable{
 	private Horario horario;
 	private Pelicula pelicula;
 	private Sala sala;
-	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
+	private ArrayList<Boleto> boletos = new ArrayList<Boleto>(); //lista de los boletos correspondientes a las sillas de la sala de la funcion
 	private int cantidadBoletosVendidos = 0;  
 	private Cine cine;
 	private static int cantidadFunciones;
