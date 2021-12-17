@@ -226,12 +226,14 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
 		Sala sala = cine.buscarSala(readInt());
 		
-		System.out.print("Estas fueron las funciones creadas automaticamente: ");
+		if(cine.programarFuncionesAuto(mes, dia, sala).size() == 0){
+			System.out.println("No fue posible programar funciones para este día, no se registran ventas en el mes seleccionado.");
+			generarAuto(cine);
+		}else{
+			System.out.println("Estas fueron las funciones creadas automaticamente: ");
 		
-		System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
-		
-		
-
+			System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
+		}
 	}
 	
 	public static void rifa(Cine cine) {
