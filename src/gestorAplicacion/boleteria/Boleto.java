@@ -54,7 +54,7 @@ public class Boleto implements Serializable{
 	
 	public String disponibilidad() {
 	/*No recibe nada y devuelve String el cual corresponde al simbolo de la disponibilidad
-	 del boleto, en caso de que esté libre entrara en el if de lo contrario return X	
+	 del boleto, en caso de que estï¿½ libre entrara en el if de lo contrario return X	
 	 */
 		if(disponibilidad) {	//Si la disponibilidad del boleto es true imprime 0 
 			return "O|";
@@ -70,6 +70,7 @@ public class Boleto implements Serializable{
 		}
 		return "S-";		//En caso de que sea sencilla retornara S-
 	}
+	
 	//
 	// getting and setting:
 	//
