@@ -1,8 +1,12 @@
+//Funcionalidad de la clase: Enum con la intencion de limitar los horarios del cine
+	//Son seis horarios, cada uno con una hora relacionada
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
 package gestorAplicacion.boleteria;
 
 public enum Horario {
-	//Enum con la intencion de limitar los horarios del cine
-	//Son seis horarios, cada uno con una hora relacionada
+
 	UNO("12:00"), DOS("14:00"), TRES("16:00"), CUATRO("18:00"), CINCO("20:00"), SEIS("22:00");
 	private String hora;
 

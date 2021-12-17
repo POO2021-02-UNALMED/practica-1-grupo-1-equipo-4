@@ -1,3 +1,7 @@
+//Funcionalidad de la clase:
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
 package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import java.util.*;
@@ -18,14 +22,14 @@ public class Funcion implements Serializable{
 	private Pelicula pelicula;
 	private Sala sala;
 	private ArrayList<Boleto> boletos = new ArrayList<Boleto>();
-	public int cantidadBoletosVendidos = 0;  //??? porque esto esta público??
+	public int cantidadBoletosVendidos = 0;  
 	private Cine cine;
 	private static int cantidadFunciones;
 	private int numero;
 	
 	private Funcion(int dia, int mes, Horario horario, Pelicula pelicula, Sala sala, Cine cine) {
 
-		// se establecen parametros
+							// se establecen parametros
 		this.dia = dia;
 		this.mes = mes;
 		this.horario = horario;
@@ -33,7 +37,7 @@ public class Funcion implements Serializable{
 		this.numero=cantidadFunciones;
 		this.setSala(sala);
 		this.setCine(cine);
-		this.crearBoleteria();
+		this.crearBoleteria();	//Se crea la boleteria de la funcion
 		// agrega la funcion a sala y a el cine
 		cine.agregarFuncion(this);
 		sala.agregarFuncion(this);	
