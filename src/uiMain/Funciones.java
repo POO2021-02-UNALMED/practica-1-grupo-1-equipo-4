@@ -180,8 +180,13 @@ public class Funciones {
 		dia=entrada.nextInt();
 		System.out.print("Mes: ");
 		mes=entrada.nextInt();
-		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
-		
+		if(cine.verFuncion(dia, mes).size()==0) {
+			System.out.println("No hay funciones para esta fecha, escoja una fecha valida");		//si no hay funciones para ese dia, hace que se vuelva a ejecutar el metodo hasta que se ingrese una fecha con funcion
+			funcionesDia(cine,cedula);
+		}
+		else {
+			System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
+		}
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
 		System.out.println("Que desea hacer?\n"
 				+ "1. comprar\n"

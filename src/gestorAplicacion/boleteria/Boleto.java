@@ -1,4 +1,4 @@
-//Funcionalidad de la clase:
+//Funcionalidad:
 
 //Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 

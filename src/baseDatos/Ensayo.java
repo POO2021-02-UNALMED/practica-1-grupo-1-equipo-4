@@ -12,9 +12,9 @@ public class Ensayo {
 		Cine cine = new Cine("Bahia");
 		Pelicula rey_leon = new Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine);
 		Pelicula avengers = new Pelicula("Avengers", "Accion", 2, "Espanol", 12, cine);
-		Pelicula naranja = new Pelicula("La Naranja Mecanica", "Clasica", 2, "Espanol", 0, cine);
+		Pelicula naranja = new Pelicula("La Naranja Mecanica", "Clasica", 2, "Espanol", 18, cine);
 		Pelicula resplandor = new Pelicula("El Resplandor", "Terror", 2, "Espanol", 15, cine);
-		Pelicula toystory = new Pelicula("Toy Stroy", "Animada", 2, "Espanol", 8, cine);
+		Pelicula toystory = new Pelicula("Toy Story", "Animada", 2, "Espanol", 8, cine);
 		Pelicula harrypotter = new Pelicula("Harry Potter", "Fantasia", 2, "Espanol", 10, cine);
 		Pelicula avatar = new Pelicula("Avatar", "Fantasia", 2, "Espanol", 15, cine);
 		Pelicula pianista = new Pelicula("El Pianista", "Drama", 2, "Espanol", 18, cine);
