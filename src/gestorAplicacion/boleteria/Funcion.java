@@ -49,30 +49,43 @@ public class Funcion implements Serializable{
 	// PARA CREAR FUNCION SE VA A USAR ESTE METODO, NO EL CONSTRUCTOR
 	//
 
-	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num_sala, Cine cine) { 
-		Sala sala = cine.buscarSala(num_sala);                                   //aqui se revisa si la sala existe en cine
+	public static Funcion crearFuncion(int dia, int mes, Horario horario, Pelicula pelicula, int num_sala, Cine cine) {
+		/*Recibe dia me y horario como una fecha, 
+		pelicula es la pelicula para la cual se creara la funcion
+		num_sala es el número de sala en la que se va a crear la sala,
+		y cine es para asociarlo a la variable de atributo cine
+		*/ 
+
+		Sala sala = cine.buscarSala(num_sala);                                  	 //aqui se revisa si la sala existe en cine
 		if(sala != null) {												    				
-			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { // verifica que la sala tenga disponibilidad en dicha hora
+			if(sala.verificarDisponibilidad(dia, mes, horario.getHora())) { 		// verifica que la sala tenga disponibilidad en dicha hora
 				return new Funcion(dia, mes, horario, pelicula, sala, cine);		// crea la funcion
 			}		
 			else {
 				return null;// no la crea
 			}
 			
-		}else{return null;}
+		}else{return null;}// no la crea				
 	}
 
 
-	// 
-	// metodo para crear los boletos de la sala
+
 	private void crearBoleteria(){
+		/*No recibe parametros pero trabaja con los atributos sala y boletos
+		Se encarga de crear un boleto para cada silla de la sala de la funcion correspondiente,
+		y se limita depende de la cantidad de sillas disponibles de sala, es decir cantidadSillas
+		que se limita a la cantidad de gafas disponibles*/
+
 		ArrayList<Silla> sillas = sala.getSillas(); 			//lista de las sillas de la sala correspondiente
-		int disponibles = sala.cantidadSillas();				//cantidad de sillas disponible (es diferente) 
-		
+
+		int disponibles = sala.cantidadSillas();				//cantidad de sillas disponible dependiendo de la cantidad de gafas 
+																//se va a restar en una unidad a *disponibles* cada que se crea un objeto boleto de manera que solo cree
+																//cantidad de boletos correspondiente
+
 		//
 		//crear la cantidad de boletos que corresponde segun cantidad de sillas
 		//
-		//se va a restar en una unidad a disponibles cada que se crea un objeto boleto
+		
 		for(int i = 0; i < sala.getSillas().size();i++) {   	
 			if(disponibles > 0){								//si es mayor que 0 crea el boleto, lo anade a la lista boletos y disponibles--			
 				Boleto boleto = new Boleto(this, sillas.get(i));
@@ -86,8 +99,11 @@ public class Funcion implements Serializable{
 	}
 	
 
-	//Metodo que devuelve las sillas de una sala con tipo y disponibilidad de silla para una función dada
+	
 	public String verDisponibilidad(){
+	/*No recibe parametros pero trabaja sobre los atributos sala y boletos 
+	Metodo que devuelve las sillas de una sala con tipo y disponibilidad de silla para una función dada*/
+
 		ArrayList<ArrayList<String>> total = new ArrayList<ArrayList<String>>(); // lista de filas
 
 		// for para hacer una lista de listas, cada lista corresponde a una fila de boletos
@@ -121,15 +137,21 @@ public class Funcion implements Serializable{
 		return formato;
 	}
 	
-	//Funcion que centra un string s a una cantidad de caracteres minima width
+	
 	public static String centerString (int width, String s) {
-		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
+	/*Recibe widht que es la cantidad minima de caracteres  y ese que es el string 
+	Funcion que centra un string s a una cantidad de caracteres minima width y retorna el String centrado*/
+
+		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s)); //se centra el string
 	}
 
 
-	//Metodo que vende un boleto, es decir, cambia valores, y devuelve un bool de si se pudo vender o no el boleto
+	
 	public Boolean VentaBoleto(Boleto boleto, Cliente cliente) {
-		
+	/*Recibe boleto al que se le cambiara el estado, y el cliente al que se le agregara la compra,
+	Metodo que vende un boleto, es decir, cambia valores, y devuelve un bool de si se pudo vender o no el boleto
+	retorna true o false dependiendo si pudo hacerse la venta o no*/
+
 		//Si el boleto se encuentra disponible y la edad del cliente es mayor a la clasificacion de la pelicula
 		if (boleto.isDisponibilidad()==true && cliente.getEdad()>=this.getPelicula().getClasificacion()) {
 			
@@ -153,6 +175,7 @@ public class Funcion implements Serializable{
 		}
 		
 	}
+	
 	
 	//
 	//getting and setting
