@@ -248,9 +248,12 @@ public class Funciones {
 		}
 	}
 	
-	// funcion para formatear el texto para imprimir en pantallas las funciones
-	// este es llamado desde las funciones print
+	
 	public static String formatearFunciones(ArrayList<Funcion> funciones){
+		/*
+		Recibe una lista de tipo funcion con las funciones en el cine y devuelve un String, su proposito es que este String es el que se imprime en pantalla
+		las sillas de la sala de la funcion de forma ordenada indicando el tipo de silla, disponibilidad y numero de silla
+		 */
 		String resultado = "\n\n"; // string en el que va todo el texto
 		for(Funcion funcion: funciones){
 			//     formato para mostrar el " horario | Sala # | (2/3)D | #funcion "
@@ -268,12 +271,14 @@ public class Funciones {
 			resultado += "\n"+ fecha;
 			resultado += "\n\n";
 		}
-		return resultado;
+		return resultado;		//se deveulve el string organizado para imprimirlo en alguna otra funcion
 	}
 	
 
-	// funcion para centrar el texto a un tamano minimo
 	public static String centerString (int width, String s) {
+		/*
+		esta funcion recibe un entero (ancho) y una String y devuelve un String centrado a un tamano minimo especificado
+		 */
 		return String.format("%-" + width  + "s", String.format("%" + (s.length() + (width - s.length()) / 2) + "s", s));
 	}
 }
