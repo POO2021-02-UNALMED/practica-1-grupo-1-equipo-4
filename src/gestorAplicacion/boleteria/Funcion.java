@@ -161,7 +161,7 @@ public class Funcion implements Serializable{
 			
 			boleto.setDisponibilidad(false);		//Al comprar el boleto se quita su disponibilidad
 			
-			cliente.historialCompras.add(boleto);	//Agregamos el boleto que se comprar� al historial del cliente
+			cliente.getHistorialCompras().add(boleto);	//Agregamos el boleto que se comprar� al historial del cliente
 			
 			cantidadBoletosVendidos++;				
 			boleto.calcularPrecioDefinitivo(cliente); //le calculamos el precio del boleto al cliente si este posee un descuento o algo

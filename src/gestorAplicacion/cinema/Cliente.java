@@ -20,7 +20,7 @@ public class Cliente implements Serializable{
 	private int edad;
 	private String ocupacion;
 	private float descuento;
-	public List<Boleto> historialCompras= new ArrayList<Boleto>(); //una lista con los boletos que ha comprado el cliente en el cine a traves de su vida
+	private List<Boleto> historialCompras= new ArrayList<Boleto>(); //una lista con los boletos que ha comprado el cliente en el cine a traves de su vida
 	private int referidos;
 	private Cine cine;
 	

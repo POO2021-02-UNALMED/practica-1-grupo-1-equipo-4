@@ -128,14 +128,14 @@ public class Cine implements Serializable{
 		List<Integer> clienteList=new ArrayList<Integer>();
 		
 		for(Cliente cliente: clientes) {
-			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
+			clienteList.add(cliente.getHistorialCompras().size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
 		}
 		
 		int valormax=Collections.max(clienteList);		//Se establece el mayor numero de boletos comprados por parte de un cliente
 		
 		for (Cliente cliente: clientes) {
 			
-			if (valormax==cliente.historialCompras.size()) {	//Si la cantidad de boletos comprados es igual a valor max conseguir el nombre de este
+			if (valormax==cliente.getHistorialCompras().size()) {	//Si la cantidad de boletos comprados es igual a valor max conseguir el nombre de este
 				cliente.setDescuento(descuentoMVC);
 				return cliente.getNombre();
 			}
@@ -155,7 +155,7 @@ public class Cine implements Serializable{
 		List<Integer> clienteList=new ArrayList<Integer>();		//Aca estaran los tamanos de historial de compra de cada cliente
 		
 		for(Cliente cliente: clientes) {
-			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
+			clienteList.add(cliente.getHistorialCompras().size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
 		}
 		
 		int cantidad= clienteList.size();					//Cantidad de clientes que se tiene
@@ -170,7 +170,7 @@ public class Cine implements Serializable{
 		
 			for(Cliente cliente: clientes) {
 			
-			if(cliente.historialCompras.size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
+			if(cliente.getHistorialCompras().size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
 				mejoresCompas.add(cliente);
 			}
 		}
