@@ -131,41 +131,49 @@ public class Funciones {
 		dia=entrada.nextInt();
 		System.out.print("Mes: ");
 		mes=entrada.nextInt();
-
-
-
-		ArrayList<Funcion> funciones = cine.verFuncion(dia, mes);	//se hace una lista de las funciones dadas ese dia y mes
-		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
-
-		for(Funcion funcion: funciones){		 
-			peliculasMes.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese dia y mes
-		}
-		peliculasMes = peliculasMes.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
-		System.out.println("Peliculas en el cine");
-		int i=1;
-		for(Pelicula p:peliculasMes) {
-			System.out.println(i+": "+p.getNombre());		//se imprime las peliculas en el cine 
-			i++;
-		}
-		System.out.println("Digite el numero de la pelicula seleccionada");
-		int peli=entrada.nextInt();
-		Pelicula pelicula = peliculasMes.get(peli-1);		
-		System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));		//se imprimen las Funciones de la pelicula consultada en la fecha dada
 		
-		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("Que desea hacer?\n"
-				+ "1. Comprar\n"
-				+ "2. Volver\n");
-		opcion=entrada.nextInt();
-		switch (opcion) {
-		case 1: Funciones.comprar(cine, cedula); //se llama a la seccion para comprar boletas
-		break;
-		case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de busqueda si se es cliente viejo.
-			Funciones.buscarPorViejo(cine, cedula);
-		}else {
-			Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de busqueda si se es cliente nuevo.
+		if(cine.verFuncion(dia, mes).size()==0) {
+			System.out.println("No hay funciones para esta fecha, escoja una fecha valida");		//si no hay funciones para ese dia, hace que se vuelva a ejecutar el metodo hasta que se ingrese una fecha con funcion
+			funcionesPelicula(cine,cedula);
 		}
-		break; }
+		else {
+				ArrayList<Funcion> funciones = cine.verFuncion(dia, mes);	//se hace una lista de las funciones dadas ese dia y mes
+			List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
+
+			
+			for(Funcion funcion: funciones){		 
+				peliculasMes.add(funcion.getPelicula()); //obtengo una lista de las peliculas dadas ese dia y mes
+			}
+			peliculasMes = peliculasMes.stream().distinct().collect(Collectors.toList()); //borro las repeticiones
+			System.out.println("Peliculas en el cine");
+			int i=1;
+			for(Pelicula p:peliculasMes) {
+				System.out.println(i+": "+p.getNombre());		//se imprime las peliculas en el cine 
+				i++;
+			}
+			System.out.println("Digite el numero de la pelicula seleccionada");
+			int peli=entrada.nextInt();
+			Pelicula pelicula = peliculasMes.get(peli-1);		
+			System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));		//se imprimen las Funciones de la pelicula consultada en la fecha dada
+			
+			//Pregunta para ver a que seccion se desea ir luego de ver funciones
+			System.out.println("Que desea hacer?\n"
+					+ "1. Comprar\n"
+					+ "2. Volver\n");
+			opcion=entrada.nextInt();
+			switch (opcion) {
+			case 1: Funciones.comprar(cine, cedula); //se llama a la seccion para comprar boletas
+			break;
+			case 2: if(cine.verificarCliente(cedula)) { //Volver a la seccion de seleccion respectiva de busqueda si se es cliente viejo.
+				Funciones.buscarPorViejo(cine, cedula);
+			}else {
+				Funciones.buscarPorNuevo(cine, cedula); //Volver a la seccion de seleccion respectiva de busqueda si se es cliente nuevo.
+			}
+			break; }
+		}
+
+
+		
 		
 		
 	}
