@@ -1,3 +1,7 @@
+//Funcionalidad de la clase: TODO
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
 package gestorAplicacion.cinema;
 import java.io.Serializable;
 import java.io.Serializable;
@@ -8,11 +12,10 @@ import gestorAplicacion.salas.Sala;
 import gestorAplicacion.salas.Sala2D;
 //import gestorAplicacion.cinema.*;
 
-//!!!
+
 public class Cine implements Serializable{
 	private static final long serialVersionUID = 1L;
-	//!!! same question about BD
-	private String nombre;//??? 
+	private String nombre;
 	private List<Cliente> clientes= new ArrayList<Cliente>();
 	private List<Funcion> cartelera= new ArrayList<Funcion>();
 	private List<Pelicula> peliculas= new ArrayList<Pelicula>();
@@ -30,7 +33,11 @@ public class Cine implements Serializable{
 	//methods
 	//
 	public ArrayList<Funcion> programarFuncionesAuto(int mes,int dia, Sala sala){
-		
+		/*
+		 Recibe los parametros mes, dia y sala, devuelve una lista de funciones. Su proposito es recibir un dia, un mes y una sala para 
+		 programar de forma automatica en esa sala, para todos los horarios disponibles de acuerdo al numero de peliculas con mayor 
+		 cantidad de boletos vendidos, una funcion para ese dia.
+		 */
 		ArrayList<Funcion> programadas = new ArrayList<Funcion>();
 		ArrayList<Funcion> funciones = verFuncion(mes);	//realizo una lista de las funciones dadas ese mes
 		List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
@@ -76,8 +83,8 @@ public class Cine implements Serializable{
 				break;
 			}
 		}*/
-		// Con la sala disponible creamos funcion automatica para las peliculas organizadas por ventas 
-		if(peliculasMes.size()>=6){
+		// Con la sala disponible creamos funcion automatica para las peliculas organizadas por ventas y se terminan por agregar a la lista programadas  
+		if(peliculasMes.size()>=6){ 				//Se revisa que hacer para cuando la cantidad de peliculas es menor a la cantidad de horarios disponibles
 			for(int i=0;i<6;i++) {
 				Pelicula p =peliculasMes.get(i);
 				Horario h= Horario.getHorario(disponibles.get(i));
@@ -94,9 +101,12 @@ public class Cine implements Serializable{
 		return programadas;
 
 
-	}//TODO: Considerar el tema de los generos podr�a pensarse en el futuro
+	}
 	
 	public ArrayList<Sala> salasDisponibles(int mes, int dia){
+		/*
+		 Recibe un mes y un dia y retorna una lista de salas que tengan al menos un horario disponible ese dia
+		 */
 		ArrayList<Sala> disponibles=new ArrayList<>();
 		for(Sala sala: salas) { 
 			if(sala.almenosUnoDisponible(dia, mes)) {
@@ -108,13 +118,17 @@ public class Cine implements Serializable{
 	}
 
 
-	//Reflejar cliente mas fiel y aplicarle el descuento de 40%
+	
 	public String mostValueClient() {
-		
+		/*
+		 Recibe nada y retorna una String con el nombre del cliente mas fiel al que le fue
+		 aplicado el descuento. Su proposito es calcular el cliente que mas compras ha hecho
+		 para dar un descuento del 0.4.
+		 */
 		List<Integer> clienteList=new ArrayList<Integer>();
 		
 		for(Cliente cliente: clientes) {
-			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tama�o de su historial de compra
+			clienteList.add(cliente.historialCompras.size()); 	//Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
 		}
 		
 		int valormax=Collections.max(clienteList);		//Se establece el mayor numero de boletos comprados por parte de un cliente
@@ -134,7 +148,10 @@ public class Cine implements Serializable{
 	//Al 10 por ciento de los clientes mas fieles aplicarle un 10% de descuento a cada uno de ellos 
 	
 	public List<Cliente> clientesValiosos() {
-		
+		/*
+		 Recibe nada y retorna una List des objetos tipo Cliente. Su proposito es calcular
+		 de entre la lista de clientes el 0.1 que tiene mayor cantidad de compras en historialCompras
+		 */
 		List<Integer> clienteList=new ArrayList<Integer>();		//Aca estaran los tamanos de historial de compra de cada cliente
 		
 		for(Cliente cliente: clientes) {
@@ -153,7 +170,7 @@ public class Cine implements Serializable{
 		
 			for(Cliente cliente: clientes) {
 			
-			if(cliente.historialCompras.size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores compas
+			if(cliente.historialCompras.size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
 				mejoresCompas.add(cliente);
 			}
 		}
@@ -161,10 +178,14 @@ public class Cine implements Serializable{
 		return mejoresCompas;
 	}
 	
-	//Rifa de un boletos entre los clientes mas fieles
+
 	
 	
 	public String rifarBoleto(int numeroFuncion) {
+		/*
+		 Recibe el numero de la funcion que se va a rifar y retorna un String con el ganador. 
+		 Su proposito es de entre los clientes valiosos, rifar un boleto a una funcion deseada
+		 */
 		
 		List<Cliente> top10= clientesValiosos();	//Saco la lista del 10% de los clientes mas fieles
 		
@@ -188,7 +209,7 @@ public class Cine implements Serializable{
 			fescogida.cantidadBoletosVendidos--;		// Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
 														// Se tendria que anular esa suma
 		}
-		//TODO: Que pasa si la funcion no tiene disponibilidad? Creo que ya esta listo
+
 		
 		else {
 			//Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
@@ -209,16 +230,22 @@ public class Cine implements Serializable{
 	}
 	
 	
-	public ArrayList<Funcion> verFuncion(Pelicula pelicula, int dia, int mes) { //Ver funciones luego de un d�a de un mes de una pel�cula
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, int dia, int mes) { 
+		/*
+		 Recibe una pelicula, un dia y un mes, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al dia y siguientes dias del mes y de los siguientes meses
+		 */
+
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		
-		for(Funcion funcion:cartelera) {
+		for(Funcion funcion:cartelera) { //Se agregan las funciones que para ese mes cumplan con el dia y los dias de ese mes
 			if(funcion.getPelicula()==pelicula && funcion.getDia()>=dia && funcion.getMes()==mes ){
 				funciones.add(funcion);
 			}
 		}
 		
-		for(Funcion funcion:cartelera) {
+		for(Funcion funcion:cartelera) { //Se agregan todas las funciones de los siguientes meses
 			if(funcion.getPelicula()==pelicula && funcion.getMes()>mes ){
 				funciones.add(funcion);
 			}
