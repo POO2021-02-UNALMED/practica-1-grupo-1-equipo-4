@@ -35,8 +35,8 @@ public class Ensayo {
 
 		Sala2D sala1 = new Sala2D(7, 8, 2,cine);
 		Sala2D sala2 = new Sala2D(9, 8, 2,cine);
-        Sala3D sala3 = new Sala3D(9, 9, 2, 36,cine);
-		Sala3D sala4 = new Sala3D(8, 9, 2, 36,cine);
+        Sala3D sala3 = new Sala3D(9, 9, 36,cine);
+		Sala3D sala4 = new Sala3D(8, 9, 36,cine);
 
 		//funciones para sala 1
 		Funcion funcion_1 = Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine);

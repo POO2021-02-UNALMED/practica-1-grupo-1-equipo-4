@@ -47,40 +47,16 @@ public abstract class Sala implements Serializable,Agregar{
 	//
 	//Metodos abtractos
 	//
+
 	public abstract int cantidadSillas();
+	
+	public abstract void crearSilleteria();
 
 	//
 	//Metodos
 	//
 
-	private void crearSilleteria() {			
-	/*No recibe ningun parametro y no retorna nada
-	Es la encargada de crear cada silla dependiendo la cantidad de filasvip, filas, y columnas*/
-		
-	
-		int total = filas*columnas; 			//numero de sillas
 
-		int totalvip = filasvip*columnas;		//numero de sillas vip, este será reducido en uno cada que se
-												//cree una nueva silla vip 
-											
-
-		String tipo = "VIP";					//tipo de silla sera cambiado cuando totalvip sea = a 0
-		
-		for(int i = 0;i<total;i++) {			//for que itera la cantidad de sillas 
-			
-			if(totalvip<=0) {					//si se acabaron las sillas vip cambia tipo a SENCILLA
-				tipo = "SENCILLA";
-			}
-			else {								//de lo contrario se reduce totalvip en uno
-				totalvip--;
-			}
-			
-			Silla silla = new Silla(tipo,i+1);	//se crea un nuevo objeto le parametro tipo= al tipo que teniamos
-												//anteriormente y un número que corresponde al numero de la iteracion + 1
-
-			sillas.add(silla);					//se añade el objeto a la lista de sillas
-		}
-	}
 
 	
 	public void agregarFuncion(Funcion funcion) {

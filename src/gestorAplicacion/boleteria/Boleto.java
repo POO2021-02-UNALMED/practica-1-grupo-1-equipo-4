@@ -35,10 +35,9 @@ public class Boleto implements Serializable{
 
 
 	public float calcularPrecio() {		
-		/*No recibe nada y devuelve un float el cual corresponde al calculo del precio bruto del boleto 
-		 el cual depende del precio de la sala y el precio de la silla 
-		 
-		 */
+	/*No recibe nada y devuelve un float el cual corresponde al calculo del precio bruto del boleto 
+	el cual depende del precio de la sala y el precio de la silla */
+	
 		float bruto=funcion.getSala().getPrecio()+precio_silla;	 	// Se suma el precio de la sala y el precio de la silla
 		
 		return bruto;
@@ -70,7 +69,7 @@ public class Boleto implements Serializable{
 		}
 		return "S-";		//En caso de que sea sencilla retornara S-
 	}
-	
+
 	//
 	// getting and setting:
 	//

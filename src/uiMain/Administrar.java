@@ -304,8 +304,7 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		Recibe un parametro de tipo cine y no devuelve nada, su proposito es pedir los datos necesarios al usuario para crear una Sala3D
 		y se da una opcion default para crear una sala de con igual cantidad de gafas que de sillas que es cuando se ingresa 0 para la cantidad de gafas disponibles
 		 */
-		System.out.print("Ingresar cantidad de filas vip de la sala: ");
-		int filasVip=Administrar.readInt();
+	
 		System.out.print("Ingresar cantidad de filas: ");
 		int filas=Administrar.readInt();
 		System.out.print("Ingresar cantidad de columnas: ");
@@ -313,9 +312,9 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		System.out.print("Ingresar cantidad de gafas disponibles de la sala, en caso de que se tengan suficientes ingrese \"0\": ");
 		int gafas=Administrar.readInt();
 		if(gafas==0) {
-			new Sala3D( filas,  columnas,  filasVip, cine);		//se crea la sala solo pasando los parametros de filas, columnas y filasVip (y cine)
+			new Sala3D( filas,  columnas,  cine);		//se crea la sala solo pasando los parametros de filas, columnas y filasVip (y cine)
 		}else {
-			new Sala3D( filas,  columnas, filasVip, gafas, cine);	//se crea pasando todos los parametros de filas, columnas y filasVip (y cine)
+			new Sala3D( filas,  columnas,  gafas, cine);	//se crea pasando todos los parametros de filas, columnas y filasVip (y cine)
 		}
 		System.out.println("La nueva sala ha sido creada con Exito!");		
 	}
