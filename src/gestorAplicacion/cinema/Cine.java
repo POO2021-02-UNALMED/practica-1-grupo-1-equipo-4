@@ -1,4 +1,5 @@
-//Funcionalidad de la clase: TODO
+//Funcionalidad de la clase: Albergar las salas, funciones, peliculas, clientes y metodos para
+// la creacion , modificacion y observacion de los clientes, peliculas y funciones
 
 //Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 

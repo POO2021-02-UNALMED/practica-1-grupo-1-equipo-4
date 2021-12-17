@@ -1,4 +1,5 @@
-//Funcionalidad de la clase: TODO
+//Funcionalidad de la clase: Este contiene anadir la cantidad de Boletos, en este se guardan los atributos de la pelicula 
+// entre los que se encuentran nombre, genero, duracion, lenguaje y clasificacion
 
 //Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 
