@@ -56,9 +56,9 @@ public class Boleto implements Serializable{
 	 del boleto, en caso de que est� libre entrara en el if de lo contrario return X	
 	 */
 		if(disponibilidad) {	//Si la disponibilidad del boleto es true imprime 0 
-			return "O|";
+			return "D|";
 		}
-		return "X|";		
+		return "O|";		
 	}
 	
 	public String tipoString() {
