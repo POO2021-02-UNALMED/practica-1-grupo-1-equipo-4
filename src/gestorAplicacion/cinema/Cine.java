@@ -255,7 +255,12 @@ public class Cine implements Serializable{
 	}
 	
 
-	public ArrayList<Funcion> verFuncion(Cliente cliente) { //Ver funcion por las recomendaciones del cliente
+	public ArrayList<Funcion> verFuncion(Cliente cliente) { 
+		/*
+		 Recibe un cliente, retorna un ArrayList de funciones que cumplan las indicaciones. 
+		 Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al genero mas visto de el cliente ingresado
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula().getGenero()== cliente.mostWatchedGenre()){	//Compara genero mas visto del historial de compra del cliente
@@ -267,7 +272,12 @@ public class Cine implements Serializable{
 	
 
 
-	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario) {				//Mostrar funciones de una pelicula en un horario especifico
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario) {				
+		/*
+		 Recibe una pelicula y un horario, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al horario y la pelicula solicitada
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){	
@@ -279,7 +289,12 @@ public class Cine implements Serializable{
 	
 
 
-	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario, int dia, int mes) {		//Mostrar funcion en una fecha y hora de una pelicula en especifico
+	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario, int dia, int mes) {		
+		/*
+		 Recibe una pelicula y un horario, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al horario y la pelicula solicitada
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario && funcion.getDia()==dia && funcion.getMes()==mes){
@@ -291,7 +306,12 @@ public class Cine implements Serializable{
 
 	
 
-	public ArrayList<Funcion> verFuncion( int dia, int mes) { //peliculas del dia 
+	public ArrayList<Funcion> verFuncion( int dia, int mes) { 
+		/*
+		 Recibe un dia y un mes, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al dia y al mes solicitado
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if( funcion.getDia()==dia && funcion.getMes()==mes){
@@ -303,7 +323,12 @@ public class Cine implements Serializable{
 
 
 
-	public ArrayList<Funcion> verFuncion(int mes) {	//Mostrar funcion por el mes
+	public ArrayList<Funcion> verFuncion(int mes) {	
+		/*
+		 Recibe un mes, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 al mes solicitado
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if( funcion.getMes()==mes) {
@@ -315,7 +340,12 @@ public class Cine implements Serializable{
 	
 
 
-	public ArrayList<Funcion> verFuncion(Boleto boleto) {  //Mostrar funcion por boleto
+	public ArrayList<Funcion> verFuncion(Boleto boleto) {  
+		/*
+		 Recibe un objeto de tipo Boleto, retorna un ArrayList de funciones que cumplan las
+		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
+		 a la funcion que se relaciona con este objeto boleto
+		 */
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if(funcion==boleto.getFuncion()) {
@@ -328,9 +358,9 @@ public class Cine implements Serializable{
 
 
 
-	//
-	//Metodos para agregar elementos a las listas
-	//
+	/*
+	 Metodos para agregar elementos a las listas de la clase Cine
+	 */
 	public void agregarCliente(Cliente nuevo) {
 		clientes.add(nuevo);
 	}
@@ -344,9 +374,13 @@ public class Cine implements Serializable{
 		cartelera.add(nuevo);
 	}
 
-	// funcion para ver si el cliente ya se encuentar inscrito en el cine
+	
 	public Boolean verificarCliente(int num) {
-		ArrayList<Integer> lista = new ArrayList<Integer>();
+		/*
+		 Recibe un numero de cedula, retorna un boolean. Su proposito es verificar
+		 que un cliente este en la lista de clientes de acuerdo a su numero de cedula
+		 */
+		ArrayList<Integer> lista = new ArrayList<Integer>();   //lista de cedulas
 		for(Cliente cliente: clientes) {
 			lista.add(cliente.getCedula());
 		}
@@ -361,8 +395,12 @@ public class Cine implements Serializable{
 		
 	}
 	
-	// funcion para encontrar el cliente ingresando la c�dula
+	
 	public Cliente BuscadorCliente(int num) {
+		/*
+		 Recibe un numero de cedula, retorna un objeto de clase Cliente. Su proposito es retornar el
+		 cliente cuyo numero de cedula concuerde con el ingresado al metodo
+		 */
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		
 		for(Cliente cliente: clientes) {
@@ -377,9 +415,12 @@ public class Cine implements Serializable{
 	}
 	
 	
-	//
-	//metodo para encontrar una funcion
+	
 	public Funcion BuscadorFuncion(int numero) {
+		/*
+		 Recibe un numero de funcion, retorna un objeto de clase Funcion. Su proposito es retornar la
+		 funcion cuyo numero de cedula concuerde con el ingresado al metodo
+		 */
 		
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		
@@ -395,8 +436,12 @@ public class Cine implements Serializable{
 	}
 	
 	
-	//metodo para encontrar un boleto con su id y una funcion determinada
+	
 	public Boleto BuscadorBoleto(int num_silla,Funcion funcion) {
+		/*
+		 Recibe un numero de silla y una funcion, retorna un objeto de clase Boleto. Su proposito es retornar el
+		 boleto cuyo numero de silla asociado a una funcion ingresada concuerde con el ingresado.
+		 */
 		ArrayList<Integer> lista= new ArrayList<Integer>();
 
 		for (Boleto boleto : funcion.getBoletos()) {
@@ -413,8 +458,11 @@ public class Cine implements Serializable{
 	}
 	
 	
-	// funcion para encontrar la pelicula ingresando el nombre
 	public Pelicula BuscadorPelicula(String nombre) {
+		/*
+		 Recibe el nombre de una pelicula, retorna un objeto de clase Pelicula. Su proposito es retornar la
+		 pelicula cuyo nombre coincida con el nombre ingresado
+		 */
 		ArrayList<String> lista = new ArrayList<String>();
 		for(Funcion funcion: cartelera) {
 			lista.add(funcion.getPelicula().getNombre());
@@ -425,8 +473,12 @@ public class Cine implements Serializable{
 		return null ;
 	}
 
-	// metodo para obtener la sala por numero
+	
 	public Sala buscarSala(int num) {
+		/*
+		 Recibe el numero de una sala, retorna un objeto de clase Sala. Su proposito es retornar la
+		 sala cuyo numero coincida con el numero ingresado
+		 */
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		for(Sala sala: salas) {
 			lista.add(sala.getNumero());
