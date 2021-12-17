@@ -216,26 +216,21 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		}
 		
 		if( disponibles.size() == 0){
-			System.out.println("No hay salas totalmente disponibles para este dia");
-			Ejecucion(cine);
+			System.out.println("No hay salas totalmente disponibles para este dia, seleccione nuevamente dia y mes");
 		}else{
 			System.out.println("Salas disponibles completamente disponibles para el dia/mes: "+dia+"/"+mes);
 			for(Sala d:disponibles) {
 				System.out.println("Sala "+d.getNumero());				//se imprimen los numeros de las salas disponibles
 			}
-
-			System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
-			Sala sala = cine.buscarSala(readInt());
-			
-			if(cine.programarFuncionesAuto(mes, dia, sala).size() == 0){
-				System.out.println("No fue posible programar funciones para este día, no se registran ventas en el mes seleccionado.");
-				Ejecucion(cine);
-			}else{
-				System.out.println("Estas fueron las funciones creadas automaticamente: ");
-			
-				System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
-			}
 		}
+		System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
+		Sala sala = cine.buscarSala(readInt());
+		
+		System.out.print("Estas fueron las funciones creadas automaticamente: ");
+		
+		System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
+		
+		
 
 	}
 	
