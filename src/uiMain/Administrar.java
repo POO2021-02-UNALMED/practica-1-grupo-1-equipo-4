@@ -247,22 +247,28 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		System.out.print("Digite el mes para el que quiere rifar el boleto de la funcion: ");
 		int mes=readInt();
 		
-		System.out.println("Funciones de ese dia");
-		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));		//se llama al metodo que organiza el print de las funciones para mostrar las funciones en la fecha seleccionada
-		
-		System.out.print("Digite el codigo de la funcion para la que quiere hacer el sorteo: ");
-		int rand=readInt();
-		
-		System.out.println("Clientes mas fieles candidatos a ganar el boleto:");
-		
-		System.out.println(cine.clientesValiosos());
-		//for(Cliente c:cine.clientesValiosos()) {
-		//	System.out.println(c.getNombre());			//se imprimen los nombres de los clientes fieles candidatos a la rifa
-		//}
-		
-		System.out.println();
-		
-		System.out.print("CLIENTE GANADOR: "+cine.rifarBoleto(rand)+"\n");
+		if(cine.verFuncion(dia, mes).size()==0) {
+			System.out.println("No hay funciones para esta fecha, escoja una fecha valida");		//si no hay funciones para ese dia, hace que se vuelva a ejecutar el metodo hasta que se ingrese una fecha con funcion
+			rifa(cine);
+		}
+		else {
+			System.out.println("Funciones de ese dia");
+			System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));		//se llama al metodo que organiza el print de las funciones para mostrar las funciones en la fecha seleccionada
+			
+			System.out.print("Digite el codigo de la funcion para la que quiere hacer el sorteo: ");
+			int rand=readInt();
+			
+			System.out.println("Clientes mas fieles candidatos a ganar el boleto:");
+			
+			System.out.println(cine.clientesValiosos());
+			//for(Cliente c:cine.clientesValiosos()) {
+			//	System.out.println(c.getNombre());			//se imprimen los nombres de los clientes fieles candidatos a la rifa
+			//}
+			
+			System.out.println();
+			
+			System.out.print("CLIENTE GANADOR: "+cine.rifarBoleto(rand)+"\n");
+		}
 	}
 	
 	public static void agregarSala(Cine cine) {
