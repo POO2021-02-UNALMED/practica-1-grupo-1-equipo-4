@@ -183,7 +183,7 @@ public class Funciones {
 		System.out.println(Funciones.formatearFunciones(cine.verFuncion(dia, mes)));
 		
 		//Pregunta para ver a que seccion se desea ir luego de ver funciones
-		System.out.println("�Que desea hacer?\n"
+		System.out.println("Que desea hacer?\n"
 				+ "1. comprar\n"
 				+ "2. volver\n");
 		opcion=entrada.nextInt();
@@ -244,7 +244,7 @@ public class Funciones {
 			System.out.println(boleto.getPrecioTotal());
 		}
 		else {
-			System.out.print("El boleto no esta disponible o no cumple con la edad minima para la pelicula");
+			System.out.println("El boleto no esta disponible o no cumple con la edad minima para la pelicula");
 		}
 	}
 	
