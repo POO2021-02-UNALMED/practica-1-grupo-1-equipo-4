@@ -171,7 +171,9 @@ public class Cine implements Serializable{
 			for(Cliente cliente: clientes) {
 			
 			if(cliente.getHistorialCompras().size()==valor) {				//Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
-				mejoresCompas.add(cliente);
+				if (!mejoresCompas.contains(cliente)) {
+					mejoresCompas.add(cliente);
+				}
 			}
 		}
 		}
