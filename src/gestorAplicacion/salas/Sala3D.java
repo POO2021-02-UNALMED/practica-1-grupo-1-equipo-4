@@ -27,7 +27,7 @@ public class Sala3D extends Sala implements Serializable{
 		if (totalsillas<cantidadGafas) { //Si la cantidad de sillas es menor a la cantidad de gafas
 			return totalsillas;			 //se devuelve la cantidad de sillas
 		}	
-		return cantidadGafas;			//de lo contrario se devuelve la cantidad de gafas
+		return cantidadGafas;			 //de lo contrario se devuelve la cantidad de gafas
 	}
 
 
@@ -35,7 +35,7 @@ public class Sala3D extends Sala implements Serializable{
 	//
 	//getting and setting
 	//
-	public int getCantidadGafas() {
+	public int getCantidadGafas() {			
 		return cantidadGafas;
 	}
 
