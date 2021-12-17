@@ -11,6 +11,7 @@ import gestorAplicacion.cinema.Cine;
 
 public abstract class Sala implements Serializable,Agregar{
 	private static final long serialVersionUID = 1L;
+	//declaracion de atributos
 	protected int numero;
 	protected int filas;
 	protected int columnas;
@@ -24,28 +25,34 @@ public abstract class Sala implements Serializable,Agregar{
 	protected ArrayList<Funcion> funciones = new ArrayList<Funcion>();	//contiene las funciones creadas en dicho cine
 	
 	
-	
+	//
 	//Constructores 
+	//
 	public Sala(int filas, int columnas, int filasvip, int precio, Cine cine) {
-		this.filas = filas;
+		//declaracion de atributos
+		this.filas = filas;			
 		this.columnas = columnas;
 		this.filasvip = filasvip;
 		this.precio=precio;
-		this.crearSilleteria();
 		this.cine=cine;
-		cine.agregarSala(this);
+	
+
+		this.crearSilleteria(); 			// se crea la silleteria de la sala
+
+		cine.agregarSala(this);				// se agrega sala a el cine
 		
-		
-		this.numero = cine.getSalas().size();
+		this.numero = cine.getSalas().size();// el número de la sala es el número de elementos que hay en 
 	}
 
+	//
 	//Metodos abtractos
-
+	//
 	public abstract int cantidadSillas();
 
-
+	//
 	//Metodos
-	
+	//
+
 	private void crearSilleteria() {			
 	/*No recibe ningun parametro y no retorna nada
 	Es la encargada de crear cada silla dependiendo la cantidad de filasvip, filas, y columnas*/
@@ -80,7 +87,7 @@ public abstract class Sala implements Serializable,Agregar{
 	/*Recibe como parametro la funcion que se agregará a la lista de funciones 
 	y no retorna nada*/
 
-		funciones.add(funcion);	//se agrega la funcion a la lista de funciones
+		funciones.add(funcion);		//se agrega la funcion a la lista de funciones
 	}
 	
 	//TODO: debuj
@@ -124,7 +131,7 @@ public abstract class Sala implements Serializable,Agregar{
 															//dicho dia 
 		
 		ArrayList<String>disponibles= new ArrayList<>(		//lista con todos los horarios, a la cual se le restara
-			Arrays.asList("12:00","14:00",					//los elementos de la lista anterior, de manera que queden 
+			Arrays.asList("12:00","14:00",					//lista con todos los horarios, a la cual se le restara 
 			"16:00","18:00","20:00","22:00"));				//los horarios disponibles
 		
 		for (Funcion func:funciones) {
@@ -136,7 +143,7 @@ public abstract class Sala implements Serializable,Agregar{
 		
 		for (int i=0;i<fechas.size();i++) {
 			if (fechas.get(i).equals(consulta)) {				//si la fecha de las funciones que hay coincide con la fecha y hora de consulta
-				horarios.add(funciones.get(i).getHorario());	//se almacena
+				horarios.add(funciones.get(i).getHorario());	//se almacena 
 			}
 		}
 		
@@ -150,14 +157,25 @@ public abstract class Sala implements Serializable,Agregar{
 			respuesta+=d+"\n";
 		}
 		
-		return respuesta.equals("12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n");
+		return respuesta.equals("12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n");// devuelve un valor de verdad si todos los horarios estan disponibles
 	}
 
+
 	public boolean almenosUnoDisponible(int dia, int mes) {
-		String consulta=""+dia+mes;
-		ArrayList<String>fechas = new ArrayList<String>();
-		ArrayList<String>horarios = new ArrayList<String>();
-		ArrayList<String>disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+	/*recibe dia y mes devueve un boolean diciendo si la sala tiene almenos un horario disponible
+	dicha fecha o no*/
+
+		String consulta=""+dia+mes;							//crea un estring con la fecha
+		
+		ArrayList<String>fechas = new ArrayList<String>();	//lista para guardar las fechas de todas las funciones dadas 
+														//en dicha sala
+
+		ArrayList<String>horarios = new ArrayList<String>();//lista que guarda los horarios en los cuales la sala tiene funcion
+														//dicho dia 
+	
+		ArrayList<String>disponibles= new ArrayList<>(		//lista con todos los horarios, a la cual se le restara
+		Arrays.asList("12:00","14:00",					//lista con todos los horarios, a la cual se le restara 
+		"16:00","18:00","20:00","22:00"));				//los horarios disponibles
 		
 		for (Funcion func:funciones) {
 			String info=""+func.getDia()+func.getMes();		//del atributo funcion se almacenan en modo string
@@ -182,7 +200,7 @@ public abstract class Sala implements Serializable,Agregar{
 			respuesta+=d+"\n";
 		}
 		
-		if( respuesta.length() >= 5){
+		if( respuesta.length() >= 5){		//si el string contiene por lo menos un horario devuelve true
 			return true;
 		}else{
 			return false;
@@ -191,17 +209,28 @@ public abstract class Sala implements Serializable,Agregar{
 	
 
 	public String verHorarios(int dia, int mes) {
-		String consulta=""+dia+mes;
-		ArrayList<String>fechas = new ArrayList<String>();
-		ArrayList<String>horarios = new ArrayList<String>();
-		ArrayList<String>disponibles= new ArrayList<>(Arrays.asList("12:00","14:00","16:00","18:00","20:00","22:00"));
+	/*Recibe un día y un mes como una fecha y devuelve un String que contiene los horarios disponibles
+	para dicho dia*/ 
+
+		String consulta=""+dia+mes;								//crea un estring con la fecha
 		
+		ArrayList<String>fechas = new ArrayList<String>();		//lista para guardar las fechas de todas las funciones dadas 
+																//en dicha sala
+
+		ArrayList<String>horarios = new ArrayList<String>();	//lista que guarda los horarios en los cuales la sala tiene funcion
+																//dicho dia 
+
+		ArrayList<String>disponibles= new ArrayList<>(			//lista con todos los horarios, a la cual se le restara
+			Arrays.asList("12:00","14:00",						//lista con todos los horarios, a la cual se le restara 
+			"16:00","18:00","20:00","22:00"));					//los horarios disponibles
+	
 		for (Funcion func:funciones) {
-			String info=""+func.getDia()+func.getMes();		//del atributo funcion se almacenan en modo string
-			fechas.add(info);								//el dia y mes de las funciones
+
+			String info=""+func.getDia()+func.getMes();			//del atributo funcion se almacenan en modo string
+			fechas.add(info);									//el dia y mes de las funciones
 			info="";								
-			
-		}
+		
+		}											
 		
 		for (int i=0;i<fechas.size();i++) {
 			if (fechas.get(i).equals(consulta)) {				//si la fecha de las funciones que hay coincide con la fecha y hora de consulta
@@ -210,26 +239,33 @@ public abstract class Sala implements Serializable,Agregar{
 		}
 		
 		for (String horario:horarios) {
-			disponibles.remove(horario);		//se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
+			disponibles.remove(horario);						//se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
 		}
 		
 		String respuesta="";
 		
-		for(String d:disponibles) {			//se hace un string que devuelve los horarios disponibles
+		for(String d:disponibles) {								//se hace un string que devuelve los horarios disponibles
 			respuesta+=d+"\n";
 		}
 		
-		return respuesta;		//se devuelve ese string
+		return respuesta;										//se devuelve ese string
 		
 	}
 	
+
+	//
+	//getting and setting
+	//
+
 	public String getTipo(){
-		if(this instanceof Sala2D){
-			return "2D";
-		}else{
-			return "3D";
+		/*returna el tipo en String*/
+	
+			if(this instanceof Sala2D){
+				return "2D";
+			}else{
+				return "3D";
+			}
 		}
-	}
 	
 	public int getNumero() {
 		return numero;
@@ -286,7 +322,4 @@ public abstract class Sala implements Serializable,Agregar{
 	public void setFilasVip(int vip) {
 		this.filasvip = vip;
 	}
-	
-
-	
 }
