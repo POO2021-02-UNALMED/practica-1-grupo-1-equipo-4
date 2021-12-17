@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-//import java.util.List;
 import java.io.ObjectInputStream;
 
 import gestorAplicacion.cinema.Cine;
@@ -18,7 +17,7 @@ public class Deserializador {
 	
 	public static Cine deserializar() {
 	/* no recibe parametros y retorna una variable del tipo Cine*/
-	
+
 		File[] docs = rutaTemp.listFiles();					// se obtienen la ruta de los documetos en tmp (solo es Cine.txt)
 		FileInputStream fis;
 		ObjectInputStream ois;
