@@ -190,7 +190,7 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		Pelicula pelicula=cine.getPeliculas().get(peli-1);
 			
 		Funcion.crearFuncion(dia, mes, h, pelicula, seleccionada.getNumero(), cine); //se crea la pelicula en la fecha y horario seleccioado
-		System.out.println("La funcion fue eliminada con exito");
+		System.out.println("La funcion fue generada con exito");
 	}
 	
 
@@ -216,24 +216,27 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		}
 		
 		if( disponibles.size() == 0){
-			System.out.println("No hay salas totalmente disponibles para este dia, seleccione nuevamente dia y mes");
+			System.out.println("No hay salas totalmente disponibles para este dia");
+			Ejecucion(cine);
 		}else{
 			System.out.println("Salas disponibles completamente disponibles para el dia/mes: "+dia+"/"+mes);
 			for(Sala d:disponibles) {
 				System.out.println("Sala "+d.getNumero());				//se imprimen los numeros de las salas disponibles
 			}
+
+			System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
+			Sala sala = cine.buscarSala(readInt());
+			
+			if(cine.programarFuncionesAuto(mes, dia, sala).size() == 0){
+				System.out.println("No fue posible programar funciones para este día, no se registran ventas en el mes seleccionado.");
+				Ejecucion(cine);
+			}else{
+				System.out.println("Estas fueron las funciones creadas automaticamente: ");
+			
+				System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
+			}
 		}
-		System.out.print("Ingrese el numero la sala para la que desea programar las funciones automaticamente: ");
-		Sala sala = cine.buscarSala(readInt());
-		
-		if(cine.programarFuncionesAuto(mes, dia, sala).size() == 0){
-			System.out.println("No fue posible programar funciones para este día, no se registran ventas en el mes seleccionado.");
-			generarAuto(cine);
-		}else{
-			System.out.println("Estas fueron las funciones creadas automaticamente: ");
-		
-			System.out.println(Funciones.formatearFunciones(cine.programarFuncionesAuto(mes, dia, sala)));   //se llama al metodo que organiza el print de las funciones para mostrar las funciones que se crearon para la fecha seleccionada
-		}
+
 	}
 	
 	public static void rifa(Cine cine) {
@@ -248,8 +251,8 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 		int mes=readInt();
 		
 		if(cine.verFuncion(dia, mes).size()==0) {
-			System.out.println("No hay funciones para esta fecha, escoja una fecha valida");		//si no hay funciones para ese dia, hace que se vuelva a ejecutar el metodo hasta que se ingrese una fecha con funcion
-			rifa(cine);
+			System.out.println("No hay funciones para esta fecha");		//si no hay funciones para ese dia, hace que se vuelva a ejecutar el metodo hasta que se ingrese una fecha con funcion
+			Ejecucion(cine);
 		}
 		else {
 			System.out.println("Funciones de ese dia");
