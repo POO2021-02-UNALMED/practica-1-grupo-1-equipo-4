@@ -1,3 +1,8 @@
+//Funcionalidad de la clase: En este se crea la silleteria de la Sala 2D
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
 package gestorAplicacion.salas;
 import java.io.Serializable;
 import gestorAplicacion.cinema.Cine;

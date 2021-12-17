@@ -1,3 +1,9 @@
+//Funcionalidad de la clase: En este se podra verificar las disponibilidades de la sala, agregar funciones y ver horarios disponibles 
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
+
 package gestorAplicacion.salas;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -66,7 +72,7 @@ public abstract class Sala implements Serializable,Agregar{
 		funciones.add(funcion);		//se agrega la funcion a la lista de funciones
 	}
 	
-	//TODO: debuj
+
 	public boolean verificarDisponibilidad(int dia, int mes, String hora) {
 	/*recibe dia, mes y hora para verificar si la sala esta disponible para 
 	programar una funcion en la fecha dada, devuelve verdadero si cuenta con
@@ -185,7 +191,7 @@ public abstract class Sala implements Serializable,Agregar{
 	
 
 	public String verHorarios(int dia, int mes) {
-	/*Recibe un día y un mes como una fecha y devuelve un String que contiene los horarios disponibles
+	/*Recibe un dia y un mes como una fecha y devuelve un String que contiene los horarios disponibles
 	para dicho dia*/ 
 
 		String consulta=""+dia+mes;								//crea un estring con la fecha
