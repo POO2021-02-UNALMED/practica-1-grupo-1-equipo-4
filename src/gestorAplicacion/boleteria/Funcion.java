@@ -34,7 +34,7 @@ public class Funcion implements Serializable{
 		this.mes = mes;
 		this.horario = horario;
 		this.pelicula = pelicula;
-		this.numero=cantidadFunciones;
+		this.numero	=	cantidadFunciones;
 		this.setSala(sala);
 		this.setCine(cine);
 		this.crearBoleteria();	//Se crea la boleteria de la funcion
