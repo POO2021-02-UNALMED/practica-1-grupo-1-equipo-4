@@ -1,3 +1,8 @@
+//Funcionalidad de la clase:
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
 package gestorAplicacion.boleteria;
 import java.io.Serializable;
 import java.util.*;
@@ -23,7 +28,7 @@ public class Pelicula implements Serializable{
 		this.lenguaje=lenguaje;
 		this.clasificacion=clasificacion;
 		this.cine=cine;
-		cine.agregarPelicula(this);
+		cine.agregarPelicula(this);			//Se agrega la pelicula a la lista de peliculas del cine
 	}
 	
 	
@@ -46,13 +51,11 @@ public class Pelicula implements Serializable{
 	//methods
 	//
 
-	//funcion para sumar la cantidad de boletos vendidos
+
 	public void anadirCantidadBoletos(){
-
-
-		cantidadTotalBoletosVendidos++;
-
-
+		/*No recibe nada y tampoco devuelve nada, este metodo se usa para sumar la cantidad de boletos vendidos		 
+		*/
+		cantidadTotalBoletosVendidos++;	//Sumar 1 al atributo de la cantidad de total de boletos
 		
 	}
 

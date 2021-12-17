@@ -1,3 +1,8 @@
+//Funcionalidad de la clase:
+
+//Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
 package gestorAplicacion.salas;
 import java.io.Serializable;
 public class Silla implements Serializable{
@@ -40,9 +45,9 @@ public class Silla implements Serializable{
 		this.precio=precio;
 	}
 	
-	//Se ponen los precios de VIP como 7000 y 5000
+	
 	public float getPrecio() {
-		if(this.tipo == Tipo.VIP) {
+		if(this.tipo == Tipo.VIP) {	//Se ponen los precios de VIP como 7000 y 5000
 			return 7000;
 		}else {
 			return 5000;
