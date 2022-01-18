@@ -12,14 +12,14 @@ class Horario(Enum):
         self._hora = hora   
 
     @classmethod
-    def getHorario(cls,hora):
+    def getHorario(cls,hora)->"Horario":
         horarios=[cls.UNO,cls.DOS,cls.TRES,cls.CUATRO,cls.CINCO,cls.SEIS]
         for horario in horarios:
             if(hora==horario.getHora()):
                 return horario
-        return None
+        return Horario(None)
 
-    def getHora(self):
+    def getHora(self)->str:
         return self._hora
     def setHora(self,hora):
         self._hora=hora
