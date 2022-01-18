@@ -36,7 +36,7 @@ class Boleto:
         self._disponibilidad = disponibilidad
 
 
-    def getFuncion(self):
+    def getFuncion(self) -> Funcion:
         return self._funcion
     def setFuncion(self, funcion):
         self._funcion = funcion
