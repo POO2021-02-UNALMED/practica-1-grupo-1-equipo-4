@@ -258,10 +258,9 @@ correspondiente a la opcion seleccionada que debe corresponder con las mostradas
 			
 			System.out.println("Clientes mas fieles candidatos a ganar el boleto:");
 			
-			System.out.println(cine.clientesValiosos());
-			//for(Cliente c:cine.clientesValiosos()) {
-			//	System.out.println(c.getNombre());			//se imprimen los nombres de los clientes fieles candidatos a la rifa
-			//}
+			for(Cliente c:cine.clientesValiosos()) {
+				System.out.println(c.getNombre());			//se imprimen los nombres de los clientes fieles candidatos a la rifa
+			}
 			
 			System.out.println();
 			
