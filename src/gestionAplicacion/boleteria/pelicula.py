@@ -1,40 +1,40 @@
+from tokenize import String
 from gestionAplicacion import cinemas.Cine
 
 class Pelicula:
     def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,cine=None):
-        self._nombre = nombre
-        self._genero = genero
-        self._duracion = duracion
-        self._lenguaje = lenguaje
-        self._clasificacion = clasificacion
-        self._cine = cine
-        self._cantidadTotalBoletosVendidos=0
-        self._expectativaVentas=0
+        self._nombre:str = nombre
+        self._genero:str = genero
+        self._duracion:int = duracion
+        self._lenguaje:str = lenguaje
+        self._clasificacion:int = clasificacion
+        self._cine:Cine = cine
+        self._cantidadTotalBoletosVendidos:int =0
+        self._expectativaVentas:int =0
 
-    @staticmethod
     def anadirCantidadBoletos(self):
         self._cantidadTotalBoletosVendidos+=1
 
 
-    def getNombre(self):
+    def getNombre(self)->str:
         return self._nombre
     def setNombre(self, nombre):
         self._nombre = nombre
 
 
-    def getGenero(self):
+    def getGenero(self)->str:
         return self._genero
     def setGenero(self, genero):
         self._genero = genero
 
 
-    def getDuracion(self):
+    def getDuracion(self)->int:
         return self._duracion
     def setDuracion(self, duracion):
         self._duracion = duracion
 
 
-    def getLenguaje(self):
+    def getLenguaje(self)->str:
         return self._lenguaje
     def setLenguaje(self, lenguaje):
         self._lenguaje = lenguaje
@@ -46,7 +46,7 @@ class Pelicula:
         self._clasificacion = clasificacion
 
 
-    def getCine(self):
+    def getCine(self)->Cine:
         return self._cine
     def setCine(self, cine):
         self._cine = cine

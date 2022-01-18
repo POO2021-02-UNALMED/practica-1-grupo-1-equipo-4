@@ -3,6 +3,6 @@
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
-    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.typeCheckingMode": "basic",
     
 }
