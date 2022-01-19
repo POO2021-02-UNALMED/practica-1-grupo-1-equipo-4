@@ -1,33 +1,56 @@
 from funcion import Funcion
 from ..salas import Tipo, Silla
+from ..cinemas import Cliente
 
+#
+#Creo que esta completo
+#
 class Boleto:
 
     def __init__(self, funcion: "Funcion" , silla: "Silla"):
-        self._num_sillas : int = num_sillas
-        self._tipo_sillas : "Tipo" = tipo_sillas
-        self._precioTotal: float = precioTotal
-        self._disponibilidad : bool= disponibilidad
+        
+        self._disponibilidad : bool= True
         self._funcion : Funcion = funcion
-        self._precio_silla : float = precio_silla
+        self.setAtr_silla(silla);
+        self._precioTotal: float =  self.calcularPrecio();
+        self._num_silla: int = 0
+        self._precio_silla: float = 0
+        
+    # funciones
 
+    def calcularPrecio(self) -> float:
+        bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla;
+        return bruto
 
+    def calcularPrecioDefinitivo(self, cliente : Cliente):
 
+        total: float = self.calcularPrecio()-(self.calcularPrecio()*(cliente.getDescuento()))
+        self.setPrecioTotal(total)
+
+    def setAtr_silla(self, silla : Silla):
+
+        self._num_silla = silla.getNumero()
+        self.setTipo_silla(silla.getTipo())
+        self.setPrecio_silla(silla.getPrecio())
+
+    # 
+    # getter and setters
+    # 
     def getNum_sillas(self):
         return self._num_sillas
     def setNum_sillas(self, num_sillas):
         self._num_sillas = num_sillas
 
 
-    def getTipo_sillas(self):
-        return self._tipo_sillas
-    def setTipo_sillas(self, tipo_sillas):
-        self._tipo_sillas = tipo_sillas
+    def getTipo_silla(self):
+        return self._tipo_silla
+    def setTipo_silla(self, tipo_silla):
+        self._tipo_silla = tipo_silla
 
 
-    def getPreciototal(self):
+    def getPrecioTotal(self):
         return self._precioTotal
-    def setPreciototal(self, precioTotal):
+    def setPrecioTotal(self, precioTotal):
         self._precioTotal = precioTotal
 
 
