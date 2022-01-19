@@ -6,11 +6,11 @@ class Sala2D(Sala):
     def __init__ (self,*args):
         if(len(args) == 4):
             filas, columnas, filasvip, cine = args
-            super().__init__(filas, columnas, filasvip, 2000,cine);
+            super().__init__(filas, columnas, filasvip, 2000,cine)
             
         elif(len(args) == 2):
             vip , cine = args
-            super().__init__(8, 12, vip, 2000, cine);
+            super().__init__(8, 12, vip, 2000, cine)
 
     
     def cantidadSillas(self):
