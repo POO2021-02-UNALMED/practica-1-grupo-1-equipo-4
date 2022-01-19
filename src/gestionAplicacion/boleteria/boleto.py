@@ -1,10 +1,11 @@
 from funcion import Funcion
+from ..salas import Tipo, Silla
 
 class Boleto:
 
     def __init__(self, funcion: "Funcion" , silla: "Silla"):
         self._num_sillas : int = num_sillas
-        self._tipo_sillas : Tipo = tipo_sillas
+        self._tipo_sillas : "Tipo" = tipo_sillas
         self._precioTotal: float = precioTotal
         self._disponibilidad : bool= disponibilidad
         self._funcion : Funcion = funcion
