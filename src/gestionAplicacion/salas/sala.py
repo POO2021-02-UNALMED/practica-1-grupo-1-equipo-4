@@ -56,6 +56,7 @@ class Sala:
         
         
         elif(len(args) == 2):
+
             dia, mes = args
             
 	
@@ -97,7 +98,46 @@ class Sala:
         return False
 
     
+    def almenosUnoDisponible(self, dia: int, mes: int) ->  bool:
+	    
 
+		consulta: str   =   ""  + str(dia) + str(mes)					
+		
+		fechas : list[str] = []	 
+														
+
+		horarios: list[str] = []
+												 
+	
+		disponibles: list[str] = ["12:00","14:00","16:00","18:00","20:00","22:00"];				
+		
+		for func in self._funciones:
+			info : str =""+str(func.getDia())+str(func.getMes())	
+			fechas.append(info)							
+			info = ""								
+			
+		
+		for i in range(len(fechas)):
+			if (fechas[i] == consulta) 
+				horarios.append(self._funciones[i].getHorario());	
+
+		
+		for horario in horarios:
+			disponibles.remove(horario)
+		
+		
+		respuesta : str ="";
+		
+		for d in disponibles:
+			respuesta+=d+"\n"
+		
+		
+		if(len(respuesta) >= 5):
+			return True
+		else:
+			return False
+		
+	
 
 
     def getNumero(self):
