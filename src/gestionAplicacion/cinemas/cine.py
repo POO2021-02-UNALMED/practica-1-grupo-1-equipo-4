@@ -1,4 +1,4 @@
-from boleteria import funcion
+from boleteria import Funcion
 class Cine: 
 
     def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
@@ -13,8 +13,8 @@ class Cine:
         #!!! Aqui falta la variable del serializador
 
 
-    def programarFuncionesAuto(self._mes,dia,sala):
-        programadas=[]   #Recibiria funcion
+    def programarFuncionesAuto(self,mes:int,dia:int,sala:int):
+        programadas:list(Funcion)=[]   #Recibiria funcion
         funciones= verFuncion(mes)     #Recibe objetos funcion   
 		ArrayList<Funcion> programadas = new ArrayList<Funcion>();
 		ArrayList<Funcion> funciones = verFuncion(mes);	
