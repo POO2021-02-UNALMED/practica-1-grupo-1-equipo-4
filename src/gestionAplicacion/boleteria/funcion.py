@@ -1,6 +1,7 @@
 from code import interact
 from hashlib import new
 from tkinter import NONE
+from xmlrpc.client import Boolean
 from ..cinemas import Cine, Cliente
 from ..salas import Sala,Silla
 from ..boleteria import Horario, Pelicula, Boleto
@@ -59,7 +60,35 @@ class Funcion:
                     formato_boleto:str=""
                     fila.append(formato_boleto)
             total.append(fila)
+
         formato:str=""
+
+        """ for para formatear un string con la silletería para imprimir
+		for(ArrayList<String> fila: total){							
+																	//%-6s es una variable que recibe string y se llena con minimo 6 espacios y justifica a la izquierda
+			String patron = "%-6s   ".repeat(sala.getColumnas()); 	// se crea el formato con la cantidad de variables necesarias (columnas)
+			Object[] fila_args = fila.toArray(new String[0]); 		// se crea una lista para pasar como *args
+			formato += String.format(patron,fila_args) + "\n"; 		// se le agrega a el string resultante la fila mas un salto de linea
+		}
+		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n"; //se le agrega al string final una linea con la palabra PANTALLA centrado
+		return formato;"""
+
+    def VentaBoleto(self,boleto:Boleto,cliente:Cliente)->bool:
+        if (boleto.getDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
+            boleto.setDisponibilidad(False)
+            cliente.getHistorialcompras().append(boleto)
+            self._cantidadBoletosVendidos+=1
+            boleto.calcularPrecioDefinitivo(cliente)
+
+            ganancia:float=self._cine.getDineroGanado()+boleto.getPrecioTotal()
+
+            self._cine.setDineroGanado(ganancia)
+            self._pelicula.anadirCantidadBoletos()
+
+            return True
+        else:
+            return False
+
 
         
 
