@@ -3,5 +3,5 @@ from gestionAplicacion.boleteria import Funcion
 class Agregar:
 
     @staticmethod
-    def agregarFuncion(Funcion:funcion):
+    def agregarFuncion(funcion:Funcion):
         pass
