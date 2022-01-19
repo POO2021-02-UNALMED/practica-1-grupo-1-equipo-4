@@ -9,7 +9,7 @@ class Cliente:
         self._historialCompras = historialCompras
         self._referidos = referidos
         self._cine = cine
-
+        #!!! Aqui falta la variable del serializador
 
     #
     #Getting and setting

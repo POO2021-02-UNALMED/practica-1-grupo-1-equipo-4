@@ -9,7 +9,7 @@ class Cine:
         self._dineroGanado = dineroGanado
         self._DESCUENTOMVC = DESCUENTOMVC
         #TODO:Take care of this constant
-
+        #!!! Aqui falta la variable del serializador
 
     #
     #Getting and setting
