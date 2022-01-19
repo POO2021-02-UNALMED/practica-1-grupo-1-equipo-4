@@ -1,9 +1,41 @@
+from fileinput import filename
+from importlib.metadata import FileHash
 from ..cinemas import Cine
-class sala3D:
+from salas import Sala, Silla
+
+class sala3D(Sala):
 
     def __init__(self, *args):
+
         if(len(args) == 4):
-            super().__init__()
-		super(filas, columnas, 0, 5000,cine);
-		this.cantidadGafas=cantidadgafas;
-	}
+            filas, columnas,candidadgafas, cine = args
+            super().__init__(filas, columnas, 0, 5000,cine)
+            self._cantidadgafas = candidadgafas
+        elif(len(args) == 3):
+            filas, columnas, cine = args
+            super().__init__(filas, columnas, 0,5000, cine)
+            self._cantidadgafas = filas*columnas
+        
+    def cantidadSillas(self) -> int:
+
+        totalsillas: int = len(self._sillas)
+
+        if (totalsillas<self._cantidadgafas):
+            return totalsillas
+        return self._cantidadgafas
+
+    def crearSilleteria(self):
+
+        total: int = self._filas*self._columnas
+
+        tipo: str = "VIP"
+
+        for i in range(total):
+            silla: Silla = Silla(tipo, i+1)
+
+            self._sillas.append(silla)
+
+    def getCantidadsillas(self):
+        return self._cantidadgafas
+    def setCantidadsillas(self, funciones):
+        self._cantidadgafas = funciones
