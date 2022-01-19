@@ -1,5 +1,5 @@
 from tokenize import String
-from gestionAplicacion import cinemas.Cine
+from gestionAplicacion.cinemas import Cine
 
 class Pelicula:
     def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,cine=None):
