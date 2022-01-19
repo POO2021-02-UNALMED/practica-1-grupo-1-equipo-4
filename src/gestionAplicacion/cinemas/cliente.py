@@ -1,3 +1,6 @@
+from typing import Collection
+import cine
+from collections import Counter
 class Cliente:
 
     def __init__(self,cedula,nombre,edad,ocupacion,descuento,historialCompras,referidos,cine):
@@ -11,6 +14,30 @@ class Cliente:
         self._cine = cine
         #!!! Aqui falta la variable del serializador
 
+
+    def descuentoCliente(self):
+        cine.mostValueClient()
+        
+        if (self._descuento<=0.39 and self._referidos>0):
+
+            self._descuento+=0.01*self._referidos
+        return "Descuento aplicado"
+
+    def mostWatchedGenre(self):
+        genreList=[]
+        for boleto in self._historialCompras:
+            genreList.append(boleto.getFuncion().getPelicula().getGenero())
+
+        cuenta=[]
+        for genero in genreList:
+            occ=Counter(genreList,genero)
+            cuenta.append(occ)
+        return genreList.get(cuenta.indexOf(Collections.max(cuenta))); 
+
+
+    def referidos(self):
+        self._referidos+=1
+        self.descuentoCliente()    
     #
     #Getting and setting
     #
