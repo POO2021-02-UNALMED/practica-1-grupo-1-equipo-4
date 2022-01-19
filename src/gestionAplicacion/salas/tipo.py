@@ -1,4 +1,4 @@
 from enum import Enum
 
-class Horario(Enum):
+class Tipo(Enum):
     VIP, SENCILLA;

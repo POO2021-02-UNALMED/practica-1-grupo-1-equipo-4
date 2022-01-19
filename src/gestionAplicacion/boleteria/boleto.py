@@ -2,7 +2,7 @@ from funcion import Funcion
 
 class Boleto:
 
-    def __init__(self,num_sillas,tipo_sillas,precioTotal,disponibilidad,funcion,precio_silla):
+    def __init__(self, funcion: "Funcion" , silla: "Silla"):
         self._num_sillas : int = num_sillas
         self._tipo_sillas : Tipo = tipo_sillas
         self._precioTotal: float = precioTotal
