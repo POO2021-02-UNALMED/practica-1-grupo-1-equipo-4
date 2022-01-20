@@ -25,11 +25,11 @@ class Funcion:
         Funcion.cantidadFunciones+=1
 
     @classmethod
-    def crearFuncion(self,dia:int,mes:int,horario:Horario,pelicula:Pelicula,num_sala:int,cine:Cine): #devuelve una funcion o none
-        self._sala:Sala=cine.buscarSala(num_sala)
-        if(self._sala!=None):
-            if(self._sala.verificarDisponibilidad(dia,mes,horario.getHora())):
-                return Funcion(dia,mes,horario,pelicula,self._sala,cine)
+    def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula:Pelicula,num_sala:int,cine:Cine): #devuelve una funcion o none
+        cls._sala:Sala=cine.buscarSala(num_sala)
+        if(cls._sala!=None):
+            if(cls._sala.verificarDisponibilidad(dia,mes,horario.getHora())):
+                return Funcion(dia,mes,horario,pelicula,cls._sala,cine)
             else:
                 return None
         else:
@@ -38,7 +38,7 @@ class Funcion:
 
     def crearBoleteria(self):
         sillas:list[Silla]=self._sala.getSillas()
-        disponibles:int=self._sala.cantidadSillas()
+        disponibles:int=self._sala.cantidadSillas() #ignorar, catidadSillas() se encuentra en cada subclase, por lo que acá marca el error
         total:int=len(self._sala.getSillas())
         for i in range(total):
             if(disponibles>0):

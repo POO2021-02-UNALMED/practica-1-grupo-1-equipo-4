@@ -2,13 +2,13 @@ from tokenize import String
 from gestionAplicacion.cinemas import Cine
 
 class Pelicula:
-    def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,cine=None):
+    def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,  cine= None): #!!! pendiente para corregir
         self._nombre:str = nombre
         self._genero:str = genero
         self._duracion:int = duracion
         self._lenguaje:str = lenguaje
         self._clasificacion:int = clasificacion
-        self._cine:Cine = cine
+        self._cine: Cine = cine #!!! pendiente para corregir
         self._cantidadTotalBoletosVendidos:int =0
         self._expectativaVentas:int =0
 

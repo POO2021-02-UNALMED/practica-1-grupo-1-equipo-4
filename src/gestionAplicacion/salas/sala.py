@@ -29,10 +29,11 @@ class Sala:
     #Metodos
     #
 
+
     def agregarFuncion(self, funcion: Funcion):
         self._funciones.append(funcion)
 
-    def verificarDisponibilidad(self, *args: tuple) -> bool:
+    def verificarDisponibilidad(self, *args) -> bool:
         #sobrecarga de metodos chambona 
         if(len(args) == 3):
 
@@ -71,15 +72,15 @@ class Sala:
             
             for func in self._funciones:
 
-                info : str=""+func.getDia()+func.getMes()		
+                info : str=""+str(func.getDia())+str(func.getMes())		
                 fechas.append(info)								
                 info=""								
                 
             
             
             for i in range(len(fechas)):
-                if (fechas[i] ==    consulta):				
-                    horarios.append(self._funciones[i].getHorario())
+                if (fechas[i] == consulta):				
+                    horarios.append(str(self._funciones[i].getHorario()))
                 
             
             
@@ -118,8 +119,8 @@ class Sala:
 			
 		
 		for i in range(len(fechas)):
-			if (fechas[i] == consulta) 
-				horarios.append(self._funciones[i].getHorario());	
+			if (fechas[i] == consulta):
+				horarios.append(str(self._funciones[i].getHorario()));	
 
 		
 		for horario in horarios:
