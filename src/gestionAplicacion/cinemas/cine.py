@@ -1,4 +1,6 @@
-from boleteria import Funcion
+from boleteria import Funcion, Pelicula
+from salas import Sala
+
 class Cine: 
 
     def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
@@ -13,7 +15,30 @@ class Cine:
         #!!! Aqui falta la variable del serializador
 
 
-   	 
+    def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
+        programadas : list[Funcion] = []
+        funciones : list[Funcion] = self.verFuncion(mes)
+        peliculaMes : list[Pelicula] = list(set([funcion.getPelicula() for funcion in funciones]))
+        pelicula_boletos = []
+
+        for i in range(len(peliculaMes)):
+            pelicula_boletos.append([peliculaMes,0])
+            for funcion in funciones:
+                if(peliculaMes[i] == funcion.getPelicula()):
+                    pelicula_boletos[i][1]+= funcion.getCantidadboletosvendidos()
+                   
+        pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
+		
+        #TODO verificar que se hace en este for, y realizarlo
+        """// reasigno los valores de peliculas por ventas de mayor a menor 
+		for(int i = 0; i < peliculasMes.size() ; i++){
+			peliculasMes.set(i, (Pelicula) pelicula_boletos[i][0]);
+		}"""
+           
+    
+
+
+
 	
 
 
