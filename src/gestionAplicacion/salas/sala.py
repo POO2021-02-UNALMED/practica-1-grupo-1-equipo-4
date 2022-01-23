@@ -33,6 +33,9 @@ class Sala:
     def agregarFuncion(self, funcion: Funcion):
         self._funciones.append(funcion)
 
+    def cantidadSillas(self):
+        pass
+
     def verificarDisponibilidad(self, *args) -> bool:
         #sobrecarga de metodos chambona 
         if(len(args) == 3):

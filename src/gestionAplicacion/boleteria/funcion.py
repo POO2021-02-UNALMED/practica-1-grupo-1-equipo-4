@@ -74,7 +74,7 @@ class Funcion:
 		return formato;"""
 
     def VentaBoleto(self,boleto:Boleto,cliente:Cliente)->bool:
-        if (boleto.getDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
+        if (boleto.isDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
             boleto.setDisponibilidad(False)
             cliente.getHistorialcompras().append(boleto)
             self._cantidadBoletosVendidos+=1
