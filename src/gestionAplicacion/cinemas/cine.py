@@ -36,7 +36,16 @@ class Cine:
 		}"""
            
     
+    def salasDisponibles(self, mes: int, dia: int) -> list:
+        disponibles=list()
+        
+        for sala in self._salas:
+            if sala.almenosUnoDisponible(mes, dia):
+                disponibles.append(sala)
+        
+        return disponibles
 
+    def
 
 
 	
