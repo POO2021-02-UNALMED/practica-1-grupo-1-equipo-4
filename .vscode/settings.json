@@ -1,6 +1,6 @@
 {
     "python.linting.mypyEnabled": false,
-    "python.linting.enabled": true,
+    "python.linting.enabled": false,
     "python.linting.pylintEnabled": false,
     "python.linting.pylamaEnabled": true,
     "python.analysis.typeCheckingMode": "basic",

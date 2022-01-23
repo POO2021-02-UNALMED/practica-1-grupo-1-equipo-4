@@ -160,7 +160,7 @@ class Cine:
 
         aleatoriofuncion: int = random.randint(0,len(self._cartelera)-1)	#Numero aleatorio de la lista de cartelera
         
-        fescogida: Funcion= self._BuscadorFuncion(numeroFuncion)	#Funcion escogida de la cartelera con el numero de la funcion
+        fescogida: Funcion= self.BuscadorFuncion(numeroFuncion)	#Funcion escogida de la cartelera con el numero de la funcion
         
         aleatorioboleto: int= random.randint(0,len(fescogida.getSala().cantidadSillas()-1))	#Otro numero aleatorio con base al tamano de la lista de boletos
         

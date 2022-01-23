@@ -129,9 +129,9 @@ class Funcion:
         self._boletos = boletos
 
 
-    def getCantidadboletosvendidos(self):
+    def getCantidadBoletosVendidos(self):
         return self._cantidadBoletosVendidos
-    def setCantidadboletosvendidos(self, cantidadBoletosVendidos):
+    def setCantidadBoletosVendidos(self, cantidadBoletosVendidos):
         self._cantidadBoletosVendidos = cantidadBoletosVendidos
 
 
