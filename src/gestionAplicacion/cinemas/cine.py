@@ -1,4 +1,4 @@
-from boleteria import Funcion, Pelicula
+from boleteria import Funcion, Pelicula, Horario
 from salas import Sala
 
 class Cine: 
@@ -16,24 +16,35 @@ class Cine:
 
 
     def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
-        programadas : list[Funcion] = []
+        programadas : list[] = []
         funciones : list[Funcion] = self.verFuncion(mes)
-        peliculaMes : list[Pelicula] = list(set([funcion.getPelicula() for funcion in funciones]))
+        peliculasMes : list[Pelicula] = list(set([funcion.getPelicula() for funcion in funciones]))
         pelicula_boletos = []
+        disponibles = ["22:00","20:00","18:00","16:00","14:00","12:00"]
 
-        for i in range(len(peliculaMes)):
-            pelicula_boletos.append([peliculaMes,0])
+        for i in range(len(peliculasMes)):
+            pelicula_boletos.append([peliculasMes,0])
             for funcion in funciones:
-                if(peliculaMes[i] == funcion.getPelicula()):
+                if(peliculasMes[i] == funcion.getPelicula()):
                     pelicula_boletos[i][1]+= funcion.getCantidadboletosvendidos()
                    
         pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
 		
-        #TODO verificar que se hace en este for, y realizarlo
-        """// reasigno los valores de peliculas por ventas de mayor a menor 
-		for(int i = 0; i < peliculasMes.size() ; i++){
-			peliculasMes.set(i, (Pelicula) pelicula_boletos[i][0]);
-		}"""
+        if(len(peliculasMes)):
+            for i in range(6):
+                p : Pelicula = peliculasMes[i]
+                h : Horario = Horario.getHorario(disponibles[i])
+                programadas.append( Funcion.crearFuncion(dia, mes, h, p , sala.getNumero(), self))
+        else:
+            for i in range(len(peliculasMes)):
+                p : Pelicula = peliculasMes[i]
+                h : Horario = Horario.getHorario(disponibles[i])
+                programadas.append(Funcion.crearFuncion(dia, mes, h, p , sala.getNumero(), self))
+        
+        return programadas
+
+
+
            
     
     def salasDisponibles(self, mes: int, dia: int) -> list:
