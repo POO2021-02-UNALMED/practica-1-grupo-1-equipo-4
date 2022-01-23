@@ -203,6 +203,26 @@ class Cine:
         else:
             return None
 
+    def BuscadorFuncion(self,numero:int):
+        lista=[]
+        for funcion in self._cartelera:
+            lista.append(funcion.getNumero())
+
+            if funcion.getNumero()==numero:
+                return funcion
+        return None
+
+    def BuscadorBoleto (self,num_silla: int,funcion:Funcion):
+        lista=[]
+        for boleto in funcion.getBoletos():
+            lista.append(boleto.getNum_sillas())
+
+            if boleto.getNum_sillas==num_silla:
+                return boleto
+        return None
+
+        
+                
 	#Metodos para agregar elementos a las listas de la clase Cine
 
     def agregarCliente(self,nuevo: Cliente):
