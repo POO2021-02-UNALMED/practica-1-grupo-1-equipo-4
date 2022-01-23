@@ -192,6 +192,17 @@ class Cine:
             if (cliente.getCedula() == num):
                 return cliente
         return None
+
+    def buscarSala(self, num):
+        lista : list[int] = []
+
+        for sala in self.getSalas():
+            lista.append(sala.getNumero())
+        if num in lista:
+            return self.getSalas()[lista.index(num)]
+        else:
+            return None
+
 	#Metodos para agregar elementos a las listas de la clase Cine
 
     def agregarCliente(self,nuevo: Cliente):
