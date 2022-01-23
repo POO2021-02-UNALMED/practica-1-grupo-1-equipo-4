@@ -1,6 +1,7 @@
 from boleteria import Funcion, Pelicula, Horario
 from salas import Sala
 from cinemas import Cliente
+import random
 
 class Cine: 
 
@@ -147,6 +148,47 @@ class Cine:
         return num in lista
     
     
+    
+    def rifarBoleto(self, numeroFuncion: int):
+        top10: list[Cliente]= self.clientesValiosos();	#Saco la lista del 10% de los clientes mas fieles
+        
+        tamano: int= len(top10)			#tamano de esa lista
+        
+        ganador: int= random.randint(0,tamano-1)	#Un numero aleatorio entre 0 y el tamano de la lista
+        
+        panitaGanador: Cliente= top10[ganador]  #Con el numero conseguido sacar al cliente escogido
+
+        aleatoriofuncion: int = random.randint(0,len(self._cartelera)-1)	#Numero aleatorio de la lista de cartelera
+        
+        fescogida: Funcion= BuscadorFuncion(numeroFuncion)	#Funcion escogida de la cartelera con el numero de la funcion
+        
+        aleatorioboleto: int= random.randint(0,len(fescogida.getSala().cantidadSillas()-1))	#Otro numero aleatorio con base al tamano de la lista de boletos
+        
+        bescogido: Boleto = fescogida.getBoletos()[aleatorioboleto];	#Boleto escogido con el numero aleatorio
+        
+        if(bescogido.isDisponibilidad()):	#Si este boleto esta disponible se puede rifar ese boleto al cliente ganador
+            
+            fescogida.VentaBoleto(bescogido,panitaGanador)
+            fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1);		# Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
+														# Se tendria que anular esa suma
+        else:
+			#Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
+            
+            for boleto in fescogida.getBoletos():
+                if (boleto.isDisponibilidad()):	    #Se va recorriendo los boletos de la funcion escogida aleatoriamente 
+                                                    #hasta encontrar el primero disponible 
+                    
+                    fescogida.VentaBoleto(boleto, panitaGanador)	#Se vende el boleto
+                    fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1)
+                    break;		#Solo voy a rifar uno entonces rompo el for
+                    
+        return panitaGanador.getNombre()
+
+
+	
+
+
+	
     #
     #Getting and setting
     #
