@@ -66,9 +66,9 @@ class Cliente:
     def setDescuento(self, descuento):
         self._descuento = descuento
 
-    def getHistorialcompras(self):
+    def getHistorialCompras(self):
         return self._historialCompras
-    def setHistorialcompras(self, historialCompras):
+    def setHistorialCompras(self, historialCompras):
         self._historialCompras = historialCompras
 
     def getReferidos(self):
