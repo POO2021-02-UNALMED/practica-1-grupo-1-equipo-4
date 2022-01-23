@@ -274,13 +274,13 @@ public class Cine implements Serializable{
 	}
 	
 
-
+/*
 	public ArrayList<Funcion> verFuncion(Pelicula pelicula, String horario) {				
 		/*
 		 Recibe una pelicula y un horario, retorna un ArrayList de funciones que cumplan las
 		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
 		 al horario y la pelicula solicitada
-		 */
+		 
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario){	
@@ -297,7 +297,7 @@ public class Cine implements Serializable{
 		 Recibe una pelicula y un horario, retorna un ArrayList de funciones que cumplan las
 		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
 		 al horario y la pelicula solicitada
-		 */
+		 
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>();
 		for(Funcion funcion:cartelera) {
 			if(funcion.getPelicula()==pelicula && funcion.getHorario()==horario && funcion.getDia()==dia && funcion.getMes()==mes){
@@ -305,7 +305,7 @@ public class Cine implements Serializable{
 			}
 		}
 		return funciones;
-	}
+	}*/
 
 	
 
@@ -342,13 +342,13 @@ public class Cine implements Serializable{
 	}
 	
 
-
+/*
 	public ArrayList<Funcion> verFuncion(Boleto boleto) {  
 		/*
 		 Recibe un objeto de tipo Boleto, retorna un ArrayList de funciones que cumplan las
 		 indicaciones. Su proposito es obtener las funciones disponibles en la cartelera de acuerdo
 		 a la funcion que se relaciona con este objeto boleto
-		 */
+		 
 		ArrayList<Funcion> funciones = new ArrayList<Funcion>(); 
 		for(Funcion funcion:cartelera) {
 			if(funcion==boleto.getFuncion()) {
@@ -357,7 +357,7 @@ public class Cine implements Serializable{
 		}
 		return funciones;
 	}
-
+*/
 
 
 

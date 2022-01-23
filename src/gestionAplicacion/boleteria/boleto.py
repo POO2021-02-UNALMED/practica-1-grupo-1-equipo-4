@@ -1,3 +1,8 @@
+##Funcionalidad de la clase: Albergar los datos de una silla respectiva a una sala de una funcion 
+
+
+##Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
 from funcion import Funcion
 from ..salas import Tipo, Silla
 from ..cinemas import Cliente
