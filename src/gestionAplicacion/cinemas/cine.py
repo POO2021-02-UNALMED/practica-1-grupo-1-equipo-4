@@ -45,7 +45,13 @@ class Cine:
         
         return disponibles
 
-    def
+    def mostValueClient(self) -> str:
+        clienteList=list()
+        for client in self._clientes:
+            clienteList.append(len(client.getHistorialCompras()))
+
+
+
 
 
 	
