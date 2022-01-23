@@ -16,15 +16,15 @@ class Boleto:
         
         self._disponibilidad : bool= True
         self._funcion : Funcion = funcion
-        self.setAtr_silla(silla);
-        self._precioTotal: float =  self.calcularPrecio();
+        self.setAtr_silla(silla)
+        self._precioTotal: float =  self.calcularPrecio()
         self._num_silla: int = 0
         self._precio_silla: float = 0
         
     # funciones
 
     def calcularPrecio(self) -> float:
-        bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla;
+        bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla
         return bruto
 
     def calcularPrecioDefinitivo(self, cliente : Cliente):
@@ -59,7 +59,7 @@ class Boleto:
         self._precioTotal = precioTotal
 
 
-    def getDisponibilidad(self):
+    def isDisponibilidad(self):
         return self._disponibilidad
     def setDisponibilidad(self, disponibilidad):
         self._disponibilidad = disponibilidad
