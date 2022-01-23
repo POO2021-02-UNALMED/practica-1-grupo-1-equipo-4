@@ -18,7 +18,7 @@ public class Sala3D extends Sala implements Serializable{
 	
 	//Constructor para cuando la cantidad de gafas es igual a la cantidad de sillas
 	public Sala3D(int filas, int columnas,  Cine cine) {
-		this(filas, columnas, filas*columnas, cine);
+		this(filas, columnas, filas*column	as, cine);
 	}
 	
 
@@ -38,7 +38,7 @@ public class Sala3D extends Sala implements Serializable{
 	public void crearSilleteria() {			
 	/*No recibe ningun parametro y no retorna nada
 	Es la encargada de crear cada silla dependiendo la cantidad de filas, y columnas
-	por ser la sala 3D crea todas las sillas vip*/
+	por ser la sala 3D crea	todas las sillas vip*/
 			
 		
 		int total = filas*columnas; 			//numero de sillas
