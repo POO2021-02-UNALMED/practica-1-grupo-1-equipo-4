@@ -6,12 +6,12 @@ import random
 class Cine: 
 
     def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
-        self._nombre = nombre
-        self._clientes = clientes
+        self._nombre : str = nombre
+        self._clientes : list[Cliente]= clientes
         self._cartelera : list[Funcion]= cartelera
-        self._peliculas = peliculas
-        self._salas = salas
-        self._dineroGanado = dineroGanado
+        self._peliculas : list[Pelicula] = peliculas
+        self._salas : list[Sala]= salas
+        self._dineroGanado= dineroGanado
         self._DESCUENTOMVC = DESCUENTOMVC
         #TODO:Take care of this constant
         #!!! Aqui falta la variable del serializador
@@ -184,14 +184,21 @@ class Cine:
                     
         return panitaGanador.getNombre()
 
-
+    def BuscadorCliente(self, num : int):
+        
+        lista : list[int] = []
+        for cliente in self.getClientes():
+            lista.append(cliente.getCedula())
+            if (cliente.getCedula() == num):
+                return cliente
+        return None
 	#Metodos para agregar elementos a las listas de la clase Cine
 
     def agregarCliente(self,nuevo: Cliente):
        self._clientes.append(nuevo)
 
     def agregarPelicula(self,nuevo: Pelicula):
-        self._clientes.append(nuevo)
+        self._peliculas.append(nuevo)
 
     def agregarSala(self,nuevo: Sala):
         self._salas.append(nuevo)
