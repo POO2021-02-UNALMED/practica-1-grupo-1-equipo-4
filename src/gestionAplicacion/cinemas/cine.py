@@ -114,39 +114,29 @@ class Cine:
 
         return funciones
 
-	def clientesValiosos(self)-> list[Cliente]:
-		'''
-		 Recibe nada y retorna una List de objetos tipo Cliente. Su proposito es calcular
-		 de entre la lista de clientes el 0.1 que tiene mayor cantidad de compras en historialCompras
-		 '''
+    def clientesValiosos(self)-> list[Cliente]:
+        
+        clienteList=[]		#Aca estaran los tamanos de historial de compra de cada cliente
+        
+        for cliente in self._clientes:
+            clienteList.append(cliente.getHistorialCompras().size()) 	#Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
+        
+        cantidad= len(clienteList)				#Cantidad de clientes que se tiene
+        
+        clienteList.sort(reverse=True)		#Ordenar la lista de mayor a menor
+        top10= round(cantidad/10)								# El 10% de los clientes 
+        mejoresCompas=[]			                                    #Clientes mas fieles
+        
+        for i in range(0, top10) :					
+            valor =clienteList[i]								#Conseguir el 10% de los tamanos de historial de compra mas grandes
+            for client in self._clientes:
+                
+                if(len(client.getHistorialCompras())==valor):				#Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
+                    if not client in mejoresCompas:
+                        mejoresCompas.append(client)
+        
+        return mejoresCompas
 
-		clienteList=[]		#Aca estaran los tamanos de historial de compra de cada cliente
-		
-		for cliente in self._clientes:
-			clienteList.append(cliente.getHistorialCompras().size()) 	#Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
-		
-		
-		cantidad= len(clienteList)				#Cantidad de clientes que se tiene
-		
-		clienteList.sort(reverse=True)		#Ordenar la lista de mayor a menor
-				
-		top10= round(cantidad/10)								# El 10% de los clientes 
-		mejoresCompas=[]			                                    #Clientes mas fieles
-			
-		for i in range(0, top10) :					
-			valor =clienteList[i]								#Conseguir el 10% de los tamanos de historial de compra mas grandes
-		
-			for client in self._clientes:
-			
-			    if(len(client.getHistorialCompras())==valor):				#Si el tamano de historial de compra es igual al valor agregar a los mejores clientes (mejoresCompas)
-				    if not client in mejoresCompas:
-					    mejoresCompas.append(client)
-				
-			
-		
-		
-	    return mejoresCompas
-	
     #
     #Getting and setting
     #
