@@ -185,7 +185,19 @@ class Cine:
         return panitaGanador.getNombre()
 
 
-	
+	#Metodos para agregar elementos a las listas de la clase Cine
+
+    def agregarCliente(self,nuevo: Cliente):
+       self._clientes.append(nuevo)
+
+    def agregarPelicula(self,nuevo: Pelicula):
+        self._clientes.append(nuevo)
+
+    def agregarSala(self,nuevo: Sala):
+        self._salas.append(nuevo)
+
+    def agregarFuncion(self,nuevo:Funcion):
+        self._cartelera.append(nuevo)     
 
 
 	
