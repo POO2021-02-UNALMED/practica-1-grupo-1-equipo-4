@@ -137,9 +137,21 @@ class Cine:
         
         return mejoresCompas
 
+
+    def verificarCliente(self, num: int) -> bool:
+        lista : list[int] = []
+        
+        for cliente in self.getClientes():
+            lista.append(cliente.getCedula())
+        
+        return num in lista
+    
+    
     #
     #Getting and setting
     #
+
+
 
     def getNombre(self):
         return self._nombre
