@@ -47,7 +47,7 @@ class Cine:
 
            
     
-    def salasDisponibles(self, mes: int, dia: int) -> list:
+    def salasDisponibles(self, mes: int, dia: int) -> list[Sala]:
         disponibles=list()
         
         for sala in self._salas:
@@ -58,8 +58,18 @@ class Cine:
 
     def mostValueClient(self) -> str:
         clienteList=list()
+        
         for client in self._clientes:
             clienteList.append(len(client.getHistorialCompras()))
+        
+        valormax=max(clienteList)
+
+        for client in self._clientes:
+            if(valormax==len(client.getHistorialCompras())):
+                client.setDescuento(self._DESCUENTOMVC)
+                return client.getNombre()
+
+        return "Se ha aplicado el descuentos  a nuestro cliente mas fiel "
 
 
 
