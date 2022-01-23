@@ -1,13 +1,13 @@
 from boleteria import Funcion, Pelicula, Horario
 from salas import Sala
-from src.gestionAplicacion.cinemas.cliente import Cliente
+from cinemas import Cliente
 
 class Cine: 
 
     def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
         self._nombre = nombre
         self._clientes = clientes
-        self._cartelera = cartelera
+        self._cartelera : list[Funcion]= cartelera
         self._peliculas = peliculas
         self._salas = salas
         self._dineroGanado = dineroGanado
@@ -73,11 +73,46 @@ class Cine:
         return "Se ha aplicado el descuentos  a nuestro cliente mas fiel "
 
 
+    def verFuncion(self, *args) -> list[Funcion]:
+        funciones: list[Funcion] = []
 
+        # Este es el ver funcion que recibe pelicula, dia, mes
+        if(len(args) == 3):
+            pelicula: Pelicula = args[0]
+            dia, mes = args[1:]
 
+            for funcion in self.getCartelera():
+                if(funcion.getPelicula() == pelicula and funcion.getDia() >= dia and funcion.getMes() == mes):
+                    funciones.append(funcion)
+            for funcion in self.getCartelera()
+                if(funcion.getPelicula() == pelicula and funcion.getMes() > mes):
+                    funciones.append(funcion)
 
-	
+        # Este es el que recibe dia, mes
+        elif(len(args) == 2):
+            dia, mes = args
+            for funcion in self.getCartelera():
+                if(funcion.getDia() == dia and funcion.getMes() == mes):
+                    funciones.append(funcion)
 
+        elif(len(args) == 1):
+
+            #recibe mes
+            if(type(args[0] == int)):
+                mes = args[0]
+                for funcion in self.getCartelera():
+                    if(funcion.getMes() == mes):
+                        funciones.append(funcion)
+                        
+            #recibe cliente 
+            else:
+                cliente: Cliente = args[0]
+                for funcion in self.getCartelera():
+                   if(funcion.getPelicula() == cliente.mostWatchedGenre()):
+                       funciones.append(funcion)
+            
+
+        return funciones
 
 	def clientesValiosos(self)-> list[Cliente]:
 		'''
@@ -115,6 +150,7 @@ class Cine:
     #
     #Getting and setting
     #
+
     def getNombre(self):
         return self._nombre
     def setNombre(self, nombre):
