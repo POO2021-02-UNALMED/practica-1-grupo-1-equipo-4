@@ -202,6 +202,17 @@ class Cine:
             return self.getSalas()[lista.index(num)]
         else:
             return None
+    
+    def BuscadorPelicula(self, nombre):
+
+        lista: list[str] = []
+        for funcion in self.getCartelera():
+            lista.append(funcion.getPelicula().getNombre())
+            if (funcion.getPelicula().getNombre() == nombre):
+                return funcion.getPelicula()
+        return None
+
+
 
     def BuscadorFuncion(self,numero:int):
         lista=[]
