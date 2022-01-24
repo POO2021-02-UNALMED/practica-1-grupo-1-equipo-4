@@ -38,13 +38,17 @@ class Boleto:
         self.setTipo_silla(silla.getTipo())
         self.setPrecio_silla(silla.getPrecio())
 
+    def tipoString(self) -> str:
+        if(self._tipo_silla == Tipo.VIP):
+            return "V-"
+        return "S-"
     # 
     # getter and setters
     # 
-    def getNum_sillas(self):
-        return self._num_sillas
-    def setNum_sillas(self, num_sillas):
-        self._num_sillas = num_sillas
+    def getNum_silla(self):
+        return self._num_silla
+    def setNum_silla(self, num_silla):
+        self._num_silla = num_silla
 
 
     def getTipo_silla(self):

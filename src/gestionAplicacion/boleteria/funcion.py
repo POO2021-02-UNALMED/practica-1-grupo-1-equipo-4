@@ -46,37 +46,21 @@ class Funcion:
                 self._boletos.append(boleto)
                 disponibles-=1
     
-    def verDisponibilidad(self)->str:
-        total:list[list[str]]=[]
+    def verDisponibilidad(self) -> list[tuple]:
+        # En este caso la funcion devuelve una lista de strings, para agregar cada strings
+        total : list[tuple]=[]
 
-        for i in range(self._sala.getFilas()):
-            fila:list[str]=[]
-            for j in range(self._sala.getColumnas()):
-                boleto:Boleto=self._boletos[i*self._sala.getColumnas()+j]
-                if boleto!=None:
-                    formato_boleto:str=boleto.disponibilidad()+boleto.tipoString()+str(boleto.getNum_silla())
-                    fila.append(formato_boleto)
-                else:
-                    formato_boleto:str=""
-                    fila.append(formato_boleto)
-            total.append(fila)
+        for boleto in self._boletos:
+            if boleto!=None:
+                tupla_boleto:tuple=(boleto.isDisponibilidad(),boleto.tipoString()+str(boleto.getNum_silla()))
+                total.append(tupla_boleto)
 
-        formato:str=""
-
-        """ for para formatear un string con la silletería para imprimir
-		for(ArrayList<String> fila: total){							
-																	//%-6s es una variable que recibe string y se llena con minimo 6 espacios y justifica a la izquierda
-			String patron = "%-6s   ".repeat(sala.getColumnas()); 	// se crea el formato con la cantidad de variables necesarias (columnas)
-			Object[] fila_args = fila.toArray(new String[0]); 		// se crea una lista para pasar como *args
-			formato += String.format(patron,fila_args) + "\n"; 		// se le agrega a el string resultante la fila mas un salto de linea
-		}
-		formato += "\n"+centerString(sala.getColumnas()*9,"PANTALLA")+"\n"; //se le agrega al string final una linea con la palabra PANTALLA centrado
-		return formato;"""
+        return total
 
     def VentaBoleto(self,boleto:Boleto,cliente:Cliente)->bool:
         if (boleto.isDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
             boleto.setDisponibilidad(False)
-            cliente.getHistorialcompras().append(boleto)
+            cliente.getHistorialCompras().append(boleto)
             self._cantidadBoletosVendidos+=1
             boleto.calcularPrecioDefinitivo(cliente)
 

@@ -29,7 +29,7 @@ class Cine:
             pelicula_boletos.append([peliculasMes,0])
             for funcion in funciones:
                 if(peliculasMes[i] == funcion.getPelicula()):
-                    pelicula_boletos[i][1]+= funcion.getCantidadboletosvendidos()
+                    pelicula_boletos[i][1]+= funcion.getCantidadBoletosVendidos()
                    
         pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
 		
