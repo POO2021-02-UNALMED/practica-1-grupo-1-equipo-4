@@ -36,6 +36,9 @@ class Sala:
     def cantidadSillas(self):
         pass
 
+    def crearSilleteria(self):
+        pass
+
     def verificarDisponibilidad(self, *args) -> bool:
         #sobrecarga de metodos chambona 
         if(len(args) == 3):
@@ -47,7 +50,7 @@ class Sala:
             fechasfunciones: list[str] = []
 
             for func in self._funciones:
-                info: str = func.getDia()+"/"+func.getMes()+"/"+func.getHorario();
+                info: str = str(func.getDia())+"/"+str(func.getMes())+"/"+str(func.getHorario())
                 fechasfunciones.append(info)
                 
                 info = ""
@@ -94,7 +97,7 @@ class Sala:
             respuesta=""
             
             for d in disponibles:
-                respuesta+=d+"\n";
+                respuesta+=d+"\n"
             
             
             return respuesta == "12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n"
@@ -103,43 +106,36 @@ class Sala:
 
     
     def almenosUnoDisponible(self, dia: int, mes: int) ->  bool:
-	    
-
-		consulta: str   =   ""  + str(dia) + str(mes)					
-		
-		fechas : list[str] = []	 
-														
-
-		horarios: list[str] = []
-												 
-	
-		disponibles: list[str] = ["12:00","14:00","16:00","18:00","20:00","22:00"];				
-		
-		for func in self._funciones:
-			info : str =""+str(func.getDia())+str(func.getMes())	
-			fechas.append(info)							
-			info = ""								
-			
-		
-		for i in range(len(fechas)):
-			if (fechas[i] == consulta):
-				horarios.append(str(self._funciones[i].getHorario()));	
-
-		
-		for horario in horarios:
-			disponibles.remove(horario)
-		
-		
-		respuesta : str ="";
-		
-		for d in disponibles:
-			respuesta+=d+"\n"
-		
-		
-		if(len(respuesta) >= 5):
-			return True
-		else:
-			return False
+        
+        consulta: str   =   ""  + str(dia) + str(mes)					
+        
+        fechas : list[str] = []	 
+        
+        horarios: list[str] = []
+        
+        disponibles: list[str] = ["12:00","14:00","16:00","18:00","20:00","22:00"];				
+        
+        for func in self._funciones:
+            info : str =""+str(func.getDia())+str(func.getMes())	
+            fechas.append(info)							
+            info = ""								
+            
+        for i in range(len(fechas)):
+            if (fechas[i] == consulta):
+                horarios.append(str(self._funciones[i].getHorario()));	
+                
+        for horario in horarios:
+            disponibles.remove(horario)
+            
+        respuesta : str =""
+        
+        for d in disponibles:
+            respuesta+=d+"\n"
+            
+        if(len(respuesta) >= 5):
+            return True
+        else:
+            return False
 		
 	
 
