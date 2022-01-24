@@ -1,5 +1,5 @@
 from typing import Collection
-import cine
+from cinemas import Cine
 from collections import Counter
 class Cliente:
 
@@ -16,7 +16,7 @@ class Cliente:
 
 
     def descuentoCliente(self):
-        cine.mostValueClient()
+        self._cine.mostValueClient()
         
         if (self._descuento<=0.39 and self._referidos>0):
 
