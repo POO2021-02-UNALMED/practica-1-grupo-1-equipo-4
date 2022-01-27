@@ -4,6 +4,11 @@ from tkinter import messagebox
 window = Tk()
 window.option_add('*tearOff', FALSE)
 
+def getPath(txt):
+    import os
+    import sys
+    return os.path.join(sys.path[0],txt) 
+
 def cambioDeInstrucciones(action):
     hojaIns.pack_forget()
     hoja1.pack()
@@ -45,7 +50,7 @@ hoja4=Label(frameHoja, text="Marlon Calle")
 
 hojaFotos1=Frame(frameDesarrolladores,height=50)
 hoja1Foto1=label(hojaFotos1)
-Foto11=PhotoImage(file)
+Foto11=PhotoImage(file=getPath("hoja1Foto1.jpg"))
 hojaFotos2=Frame(frameDesarrolladores,height=50)
 hojaFotos3=Frame(frameDesarrolladores,height=50)
 hojaFotos4=Frame(frameDesarrolladores,height=50)
