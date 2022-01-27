@@ -48,17 +48,33 @@ hoja2=Label(frameHoja, text="Ochoa")
 hoja3=Label(frameHoja, text="Daniel Santiago")
 hoja4=Label(frameHoja, text="Marlon Calle")
 
+def ayuda(place,r,c,text):
+    hojaXFotoY=Label(place)
+    Foto11=PhotoImage(file=getPath(text))
+    hojaXFotoY["image"]=Foto11
+    return hojaXFotoY,Foto11
+
+
 hojaFotos1=Frame(frameDesarrolladores,height=50)
-hoja1Foto1=label(hojaFotos1)
-Foto11=PhotoImage(file=getPath("hoja1Foto1.jpg"))
-hojaFotos2=Frame(frameDesarrolladores,height=50)
-hojaFotos3=Frame(frameDesarrolladores,height=50)
-hojaFotos4=Frame(frameDesarrolladores,height=50)
+ayuda(hojaFotos1,0,0,"hoja1Foto1.png")[0].grid(row=0,column=0)
+
+"""
+hoja1Foto1=Label(hojaFotos1)
+Foto11=PhotoImage(file=getPath("hoja1Foto1.png"))
+hoja1Foto1["image"]=Foto11
+hoja1Foto1.grid(row=0,column=0)
+"""
+hoja1Fotos2=Frame(frameDesarrolladores,height=50)
+hoja1Foto2=Label(hojaFotos1)
+hoja1Foto2["image"]=PhotoImage(file=getPath("hoja1Foto2.png"))
+hoja1Foto2.grid(row=0,column=1)
+
+hoja1Fotos3=Frame(frameDesarrolladores,height=50)
+hoja1Fotos4=Frame(frameDesarrolladores,height=50)
 
 
 frameDesarrolladores.pack()
 frameHoja.pack()
-frameFotos.pack()
 hojaIns.pack()
 hojaIns.bind('<ButtonPress-1>', cambioDeInstrucciones)
 hoja1.bind('<ButtonPress-1>', cambioAHoja2)
