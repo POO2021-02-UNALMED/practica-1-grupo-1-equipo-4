@@ -1,12 +1,13 @@
 from tkinter import *
 
 class Zona1(Menu):
-    def __init__(self, frame):
-        super().__init__(frame)
+    def __init__(self, user,zona2):
+        super().__init__(user)
+        self.zona2 = zona2
         self.archivos()
         self.procesos()
         self.ayuda()
-        frame["menu"] = self
+        user["menu"] = self
 
     def archivos(self):
         archivos = Menu(self)
@@ -16,14 +17,12 @@ class Zona1(Menu):
 
 
     def procesos(self):
-        """hola"""
-        procesos = Menu(self)
+        self.procesos = Menu(self)
+        dic = self.zona2.funciones
+        for key,value in dic.items():
+            self.procesos.add_command(label = key, command = value)
         
-        """
-        acá debo colocar todo lo que va en procesos
-        archivos.add_command(label = "Aplicacion" , command = vender)"""
-        
-        self.add_cascade(menu = procesos, label = "Procesos y Consultas")
+        self.add_cascade(menu = self.procesos, label = "Procesos y Consultas")
     
     
     def ayuda(self):
