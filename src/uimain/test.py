@@ -3,5 +3,9 @@ import tkinter as tk
 
 window = tk.Tk
 
-window.title("Cine")
 
+frame_1=tk.Frame(height=50)
+
+frame_1.pack()
+
+print("Not funny")
