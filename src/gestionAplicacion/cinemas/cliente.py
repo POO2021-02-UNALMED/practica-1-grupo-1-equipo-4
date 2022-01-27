@@ -28,11 +28,15 @@ class Cliente:
         for boleto in self._historialCompras:
             genreList.append(boleto.getFuncion().getPelicula().getGenero())
 
-        cuenta=[]
-        for genero in genreList:
-            occ=Counter(genreList,genero)
-            cuenta.append(occ)
-        return genreList[cuenta.indexOf(Collections.max(cuenta))] #TODO: buscar como se hace ese index of y el counter esta raro tambien
+        cuenta=Counter(genreList).items()
+
+        occ=Counter(genreList).values()
+        valor_max=max(occ)
+        for genero  in cuenta:
+            if genero[1]==valor_max:
+                return genero
+
+        #return genreList[cuenta.indexOf(Collections.max(cuenta))] #TODO: buscar como se hace ese index of y el counter esta raro tambien
 
 
     def referidos(self):
