@@ -1,5 +1,7 @@
 from tkinter import *
 
+from matplotlib.cbook import IgnoredKeyboardWarning
+
 class Zona2: 
    
     def __init__(self, user):
@@ -8,7 +10,12 @@ class Zona2:
         self.todo = Frame(user, width =1000, height = 500, bg = "black") #Este es lo que contiene toda la zona 2
         self.todo.pack()
 
-        self.funciones = {"ensayo2":self.ensayo2, "ensayo":self.ensayo} #aca se guardan las los procesos y las consultas
+        self.funciones = {"Agregar Pelicula":self.agregarPelicula,
+                         "Quitar Pelicula":self.quitarPelicula, 
+                         "Agregar Funcion":self.agregarFuncion,
+                         "Generar Funcion Auto":self.agregarAuto,
+                         "Rifar Boleto":self.rifa,
+                         "Agregar Sala":self.agregarSala} #aca se guardan las los procesos y las consultas
 
         self.titulo_texto = Frame(self.todo,width=800, height = 150)   
         self.titulo_texto.pack()
@@ -23,12 +30,35 @@ class Zona2:
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green") #este es el cuerpo, se inicializa vacio
         self.cuerpo.pack()
         
-
+    
     def cambiar(self):
         self.cuerpo.pack_forget()
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green")
         self.cuerpo.pack()
 
+    ## Procesos y consultas
+    def agregarPelicula():
+        pass
+
+    def quitarPelicula():
+        pass
+
+    def agregarFuncion():
+        pass
+
+    def agregarAuto():
+        pass
+
+    def agregarAuto():
+        pass
+
+    def rifa():
+        pass
+
+    def agregarSala():
+        pass
+
+    
 
     def ensayo(self):
 
@@ -40,7 +70,7 @@ class Zona2:
         # Ignorar 
         # 
         # 
-
+        
         window = self.cuerpo
 
         text = Frame(self.cuerpo, width=500, height=100, bg="grey")
@@ -67,6 +97,8 @@ class Zona2:
         Cbutton = Button(master = buttons, text = "C", height=3,width= 49)
         Cbutton.grid(column = 0, row= 4, padx=3, pady=3,columnspan=4)
 
+
+    
     def ensayo2(self):
 
         self.cambiar()
