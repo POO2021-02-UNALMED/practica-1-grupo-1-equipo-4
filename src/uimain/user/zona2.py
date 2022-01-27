@@ -40,7 +40,7 @@ class Zona2:
         # Ignorar 
         # 
         # 
-        
+
         window = self.cuerpo
 
         text = Frame(self.cuerpo, width=500, height=100, bg="grey")
