@@ -1,6 +1,25 @@
 from cProfile import label
 from tkinter import *
 from tkinter import messagebox
+
+class Fotos(Frame):
+    def __init__(self,a,hoja):
+        super().__init__(a)
+        self.fot=[]
+        self.hoja1Foto1=[Label(self,width=50, height=50) for i in range(4)]
+        for i in range(1,5):
+            fil="hoja"+hoja+"Foto"+str(i)+".png"
+            self.fot.append(PhotoImage(file=getPath(fil)))
+        i=0
+        for r in range(2):
+            for c in range(2):
+                self.hoja1Foto1[i]["image"]=self.fot[i]
+                self.hoja1Foto1[i].grid(row=r,column=c)
+                i+=1
+
+        
+
+
 window = Tk()
 window.option_add('*tearOff', FALSE)
 
@@ -55,23 +74,12 @@ def ayuda(place,r,c,text):
     return hojaXFotoY,Foto11
 
 
-hojaFotos1=Frame(frameDesarrolladores,height=50)
-ayuda(hojaFotos1,0,0,"hoja1Foto1.png")[0].grid(row=0,column=0)
 
-"""
-hoja1Foto1=Label(hojaFotos1)
-Foto11=PhotoImage(file=getPath("hoja1Foto1.png"))
-hoja1Foto1["image"]=Foto11
-hoja1Foto1.grid(row=0,column=0)
-"""
-hoja1Fotos2=Frame(frameDesarrolladores,height=50)
-hoja1Foto2=Label(hojaFotos1)
-hoja1Foto2["image"]=PhotoImage(file=getPath("hoja1Foto2.png"))
-hoja1Foto2.grid(row=0,column=1)
 
-hoja1Fotos3=Frame(frameDesarrolladores,height=50)
-hoja1Fotos4=Frame(frameDesarrolladores,height=50)
-
+hojaFotos1=Fotos(frameDesarrolladores,"1")
+hojaFotos2=Fotos(frameDesarrolladores,"2")
+hojaFotos3=Fotos(frameDesarrolladores,"3")
+hojaFotos4=Fotos(frameDesarrolladores,"4")
 
 frameDesarrolladores.pack()
 frameHoja.pack()
