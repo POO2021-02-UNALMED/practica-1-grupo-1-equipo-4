@@ -227,9 +227,9 @@ class Cine:
     def BuscadorBoleto (self,num_silla: int,funcion:Funcion):
         lista=[]
         for boleto in funcion.getBoletos():
-            lista.append(boleto.getNum_sillas())
+            lista.append(boleto.getNum_silla())
 
-            if boleto.getNum_sillas==num_silla:
+            if boleto.getNum_silla==num_silla:
                 return boleto
         return None
 
