@@ -1,7 +1,5 @@
 from tkinter import *
 
-from matplotlib.cbook import IgnoredKeyboardWarning
-
 class Zona2: 
    
     def __init__(self, user):
@@ -42,7 +40,7 @@ class Zona2:
         # Ignorar 
         # 
         # 
-        
+
         window = self.cuerpo
 
         text = Frame(self.cuerpo, width=500, height=100, bg="grey")
