@@ -17,7 +17,8 @@ class Fotos(Frame):
                 self.hoja1Foto1[i].grid(row=r,column=c)
                 i+=1
 
-        
+
+
 
 
 window = Tk()
@@ -55,12 +56,95 @@ def cambioAHoja4(action):
     hoja3.pack_forget()
     hojaFotos3.pack_forget()
     hoja4.pack()
-    hojaFotos4.pack()   
+    hojaFotos4.pack()
+
+def cambioAImg1(action):
+    label1.grid_forget()
+    label1['image']=img1
+    label1.grid(column=0,row=0,padx=3,pady=3)
+    label1.bind('<ButtonPress-1>', cambioAImg2)
+
+
+def cambioAImg2(action):
+    label1.grid_forget()
+    label1['image']=img2
+    label1.grid(column=0,row=0,padx=3,pady=3)
+    label1.bind('<ButtonPress-1>', cambioAImg3)
+
+
+def cambioAImg3(action):
+    label1.grid_forget()
+    label1['image']=img3
+    label1.grid(column=0,row=0,padx=3,pady=3)
+    label1.bind('<ButtonPress-1>', cambioAImg4)
+
+
+def cambioAImg4(action):
+    label1.grid_forget()
+    label1['image']=img4
+    label1.grid(column=0,row=0,padx=3,pady=3)
+    label1.bind('<ButtonPress-1>', cambioAImg5)
+
+
+def cambioAImg5(action):
+    label1.grid_forget()
+    label1['image']=img5
+    label1.grid(column=0,row=0,padx=3,pady=3)
+    label1.bind('<ButtonPress-1>', cambioAImg1)
+
+def ventanaUsuario():
+        ventana_nueva=Toplevel()                ##Aca va la venta de usuario
+        ventana_nueva.geometry("350x400")
+        ventana_nueva.title("VENTANA DE DAZA")
+        window.iconify()
+
+def descripcion():
+        global greetings
+        greetings="Buena la rata"
+        saludo.config(text = greetings)
+
+
+
+frame1=Frame(window,width=100,height=200,bg="red")
+frame1.pack(fill=Y, side=LEFT)   
 
 WAndH={"height":200, "width":100}
-frameDesarrolladores=Frame(window, **WAndH) #TODO: Change master
+frame2=Frame(window, **WAndH) #TODO: Change master
 
-frameHoja=Frame(frameDesarrolladores,height=50,bg="gray")
+frame3=Frame(frame1,width=100,height=70,bg="yellow")
+frame3.grid(column = 0, row= 0, padx=3, pady=3,columnspan=4)
+
+greetings="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo interdum blandit. Vestibulum ante ipsum primis in\n faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempor accumsan libero, eget rhoncus erat ullamcorper quis.\nSed eget lobortis libero. Cras ac elit sed elit luctus auctor. Vivamus nisi augue, efficitur eu finibus et, convallis ut lectus.\nPhasellus bibendum eget risus a luctus. Sed congue diam id erat tincidunt, id tincidunt velit vulputate. Donec felis quam, egestas a\nlibero vel, egestas tempus ex. Quisque a massa commodo, mattis risus vel, facilisis velit. Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris at aliquet lacus, eget efficitur sapien."
+saludo=Label(frame3,text=greetings)
+saludo.grid(column=0,row=0, padx=3, pady=3)
+
+frame4=Frame(frame1,width=100,height=130,bg="green")
+frame4.grid(column = 0, row= 1, padx=3, pady=3,columnspan=4)
+
+label1=Label(frame4)
+img1=PhotoImage(file=getPath('cinepng.png'),width=600,height=600)
+label1['image']=img1
+label1.grid(column=0,row=0,padx=3, pady=3)
+
+img2=PhotoImage(file=getPath('cinebahia.png'),width=600,height=600)
+img3=PhotoImage(file=getPath('cine1.png'),width=600,height=600)
+img4=PhotoImage(file=getPath('cine2.png'),width=600,height=600)
+img5=PhotoImage(file=getPath('cine4.png'),width=600,height=600)
+
+label1.bind('<ButtonPress-1>', cambioAImg2)
+
+boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5,command=ventanaUsuario)
+boton.grid(column=0,row=1)
+
+menubar=Menu(window)
+menu1=Menu(menubar)
+menubar.add_cascade(menu=menu1,label="Opciones")
+menu1.add_command(label="Descripcion",command=descripcion)
+menu1.add_command(label="Salir",command=window.destroy)
+
+window['menu']=menubar
+
+frameHoja=Frame(frame2,height=50,bg="gray")
 hojaIns=Label(frameHoja, text="Pulse sobre cada \n text para cambiar")
 hoja1=Label(frameHoja, text="Daniel Daza")
 hoja2=Label(frameHoja, text="Ochoa")
@@ -76,12 +160,12 @@ def ayuda(place,r,c,text):
 
 
 
-hojaFotos1=Fotos(frameDesarrolladores,"1")
-hojaFotos2=Fotos(frameDesarrolladores,"2")
-hojaFotos3=Fotos(frameDesarrolladores,"3")
-hojaFotos4=Fotos(frameDesarrolladores,"4")
+hojaFotos1=Fotos(frame2,"1")
+hojaFotos2=Fotos(frame2,"2")
+hojaFotos3=Fotos(frame2,"3")
+hojaFotos4=Fotos(frame2,"4")
 
-frameDesarrolladores.pack()
+frame2.pack()
 frameHoja.pack()
 hojaIns.pack()
 hojaIns.bind('<ButtonPress-1>', cambioDeInstrucciones)

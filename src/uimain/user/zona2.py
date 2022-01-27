@@ -1,7 +1,5 @@
 from tkinter import *
 
-from matplotlib.cbook import IgnoredKeyboardWarning
-
 class Zona2: 
    
     def __init__(self, user):
