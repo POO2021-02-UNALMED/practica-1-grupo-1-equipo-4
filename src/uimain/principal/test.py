@@ -151,15 +151,6 @@ hoja2=Label(frameHoja, text="Ochoa")
 hoja3=Label(frameHoja, text="Daniel Santiago")
 hoja4=Label(frameHoja, text="Marlon Calle")
 
-def ayuda(place,r,c,text):
-    hojaXFotoY=Label(place)
-    Foto11=PhotoImage(file=getPath(text))
-    hojaXFotoY["image"]=Foto11
-    return hojaXFotoY,Foto11
-
-
-
-
 hojaFotos1=Fotos(frame2,"1")
 hojaFotos2=Fotos(frame2,"2")
 hojaFotos3=Fotos(frame2,"3")
