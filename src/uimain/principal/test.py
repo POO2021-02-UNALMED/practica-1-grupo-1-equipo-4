@@ -1,7 +1,7 @@
 from cProfile import label
 from tkinter import *
 from tkinter import messagebox
-from ..user.user import User
+from ..user import *
 
 class Fotos(Frame):
     def __init__(self,a,hoja):
