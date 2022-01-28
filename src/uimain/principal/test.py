@@ -1,6 +1,7 @@
 from cProfile import label
 from tkinter import *
 from tkinter import messagebox
+from uimain.user.user import User
 
 class Fotos(Frame):
     def __init__(self,a,hoja):
@@ -93,9 +94,7 @@ def cambioAImg5(action):
     label1.bind('<ButtonPress-1>', cambioAImg1)
 
 def ventanaUsuario():
-        ventana_nueva=Toplevel()                ##Aca va la venta de usuario
-        ventana_nueva.geometry("350x400")
-        ventana_nueva.title("VENTANA DE DAZA")
+        User()
         window.iconify()
 
 def descripcion():
@@ -150,6 +149,7 @@ hoja1=Label(frameHoja, text="Daniel Daza")
 hoja2=Label(frameHoja, text="Ochoa")
 hoja3=Label(frameHoja, text="Daniel Santiago")
 hoja4=Label(frameHoja, text="Marlon Calle")
+
 
 hojaFotos1=Fotos(frame2,"1")
 hojaFotos2=Fotos(frame2,"2")
