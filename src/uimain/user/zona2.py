@@ -56,24 +56,64 @@ class Zona2:
         valIniciales=None
         valHabilitados=None
         agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
-
-        Pelicula(agregarPelicula.getValue("nombre"),
+        
+        agregarPelicula.pack()
+        
+        pelicula=Pelicula(agregarPelicula.getValue("nombre"),
                 agregarPelicula.getValue("Genero"),
                 agregarPelicula.getValue("Duración"),
                 agregarPelicula.getValue("Idioma"),
                 agregarPelicula.getValue("Edad mínima"),
                 cine= ELCINE) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
         
-        ELCINE.agregarPelicula()
-
+        ELCINE.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
         
-        
+        #TODO: 
+        #TODO: Luego de agregar la peplícula ¿qué?
+        #TODO: Probar para varios casos y falta serializar
 
     def quitarPelicula(self):
-        pass
+        
+        
+        self.cambiar()
+
+        self.titulo.configure(text = "Quitar pelicula")
+        self.texto.configure(text = "Permite quitar películas de la base de datos")
+
+        nomCriterios="Pelicula"
+        criterios=["Nombre"]
+        nomValores="Información"
+        valIniciales=None
+        valHabilitados=None
+        quitarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+        
+        quitarPelicula.pack()
+
+        ELCINEL.getPeliculas().pop(ELCINE.getPeliculas().index(quitarPelicula.getValue("Nombre")))
+
+        #El .pop si afectará la lista
+        #TODO: Luego de quitar la película ¿qué?
+        #TODO: Mostrar los nombres de las peliculas por hacer
+        #TODO: Falta serializar.
 
     def agregarFuncion(self):
-        pass
+        self.cambiar()
+
+        self.titulo.configure(text = "Agregar función")
+        self.texto.configure(text = "Permite agregar funciones")
+
+        nomCriterios="Función"
+        criterios=["Dia","Mes","Sala","Horario","Nombre pelicula"]
+        nomValores="Información"
+        valIniciales=None
+        valHabilitados=None
+        agregarFuncion = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+        
+        agregarFuncion.pack()
+
+        #TODO: Luego de quitar la película ¿qué?
+        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
+        #TODO: Falta serializar.
 
     def agregarAuto(self):
         pass
@@ -85,7 +125,6 @@ class Zona2:
         pass
 
     
-
     def ensayo(self):
 
         self.cambiar()
