@@ -1,6 +1,6 @@
 from ssl import CertificateError
 from tkinter import *
-
+from src.gestionAplicacion.cinemas.cine import Cine
 from src.gestionAplicacion.boleteria.pelicula import Pelicula
 
 class Zona2: 
@@ -55,14 +55,16 @@ class Zona2:
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
-        agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados)
+        agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
 
         Pelicula(agregarPelicula.getValue("nombre"),
                 agregarPelicula.getValue("Genero"),
                 agregarPelicula.getValue("Duración"),
                 agregarPelicula.getValue("Idioma"),
                 agregarPelicula.getValue("Edad mínima"),
-                cine= None) #TODO: ¿Cuál es nuestro cine?
+                cine= ELCINE) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
+        
+        ELCINE.agregarPelicula()
 
         
         
