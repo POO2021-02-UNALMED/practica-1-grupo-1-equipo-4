@@ -1,7 +1,5 @@
 from tkinter import *
 
-from matplotlib.cbook import IgnoredKeyboardWarning
-
 class Zona2: 
    
     def __init__(self, user):
@@ -10,7 +8,8 @@ class Zona2:
         self.todo = Frame(user, width =1000, height = 500, bg = "black") #Este es lo que contiene toda la zona 2
         self.todo.pack()
 
-        self.funciones = {"Agregar Pelicula":self.agregarPelicula,
+        self.funciones = {"Venta":self.venta,
+                         "Agregar Pelicula":self.agregarPelicula,
                          "Quitar Pelicula":self.quitarPelicula, 
                          "Agregar Funcion":self.agregarFuncion,
                          "Generar Funcion Auto":self.agregarAuto,
@@ -37,25 +36,35 @@ class Zona2:
         self.cuerpo.pack()
 
     ## Procesos y consultas
-    def agregarPelicula():
+
+    def venta(self):
         pass
 
-    def quitarPelicula():
+    def agregarPelicula(self):
+
+        self.cambiar()
+
+        self.titulo.configure(text = "Agregar Pelicula")
+        self.texto.configure(text = "esto es para agregar una peli")
+
         pass
 
-    def agregarFuncion():
+    def quitarPelicula(self):
         pass
 
-    def agregarAuto():
+    def agregarFuncion(self):
         pass
 
-    def agregarAuto():
+    def agregarAuto(self):
         pass
 
-    def rifa():
+    def agregarAuto(self):
         pass
 
-    def agregarSala():
+    def rifa(self):
+        pass
+
+    def agregarSala(self):
         pass
 
     
