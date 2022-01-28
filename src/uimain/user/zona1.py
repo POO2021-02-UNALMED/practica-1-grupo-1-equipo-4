@@ -22,9 +22,25 @@ class Zona1(Menu):
 ## ventanita de archivos
     def archivos(self):
         archivos = Menu(self)
-        archivos.add_command(label = "Aplicacion")
+        archivos.add_command(label = "Aplicacion",command=self.aplicacion)
         archivos.add_command(label = "Salir" )
         self.add_cascade(menu = archivos, label = "Archivos")
+
+
+    def aplicacion(self):
+        
+        ventana_nueva=Toplevel()
+        ventana_nueva.title("Aplicacion")
+        ventana_nueva.geometry("800x400")
+        titulo = Label(ventana_nueva, text="Cine Bahía")
+        titulo.pack(anchor=CENTER)
+        titulo.config(fg="blue",  font=("Cambria",26)) 
+
+        informacion=Label(ventana_nueva, text="Esta aplicación fue creada con la finalidad de venta y administración de un cinema.\n Para esto se tiene a la disposicion un menú en donde se tendrán las siguientes opciones:\n1.Archivos:En el que se se podrá escoger entre Aplicación(Ver información básica) y Salir para regresar al inicio del programa\n2. Procesos y consultas: Para realizar diversas funciones como son la rifa/venta  de un boleto, agregar/quitar una función, programación automática de funciones, entre otras.\n3.Ayuda: Se encontrará los autores del excelente programa")
+        informacion.pack(anchor=CENTER)
+        exit_button = Button(ventana_nueva, text="Salir", command=ventana_nueva.destroy) 
+        exit_button.pack(pady=80) 
+
 
 
 ## ventanita
@@ -33,4 +49,11 @@ class Zona1(Menu):
         ayuda.add_command(label = "Acerca de")
         self.add_cascade(menu = ayuda, label = "Ayuda")
 
-        
+    def acerca(self):
+        ventanacerca=Toplevel()
+        ventanacerca.title("Acerca de los POOfantasticos ")
+        ventanacerca.geometry("800x400")   
+
+        exit_button = Button(ventanacerca, text="Salir", command=ventanacerca.destroy) 
+        exit_button.pack(pady=50) 
+
