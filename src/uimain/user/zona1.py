@@ -9,13 +9,7 @@ class Zona1(Menu):
         self.ayuda()
         user["menu"] = self
 
-    def archivos(self):
-        archivos = Menu(self)
-        archivos.add_command(label = "Aplicacion")
-        archivos.add_command(label = "Salir" )
-        self.add_cascade(menu = archivos, label = "Archivos")
-
-
+## ventanita de proceso
     def procesos(self):
         self.procesos = Menu(self)
         dic = self.zona2.funciones
@@ -23,8 +17,17 @@ class Zona1(Menu):
             self.procesos.add_command(label = key, command = value)
         
         self.add_cascade(menu = self.procesos, label = "Procesos y Consultas")
-    
-    
+
+
+## ventanita de archivos
+    def archivos(self):
+        archivos = Menu(self)
+        archivos.add_command(label = "Aplicacion")
+        archivos.add_command(label = "Salir" )
+        self.add_cascade(menu = archivos, label = "Archivos")
+
+
+## ventanita
     def ayuda(self):
         ayuda = Menu(self)
         ayuda.add_command(label = "Acerca de")

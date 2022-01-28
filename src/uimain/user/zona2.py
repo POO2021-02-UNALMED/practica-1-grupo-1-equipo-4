@@ -9,8 +9,8 @@ class Zona2:
         self.todo.pack()
 
         self.funciones = {"Venta":self.venta,
-                         "Agregar Pelicula":self.agregarPelicula,
-                         "Quitar Pelicula":self.quitarPelicula, 
+                         "Agregar Pelicula":self.ensayo,
+                         "Quitar Pelicula":self.agregarPelicula, 
                          "Agregar Funcion":self.agregarFuncion,
                          "Generar Funcion Auto":self.agregarAuto,
                          "Rifar Boleto":self.rifa,
@@ -46,6 +46,31 @@ class Zona2:
 
         self.titulo.configure(text = "Agregar Pelicula")
         self.texto.configure(text = "esto es para agregar una peli")
+        window = self.cuerpo
+
+        text = Frame(window, width=500, height=100, bg="grey")
+        buttons = Frame(window, width=500, height=500)
+        text.pack()
+        buttons.pack()
+
+
+        columnas = 4
+        filas = 4
+        elementos = list("789/456*123-.0+=")
+        num = 0
+        total = []
+
+        for i in range(filas):
+            fila=[]
+            for j in range(columnas):
+                fila.append(Button(master = buttons, text=str(elementos[num]), height=3, width = 10))
+
+                num += 1
+                fila[j].grid(column= j, row = i, padx = 3, pady = 3)
+            total.append(fila)
+
+        Cbutton = Button(master = buttons, text = "C", height=3,width= 49)
+        Cbutton.grid(column = 0, row= 4, padx=3, pady=3,columnspan=4)
 
         pass
 
@@ -53,9 +78,6 @@ class Zona2:
         pass
 
     def agregarFuncion(self):
-        pass
-
-    def agregarAuto(self):
         pass
 
     def agregarAuto(self):
@@ -82,8 +104,8 @@ class Zona2:
         
         window = self.cuerpo
 
-        text = Frame(self.cuerpo, width=500, height=100, bg="grey")
-        buttons = Frame(self.cuerpo, width=500, height=500)
+        text = Frame(window, width=500, height=100, bg="grey")
+        buttons = Frame(window, width=500, height=500)
         text.pack()
         buttons.pack()
 
