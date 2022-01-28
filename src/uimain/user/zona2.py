@@ -1,4 +1,7 @@
+from ssl import CertificateError
 from tkinter import *
+
+from src.gestionAplicacion.boleteria.pelicula import Pelicula
 
 class Zona2: 
    
@@ -45,34 +48,24 @@ class Zona2:
         self.cambiar()
 
         self.titulo.configure(text = "Agregar Pelicula")
-        self.texto.configure(text = "esto es para agregar una peli")
-        window = self.cuerpo
+        self.texto.configure(text = "Permite agregar películas a la base de datos")
 
-        text = Frame(window, width=500, height=100, bg="grey")
-        buttons = Frame(window, width=500, height=500)
-        text.pack()
-        buttons.pack()
+        nomCriterios="Pelicula"
+        criterios=["Nombre","Genero","Duración","Idioma","Edad mínima"]
+        nomValores="Información"
+        valIniciales=None
+        valHabilitados=None
+        agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados)
 
+        Pelicula(agregarPelicula.getValue("nombre"),
+                agregarPelicula.getValue("Genero"),
+                agregarPelicula.getValue("Duración"),
+                agregarPelicula.getValue("Idioma"),
+                agregarPelicula.getValue("Edad mínima"),
+                cine= None) #TODO: ¿Cuál es nuestro cine?
 
-        columnas = 4
-        filas = 4
-        elementos = list("789/456*123-.0+=")
-        num = 0
-        total = []
-
-        for i in range(filas):
-            fila=[]
-            for j in range(columnas):
-                fila.append(Button(master = buttons, text=str(elementos[num]), height=3, width = 10))
-
-                num += 1
-                fila[j].grid(column= j, row = i, padx = 3, pady = 3)
-            total.append(fila)
-
-        Cbutton = Button(master = buttons, text = "C", height=3,width= 49)
-        Cbutton.grid(column = 0, row= 4, padx=3, pady=3,columnspan=4)
-
-        pass
+        
+        
 
     def quitarPelicula(self):
         pass
