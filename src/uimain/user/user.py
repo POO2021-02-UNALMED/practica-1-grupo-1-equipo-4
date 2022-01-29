@@ -12,5 +12,3 @@ class User:
         self.frame = Zona2(self.user)
         self.zona1 = Zona1(self.user, self.frame)
     
-    
-        
