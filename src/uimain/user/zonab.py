@@ -1,5 +1,7 @@
 from tkinter import *
+from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
+from uimain.user.fieldFrame import FieldFrame
 # from src.gestionAplicacion.cinemas.cine import Cine
 # from src.gestionAplicacion.boleteria.pelicula import Pelicula
 
@@ -29,6 +31,7 @@ class ZonaB:
         self.texto.pack()
 
 
+
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green") #este es el cuerpo, se inicializa vacio
         self.cuerpo.pack()
         
@@ -36,6 +39,10 @@ class ZonaB:
     def cambiar(self):
         self.cuerpo.pack_forget()
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green")
+
+        self.titulo.configure(text = "Cine Bahía")
+        self.texto.configure(text = "Bienvendio al cine, seleccione lo que quiera hacer")
+
         self.cuerpo.pack()
 
     ## Procesos y consultas
@@ -119,7 +126,29 @@ class ZonaB:
         pass
 
     def rifa(self):
-        pass
+
+        self.cambiar()
+
+        self.titulo.configure(text = "Rifar Boleto")
+        self.texto.configure(text = "Permite rifar un boleto a una función deseada entre los clientes mas fieles")
+
+        nomCriterios="Función"
+        criterios=["Dia","Mes","Codigo"]
+        nomValores="Información"
+        valIniciales=None
+        valHabilitados=None
+        rifa = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+        
+        rifa.pack()
+
+        funciones=Label(self.cuerpo,text="Aca irian las funciones disponibles")     ###FALTA ENLAZAR CON LAS FUNCIONES DISPONIBLES QUE BOTA LA CAPA LOGICA
+        funciones.pack()
+
+        def resultado(action):
+            messagebox.showinfo(title='Rifa de Boleto!',message="Clientes fieles candidatos a la rifa: ", detail='GANADOR: ')      ###FALTA MOSTRAR LOS CANDIDATOS A GANAR Y EL GANADOR QUE ESO ES LO DE LA CAPA LOGICA 
+            self.cambiar()
+
+        rifa.button.bind('<ButtonRelease>',resultado)
 
     def agregarSala(self):
         pass
