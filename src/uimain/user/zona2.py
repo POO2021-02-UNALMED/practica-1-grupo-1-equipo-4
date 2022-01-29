@@ -1,4 +1,3 @@
-from ssl import CertificateError
 from tkinter import *
 # from src.gestionAplicacion.cinemas.cine import Cine
 # from src.gestionAplicacion.boleteria.pelicula import Pelicula
