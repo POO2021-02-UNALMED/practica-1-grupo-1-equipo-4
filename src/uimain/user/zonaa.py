@@ -1,6 +1,6 @@
 from tkinter import *
 
-class Zona1(Menu):
+class ZonaA(Menu):
     def __init__(self, user,zona2):
         super().__init__(user)
         self.zona2 = zona2

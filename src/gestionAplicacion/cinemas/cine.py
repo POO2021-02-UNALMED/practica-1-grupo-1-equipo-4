@@ -1,5 +1,4 @@
-from types import NoneType
-from boleteria import Funcion, Pelicula, Horario, Boleto
+from .boleteria import Funcion, Pelicula, Horario, Boleto
 from salas import Sala
 from cinemas import Cliente
 import random
@@ -19,7 +18,7 @@ class Cine:
 
 
     def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
-        programadas : list[] = []
+        programadas  = []
         funciones : list[Funcion] = self.verFuncion(mes)
         peliculasMes : list[Pelicula] = list(set([funcion.getPelicula() for funcion in funciones]))
         pelicula_boletos = []
@@ -86,7 +85,7 @@ class Cine:
             for funcion in self.getCartelera():
                 if(funcion.getPelicula() == pelicula and funcion.getDia() >= dia and funcion.getMes() == mes):
                     funciones.append(funcion)
-            for funcion in self.getCartelera()
+            for funcion in self.getCartelera():
                 if(funcion.getPelicula() == pelicula and funcion.getMes() > mes):
                     funciones.append(funcion)
 

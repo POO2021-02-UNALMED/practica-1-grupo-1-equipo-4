@@ -1,1 +1,0 @@
-from uimain.user.user import User

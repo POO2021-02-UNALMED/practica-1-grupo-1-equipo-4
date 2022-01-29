@@ -1,8 +1,9 @@
 from tkinter import *
+from uimain.user.zonaa import ZonaA
 # from src.gestionAplicacion.cinemas.cine import Cine
 # from src.gestionAplicacion.boleteria.pelicula import Pelicula
 
-class Zona2: 
+class ZonaB: 
    
     def __init__(self, user):
 
