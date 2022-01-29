@@ -1,4 +1,5 @@
-from salas import Sala, Silla
+from gestionAplicacion.salas.sala import Sala
+from gestionAplicacion.salas.silla import Silla
 
 class Sala2D(Sala):
 

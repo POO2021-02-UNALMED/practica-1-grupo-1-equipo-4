@@ -1,5 +1,4 @@
 from tokenize import String
-from gestionAplicacion.cinemas import Cine
 """
 This is a test
 
@@ -12,7 +11,7 @@ class Pelicula:
         self._duracion:int = duracion
         self._lenguaje:str = lenguaje
         self._clasificacion:int = clasificacion
-        self._cine: Cine = cine #!!! pendiente para corregir
+        self._cine= cine #!!! pendiente para corregir
         self._cantidadTotalBoletosVendidos:int =0
         self._expectativaVentas:int =0
 
@@ -50,7 +49,7 @@ class Pelicula:
         self._clasificacion = clasificacion
 
 
-    def getCine(self)->Cine:
+    def getCine(self):
         return self._cine
     def setCine(self, cine):
         self._cine = cine

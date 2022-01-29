@@ -1,8 +1,5 @@
 from sys import int_info
 
-from gestionAplicacion.cinemas.cine import Cine
-from ..salas import Silla
-from ..boleteria import Funcion
 
 
 class Sala:
@@ -11,14 +8,14 @@ class Sala:
     def __init__(self,filas,columnas,filasvip,precio,cine):
         
         self._numero : int
-        self._sillas : list[Silla] = []
-        self._funciones : list[Funcion] = []
+        self._sillas = []
+        self._funciones = []
 
         self._filas : int = filas
         self._columnas : int = columnas
         self._filasvip : int = filasvip
         self._precio : float = precio
-        self._cine : Cine = cine
+        self._cine = cine
 
         self.crearSilleteria()
         cine.agregarSala(self)
@@ -30,7 +27,7 @@ class Sala:
     #
 
 
-    def agregarFuncion(self, funcion: Funcion):
+    def agregarFuncion(self, funcion):
         self._funciones.append(funcion)
 
     def cantidadSillas(self):

@@ -1,9 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
+from gestionAplicacion.cinemas.cine import Cine
+from gestionAplicacion.boleteria.pelicula import Pelicula
 from uimain.user.fieldFrame import FieldFrame
-# from src.gestionAplicacion.cinemas.cine import Cine
-# from src.gestionAplicacion.boleteria.pelicula import Pelicula
 
 class ZonaB: 
    

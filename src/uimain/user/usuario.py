@@ -1,12 +1,6 @@
 from tkinter import *
-
-if __name__ == "__main__":
-    from zonaa import ZonaA
-    from zonab import ZonaB
-
-else:
-    from uimain.user.zonaa import ZonaA
-    from uimain.user.zonab import ZonaB
+from uimain.user.zonaa import ZonaA
+from uimain.user.zonab import ZonaB
     
 
 class Usuario:
@@ -19,4 +13,4 @@ class Usuario:
         self.frame = ZonaB(self.user)
         self.zona1 = ZonaA(self.user, self.frame)
 
-Usuario().user.mainloop()
+# Usuario().user.mainloop()

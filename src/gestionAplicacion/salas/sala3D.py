@@ -1,9 +1,10 @@
 from fileinput import filename
 from importlib.metadata import FileHash
-from ..cinemas import Cine
-from salas import Sala, Silla
 
-class sala3D(Sala):
+from gestionAplicacion.salas.sala import Sala
+from gestionAplicacion.salas.silla import Silla
+
+class Sala3D(Sala):
 
     def __init__(self, *args):
 
