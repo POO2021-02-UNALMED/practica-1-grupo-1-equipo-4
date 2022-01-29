@@ -1,12 +1,6 @@
 from tkinter import *
-
-if __name__ == "__main__":
-    from zonaa import ZonaA
-    from zonab import ZonaB
-
-else:
-    from uimain.user.zonaa import ZonaA
-    from uimain.user.zonab import ZonaB
+from uimain.user.zonaa import ZonaA
+from uimain.user.zonab import ZonaB
     
 
 class Usuario:

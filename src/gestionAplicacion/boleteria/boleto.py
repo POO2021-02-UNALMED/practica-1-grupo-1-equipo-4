@@ -3,19 +3,17 @@
 
 ##Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 
-from funcion import Funcion
-from ..salas import Tipo, Silla
-from ..cinemas import Cliente
+from gestionAplicacion.salas.tipo import Tipo
 
 #
 #Creo que esta completo
 #
 class Boleto:
 
-    def __init__(self, funcion: "Funcion" , silla: "Silla"):
+    def __init__(self, funcion, silla):
         
         self._disponibilidad : bool= True
-        self._funcion : Funcion = funcion
+        self._funcion = funcion
         self.setAtr_silla(silla)
         self._precioTotal: float =  self.calcularPrecio()
         self._num_silla: int = 0
@@ -27,12 +25,12 @@ class Boleto:
         bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla
         return bruto
 
-    def calcularPrecioDefinitivo(self, cliente : Cliente):
+    def calcularPrecioDefinitivo(self, cliente):
 
         total: float = self.calcularPrecio()-(self.calcularPrecio()*(cliente.getDescuento()))
         self.setPrecioTotal(total)
 
-    def setAtr_silla(self, silla : Silla):
+    def setAtr_silla(self, silla):
 
         self._num_silla = silla.getNumero()
         self.setTipo_silla(silla.getTipo())
@@ -69,7 +67,7 @@ class Boleto:
         self._disponibilidad = disponibilidad
 
 
-    def getFuncion(self) -> Funcion:
+    def getFuncion(self):
         return self._funcion
     def setFuncion(self, funcion):
         self._funcion = funcion

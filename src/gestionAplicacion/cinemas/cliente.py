@@ -1,5 +1,4 @@
 from typing import Collection
-from cinemas import Cine
 from collections import Counter
 class Cliente:
 

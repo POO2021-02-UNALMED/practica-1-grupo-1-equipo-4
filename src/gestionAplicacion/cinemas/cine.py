@@ -1,15 +1,20 @@
-from .boleteria import Funcion, Pelicula, Horario, Boleto
-from salas import Sala
-from cinemas import Cliente
 import random
+
+from gestionAplicacion.boleteria.funcion import Funcion
+from gestionAplicacion.boleteria.pelicula import Pelicula
+from gestionAplicacion.boleteria.horario import Horario
+from gestionAplicacion.boleteria.boleto import Boleto
+from gestionAplicacion.salas.sala import Sala
+from gestionAplicacion.cinemas.cliente import Cliente
+
 
 class Cine: 
 
     def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
         self._nombre : str = nombre
-        self._clientes : list[Cliente]= clientes
-        self._cartelera : list[Funcion]= cartelera
-        self._peliculas : list[Pelicula] = peliculas
+        self._clientes = clientes
+        self._cartelera = cartelera
+        self._peliculas = peliculas
         self._salas : list[Sala]= salas
         self._dineroGanado= dineroGanado
         self._DESCUENTOMVC = DESCUENTOMVC

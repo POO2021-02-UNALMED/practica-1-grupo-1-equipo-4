@@ -1,7 +1,8 @@
 from tkinter import *
 from uimain.user.zonaa import ZonaA
-# from src.gestionAplicacion.cinemas.cine import Cine
-# from src.gestionAplicacion.boleteria.pelicula import Pelicula
+from gestionAplicacion.cinemas.cine import Cine
+from gestionAplicacion.boleteria.pelicula import Pelicula
+from uimain.user.fieldFrame import FieldFrame
 
 class ZonaB: 
    

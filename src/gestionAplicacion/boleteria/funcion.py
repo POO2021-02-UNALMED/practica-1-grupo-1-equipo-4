@@ -2,9 +2,10 @@ from code import interact
 from hashlib import new
 from tkinter import NONE
 from xmlrpc.client import Boolean
-from ..cinemas import Cine, Cliente
-from ..salas import Sala,Silla
-from ..boleteria import Horario, Pelicula, Boleto
+
+from gestionAplicacion.boleteria.horario import Horario
+from gestionAplicacion.boleteria.boleto import Boleto
+from gestionAplicacion.salas.sala import Sala
 
 class Funcion:
     cantidadFunciones:int
@@ -12,20 +13,20 @@ class Funcion:
     def __init__(self,dia,mes,horario,pelicula,sala,cine):
         self._dia:int = dia
         self._mes:int = mes
-        self._horario:"Horario" = horario
-        self._pelicula:"Pelicula" = pelicula
+        self._horario = horario
+        self._pelicula = pelicula
         self._numero:int = Funcion.cantidadFunciones
         self.setSala(sala)
         self.setCine(cine)
         self.crearBoleteria()
         cine.agregarFuncion(self)
         sala.agregarFuncion(self)
-        self._boletos:list[Boleto]=[]
+        self._boletos = []
         self._cantidadBoletosVendidos:int=0
         Funcion.cantidadFunciones+=1
 
     @classmethod
-    def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula:Pelicula,num_sala:int,cine:Cine): #devuelve una funcion o none
+    def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none
         cls._sala:Sala=cine.buscarSala(num_sala)
         if(cls._sala!=None):
             if(cls._sala.verificarDisponibilidad(dia,mes,horario.getHora())):
@@ -37,7 +38,7 @@ class Funcion:
     
 
     def crearBoleteria(self):
-        sillas:list[Silla]=self._sala.getSillas()
+        sillas = self._sala.getSillas()
         disponibles:int=self._sala.cantidadSillas() #ignorar, catidadSillas() se encuentra en cada subclase, por lo que acá marca el error
         total:int=len(self._sala.getSillas())
         for i in range(total):
@@ -57,7 +58,7 @@ class Funcion:
 
         return total
 
-    def VentaBoleto(self,boleto:Boleto,cliente:Cliente)->bool:
+    def VentaBoleto(self,boleto,cliente)->bool:
         if (boleto.isDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
             boleto.setDisponibilidad(False)
             cliente.getHistorialCompras().append(boleto)

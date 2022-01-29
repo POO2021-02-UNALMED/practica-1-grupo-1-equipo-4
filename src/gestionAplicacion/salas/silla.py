@@ -1,4 +1,4 @@
-from ..salas import Tipo
+from gestionAplicacion.salas.tipo import Tipo
 
 class Silla:
     def __init__(self,tipo,numero):
