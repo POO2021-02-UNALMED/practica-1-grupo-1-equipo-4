@@ -19,4 +19,4 @@ class Usuario:
         self.frame = ZonaB(self.user)
         self.zona1 = ZonaA(self.user, self.frame)
 
-Usuario().user.mainloop()
+# Usuario().user.mainloop()
