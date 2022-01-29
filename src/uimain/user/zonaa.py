@@ -26,6 +26,7 @@ class ZonaA(Menu):
         archivos.add_command(label = "Salir" )
         self.add_cascade(menu = archivos, label = "Archivos")
 
+    #Ventana  de dialogo de aplicacion
 
     def aplicacion(self):
         
@@ -43,17 +44,24 @@ class ZonaA(Menu):
 
 
 
-## ventanita
+## ventanita de ayuda
     def ayuda(self):
         ayuda = Menu(self)
-        ayuda.add_command(label = "Acerca de")
+        ayuda.add_command(label = "Acerca de",command=self.acerca)
         self.add_cascade(menu = ayuda, label = "Ayuda")
 
+    #Ventana de dialogo de Acerca de 
     def acerca(self):
         ventanacerca=Toplevel()
         ventanacerca.title("Acerca de los POOfantasticos ")
         ventanacerca.geometry("800x400")   
 
-        exit_button = Button(ventanacerca, text="Salir", command=ventanacerca.destroy) 
+        titulo = Label(ventanacerca, text="Acerca del proyecto")
+        titulo.pack(anchor=CENTER)
+        titulo.config(fg="blue",  font=("Cambria",28)) 
+
+        info=Label(ventanacerca,text="Universidad Nacional de Colombia\nSede Medellin\n2022\nMateria: Programacion orientada a objetos\nDesarrolladores:\nMarlon Calle Areiza\nDaniel Santiago Cadavid Montoya\nDaniel Daza Macias\nJuan Esteban Ochoa Gomez")
+
+        exit_button = Button(ventanacerca, text="Salir de Latam", command=ventanacerca.destroy) 
         exit_button.pack(pady=50) 
 
