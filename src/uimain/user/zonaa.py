@@ -72,6 +72,6 @@ class ZonaA(Menu):
 
         info.pack(anchor=W)
 
-        exit_button = Button(ventanacerca, text="Salir de Latam", command=ventanacerca.destroy) 
+        exit_button = Button(ventanacerca, text="Salir",font=("Microsoft Himalaya",20), command=ventanacerca.destroy) 
         exit_button.pack(anchor=S,pady=30) 
 

@@ -129,7 +129,7 @@ class ZonaB:
         self.texto.configure(text = "Permite agregar funciones de un día en una sala")
 
         nomCriterios="Fecha"
-        criterios=["Dia","Mes"]
+        criterios=["Mes","Día","Sala"]
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
@@ -137,7 +137,7 @@ class ZonaB:
 
         agregarAuto.pack()
      
-
+        
         #TODO: Luego de realizar la programcion automatica ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
         #TODO: Falta serializar.
