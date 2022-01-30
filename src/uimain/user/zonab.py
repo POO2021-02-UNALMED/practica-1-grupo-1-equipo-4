@@ -163,6 +163,10 @@ class ZonaB:
         #sala = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
         #sala.pack()
 
+        def create(action):
+            messagebox.showinfo(title="Información",message="Sala creada con éxito!")      ###FALTA LLAMAR AL METODO QUE CREA LA SALA DE LA CAPA LOGICA
+            self.cambiar()
+
         def tres():
             global nueva
             try:
@@ -170,10 +174,12 @@ class ZonaB:
             except NameError:
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
+                nueva.button.bind('<ButtonRelease>',create)
             else:
                 nueva.pack_forget()
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
+                nueva.button.bind('<ButtonRelease>',create)
         
         def dos():
             global nueva
@@ -182,17 +188,18 @@ class ZonaB:
             except NameError:
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
+                nueva.button.bind('<ButtonRelease>',create)
             else:
                 nueva.pack_forget()
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
+                nueva.button.bind('<ButtonRelease>',create)
 
         tresd=Radiobutton(self.cuerpo,text="3D",variable=checked,value=3,command=tres)
         tresd.pack()
         dosd=Radiobutton(self.cuerpo,text="2D",variable=checked,value=2,command=dos)
         dosd.pack()
 
-        
 
     
     def ensayo(self):
