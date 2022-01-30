@@ -14,8 +14,8 @@ class ZonaB:
         self.todo.pack()
 
         self.funciones = {"Venta":self.venta,
-                         "Agregar Pelicula":self.ensayo,
-                         "Quitar Pelicula":self.agregarPelicula, 
+                         "Agregar Pelicula":self.agregarPelicula,
+                         "Quitar Pelicula":self.quitarPelicula, 
                          "Agregar Funcion":self.agregarFuncion,
                          "Generar Funcion Auto":self.agregarAuto,
                          "Rifar Boleto":self.rifa,
