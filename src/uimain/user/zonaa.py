@@ -37,7 +37,7 @@ class ZonaA(Menu):
         titulo.pack(anchor=CENTER)
         titulo.config(fg="blue",  font=("Cambria",26)) 
 
-        informacion=Label(ventana_nueva, text="Esta aplicación fue creada con la finalidad de venta y administración de un cinema.\n Para esto se tiene a la disposicion un menú en donde se tendrán las siguientes opciones:\n1.Archivos:En el que se se podrá escoger entre Aplicación(Ver información básica) y Salir para regresar al inicio del programa\n2. Procesos y consultas: Para realizar diversas funciones como son la rifa/venta  de un boleto, agregar/quitar una función, programación automática de funciones, entre otras.\n3.Ayuda: Se encontrará los autores del excelente programa")
+        informacion=Label(ventana_nueva, text="Esta aplicación fue creada con la finalidad de venta y administración de un cinema.\n Para esto se tiene a la disposicion un menú en donde se tendrán las siguientes opciones:\n1.Archivos:En el que se se podrá escoger entre Aplicación(Ver información básica) y Salir para regresar al inicio del programa\n2. Procesos y consultas: Para realizar diversas funciones como son la rifa/venta  de un boleto, agregar/quitar una función, programación automática de funciones, entre otras.\n3.Ayuda: Se encontrará los autores del excelente programa",font=("Microsoft Himalaya",20))
         informacion.pack(anchor=CENTER)
         exit_button = Button(ventana_nueva, text="Salir", command=ventana_nueva.destroy) 
         exit_button.pack(pady=80) 
@@ -54,14 +54,24 @@ class ZonaA(Menu):
     def acerca(self):
         ventanacerca=Toplevel()
         ventanacerca.title("Acerca de los POOfantasticos ")
-        ventanacerca.geometry("800x400")   
+        ventanacerca.geometry("400x550")   
 
         titulo = Label(ventanacerca, text="Acerca del proyecto")
-        titulo.pack(anchor=CENTER)
-        titulo.config(fg="blue",  font=("Cambria",28)) 
+        titulo.pack(anchor=NW)
+        titulo.config(fg="#009ACD",font=("Cambria",23)) 
 
-        info=Label(ventanacerca,text="Universidad Nacional de Colombia\nSede Medellin\n2022\nMateria: Programacion orientada a objetos\nDesarrolladores:\nMarlon Calle Areiza\nDaniel Santiago Cadavid Montoya\nDaniel Daza Macias\nJuan Esteban Ochoa Gomez")
+        tlugar=Label(ventanacerca,text="Materia y Ubicación:",font=("Cambria",17),fg="#EE3B3B",width=20)
+        tlugar.pack(anchor=W,pady=10)
+        ilugar=Label(ventanacerca,text="Programacion orientada a objetos\nProfesor: Jaime Alberto Guzmán\n\nUniversidad Nacional de Colombia\nSede Medellin\nAño: 2022",font=("Microsoft Himalaya",20),width=30)
+        ilugar.pack(anchor=W)
+
+
+        tinfo=Label(ventanacerca,text="Desarrolladores:",font=("Cambria",17),fg="#EE3B3B",width=20)
+        tinfo.pack(anchor=W,pady=10)
+        info=Label(ventanacerca,text="\nMarlon Calle Areiza\nDaniel Santiago Cadavid Montoya\nDaniel Daza Macias\nJuan Esteban Ochoa Gomez",font=("Microsoft Himalaya",20),width=30)
+
+        info.pack(anchor=W)
 
         exit_button = Button(ventanacerca, text="Salir de Latam", command=ventanacerca.destroy) 
-        exit_button.pack(pady=50) 
+        exit_button.pack(anchor=S,pady=30) 
 

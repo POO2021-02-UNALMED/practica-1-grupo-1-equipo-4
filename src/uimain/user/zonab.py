@@ -123,8 +123,24 @@ class ZonaB:
         #TODO: Falta serializar.
 
     def agregarAuto(self):
-        pass
+        self.cambiar()
 
+        self.titulo.configure(text="Programación automática")
+        self.texto.configure(text = "Permite agregar funciones de un día en una sala")
+
+        nomCriterios="Fecha"
+        criterios=["Dia","Mes"]
+        nomValores="Información"
+        valIniciales=None
+        valHabilitados=None
+        agregarAuto = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+
+        agregarAuto.pack()
+     
+
+        #TODO: Luego de realizar la programcion automatica ¿qué?
+        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
+        #TODO: Falta serializar.
     def rifa(self):
 
         self.cambiar()
