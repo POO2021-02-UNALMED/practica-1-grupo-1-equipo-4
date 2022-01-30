@@ -2,6 +2,7 @@ from msilib.schema import Class
 import sys
 import os
 from tkinter import *
+from uimain.user.usuario import Usuario
 
 class First(Frame):
     def __init__(self,master):
@@ -35,7 +36,7 @@ class First(Frame):
 
         self.label1.bind('<ButtonPress-1>', self.cambioAImg2)
 
-        boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5)#,command=ventanaUsuario)
+        boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5,command=self.ventanaUsuario)
         boton.grid(column=0,row=1)
 
         menubar=Menu(master)
@@ -139,9 +140,8 @@ class First(Frame):
         self.label1.grid(column=0,row=0,padx=3,pady=3)
         self.label1.bind('<ButtonPress-1>', self.cambioAImg1)
 
-    #def ventanaUsuario():
-    #        ventana_usuario=Usuario()
-    #        window.iconify()
+    def ventanaUsuario(self):
+            ventana_usuario=Usuario()
 
     def descripcion(self):
             global greetings
