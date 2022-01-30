@@ -3,11 +3,12 @@ from tkinter import *
 class ZonaA(Menu):
     def __init__(self, user,zona2):
         super().__init__(user)
+        self.user = user
         self.zona2 = zona2
         self.archivos()
         self.procesos()
         self.ayuda()
-        user["menu"] = self
+        self.user["menu"] = self
 
 ## ventanita de proceso
     def procesos(self):
@@ -23,7 +24,7 @@ class ZonaA(Menu):
     def archivos(self):
         archivos = Menu(self)
         archivos.add_command(label = "Aplicacion",command=self.aplicacion)
-        archivos.add_command(label = "Salir" )
+        archivos.add_command(label = "Salir", command = self.user.destroy )
         self.add_cascade(menu = archivos, label = "Archivos")
 
     #Ventana  de dialogo de aplicacion
