@@ -1,7 +1,7 @@
 from cProfile import label
 from tkinter import *
 from tkinter import messagebox
-# from ..user import *
+#from uimain.user.usuario import Usuario
 
 class Fotos(Frame):
     def __init__(self,a,hoja):
@@ -93,9 +93,9 @@ def cambioAImg5(action):
     label1.grid(column=0,row=0,padx=3,pady=3)
     label1.bind('<ButtonPress-1>', cambioAImg1)
 
-def ventanaUsuario():
-        User()
-        window.iconify()
+#def ventanaUsuario():
+#        ventana_usuario=Usuario()
+#        window.iconify()
 
 def descripcion():
         global greetings
@@ -132,7 +132,7 @@ img5=PhotoImage(file=getPath('cine4.png'),width=600,height=600)
 
 label1.bind('<ButtonPress-1>', cambioAImg2)
 
-boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5,command=ventanaUsuario)
+boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5)#,command=ventanaUsuario)
 boton.grid(column=0,row=1)
 
 menubar=Menu(window)

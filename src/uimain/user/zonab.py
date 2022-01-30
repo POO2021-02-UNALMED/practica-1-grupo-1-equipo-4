@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
-from gestionAplicacion.cinemas.cine import Cine
+#from gestionAplicacion.cinemas.cine import Cine
 from gestionAplicacion.boleteria.pelicula import Pelicula
 from uimain.user.fieldFrame import FieldFrame
 
@@ -151,7 +151,48 @@ class ZonaB:
         rifa.button.bind('<ButtonRelease>',resultado)
 
     def agregarSala(self):
-        pass
+        self.cambiar()
+
+        self.titulo.configure(text = "Agregar una sala")
+        self.texto.configure(text = "Permite agregar una sala segun su tipo (2D o 3D)")
+
+        checked=IntVar()
+
+        global nueva
+
+        #sala = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
+        #sala.pack()
+
+        def tres():
+            global nueva
+            try:
+                nueva
+            except NameError:
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
+                nueva.pack()
+            else:
+                nueva.pack_forget()
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
+                nueva.pack()
+        
+        def dos():
+            global nueva
+            try:
+                nueva
+            except NameError:
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
+                nueva.pack()
+            else:
+                nueva.pack_forget()
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
+                nueva.pack()
+
+        tresd=Radiobutton(self.cuerpo,text="3D",variable=checked,value=3,command=tres)
+        tresd.pack()
+        dosd=Radiobutton(self.cuerpo,text="2D",variable=checked,value=2,command=dos)
+        dosd.pack()
+
+        
 
     
     def ensayo(self):
