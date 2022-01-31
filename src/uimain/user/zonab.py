@@ -3,6 +3,7 @@ from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
 from gestionAplicacion.cinemas.cine import Cine
 from gestionAplicacion.boleteria.pelicula import Pelicula
+from gestionAplicacion.boleteria.funcion import Funcion
 from uimain.user.fieldFrame import FieldFrame
 from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.salas.sala3D import Sala3D
@@ -128,6 +129,18 @@ class ZonaB:
         agregarFuncion = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
         
         agregarFuncion.pack()
+
+        def addFuncion(action):
+            funcion=Funcion(agregarFuncion.getValue("Dia"),
+                agregarFuncion.getValue("Mes"),
+                agregarFuncion.getValue("Horario"),
+                agregarFuncion.getValue("Nombre pelicula"),
+                agregarFuncion.getValue("Sala"),
+                self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
+        
+            self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+        
+        agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
 
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
