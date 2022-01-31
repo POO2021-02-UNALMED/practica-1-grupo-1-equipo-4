@@ -33,15 +33,19 @@ class ZonaA(Menu):
         
         ventana_nueva=Toplevel()
         ventana_nueva.title("Aplicacion")
-        ventana_nueva.geometry("800x400")
+        ventana_nueva.geometry("900x300")
         titulo = Label(ventana_nueva, text="Cine Bahía")
-        titulo.pack(anchor=CENTER)
-        titulo.config(fg="blue",  font=("Cambria",26)) 
+        titulo.pack(anchor=NW)
+        titulo.config(fg="#009ACD",  font=("Cambria",23),pady=15) 
 
-        informacion=Label(ventana_nueva, text="Esta aplicación fue creada con la finalidad de venta y administración de un cinema.\n Para esto se tiene a la disposicion un menú en donde se tendrán las siguientes opciones:\n1.Archivos:En el que se se podrá escoger entre Aplicación(Ver información básica) y Salir para regresar al inicio del programa\n2. Procesos y consultas: Para realizar diversas funciones como son la rifa/venta  de un boleto, agregar/quitar una función, programación automática de funciones, entre otras.\n3.Ayuda: Se encontrará los autores del excelente programa",font=("Microsoft Himalaya",20))
-        informacion.pack(anchor=CENTER)
-        exit_button = Button(ventana_nueva, text="Salir", command=ventana_nueva.destroy) 
-        exit_button.pack(pady=80) 
+        informacion=Label(ventana_nueva, text="Esta aplicación fue creada con la finalidad de venta y administración de un cinema.\n Para esto se tiene a la disposicion un menú en donde se tendrán las siguientes opciones:",font=("Microsoft Himalaya",19),width=85)
+        informacion.pack(anchor=W)
+
+        i2=Label(ventana_nueva, text="1.Archivos:En el que se se podrá escoger entre Aplicación(Ver información básica) y Salir para regresar al inicio del programa\n      2. Procesos y consultas: Para realizar diversas funciones como son la rifa/venta  de un boleto,\n agregar/quitar una función, programación automática de funciones, entre otras.\n3.Ayuda: Se encontrará los autores del excelente programa",font=("Microsoft Himalaya",19),width=200)
+        i2.pack(anchor=W)
+
+        exit_button = Button(ventana_nueva, text="Salir",font=("Microsoft Himalaya",15), command=ventana_nueva.destroy) 
+        exit_button.pack(pady=10) 
 
 
 

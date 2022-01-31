@@ -5,7 +5,8 @@ from tkinter import *
 from uimain.user.usuario import Usuario
 
 class First(Frame):
-    def __init__(self,master):
+    def __init__(self,master,cine):
+        self.cine=cine
         super().__init__(master)
         
         frame1=Frame(self,width=100,height=200,bg="red")
@@ -141,7 +142,7 @@ class First(Frame):
         self.label1.bind('<ButtonPress-1>', self.cambioAImg1)
 
     def ventanaUsuario(self):
-            ventana_usuario=Usuario()
+            ventana_usuario=Usuario(self.cine)
 
     def descripcion(self):
             global greetings
