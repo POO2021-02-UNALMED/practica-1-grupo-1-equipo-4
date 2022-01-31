@@ -132,8 +132,7 @@ def ventana():
         global cine
         nonlocal frame
         nonlocal cliente
-        a = cine.buscadorCliente(numero)
-        print(a)
+        
         if(cine.buscadorCliente(numero) == None):
             
             frame.pack_forget()

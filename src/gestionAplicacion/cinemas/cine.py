@@ -192,27 +192,24 @@ class Cine:
     def buscadorCliente(self, num : int):
         lista = self.getClientes()
         for cliente in lista:
-            if (cliente._cedula == num):
+            if (int(cliente._cedula)== int(num)):
                 return cliente
         return None
 
     def buscarSala(self, num):
-        lista : list[int] = []
+        lista = self.getSalas()
+        for sala in lista:
+            if (int(sala.getNumero())== int(num)):
+                return sala
+        return None
 
-        for sala in self.getSalas():
-            lista.append(sala.getNumero())
-        if num in lista:
-            return self.getSalas()[lista.index(num)]
-        else:
-            return None
     
     def BuscadorPelicula(self, nombre):
 
-        lista: list[str] = []
-        for funcion in self.getCartelera():
-            lista.append(funcion.getPelicula().getNombre())
-            if (funcion.getPelicula().getNombre() == nombre):
-                return funcion.getPelicula()
+        lista = self.getPeliculas()
+        for pelicula in lista:
+            if (str(pelicula.getNombre()==nombre)):
+                return pelicula
         return None
 
 
