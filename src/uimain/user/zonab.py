@@ -4,12 +4,15 @@ from uimain.user.zonaa import ZonaA
 from gestionAplicacion.cinemas.cine import Cine
 from gestionAplicacion.boleteria.pelicula import Pelicula
 from uimain.user.fieldFrame import FieldFrame
+from gestionAplicacion.salas.sala2D import Sala2D
+from gestionAplicacion.salas.sala3D import Sala3D
+from uimain.user.fieldFrame import FieldFrame
 
 class ZonaB: 
    
-    def __init__(self, user):
-
-
+    def __init__(self, user,cine):
+        
+        self.cine=cine
         self.todo = Frame(user, width =1000, height = 500, bg = "black") #Este es lo que contiene toda la zona 2
         self.todo.pack()
 
@@ -176,10 +179,14 @@ class ZonaB:
 
         global nueva
 
-        #sala = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
-        #sala.pack()
-
         def create(action):
+            if checked.get()==2:
+                #Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)
+                print("Se creó sala 2D")
+            elif checked.get()==3:
+                #Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
+                print("Se creó sala 3D")
+
             messagebox.showinfo(title="Información",message="Sala creada con éxito!")      ###FALTA LLAMAR AL METODO QUE CREA LA SALA DE LA CAPA LOGICA
             self.cambiar()
 
@@ -202,12 +209,12 @@ class ZonaB:
             try:
                 nueva
             except NameError:
-                nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas","Filas VIP"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>',create)
             else:
                 nueva.pack_forget()
-                nueva = FieldFrame("Tamaño", ["Filas","Columnas"],"Cantidad",None,None,self.cuerpo)
+                nueva = FieldFrame("Tamaño", ["Filas","Columnas","Filas VIP"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>',create)
 
@@ -215,6 +222,7 @@ class ZonaB:
         tresd.pack()
         dosd=Radiobutton(self.cuerpo,text="2D",variable=checked,value=2,command=dos)
         dosd.pack()
+
 
 
         
