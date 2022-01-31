@@ -68,16 +68,20 @@ class ZonaB:
         agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
         
         agregarPelicula.pack()
-        
-        pelicula=Pelicula(agregarPelicula.getValue("nombre"),
+
+        def addPeli(action):
+            pelicula=Pelicula(agregarPelicula.getValue("Nombre"),
                 agregarPelicula.getValue("Genero"),
                 agregarPelicula.getValue("Duración"),
                 agregarPelicula.getValue("Idioma"),
                 agregarPelicula.getValue("Edad mínima"),
-                cine= ELCINE) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
+                self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
         
-        ELCINE.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+            self.cine.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+            #print([i.getNombre() for i in self.cine.getPeliculas()])
         
+        agregarPelicula.button.bind('<ButtonRelease>',addPeli)
+
         #TODO: 
         #TODO: Luego de agregar la peplícula ¿qué?
         #TODO: Probar para varios casos y falta serializar
@@ -99,7 +103,11 @@ class ZonaB:
         
         quitarPelicula.pack()
 
-        ELCINEL.getPeliculas().pop(ELCINE.getPeliculas().index(quitarPelicula.getValue("Nombre")))
+        def removePeli(action):
+            titles=[i.getNombre() for i in self.cine.getPeliculas()]
+            self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
+        
+        quitarPelicula.button.bind('<ButtonRelease>',removePeli)
 
         #El .pop si afectará la lista
         #TODO: Luego de quitar la película ¿qué?
@@ -179,15 +187,16 @@ class ZonaB:
 
         global nueva
 
-        def create(action):
+        def create(action):         ###En teoria funciona, falta capturar excepciones
             if checked.get()==2:
-                #Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)
+                Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)
                 print("Se creó sala 2D")
             elif checked.get()==3:
-                #Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
+                Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
                 print("Se creó sala 3D")
 
-            messagebox.showinfo(title="Información",message="Sala creada con éxito!")      ###FALTA LLAMAR AL METODO QUE CREA LA SALA DE LA CAPA LOGICA
+            messagebox.showinfo(title="Información",message="Sala creada con éxito!")
+            print(self.cine.getSalas())
             self.cambiar()
 
         def tres():

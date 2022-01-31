@@ -27,7 +27,7 @@ class Sala3D(Sala):
 
     def crearSilleteria(self):
 
-        total: int = self._filas*self._columnas
+        total: int = int(self._filas)*int(self._columnas)
 
         tipo: str = "VIP"
 

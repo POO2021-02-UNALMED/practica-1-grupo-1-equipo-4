@@ -18,8 +18,8 @@ class Sala2D(Sala):
         return len(super().getSillas())
     
     def crearSilleteria(self):
-        total: int =  self._filas*self._columnas
-        totalvip: int = self._filasvip*self._columnas
+        total: int =  int(self._filas)*int(self._columnas)
+        totalvip: int = int(self._filasvip)*int(self._columnas)
 
         tipo : str = "VIP"
 

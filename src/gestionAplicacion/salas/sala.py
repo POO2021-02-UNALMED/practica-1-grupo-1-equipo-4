@@ -20,7 +20,7 @@ class Sala:
         self.crearSilleteria()
         cine.agregarSala(self)
 
-        self._numero = cine.getSalas().size()
+        self._numero = len(cine.getSalas())
 
     #
     #Metodos
