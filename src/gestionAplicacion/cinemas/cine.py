@@ -10,14 +10,14 @@ from gestionAplicacion.cinemas.cliente import Cliente
 
 class Cine: 
 
-    def __init__(self,nombre,clientes,cartelera,peliculas,salas,dineroGanado,DESCUENTOMVC):
-        self._nombre : str = nombre
-        self._clientes = clientes
-        self._cartelera = cartelera
-        self._peliculas = peliculas
-        self._salas : list[Sala]= salas
-        self._dineroGanado= dineroGanado
-        self._DESCUENTOMVC = DESCUENTOMVC
+    def __init__(self,nombre):
+        self._nombre = nombre
+        self._clientes = []
+        self._cartelera = []
+        self._peliculas = []
+        self._salas= []
+        self._dineroGanado= 0
+        self._DESCUENTOMVC = 0.2
         #TODO:Take care of this constant
         #!!! Aqui falta la variable del serializador
 
@@ -189,12 +189,10 @@ class Cine:
                     
         return panitaGanador.getNombre()
 
-    def BuscadorCliente(self, num : int):
-        
-        lista : list[int] = []
-        for cliente in self.getClientes():
-            lista.append(cliente.getCedula())
-            if (cliente.getCedula() == num):
+    def buscadorCliente(self, num : int):
+        lista = self.getClientes()
+        for cliente in lista:
+            if (cliente._cedula == num):
                 return cliente
         return None
 
