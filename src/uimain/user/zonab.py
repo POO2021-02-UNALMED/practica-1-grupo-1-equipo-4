@@ -81,7 +81,9 @@ class ZonaB:
         
             self.cine.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
             #print([i.getNombre() for i in self.cine.getPeliculas()])
-        
+            
+            messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
+
         agregarPelicula.button.bind('<ButtonRelease>',addPeli)
 
         #TODO: 
@@ -108,7 +110,9 @@ class ZonaB:
         def removePeli(action):
             titles=[i.getNombre() for i in self.cine.getPeliculas()]
             self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
-        
+
+            messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
+            
         quitarPelicula.button.bind('<ButtonRelease>',removePeli)
 
         #El .pop si afectará la lista
