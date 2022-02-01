@@ -63,9 +63,9 @@ class Funcion:
                 self._boletos.append(boleto)
                 disponibles-=1
     
-    def verDisponibilidad(self) -> list[tuple]:
+    def verDisponibilidad(self):
         # En este caso la funcion devuelve una lista de strings, para agregar cada strings
-        total : list[tuple]=[]
+        total =[]
 
         for boleto in self._boletos:
             if boleto!=None:

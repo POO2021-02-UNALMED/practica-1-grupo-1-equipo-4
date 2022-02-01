@@ -24,8 +24,8 @@ class Cine:
 
     def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
         programadas  = []
-        funciones : list[Funcion] = self.verFuncion(mes)
-        peliculasMes : list[Pelicula] = list(set([funcion.getPelicula() for funcion in funciones]))
+        funciones : list = self.verFuncion(mes)
+        peliculasMes : list = list(set([funcion.getPelicula() for funcion in funciones]))
         pelicula_boletos = []
         disponibles = ["22:00","20:00","18:00","16:00","14:00","12:00"]
 
@@ -54,7 +54,7 @@ class Cine:
 
            
     
-    def salasDisponibles(self, mes: int, dia: int) -> list[Sala]:
+    def salasDisponibles(self, mes: int, dia: int):
         disponibles=list()
         
         for sala in self._salas:
@@ -79,8 +79,8 @@ class Cine:
         return "Se ha aplicado el descuentos  a nuestro cliente mas fiel "
 
 
-    def verFuncion(self, *args) -> list[Funcion]:
-        funciones: list[Funcion] = []
+    def verFuncion(self, *args) -> list:
+        funciones: list = []
 
         # Este es el ver funcion que recibe pelicula, dia, mes
         
@@ -121,7 +121,7 @@ class Cine:
 
         return funciones
 
-    def clientesValiosos(self)-> list[Cliente]:
+    def clientesValiosos(self)-> list:
         
         clienteList=[]		#Aca estaran los tamanos de historial de compra de cada cliente
         
@@ -146,7 +146,7 @@ class Cine:
 
 
     def verificarCliente(self, num: int) -> bool:
-        lista : list[int] = []
+        lista : list = []
         
         for cliente in self.getClientes():
             lista.append(cliente.getCedula())
@@ -156,7 +156,7 @@ class Cine:
     
     
     def rifarBoleto(self, numeroFuncion: int):
-        top10: list[Cliente]= self.clientesValiosos();	#Saco la lista del 10% de los clientes mas fieles
+        top10: list= self.clientesValiosos();	#Saco la lista del 10% de los clientes mas fieles
         
         tamano: int= len(top10)			#tamano de esa lista
         
