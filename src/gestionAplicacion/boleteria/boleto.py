@@ -5,9 +5,7 @@
 
 from gestionAplicacion.salas.tipo import Tipo
 
-#
-#Creo que esta completo
-#
+
 class Boleto:
 
     def __init__(self, funcion, silla):
@@ -19,7 +17,7 @@ class Boleto:
         self._num_silla: int = 0
         self._precio_silla: float = 0
         
-    # funciones
+    # Funciones
 
     def calcularPrecio(self) -> float:
         ''' No recibe nada y devuelve un float el cual corresponde al calculo del precio bruto del boleto 
@@ -32,19 +30,24 @@ class Boleto:
 
         #Recibe a un cliente  y no devuelve nada, este precio se le descuenta un descuento(Si este cliente lo tiene)
         
-        total: float = self.calcularPrecio()-(self.calcularPrecio()*(cliente.getDescuento()))
-        self.setPrecioTotal(total)
+        total: float = self.calcularPrecio()-(self.calcularPrecio()*(cliente.getDescuento())) #Al precio bruto le resta el descuento del cliente si este lo posee
+        self.setPrecioTotal(total)  # Se establece el resultado de la linea anterior al atributo PrecioTotal
 
     def setAtr_silla(self, silla):
 
-        self._num_silla = silla.getNumero()
-        self.setTipo_silla(silla.getTipo())
-        self.setPrecio_silla(silla.getPrecio())
+        '''Recibe la silla con la que deseo asignarle los atributos de numero,tipo de silla y precio de silla  y no devuelve nada	
+        '''
+        self._num_silla = silla.getNumero()     #Se establece al atributo de num_silla  el numero de la silla que recibe
+        self.setTipo_silla(silla.getTipo())     # Se establece al atributo tipo_silla el tipo de la silla que recibe 
+        self.setPrecio_silla(silla.getPrecio()) # Se establece al atributo precio_silla el precio de la silla que recibe
 
     def tipoString(self) -> str:
+        '''
+        No recibe nada  y  devuelve un String el cual indica si el tipo de la silla al cual esta relacionado el boleto
+        '''
         if(self._tipo_silla == Tipo.VIP):
-            return "V-"
-        return "S-"
+            return "V-" #El tipo de la silla es VIP retornara V-
+        return "S-"     # En caso de que sea sencilla retornara S-
     # 
     # getter and setters
     # 

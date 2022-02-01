@@ -1,6 +1,10 @@
 from tokenize import String
 """
-This is a test
+Funcionalidad de la clase: Este contiene anadir la cantidad de Boletos, en este se guardan los atributos de la pelicula 
+ entre los que se encuentran nombre, genero, duracion, lenguaje y clasificacion
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
 
 """
 
@@ -16,9 +20,15 @@ class Pelicula:
         self._expectativaVentas:int =0
 
     def anadirCantidadBoletos(self):
-        self._cantidadTotalBoletosVendidos+=1
+        
+        #No recibe nada y tampoco devuelve nada, este metodo se usa para sumar la cantidad de boletos vendidos	
+        
+        self._cantidadTotalBoletosVendidos+=1   #Sumar 1 al atributo de la cantidad de total de boletos
 
 
+
+    ##Getter y setter
+    
     def getNombre(self)->str:
         return self._nombre
     def setNombre(self, nombre):
