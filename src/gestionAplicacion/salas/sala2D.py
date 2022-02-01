@@ -14,6 +14,9 @@ class Sala2D(Sala):
             super().__init__(8, 12, vip, 2000, cine)
 
     
+    def getTipo(self):
+        return "2D"
+
     def cantidadSillas(self):
         return len(super().getSillas())
     

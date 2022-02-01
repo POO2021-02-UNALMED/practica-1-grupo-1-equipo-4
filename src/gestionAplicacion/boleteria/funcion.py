@@ -8,7 +8,7 @@ from gestionAplicacion.boleteria.boleto import Boleto
 from gestionAplicacion.salas.sala import Sala
 
 class Funcion:
-    cantidadFunciones:int
+    cantidadFunciones = 1
 
     def __init__(self,dia,mes,horario,pelicula,sala,cine):
         self._dia:int = dia
@@ -18,12 +18,12 @@ class Funcion:
         self._numero:int = Funcion.cantidadFunciones
         self.setSala(sala)
         self.setCine(cine)
-        self.crearBoleteria()
         cine.agregarFuncion(self)
         sala.agregarFuncion(self)
         self._boletos = []
         self._cantidadBoletosVendidos:int=0
         Funcion.cantidadFunciones+=1
+        self.crearBoleteria()
 
     @classmethod
     def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none
@@ -35,7 +35,23 @@ class Funcion:
                 return None
         else:
             return None
-    
+
+    @classmethod
+    def formatearFunciones(cls,funciones):
+
+        resultado = ""
+        for funcion in funciones:
+            formato = "{}|{}|{}|{}"
+            fecha = "Fecha: " + "{:>02d}/{:>02d}".format(funcion.getDia(),funcion.getMes())
+            resultado += str(funcion.getPelicula().getNombre())+" "+str(funcion.getPelicula().getClasificacion())+"+"+"\n"
+
+            resultado += formato.format(funcion.getHorario().getHora().center(6),
+                                        ("Sala "+str(funcion.getSala().getNumero())).center(8),
+                                        str(funcion.getSala().getTipo()).center(4),
+                                        "{:>3d}".format(funcion.getNumero()).center(5))
+            resultado +=  "\n" + fecha
+            resultado += "\n\n"
+        return resultado
 
     def crearBoleteria(self):
         sillas = self._sala.getSillas()

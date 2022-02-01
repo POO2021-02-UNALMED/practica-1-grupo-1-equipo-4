@@ -83,6 +83,7 @@ class Cine:
         funciones: list[Funcion] = []
 
         # Este es el ver funcion que recibe pelicula, dia, mes
+        
         if(len(args) == 3):
             pelicula: Pelicula = args[0]
             dia, mes = args[1:]

@@ -40,3 +40,5 @@ class Sala3D(Sala):
         return self._cantidadgafas
     def setCantidadsillas(self, funciones):
         self._cantidadgafas = funciones
+    def getTipo(self):
+        return("3D")
