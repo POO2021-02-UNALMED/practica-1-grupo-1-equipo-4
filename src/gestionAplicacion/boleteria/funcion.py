@@ -8,13 +8,14 @@ from gestionAplicacion.boleteria.boleto import Boleto
 from gestionAplicacion.salas.sala import Sala
 
 class Funcion:
-    cantidadFunciones:int
+    cantidadFunciones:int=0
 
     def __init__(self,dia,mes,horario,pelicula,sala,cine):
         self._dia:int = dia
         self._mes:int = mes
         self._horario = horario
         self._pelicula = pelicula
+        Funcion.cantidadFunciones+=1
         self._numero:int = Funcion.cantidadFunciones
         self.setSala(sala)
         self.setCine(cine)
@@ -23,7 +24,6 @@ class Funcion:
         sala.agregarFuncion(self)
         self._boletos = []
         self._cantidadBoletosVendidos:int=0
-        Funcion.cantidadFunciones+=1
 
     @classmethod
     def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none

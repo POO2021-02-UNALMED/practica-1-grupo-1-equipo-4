@@ -1,3 +1,4 @@
+from dataclasses import field
 from tkinter import *
 from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
@@ -126,21 +127,88 @@ class ZonaB:
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
-        agregarFuncion = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames.pack()
+        diames.button.configure(text="Siguiente")
+
+        info=[]      #[0]=dia, [1]=mes, [2]=sala, [3]=hora, [4]=pelicula
+
+        def salasdia(action):       ##Aca se muestran las salas disponibles segun el dia seleccionado
+            info.append(diames.getValue("Dia"))
+            info.append(diames.getValue("Mes"))
+            diames.pack_forget()
+
+            salasdispo=FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            salasdispo.pack()
+            salasdispo.button.configure(text="Siguente")
+
+            def horariosala(action):        ##Aca se muestran los horarios disponibles de la sala escogida
+                info.append(salasdispo.getValue("Numero"))
+                salasdispo.pack_forget()
+                disponibles.pack_forget()
+
+                horariodispo=FieldFrame("Horarios",["Hora"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+                horariodispo.pack()
+                horariodispo.button.configure(text="Siguiente")
+
+                #print(self.cine.buscarSala(int(info[2])))
+
+                horarioslibres=self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1]))
+
+                disponibles.configure(text="Horarios disponibles de la sala " + str(info[2])+":" + "\n"+horarioslibres)
+                disponibles.pack()
+
+                def peliscine(action):        ###Peliculas disponibles en el cine
+                    info.append(horariodispo.getValue("Hora"))
+                    horariodispo.pack_forget()
+                    disponibles.pack_forget()
+
+                    pelisdispo=FieldFrame("Titulo",["Pelicula"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+                    pelisdispo.pack()
+                    pelisdispo.button.configure(text="Finalizar creacion")
+                    
+                    peliculasdisponibles=""
+                    for p in self.cine.getPeliculas():
+                        peliculasdisponibles+=p.getNombre()+"\n"
+
+                    disponibles.configure(text=peliculasdisponibles)
+                    disponibles.pack()
+
+                    def creacionfinal(action):
+                        info.append(pelisdispo.getValue("Pelicula"))
+                        funcion=Funcion(int(info[0]),int(info[1]),info[3],info[4],self.cine.buscarSala(int(info[2])),self.cine) 
         
-        agregarFuncion.pack()
+                        self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+                        print(self.cine.getCartelera())
+
+                    pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
+
+                horariodispo.button.bind("<ButtonRelease>",peliscine)      ##Tercer boton
+
+            salasdispo.button.bind("<ButtonRelease>",horariosala)       #Segundo boton
+
+            salaslibres=self.cine.salasDisponibles(int(diames.getValue("Dia")),int(diames.getValue("Dia")))
+            textosalas="Salas disponibles del dia/mes "+str(diames.getValue("Dia"))+"/"+str(diames.getValue("Mes"))+" :\n"
+            for d in salaslibres:
+                textosalas+="Sala "+str(d.getNumero())+"\n"
+
+            disponibles=Label(self.cuerpo,text=textosalas)
+            disponibles.pack()
+
+        diames.button.bind("<ButtonRelease>",salasdia)      ###Primer boton
+
 
         def addFuncion(action):
-            funcion=Funcion(agregarFuncion.getValue("Dia"),
-                agregarFuncion.getValue("Mes"),
-                agregarFuncion.getValue("Horario"),
-                agregarFuncion.getValue("Nombre pelicula"),
-                agregarFuncion.getValue("Sala"),
+            funcion=Funcion(info[0],
+                info[1],
+                info[3],
+                info[4],
+                info[2],
                 self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
         
             self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
         
-        agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
+        #agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
 
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
@@ -209,7 +277,8 @@ class ZonaB:
                 print("Se creó sala 3D")
 
             messagebox.showinfo(title="Información",message="Sala creada con éxito!")
-            print(self.cine.getSalas())
+            #for i in self.cine.getSalas():
+            #    print(i.getNumero())
             self.cambiar()
 
         def tres():

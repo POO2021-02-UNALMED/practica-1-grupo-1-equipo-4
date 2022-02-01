@@ -21,9 +21,9 @@ class Sala3D(Sala):
 
         totalsillas: int = len(self._sillas)
 
-        if (totalsillas<self._cantidadgafas):
+        if (totalsillas<int(self._cantidadgafas)):
             return totalsillas
-        return self._cantidadgafas
+        return int(self._cantidadgafas)
 
     def crearSilleteria(self):
 
