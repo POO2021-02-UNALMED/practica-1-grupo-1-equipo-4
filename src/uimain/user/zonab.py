@@ -112,7 +112,7 @@ class ZonaB:
             self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
 
             messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
-            
+
         quitarPelicula.button.bind('<ButtonRelease>',removePeli)
 
         #El .pop si afectará la lista
@@ -179,6 +179,8 @@ class ZonaB:
                     def creacionfinal(action):
                         info.append(pelisdispo.getValue("Pelicula"))
                         funcion=Funcion(int(info[0]),int(info[1]),info[3],info[4],self.cine.buscarSala(int(info[2])),self.cine) 
+
+                        messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
         
                         #self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
                         #for i in self.cine.getCartelera():
