@@ -1,10 +1,17 @@
+'''
+Funcionalidad de la clase:
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+'''
+
+
 from gestionAplicacion.salas.tipo import Tipo
 
 class Silla:
     def __init__(self,tipo,numero):
         self._tipo:Tipo = tipo
         self._numero:int = numero
-        #!!! Aqui falta la variable del serializador
+
 
 
 
@@ -16,7 +23,7 @@ class Silla:
 
     def setTipo(self, tipo:str):
         if (tipo=="VIP"):
-            self._tipo=Tipo.VIP            ##Esta raro revisar el enum
+            self._tipo=Tipo.VIP          
         else:
             self._tipo=Tipo.SENCILLA
 
@@ -28,7 +35,7 @@ class Silla:
 
 
     def getPrecio(self):
-        if(self._tipo==Tipo.VIP):       #Revisar enum
+        if(self._tipo==Tipo.VIP):     #Se ponen los precios de VIP como 7000 y 5000
             return 7000
         else:
             return 5000
