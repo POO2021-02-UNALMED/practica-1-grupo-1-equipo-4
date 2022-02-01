@@ -22,11 +22,16 @@ class Boleto:
     # funciones
 
     def calcularPrecio(self) -> float:
-        bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla
+        ''' No recibe nada y devuelve un float el cual corresponde al calculo del precio bruto del boleto 
+	    el cual depende del precio de la sala y el precio de la silla '''
+
+        bruto: float = self._funcion.getSala().getPrecio()+self._precio_silla   #Se suma el precio de la sala y el precio de la silla
         return bruto
 
     def calcularPrecioDefinitivo(self, cliente):
 
+        #Recibe a un cliente  y no devuelve nada, este precio se le descuenta un descuento(Si este cliente lo tiene)
+        
         total: float = self.calcularPrecio()-(self.calcularPrecio()*(cliente.getDescuento()))
         self.setPrecioTotal(total)
 
