@@ -1,4 +1,5 @@
 from dataclasses import field
+from textwrap import fill
 from tkinter import *
 from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
@@ -17,8 +18,8 @@ class ZonaB:
     def __init__(self, user,cine):
         
         self.cine=cine
-        self.todo = Frame(user, width =1000, height = 500, bg = "black") #Este es lo que contiene toda la zona 2
-        self.todo.pack()
+        self.todo = Frame(user,  bg = "black") #Este es lo que contiene toda la zona 2
+        self.todo.pack(fill=X)
 
         self.funciones = {"Venta":self.venta,
                          "Agregar Pelicula":self.agregarPelicula,
@@ -28,19 +29,19 @@ class ZonaB:
                          "Rifar Boleto":self.rifa,
                          "Agregar Sala":self.agregarSala} #aca se guardan las los procesos y las consultas
 
-        self.titulo_texto = Frame(self.todo,width=800, height = 150)   
+        self.titulo_texto = Frame(self.todo)   
         self.titulo_texto.pack()
 
         self.titulo = Label(self.titulo_texto, bg="grey",text = "titulo")  #label del titulo
-        self.titulo.pack()
+        self.titulo.pack(fill=X)
 
         self.texto = Label(self.titulo_texto, bg = "red",text = "texto")   #label del titulo
-        self.texto.pack()
+        self.texto.pack(fill=X)
 
 
 
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green") #este es el cuerpo, se inicializa vacio
-        self.cuerpo.pack()
+        self.cuerpo.pack(fill=X)
         
     
     def cambiar(self):
@@ -197,10 +198,6 @@ class ZonaB:
                         picklefile.close()
 
                         messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
-        
-                        #self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-                        #for i in self.cine.getCartelera():
-                        #    print(i.getPelicula())
 
                     pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
 
@@ -218,18 +215,8 @@ class ZonaB:
 
         diames.button.bind("<ButtonRelease>",salasdia)      ###Primer boton
 
+        #TODO:Falta agregar que si no hay horarios disponibles para la sala saque un error
 
-        """def addFuncion(action):
-            funcion=Funcion(info[0],
-                info[1],
-                info[3],
-                info[4],
-                info[2],
-                self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
-        
-            self.cine.agregarFuncion(funcion)""" #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-        
-        #agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
 
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
@@ -322,8 +309,10 @@ class ZonaB:
             funcdia.pack()
             funcdia.button.configure(text="Rifar")
 
-            if self.cine.verFuncion(int(info[0]),int(info[1]))==0:
-                print("NO HAY FUNCIONES ESE DIA SOSIO")
+            if len(self.cine.verFuncion(int(info[0]),int(info[1])))==0:
+                messagebox.showinfo(title="Error",message="No hay funciones disponibles para ese dia")
+                self.cambiar()
+
             else:
                 funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))
                 textofunc=Label(self.cuerpo,text=funcioneslibres)
@@ -334,7 +323,7 @@ class ZonaB:
                 candidatos="Clientes fieles candidatos a la rifa: "
 
                 for c in self.cine.clientesValiosos():
-                    candidatos+=c.getNombre()
+                    candidatos+=c.getNombre()+" "
 
                 ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))
 

@@ -42,11 +42,18 @@ class FieldFrame(Frame):
                 t1.grid(row=row,column=2)
                 self.entries.append(None)
 
-        self.button = tk.Button(self,  text='Aceptar', width=10) 
+        self.button = tk.Button(self,  text='Aceptar', width=10)
         self.button.bind('<ButtonPress-1>',self.add_data) 
-        self.button.grid(row=7,column=2) 
-        
-        
+        self.button.grid(row=7,column=2)
+        self.button2 = tk.Button(self, text='Borrar', width=10)
+        self.button2.bind('<ButtonPress-1>',self.clear)
+        self.button2.grid(row=7,column=1)
+
+
+
+    def clear(self,action):
+        for i in self.entries:
+            i.delete(0,'end')
 
     def press(self, holi):
         messagebox.showinfo("holi","holi")
@@ -58,7 +65,6 @@ class FieldFrame(Frame):
             
             if(entry != None):
                 self.respuesta[self.criterios[i]] = entry.get()
-        
 
     
     def getValue(self, value):
