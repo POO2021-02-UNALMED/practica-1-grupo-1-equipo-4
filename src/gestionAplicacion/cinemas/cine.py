@@ -286,9 +286,9 @@ class Cine:
         self._salas = salas
 
 
-    def getDineroganado(self):
+    def getDineroGanado(self):
         return self._dineroGanado
-    def setDineroganado(self, dineroGanado):
+    def setDineroGanado(self, dineroGanado):
         self._dineroGanado = dineroGanado
 
 

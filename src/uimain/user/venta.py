@@ -6,18 +6,18 @@ from gestionAplicacion.boleteria.funcion import Funcion
 from gestionAplicacion.boleteria.pelicula import Pelicula
 from gestionAplicacion.boleteria.horario import Horario
 from gestionAplicacion.salas.sala2D import Sala2D
-window = Tk()
+
+
+
+"""/*window = Tk()
 
 cine = Cine("pene")
 cine.agregarCliente(Cliente(1001, "Pedro", 15, "Estudiante", cine))
 rey_leon = Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine)
 Sala2D(7, 8, 2,cine)
-Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine)
+Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine)*/"""
 
-print(cine.verFuncion(17,12))
-
-def ventana():
-    global window
+def ventana(window, cine):
     venta = Frame()
     cliente = None
     frame  = FieldFrame("Cedula Cliente",["Cedula"],"Ingrese Dato",None, None,window)
@@ -27,6 +27,8 @@ def ventana():
         nonlocal frame
         nonlocal venta
         nonlocal cliente
+        nonlocal cine
+
         boton_recomendada = None
         boton_funcion = None
         boton_pelicula = None
@@ -47,6 +49,8 @@ def ventana():
         def mostrar_sillas(funcion):
             nonlocal nueva
             nonlocal cliente
+            nonlocal cine
+
             nueva.pack_forget()
             nueva = FieldFrame("Mostrar", ["Número de silla"], "Ingrese Dato", None, None, venta)
             nueva.pack()
@@ -56,18 +60,19 @@ def ventana():
             nonlocal nueva
             nonlocal texto
             nonlocal cliente
+            nonlocal cine
 
-            nueva.pack_forget()
-            venta.pack_forget()
-            nueva = Frame()
-            mostrar = FieldFrame("Mostrar", ["Número de Funcion"], "Ingrese Dato", None, None, nueva)
-            mostrar.pack()
+            try:
+                nueva.pack_forget()
+            except AttributeError:
+                pass
+            nueva = FieldFrame("Mostrar", ["Número de Funcion"], "Ingrese Dato", None, None, venta)
             nueva.pack()
             texto.pack_forget()
             numero = None
-            mostrar.button.bind('<ButtonRelease>', lambda x: mostrar_sillas(numero))
+            nueva.button.bind('<ButtonRelease>', lambda x: mostrar_sillas(numero))
             
-            label = Label(nueva,text = str(Funcion.formatearFunciones(funciones)))
+            label = Label(venta,text = str(Funcion.formatearFunciones(funciones)))
             label.pack()
 
             try:
@@ -84,6 +89,7 @@ def ventana():
         def llamar_funcion():
             
             nonlocal nueva
+            nonlocal cine
 
             funcion = FieldFrame("Fecha", ["Dia","Mes"], "Ingrese datos", None, None, venta)
             funcion.pack()
@@ -96,7 +102,6 @@ def ventana():
             def funcionesxfuncion():
                 nonlocal funciones
                 
-                print(cine.verFuncion(int(funcion.getValue("Dia")),int(funcion.getValue("Mes"))))
                 funciones = cine.verFuncion(int(funcion.getValue("Dia")),int(funcion.getValue("Mes")))
                 mostrar_funciones(funciones)
                 
@@ -106,8 +111,9 @@ def ventana():
         def llamar_pelicula():
             
             nonlocal nueva
+            nonlocal cine
 
-            pelicula = FieldFrame("Fecha", ["Pene","Vagina"], "Ingrese datos", None, None, venta)
+            pelicula = FieldFrame("Fecha", ["Nombre"], "Ingrese datos", None, None, venta)
             pelicula.pack()
             try:
                 nueva.pack_forget()
@@ -117,26 +123,9 @@ def ventana():
             funciones = None
             nueva.button.bind('<ButtonRelease>', lambda x: mostrar_funciones(funciones))
 
-        def llamar_recomendada():
-            #mostrar recomendadas cliente
-            nonlocal nueva
-            nonlocal cliente
-            recomendada = FieldFrame("Pelicula", ["Número de pelicula"], "Ingrese datos", None, None, venta)
-            recomendada.pack()
-            try:
-                nueva.pack_forget()
-            except AttributeError:
-                pass
-            nueva = recomendada
-            funciones = None
-            nueva.button.bind('<ButtonRelease>', lambda x: mostrar_funciones(funciones))            
-
-
-
-        
         if(existente):
 
-            boton_recomendada = Radiobutton(venta,text="Recomendada",value=1,command=llamar_recomendada)
+            boton_recomendada = Radiobutton(venta,text="Recomendada",value=1, command = lambda: mostrar_funciones(cine.verFuncion(cliente)))
             boton_recomendada.pack()
             boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
             boton_funcion.pack()
@@ -150,7 +139,7 @@ def ventana():
             boton_pelicula.pack()            
     
     def cedula(numero):
-        global cine
+        nonlocal cine
         nonlocal frame
         nonlocal cliente
         
@@ -176,8 +165,6 @@ def ventana():
     
     
     frame.button.bind('<ButtonRelease>',lambda x: cedula(frame.getValue("Cedula")))
-    window.mainloop()
-ventana()
 
 
 
