@@ -100,6 +100,30 @@ class Sala:
             return respuesta == "12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n"
         
         return False
+    
+    def verHorarios(self,dia,mes):
+        consulta=""+str(dia)+str(mes)
+        fechas=[]
+        horarios=[]
+        disponibles=["12:00","14:00","16:00","18:00","20:00","22:00"]
+
+        for funcion in self._funciones:
+            info=""+funcion.getDia()+funcion.getMes()
+            fechas.append(info)
+        
+        for i in range (len(fechas)):
+            if fechas[i]==consulta:
+                horarios.append(self._funciones[i].getHorario().getHora())
+        
+        for horario in horarios:
+            disponibles.remove(horario)
+        
+        respuesta=""
+    
+        for d in disponibles:
+            respuesta+=d+"\n"
+        
+        return respuesta
 
     
     def almenosUnoDisponible(self, dia: int, mes: int) ->  bool:
