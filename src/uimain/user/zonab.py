@@ -197,10 +197,6 @@ class ZonaB:
                         picklefile.close()
 
                         messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
-        
-                        #self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-                        #for i in self.cine.getCartelera():
-                        #    print(i.getPelicula())
 
                     pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
 
@@ -218,18 +214,8 @@ class ZonaB:
 
         diames.button.bind("<ButtonRelease>",salasdia)      ###Primer boton
 
+        #TODO:Falta agregar que si no hay horarios disponibles para la sala saque un error
 
-        """def addFuncion(action):
-            funcion=Funcion(info[0],
-                info[1],
-                info[3],
-                info[4],
-                info[2],
-                self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
-        
-            self.cine.agregarFuncion(funcion)""" #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-        
-        #agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
 
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
