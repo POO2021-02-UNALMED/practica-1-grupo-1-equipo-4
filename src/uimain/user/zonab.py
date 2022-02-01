@@ -9,6 +9,7 @@ from uimain.user.fieldFrame import FieldFrame
 from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.salas.sala3D import Sala3D
 from uimain.user.fieldFrame import FieldFrame
+import uimain.user.venta as venta
 
 class ZonaB: 
    
@@ -53,7 +54,11 @@ class ZonaB:
     ## Procesos y consultas
 
     def venta(self):
-        pass
+        self.cambiar()
+        self.titulo.configure(text = "Venta")
+        self.texto.configure(text = "Permite vender buscando por diferentes peliculas")
+        venta.ventana(self.cuerpo, self.cine)
+       
 
     def agregarPelicula(self):
 

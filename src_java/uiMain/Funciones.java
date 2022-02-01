@@ -137,7 +137,7 @@ public class Funciones {
 			funcionesPelicula(cine,cedula);
 		}
 		else {
-				ArrayList<Funcion> funciones = cine.verFuncion(dia, mes);	//se hace una lista de las funciones dadas ese dia y mes
+			ArrayList<Funcion> funciones = cine.verFuncion(dia, mes);	//se hace una lista de las funciones dadas ese dia y mes
 			List<Pelicula> peliculasMes = new ArrayList<Pelicula>();
 
 			
@@ -153,7 +153,7 @@ public class Funciones {
 			}
 			System.out.println("Digite el numero de la pelicula seleccionada");
 			int peli=entrada.nextInt();
-			Pelicula pelicula = peliculasMes.get(peli-1);		
+			Pelicula pelicula = peliculasMes.get(peli-1);		                                  
 			System.out.println(Funciones.formatearFunciones(cine.verFuncion(pelicula, dia, mes)));		//se imprimen las Funciones de la pelicula consultada en la fecha dada
 			
 			//Pregunta para ver a que seccion se desea ir luego de ver funciones

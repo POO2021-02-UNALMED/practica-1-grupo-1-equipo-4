@@ -4,6 +4,7 @@ from collections import Counter
 class Cliente:
 
     def __init__(self,cedula,nombre,edad,ocupacion,cine):
+        self._historialCompras = []
         self._cedula = cedula
         self._nombre = nombre
         self._edad = edad
