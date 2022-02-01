@@ -34,11 +34,12 @@ class Cliente:
 
         occ=Counter(genreList).values()
         valor_max=max(occ)
+        
         for genero  in cuenta:
             if genero[1]==valor_max:
-                return genero
+                return genero[0]
 
-        #return genreList[cuenta.indexOf(Collections.max(cuenta))] #TODO: buscar como se hace ese index of y el counter esta raro tambien
+        #return genreList[cuenta.index(Collections.max(cuenta))] #TODO: buscar como se hace ese index of y el counter esta raro tambien
 
 
     def referidos(self):

@@ -12,10 +12,10 @@ class Boleto:
         
         self._disponibilidad : bool= True
         self._funcion = funcion
+        self._num_silla = 0
+        self._precio_silla = 0
         self.setAtr_silla(silla)
-        self._precioTotal: float =  self.calcularPrecio()
-        self._num_silla: int = 0
-        self._precio_silla: float = 0
+        self._precioTotal =  self.calcularPrecio()
         
     # Funciones
 

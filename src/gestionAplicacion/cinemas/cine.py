@@ -115,7 +115,7 @@ class Cine:
             else:
                 cliente: Cliente = args[0]
                 for funcion in self.getCartelera():
-                   if(funcion.getPelicula() == cliente.mostWatchedGenre()):
+                   if(funcion.getPelicula().getGenero() == cliente.mostWatchedGenre()):
                        funciones.append(funcion)
             
 
@@ -215,12 +215,12 @@ class Cine:
 
 
 
-    def BuscadorFuncion(self,numero:int):
+    def BuscadorFuncion(self,numero):
         lista=[]
         for funcion in self._cartelera:
             lista.append(funcion.getNumero())
 
-            if funcion.getNumero()==numero:
+            if funcion.getNumero()==int(numero):
                 return funcion
         return None
 

@@ -27,10 +27,10 @@ class Funcion:
 
     @classmethod
     def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none
-        cls._sala:Sala=cine.buscarSala(num_sala)
-        if(cls._sala!=None):
-            if(cls._sala.verificarDisponibilidad(dia,mes,horario.getHora())):
-                return Funcion(dia,mes,horario,pelicula,cls._sala,cine)
+        sala = cine.buscarSala(num_sala)
+        if(sala!=None):
+            if(sala.verificarDisponibilidad(dia,mes,horario.getHora())):
+                return Funcion(dia,mes,horario,pelicula,sala,cine)
             else:
                 return None
         else:

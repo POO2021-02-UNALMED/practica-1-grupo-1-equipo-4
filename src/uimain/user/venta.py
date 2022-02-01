@@ -32,7 +32,7 @@ def ventana(window, cine):
         boton_recomendada = None
         boton_funcion = None
         boton_pelicula = None
-
+        label = None
 
         frame.pack_forget()
         frame = Frame(window)
@@ -50,10 +50,30 @@ def ventana(window, cine):
             nonlocal nueva
             nonlocal cliente
             nonlocal cine
+            nonlocal label
 
+            sillas = funcion.verDisponibilidad()
+            filas = funcion.getSala().getFilas()
+            columnas = funcion.getSala().getColumnas()
             nueva.pack_forget()
-            nueva = FieldFrame("Mostrar", ["Número de silla"], "Ingrese Dato", None, None, venta)
+            label.pack_forget()
+            nueva = Frame(venta)
             nueva.pack()
+
+
+            for silla in sillas:
+                print(silla)
+            num = 0
+            total = []
+            for i in range(filas):
+                fila=[]
+                for j in range(columnas):
+                    if (num<funcion.getSala().cantidadsillas()):
+                        fila.append(Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4))
+
+                        num += 1
+                        fila[j].grid(column= j, row = i, padx = 3, pady = 3)
+                total.append(fila)            
 
         def mostrar_funciones(funciones):
             #se usa funciones para mostrar en pantalla las funciones disponibles
@@ -61,6 +81,7 @@ def ventana(window, cine):
             nonlocal texto
             nonlocal cliente
             nonlocal cine
+            nonlocal label
 
             try:
                 nueva.pack_forget()
@@ -69,8 +90,15 @@ def ventana(window, cine):
             nueva = FieldFrame("Mostrar", ["Número de Funcion"], "Ingrese Dato", None, None, venta)
             nueva.pack()
             texto.pack_forget()
-            numero = None
-            nueva.button.bind('<ButtonRelease>', lambda x: mostrar_sillas(numero))
+
+            def obtenerFuncion():
+                nonlocal nueva
+
+                numero = nueva.getValue("Número de Funcion")
+                mostrar_sillas(cine.BuscadorFuncion(numero))
+
+
+            nueva.button.bind('<ButtonRelease>', lambda x: obtenerFuncion())
             
             label = Label(venta,text = str(Funcion.formatearFunciones(funciones)))
             label.pack()
@@ -81,7 +109,10 @@ def ventana(window, cine):
                 boton_pelicula.pack_forget()
             except AttributeError:
                 boton_funcion.pack_forget()
-                boton_pelicula.pack_forget()             
+                boton_pelicula.pack_forget()
+            
+
+                         
 
 
 

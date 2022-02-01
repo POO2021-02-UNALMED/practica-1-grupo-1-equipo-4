@@ -18,7 +18,7 @@ public class Sala3D extends Sala implements Serializable{
 	
 	//Constructor para cuando la cantidad de gafas es igual a la cantidad de sillas
 	public Sala3D(int filas, int columnas,  Cine cine) {
-		this(filas, columnas, filas*column	as, cine);
+		this(filas, columnas, filas*columnas, cine);
 	}
 	
 

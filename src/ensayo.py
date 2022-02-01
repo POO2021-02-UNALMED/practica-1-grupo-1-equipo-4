@@ -35,7 +35,7 @@ cliente13 =  Cliente(1013, "Luisa Guarin", 30, "Trabajadora", cine);
 
 sala1 =  Sala2D(7, 8, 2,cine);
 sala2 =  Sala2D(9, 8, 2,cine);
-sala3 =  Sala3D(9, 9, 36,cine);
+sala3 =  Sala3D(9, 9, 2,cine);
 sala4 =  Sala3D(8, 9, 36,cine);
 
 
@@ -44,7 +44,6 @@ funcion_2 = Funcion.crearFuncion(17, 12, Horario.DOS, naranja, 1, cine);
 funcion_3 = Funcion.crearFuncion(17, 12, Horario.TRES, naranja, 1, cine);
 funcion_4 = Funcion.crearFuncion(17, 12, Horario.CINCO, resplandor, 3, cine);
 funcion_5 = Funcion.crearFuncion(17, 12, Horario.SEIS, avengers, 3, cine);
-funcion_6 = Funcion.crearFuncion(17, 12, Horario.UNO, toystory, 4, cine);
 funcion_7 = Funcion.crearFuncion(16, 12, Horario.UNO, toystory, 4, cine);
 funcion_8 = Funcion.crearFuncion(17, 12, Horario.CUATRO, toystory, 2, cine);
 funcion_9 = Funcion.crearFuncion(16, 12, Horario.TRES, toystory, 2, cine);
@@ -62,29 +61,25 @@ funcion_1.VentaBoleto(funcion_1.getBoletos()[25], cliente3);
 funcion_2.VentaBoleto(funcion_2.getBoletos()[15], cliente11);
 funcion_2.VentaBoleto(funcion_2.getBoletos()[17], cliente5);
 
-funcion_6.VentaBoleto(funcion_6.getBoletos()[9],cliente13);
-funcion_6.VentaBoleto(funcion_6.getBoletos()[3],cliente13);
+
 funcion_4.VentaBoleto(funcion_4.getBoletos()[25], cliente13);
 funcion_4.VentaBoleto(funcion_4.getBoletos()[14], cliente13);
-funcion_6.VentaBoleto(funcion_6.getBoletos()[5],cliente7);
-funcion_6.VentaBoleto(funcion_6.getBoletos()[6],cliente11);
 funcion_4.VentaBoleto(funcion_4.getBoletos()[7],cliente6);
 funcion_4.VentaBoleto(funcion_4.getBoletos()[8],cliente8);
-funcion_6.VentaBoleto(funcion_6.getBoletos()[25],cliente10);
 funcion_4.VentaBoleto(funcion_4.getBoletos()[17], cliente4);
 
 funcion_3.VentaBoleto(funcion_3.getBoletos()[45], cliente7);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[3],cliente7);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[25], cliente5);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[14], cliente5);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[1], cliente5);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[14], cliente5);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[5],cliente5);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[6],cliente6);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[7],cliente6);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[8],cliente6);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[7],cliente6);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[8],cliente6);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[9],cliente6);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente12);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[15], cliente4);
-funcion_9.VentaBoleto(funcion_9.getBoletos()[17], cliente4);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[15], cliente4);
+# funcion_9.VentaBoleto(funcion_9.getBoletos()[17], cliente4);
 #ventana.user.mainloop()
 
 
