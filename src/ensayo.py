@@ -7,6 +7,7 @@ from gestionAplicacion.salas.sala3D import Sala3D
 from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.boleteria.funcion import Funcion
 from gestionAplicacion.boleteria.horario import Horario
+import pickle
 
 #entana=Usuario()
 cine = Cine("Bahia");
@@ -85,8 +86,14 @@ funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente12);
 funcion_9.VentaBoleto(funcion_9.getBoletos()[15], cliente4);
 funcion_9.VentaBoleto(funcion_9.getBoletos()[17], cliente4);
 #ventana.user.mainloop()
+
+
 window = Tk()
 window.option_add('*tearOff', FALSE)
+
+picklefile = open('pcs', 'rb')
+cine = pickle.load(picklefile) #Bloque de deserialzación
+picklefile.close()
 
 first=First(window,cine)
 first.pack()
