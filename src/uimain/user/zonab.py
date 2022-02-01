@@ -122,8 +122,6 @@ class ZonaB:
         self.titulo.configure(text = "Agregar función")
         self.texto.configure(text = "Permite agregar funciones")
 
-        nomCriterios="Función"
-        criterios=["Dia","Mes","Sala","Horario","Nombre pelicula"]
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
