@@ -322,8 +322,10 @@ class ZonaB:
             funcdia.pack()
             funcdia.button.configure(text="Rifar")
 
-            if self.cine.verFuncion(int(info[0]),int(info[1]))==0:
-                print("NO HAY FUNCIONES ESE DIA SOSIO")
+            if len(self.cine.verFuncion(int(info[0]),int(info[1])))==0:
+                messagebox.showinfo(title="Error",message="No hay funciones disponibles para ese dia")
+                self.cambiar()
+
             else:
                 funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))
                 textofunc=Label(self.cuerpo,text=funcioneslibres)
@@ -334,7 +336,7 @@ class ZonaB:
                 candidatos="Clientes fieles candidatos a la rifa: "
 
                 for c in self.cine.clientesValiosos():
-                    candidatos+=c.getNombre()
+                    candidatos+=c.getNombre()+" "
 
                 ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))
 
