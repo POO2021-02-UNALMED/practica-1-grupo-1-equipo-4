@@ -11,6 +11,7 @@ class Funcion:
     cantidadFunciones = 1
 
     def __init__(self,dia,mes,horario,pelicula,sala,cine):
+        self._boletos = []
         self._dia:int = dia
         self._mes:int = mes
         self._horario = horario
@@ -20,7 +21,6 @@ class Funcion:
         self.setCine(cine)
         cine.agregarFuncion(self)
         sala.agregarFuncion(self)
-        self._boletos = []
         self._cantidadBoletosVendidos:int=0
         Funcion.cantidadFunciones+=1
         self.crearBoleteria()
