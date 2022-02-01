@@ -291,18 +291,50 @@ class ZonaB:
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
-        rifa = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
+        info=[]
+
+        diames=FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames.pack()
+        diames.button.configure(text="Siguiente")
+
+        def funcdispo(action):
+            info.append(diames.getValue("Dia"))
+            info.append(diames.getValue("Mes"))
+            diames.pack_forget()
+
+            funcdia=FieldFrame("Funcion", ["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            funcdia.pack()
+            funcdia.button.configure(text="Rifar")
+
+            if self.cine.verFuncion(int(info[0]),int(info[1]))==0:
+                print("NO HAY FUNCIONES ESE DIA SOSIO")
+            else:
+                funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))
+                textofunc=Label(self.cuerpo,text=funcioneslibres)
+                textofunc.pack()
+
+            def resultado(action):
+                info.append(funcdia.getValue("Numero"))
+                candidatos="Clientes fieles candidatos a la rifa: "
+
+                for c in self.cine.clientesValiosos():
+                    candidatos+=c.getNombre()
+
+                ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))
+
+                messagebox.showinfo(title='Rifa de Boleto!', message=candidatos,
+                                    detail=ganador)  ###FALTA MOSTRAR LOS CANDIDATOS A GANAR Y EL GANADOR QUE ESO ES LO DE LA CAPA LOGICA
+                self.cambiar()
+            funcdia.button.bind("<ButtonRelease>",resultado)        ##Segundo boton
+
+        diames.button.bind("<ButtonRelease>",funcdispo)  ##Primer boton
+
+        #rifa = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
         
-        rifa.pack()
+        #rifa.pack()
 
-        funciones=Label(self.cuerpo,text="Aca irian las funciones disponibles")     ###FALTA ENLAZAR CON LAS FUNCIONES DISPONIBLES QUE BOTA LA CAPA LOGICA
-        funciones.pack()
-
-        def resultado(action):
-            messagebox.showinfo(title='Rifa de Boleto!',message="Clientes fieles candidatos a la rifa: ", detail='GANADOR: ')      ###FALTA MOSTRAR LOS CANDIDATOS A GANAR Y EL GANADOR QUE ESO ES LO DE LA CAPA LOGICA 
-            self.cambiar()
-
-        rifa.button.bind('<ButtonRelease>',resultado)
+        #funciones=Label(self.cuerpo,text="Aca irian las funciones disponibles")     ###FALTA ENLAZAR CON LAS FUNCIONES DISPONIBLES QUE BOTA LA CAPA LOGICA
+        #funciones.pack()
 
     def agregarSala(self):
         self.cambiar()

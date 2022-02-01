@@ -126,7 +126,7 @@ class Cine:
         clienteList=[]		#Aca estaran los tamanos de historial de compra de cada cliente
         
         for cliente in self._clientes:
-            clienteList.append(cliente.getHistorialCompras().size()) 	#Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
+            clienteList.append(len(cliente.getHistorialCompras())) 	#Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
         
         cantidad= len(clienteList)				#Cantidad de clientes que se tiene
         
@@ -170,12 +170,12 @@ class Cine:
         
         aleatorioboleto: int  = random.randint(0,len(fescogida.getSala().cantidadSillas()-1))	#Otro numero aleatorio con base al tamano de la lista de boletos
         
-        bescogido: Boleto = fescogida.getBoletos()[aleatorioboleto];	#Boleto escogido con el numero aleatorio
+        bescogido: Boleto = fescogida.getBoletos()[aleatorioboleto]	#Boleto escogido con el numero aleatorio
         
         if(bescogido.isDisponibilidad()):	#Si este boleto esta disponible se puede rifar ese boleto al cliente ganador
             
             fescogida.VentaBoleto(bescogido,panitaGanador)
-            fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1);		# Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
+            fescogida.setCantidadBoletosVendidos(fescogida.getCantidadBoletosVendidos()-1)		# Cada vez que se aplica la venta de boletos se suma al atributo, como se esta rifando
 														# Se tendria que anular esa suma
         else:
 			#Se puede ser muy demalas y que se escoja aleatoriamente un boleto que ya esta comprado
