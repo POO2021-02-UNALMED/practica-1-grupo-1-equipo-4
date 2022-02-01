@@ -10,6 +10,7 @@ from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.salas.sala3D import Sala3D
 from uimain.user.fieldFrame import FieldFrame
 import uimain.user.venta as venta
+import pickle
 
 class ZonaB: 
    
@@ -59,7 +60,7 @@ class ZonaB:
         self.texto.configure(text = "Permite vender buscando por diferentes peliculas")
         venta.ventana(self.cuerpo, self.cine)
        
-
+    #TODO: Agregar serializador a venta
     def agregarPelicula(self):
 
         self.cambiar()
@@ -87,13 +88,15 @@ class ZonaB:
             self.cine.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
             #print([i.getNombre() for i in self.cine.getPeliculas()])
             
+            picklefile = open('pcs', 'wb')
+            pickle.dump(self.cine,picklefile) #Bloque de serialización
+            picklefile.close()
+            
             messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
 
         agregarPelicula.button.bind('<ButtonRelease>',addPeli)
 
-        #TODO: 
-        #TODO: Luego de agregar la peplícula ¿qué?
-        #TODO: Probar para varios casos y falta serializar
+        
 
     def quitarPelicula(self):
         
@@ -115,12 +118,16 @@ class ZonaB:
         def removePeli(action):
             titles=[i.getNombre() for i in self.cine.getPeliculas()]
             self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
+            
+            picklefile = open('pcs', 'wb')
+            pickle.dump(self.cine,picklefile) #Bloque de serialización
+            picklefile.close()
 
             messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
 
         quitarPelicula.button.bind('<ButtonRelease>',removePeli)
 
-        #El .pop si afectará la lista
+
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las peliculas por hacer
         #TODO: Falta serializar.
@@ -184,6 +191,10 @@ class ZonaB:
                     def creacionfinal(action):
                         info.append(pelisdispo.getValue("Pelicula"))
                         funcion=Funcion(int(info[0]),int(info[1]),info[3],info[4],self.cine.buscarSala(int(info[2])),self.cine) 
+
+                        picklefile = open('pcs', 'wb')
+                        pickle.dump(self.cine,picklefile) #Bloque de serialización
+                        picklefile.close()
 
                         messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
         
@@ -264,6 +275,11 @@ class ZonaB:
             def funcionesAuto(action):
                 info.append(salas.getValue("Numero"))
                 self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
+                
+                picklefile = open('pcs', 'wb')
+                pickle.dump(self.cine,picklefile) #Bloque de serialización
+                picklefile.close()
+
                 messagebox.showinfo(title="Información",message="Función generada con éxito")
                 self.cambiar()
 
@@ -274,11 +290,11 @@ class ZonaB:
         diames.button.bind("<ButtonRelease>", salasDisponibles)
 
         
-        #TODO: Luego de realizar la programcion automatica ¿qué?
-        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
-        #TODO: Falta serializar.
+        #TODO: Revisar que esté funcionando
+        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una?
+
     
-    
+    #TODO: Falta serializar rifa
     def rifa(self):
 
         self.cambiar()
@@ -321,6 +337,10 @@ class ZonaB:
             elif checked.get()==3:
                 Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
                 print("Se creó sala 3D")
+
+            picklefile = open('pcs', 'wb')
+            pickle.dump(self.cine,picklefile) #Bloque de serialización
+            picklefile.close()
 
             messagebox.showinfo(title="Información",message="Sala creada con éxito!")
             #for i in self.cine.getSalas():
