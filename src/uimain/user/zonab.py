@@ -225,19 +225,52 @@ class ZonaB:
         self.titulo.configure(text="Programación automática")
         self.texto.configure(text = "Permite agregar funciones de un día en una sala")
 
-        nomCriterios="Fecha"
-        criterios=["Mes","Día","Sala"]
+        
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
-        agregarAuto = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
 
-        agregarAuto.pack()
-     
+        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames.button.configure(text="Siguiente")
+        diames.pack()
+        
+
+        info=[]
+
+        def salasDisponibles(action):
+            info.append(diames.getValue("Dia"))
+            info.append(diames.getValue("Mes"))
+
+            diames.pack_forget()
+
+            salas = FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            salas.button.configure(text="Siguiente")
+
+            salas.pack()
+
+            textosalas=""
+
+            for sala in self.cine.getSalas():
+                if sala.verificarDisponibilidad():
+                    textosalas+= "Sala "+ str(sala.getNumero()) +"\n"
+
+            disponibles=Label(self.cuerpo,text=textosalas)
+            disponibles.pack()
+
+            def funcionesAuto(action):
+                info.append(salas.getValue("Numero"))
+                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),int(info[2]))
+            
+            salas.button.bind("<ButtonRelease>",funcionesAuto)
+
+        diames.button.bind("<ButtonRelease>", salasDisponibles)
+
         
         #TODO: Luego de realizar la programcion automatica ¿qué?
         #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
         #TODO: Falta serializar.
+    
+    
     def rifa(self):
 
         self.cambiar()
