@@ -1,4 +1,5 @@
 from dataclasses import field
+from textwrap import fill
 from tkinter import *
 from tkinter import messagebox
 from uimain.user.zonaa import ZonaA
@@ -17,8 +18,8 @@ class ZonaB:
     def __init__(self, user,cine):
         
         self.cine=cine
-        self.todo = Frame(user, width =1000, height = 500, bg = "black") #Este es lo que contiene toda la zona 2
-        self.todo.pack()
+        self.todo = Frame(user,  bg = "black") #Este es lo que contiene toda la zona 2
+        self.todo.pack(fill=X)
 
         self.funciones = {"Venta":self.venta,
                          "Agregar Pelicula":self.agregarPelicula,
@@ -28,19 +29,19 @@ class ZonaB:
                          "Rifar Boleto":self.rifa,
                          "Agregar Sala":self.agregarSala} #aca se guardan las los procesos y las consultas
 
-        self.titulo_texto = Frame(self.todo,width=800, height = 150)   
+        self.titulo_texto = Frame(self.todo)   
         self.titulo_texto.pack()
 
         self.titulo = Label(self.titulo_texto, bg="grey",text = "titulo")  #label del titulo
-        self.titulo.pack()
+        self.titulo.pack(fill=X)
 
         self.texto = Label(self.titulo_texto, bg = "red",text = "texto")   #label del titulo
-        self.texto.pack()
+        self.texto.pack(fill=X)
 
 
 
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green") #este es el cuerpo, se inicializa vacio
-        self.cuerpo.pack()
+        self.cuerpo.pack(fill=X)
         
     
     def cambiar(self):
