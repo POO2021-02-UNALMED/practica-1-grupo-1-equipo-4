@@ -105,7 +105,7 @@ class Cine:
         elif(len(args) == 1):
 
             #recibe mes
-            if(type(args[0] == int)):
+            if(type(args[0]) == int):
                 mes = args[0]
                 for funcion in self.getCartelera():
                     if(funcion.getMes() == mes):
