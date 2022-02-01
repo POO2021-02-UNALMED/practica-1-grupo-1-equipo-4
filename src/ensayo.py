@@ -48,7 +48,7 @@ funcion_7 = Funcion.crearFuncion(16, 12, Horario.UNO, toystory, 4, cine);
 funcion_8 = Funcion.crearFuncion(17, 12, Horario.CUATRO, toystory, 2, cine);
 funcion_9 = Funcion.crearFuncion(16, 12, Horario.TRES, toystory, 2, cine);
 
-funcion_1.VentaBoleto(funcion_1.getBoletos()[1],cliente1);
+funcion_1.VentaBoleto(funcion_1.getBoletos()[0],cliente1);
 funcion_1.VentaBoleto(funcion_1.getBoletos()[2],cliente1);
 funcion_2.VentaBoleto(funcion_2.getBoletos()[3],cliente2);
 funcion_2.VentaBoleto(funcion_2.getBoletos()[4],cliente2);
@@ -62,33 +62,22 @@ funcion_2.VentaBoleto(funcion_2.getBoletos()[15], cliente11);
 funcion_2.VentaBoleto(funcion_2.getBoletos()[17], cliente5);
 
 
-funcion_4.VentaBoleto(funcion_4.getBoletos()[25], cliente13);
-funcion_4.VentaBoleto(funcion_4.getBoletos()[14], cliente13);
-funcion_4.VentaBoleto(funcion_4.getBoletos()[7],cliente6);
-funcion_4.VentaBoleto(funcion_4.getBoletos()[8],cliente8);
-funcion_4.VentaBoleto(funcion_4.getBoletos()[17], cliente4);
+funcion_4.VentaBoleto(funcion_4.getBoletos()[0], cliente13);
 
 funcion_3.VentaBoleto(funcion_3.getBoletos()[45], cliente7);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[3],cliente7);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[1], cliente5);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[14], cliente5);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[5],cliente5);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[6],cliente6);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[7],cliente6);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[8],cliente6);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[9],cliente6);
 funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente12);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[15], cliente4);
-# funcion_9.VentaBoleto(funcion_9.getBoletos()[17], cliente4);
-#ventana.user.mainloop()
 
 
 window = Tk()
 window.option_add('*tearOff', FALSE)
 
-picklefile = open('pcs', 'rb')
-cine = pickle.load(picklefile) #Bloque de deserialzación
-picklefile.close()
+# picklefile = open('pcs', 'rb')
+# cine = pickle.load(picklefile) #Bloque de deserialzación
+# picklefile.close()
 
 first=First(window,cine)
 first.pack()

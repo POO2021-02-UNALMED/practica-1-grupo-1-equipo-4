@@ -17,7 +17,7 @@ rey_leon = Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine)
 Sala2D(7, 8, 2,cine)
 Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine)*/"""
 
-def ventana(window, cine):
+def ventana(variable, window, cine):
     venta = Frame()
     cliente = None
     frame  = FieldFrame("Cedula Cliente",["Cedula"],"Ingrese Dato",None, None,window)
@@ -51,29 +51,44 @@ def ventana(window, cine):
             nonlocal cliente
             nonlocal cine
             nonlocal label
-
+            
             sillas = funcion.verDisponibilidad()
             filas = funcion.getSala().getFilas()
             columnas = funcion.getSala().getColumnas()
             nueva.pack_forget()
             label.pack_forget()
+            label = Label(venta, text = "Seleccione la silla que desea")
+            label.pack()
             nueva = Frame(venta)
             nueva.pack()
-
-
+            def vender_boleto(numero):
+                nonlocal nueva
+                funcion.VentaBoleto(funcion.getBoletos()[numero],cliente)
+                nueva.pack_forget()
+                nueva = FieldFrame("Se ha vendido el boleto",
+                                    ["El precio es"],
+                                    "numero "+str(numero+1),
+                                    [str((funcion.getBoletos()[numero].getPrecioTotal()))],None, venta)
+                nueva.pack()
+                nueva.button.bind('<ButtonRelease>', lambda x = variable: variable.cambiar())
             for silla in sillas:
                 print(silla)
             num = 0
-            total = []
+            botones = []
+            funciones = []
             for i in range(filas):
-                fila=[]
                 for j in range(columnas):
-                    if (num<funcion.getSala().cantidadsillas()):
-                        fila.append(Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4))
-
+                    if (num<funcion.getSala().getCantidadSillas()):
+                        
+                        if(sillas[num][0] == True):
+                            funciones.append(lambda: vender_boleto(num))
+                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, command = lambda x = (columnas*i + j): vender_boleto(x))   
+                        else:
+                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue")
+                        botones.append(a)
+                        botones[num].grid(column= j, row = i, padx = 3, pady = 3)
                         num += 1
-                        fila[j].grid(column= j, row = i, padx = 3, pady = 3)
-                total.append(fila)            
+                                   
 
         def mostrar_funciones(funciones):
             #se usa funciones para mostrar en pantalla las funciones disponibles

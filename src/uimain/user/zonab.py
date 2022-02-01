@@ -58,7 +58,7 @@ class ZonaB:
         self.cambiar()
         self.titulo.configure(text = "Venta")
         self.texto.configure(text = "Permite vender buscando por diferentes peliculas")
-        venta.ventana(self.cuerpo, self.cine)
+        venta.ventana(self, self.cuerpo, self.cine)
        
     #TODO: Agregar serializador a venta
     def agregarPelicula(self):

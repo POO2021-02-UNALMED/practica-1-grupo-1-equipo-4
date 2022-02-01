@@ -20,6 +20,9 @@ class Sala2D(Sala):
     def cantidadSillas(self):
         return len(super().getSillas())
     
+    def getCantidadSillas(self):
+        return len(super().getSillas())
+    
     def crearSilleteria(self):
         total: int =  int(self._filas)*int(self._columnas)
         totalvip: int = int(self._filasvip)*int(self._columnas)

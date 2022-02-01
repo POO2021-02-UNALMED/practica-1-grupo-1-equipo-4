@@ -6,7 +6,7 @@ class Sala:
 
 
     def __init__(self,filas,columnas,filasvip,precio,cine):
-        self._numero = len(cine.getSalas())
+        self._numero = len(cine.getSalas())+1
         self._sillas = []
         self._funciones = []
 
