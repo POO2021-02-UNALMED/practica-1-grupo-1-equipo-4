@@ -256,15 +256,18 @@ class ZonaB:
             textosalas=""
 
             for sala in self.cine.getSalas():
-                if sala.verificarDisponibilidad():
+                if sala.verificarDisponibilidad(int(info[0]),int(info[1])):
                     textosalas+= "Sala "+ str(sala.getNumero()) +"\n"
-
             disponibles=Label(self.cuerpo,text=textosalas)
             disponibles.pack()
 
             def funcionesAuto(action):
                 info.append(salas.getValue("Numero"))
-                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),int(info[2]))
+                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
+                messagebox.showinfo(title="Información",message="Función generada con éxito")
+                self.cambiar()
+
+
             
             salas.button.bind("<ButtonRelease>",funcionesAuto)
 

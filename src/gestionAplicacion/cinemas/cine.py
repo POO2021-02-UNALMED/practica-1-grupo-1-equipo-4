@@ -37,7 +37,7 @@ class Cine:
                    
         pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
 		
-        if(len(peliculasMes)):
+        if(len(peliculasMes)>=6):
             for i in range(6):
                 p : Pelicula = peliculasMes[i]
                 h : Horario = Horario.getHorario(disponibles[i])
