@@ -178,8 +178,9 @@ class ZonaB:
                         info.append(pelisdispo.getValue("Pelicula"))
                         funcion=Funcion(int(info[0]),int(info[1]),info[3],info[4],self.cine.buscarSala(int(info[2])),self.cine) 
         
-                        self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-                        print(self.cine.getCartelera())
+                        #self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+                        #for i in self.cine.getCartelera():
+                        #    print(i.getPelicula())
 
                     pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
 
@@ -198,7 +199,7 @@ class ZonaB:
         diames.button.bind("<ButtonRelease>",salasdia)      ###Primer boton
 
 
-        def addFuncion(action):
+        """def addFuncion(action):
             funcion=Funcion(info[0],
                 info[1],
                 info[3],
@@ -206,7 +207,7 @@ class ZonaB:
                 info[2],
                 self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
         
-            self.cine.agregarFuncion(funcion) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
+            self.cine.agregarFuncion(funcion)""" #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
         
         #agregarFuncion.button.bind('<ButtonRelease>',addFuncion)
 

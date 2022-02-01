@@ -108,12 +108,12 @@ class Sala:
         disponibles=["12:00","14:00","16:00","18:00","20:00","22:00"]
 
         for funcion in self._funciones:
-            info=""+funcion.getDia()+funcion.getMes()
+            info=""+str(funcion.getDia())+str(funcion.getMes())
             fechas.append(info)
         
         for i in range (len(fechas)):
             if fechas[i]==consulta:
-                horarios.append(self._funciones[i].getHorario().getHora())
+                horarios.append(self._funciones[i].getHorario())
         
         for horario in horarios:
             disponibles.remove(horario)
