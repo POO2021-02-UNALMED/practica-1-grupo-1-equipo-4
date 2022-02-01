@@ -28,7 +28,7 @@ def ventana(variable, window, cine):
         nonlocal venta
         nonlocal cliente
         nonlocal cine
-
+            
         boton_recomendada = None
         boton_funcion = None
         boton_pelicula = None
