@@ -75,9 +75,9 @@ funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente12);
 window = Tk()
 window.option_add('*tearOff', FALSE)
 
-# picklefile = open('pcs', 'rb')
-# cine = pickle.load(picklefile) #Bloque de deserialzación
-# picklefile.close()
+picklefile = open('pcs', 'rb')
+cine = pickle.load(picklefile) #Bloque de deserialzación
+picklefile.close()
 
 first=First(window,cine)
 first.pack()
