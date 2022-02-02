@@ -1,3 +1,12 @@
+'''
+Funcionalidad de la clase: En first será la ventana de inicio en donde se podrán ver las hojas de vida de los desarrolladores, fotos, opcion para
+                            salir de la aplicación  y un botón para ingresar a las funcionalidades del cine 
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+'''
+
+
+
 from msilib.schema import Class
 import sys
 import os
@@ -29,8 +38,9 @@ class First(Frame):
         self.img1=PhotoImage(file=self.getPath('cinepng.png'),width=600,height=600)
         self.label1['image']=self.img1
         self.label1.grid(column=0,row=0,padx=3, pady=3)
-
-        self.img2=PhotoImage(file=self.getPath('cinebahia.png'),width=600,height=600)
+        
+        #Fotos del cine asignados a los self.img
+        self.img2=PhotoImage(file=self.getPath('cinebahia.png'),width=600,height=600)   
         self.img3=PhotoImage(file=self.getPath('cine1.png'),width=600,height=600)
         self.img4=PhotoImage(file=self.getPath('cine2.png'),width=600,height=600)
         self.img5=PhotoImage(file=self.getPath('cine4.png'),width=600,height=600)
@@ -72,7 +82,10 @@ class First(Frame):
     
 
 
+
     def getPath(self,txt):
+            # Para importar las imagenes
+
         import os
         import sys
         txt= "uimain\\principal\\" +  txt
@@ -84,30 +97,40 @@ class First(Frame):
         self.hojaFotos1.pack()
 
     def cambioAHoja1(self,action):
+        #No recibe nada y se pasa de la hoja 4 a la 1 , cambio de hoja de vida del desarrollador
+    
         self.hoja4.pack_forget()
         self.hojaFotos4.pack_forget()
         self.hoja1.pack()
         self.hojaFotos1.pack()
 
     def cambioAHoja2(self,action):
+        #No recibe nada y se pasa de la hoja 1 a la 2, cambio de hoja de vida del desarrollador
+
         self.hoja1.pack_forget()
         self.hojaFotos1.pack_forget()
         self.hoja2.pack()
         self.hojaFotos2.pack()
 
     def cambioAHoja3(self,action):
+        #No recibe nada y se pasa de la hoja 2 a la 3, cambio de hoja de vida del desarrollador
+
         self.hoja2.pack_forget()
         self.hojaFotos2.pack_forget()
         self.hoja3.pack()
         self.hojaFotos3.pack()
 
     def cambioAHoja4(self,action):
+        #No recibe nada y se pasa de la hoja 3 a la 4, cambio de hoja de vida del desarrollador
+
         self.hoja3.pack_forget()
         self.hojaFotos3.pack_forget()
         self.hoja4.pack()
         self.hojaFotos4.pack()
 
     def cambioAImg1(self,action):
+
+
         self.label1.grid_forget()
         self.label1['image']=self.img1
         self.label1.grid(column=0,row=0,padx=3,pady=3)

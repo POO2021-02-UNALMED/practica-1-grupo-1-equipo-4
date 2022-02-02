@@ -1,5 +1,5 @@
 '''
-Funcionalidad de la clase:
+Funcionalidad de la clase: Se consiguen los atributos de la silla como son el tipo y el numero correspondiente
 
 Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 '''
