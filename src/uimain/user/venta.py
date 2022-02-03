@@ -74,6 +74,8 @@ def ventana(variable, window, cine):
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>', lambda x = variable: variable.cambiar())
             
+            def holi():
+                raise NotChair
 
             num = 0
             botones = []
@@ -86,7 +88,7 @@ def ventana(variable, window, cine):
                             funciones.append(lambda: vender_boleto(num))
                             a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, command = lambda x = (columnas*i + j): vender_boleto(x))   
                         else:
-                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue", command = lambda x: NotChair() )
+                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue", command = holi )
                         botones.append(a)
                         botones[num].grid(column= j, row = i, padx = 3, pady = 3)
                         num += 1
