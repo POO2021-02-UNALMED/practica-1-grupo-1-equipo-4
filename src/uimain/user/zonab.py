@@ -212,7 +212,7 @@ class ZonaB:
                 info.append(salasdispo.getValue("Numero"))
 
                 try:
-                    disp = self.cine.salasDisponibles(int(info[0]), int(info[1]))
+                    disp = self.cine.salasDisponibles(int(info[0]), int(info[1])).copy()
                     disp.remove(self.cine.buscarSala(int(info[2])))
                 except:
                     info.pop()
@@ -260,7 +260,7 @@ class ZonaB:
                         info.append(pelisdispo.getValue("Pelicula"))
                         titles = [i.getNombre() for i in self.cine.getPeliculas()]
                         try:
-                            self.cine.getPeliculas().pop(titles.index(pelisdispo.getValue("Pelicula")))
+                            self.cine.getPeliculas().copy().pop(titles.index(pelisdispo.getValue("Pelicula")))
                         except:
                             raise NotIn()
 
