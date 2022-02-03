@@ -1,3 +1,4 @@
+from ast import NotIn
 from tkinter import *
 from uimain.user.fieldFrame import FieldFrame
 from gestionAplicacion.cinemas.cliente import Cliente
@@ -7,8 +8,8 @@ from gestionAplicacion.boleteria.pelicula import Pelicula
 from gestionAplicacion.boleteria.horario import Horario
 from gestionAplicacion.salas.sala2D import Sala2D
 from uimain.user.excepciones.notipo import NoTipo
-
-
+from uimain.user.excepciones.notin import NotIn
+from uimain.user.excepciones.notchair import NotChair
 
 """/*window = Tk()
 
@@ -73,6 +74,8 @@ def ventana(variable, window, cine):
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>', lambda x = variable: variable.cambiar())
             
+            def holi():
+                raise NotChair
 
             num = 0
             botones = []
@@ -85,7 +88,7 @@ def ventana(variable, window, cine):
                             funciones.append(lambda: vender_boleto(num))
                             a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, command = lambda x = (columnas*i + j): vender_boleto(x))   
                         else:
-                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue")
+                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue", command = holi )
                         botones.append(a)
                         botones[num].grid(column= j, row = i, padx = 3, pady = 3)
                         num += 1
@@ -109,9 +112,13 @@ def ventana(variable, window, cine):
 
             def obtenerFuncion():
                 nonlocal nueva
-
-
                 numero = nueva.getValue("Número de Funcion")
+                try:
+                    cine.BuscadorFuncion(numero).getHorario()
+                except:
+                    raise NotIn
+
+                
                 mostrar_sillas(cine.BuscadorFuncion(numero))
                 
 
@@ -181,9 +188,10 @@ def ventana(variable, window, cine):
             frame.pack_forget()
             frame = FieldFrame("Inscripción", ["Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
             frame.pack()
+
             def crearCliente():
                 nonlocal cliente
-                if (frame.getValue("Cedula referido") != 0):
+                if (int(frame.getValue("Cedula referido")) != 0):
                     try:
                         [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
                         [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
@@ -195,7 +203,7 @@ def ventana(variable, window, cine):
 
                     
                     
-                    cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
                     cliente.referidos()
                     vender(False)
                 else:
@@ -208,7 +216,7 @@ def ventana(variable, window, cine):
                         raise NoTipo
 
 
-                    cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
                     vender(False)                    
             
             frame.button.bind('<ButtonRelease>',lambda x: crearCliente())
