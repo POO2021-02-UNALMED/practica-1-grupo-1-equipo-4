@@ -278,6 +278,28 @@ class ZonaB:
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
 
+            try:
+                int(info[0])
+                int(info[1])
+            except:
+                info.pop()
+                info.pop()
+                raise NoTipo()
+
+            try:
+                [i for i in range(1, 13)].index(int(info[1]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer()
+
+            try:
+                [i for i in range(1, 32)].index(int(info[0]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer()
+
             diames.pack_forget()
 
             salas = FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
@@ -295,6 +317,17 @@ class ZonaB:
 
             def funcionesAuto(action):
                 info.append(salas.getValue("Numero"))
+
+                try:
+                    disp=[]
+                    for sala in self.cine.getSalas():
+                        if sala.verificarDisponibilidad(int(info[0]), int(info[1])):
+                            disp.append(sala)
+                    disp.remove(self.cine.buscarSala(int(info[2])))
+                except:
+                    info.pop()
+                    raise NotIn()
+
                 self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
                 
                 picklefile = open('pcs', 'wb')

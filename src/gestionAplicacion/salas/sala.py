@@ -93,7 +93,7 @@ class Sala:
             
             for i in range(len(fechas)):
                 if (fechas[i] == consulta):				
-                    horarios.append(str(self._funciones[i].getHorario()))
+                    horarios.append(str(self._funciones[i].getHorario().getHora()))
                 
             
             
@@ -155,7 +155,7 @@ class Sala:
             
         for i in range(len(fechas)):
             if (fechas[i] == consulta):
-                horarios.append(str(self._funciones[i].getHorario().getHora()));	
+                horarios.append(str(self._funciones[i].getHorario().getHora()))
                 
         for horario in horarios:
             disponibles.remove(horario)
