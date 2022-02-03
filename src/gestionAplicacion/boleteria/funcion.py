@@ -1,3 +1,10 @@
+'''
+Funcionalidad de la clase: Albergar los atributos de la función la cual está ligado a un horario, película,sala y cine específico
+
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+'''
+
 from code import interact
 from hashlib import new
 from tkinter import NONE
@@ -27,9 +34,9 @@ class Funcion:
     @classmethod
     def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none
         sala = cine.buscarSala(num_sala)
-        if(sala!=None):
+        if(sala!=None): #Si se encuentra ese número de sala en ese cine se verifica disponibilidad
             if(sala.verificarDisponibilidad(dia,mes,horario.getHora())):
-                return Funcion(dia,mes,horario,pelicula,sala,cine)
+                return Funcion(dia,mes,horario,pelicula,sala,cine)  #Se asigna una función a ese cine 
             else:
                 return None
         else:
@@ -37,6 +44,7 @@ class Funcion:
 
     @classmethod
     def formatearFunciones(cls,funciones):
+        #Recibe unas funciones y procede a organizarlas de forma adecuada para el cliente
 
         resultado = ""
         for funcion in funciones:
@@ -91,7 +99,7 @@ class Funcion:
 
 
         
-
+#Getter y Setter
 
     def getDia(self):
         return self._dia
