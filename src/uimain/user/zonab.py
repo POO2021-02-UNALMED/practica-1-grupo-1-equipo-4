@@ -90,12 +90,21 @@ class ZonaB:
                 agregarPelicula.getValue("Idioma"),
                 agregarPelicula.getValue("Edad mínima"),
                 self.cine) 
-        
             
             
-            picklefile = open('pcs', 'wb')
-            pickle.dump(self.cine,picklefile) #Bloque de serialización
-            picklefile.close()
+            try:
+
+                [int(i)/0 for i in agregarPelicula.getValue("Genero") if i in list("123456789")]
+                [int(i)/0 for i in agregarPelicula.getValue("Idioma") if i in list("123456789")]
+                int(agregarPelicula.getValue("Duración"))
+                int(agregarPelicula.getValue("Edad mínima"))
+            except:
+                raise NoTipo
+            
+            
+            # picklefile = open('pcs', 'wb')
+            # pickle.dump(self.cine,picklefile) #Bloque de serialización
+            # picklefile.close()
             
             self.cambiar()
             messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
