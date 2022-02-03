@@ -179,11 +179,18 @@ class ZonaB:
                 raise NoTipo()
 
             try:
-                [1,2,3,4,5,6,7,8,9,10,11,12].index(int(info[1]))
+                [i for i in range(1, 13)].index(int(info[1]))
             except:
                 info.pop()
                 info.pop()
-                raise RangoNoPer
+                raise RangoNoPer()
+
+            try:
+                [i for i in range(1, 32)].index(int(info[0]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer()
 
             
             diames.pack_forget()
@@ -194,6 +201,14 @@ class ZonaB:
 
             def horariosala(action):        ##Aca se muestran los horarios disponibles de la sala escogida
                 info.append(salasdispo.getValue("Numero"))
+
+                try:
+                    disp = self.cine.salasDisponibles(int(info[0]), int(info[1]))
+                    disp.remove(self.cine.buscarSala(int(info[2])))
+                except:
+                    info.pop()
+                    raise NotIn()
+
                 salasdispo.pack_forget()
                 disponibles.pack_forget()
 
@@ -210,6 +225,14 @@ class ZonaB:
 
                 def peliscine(action):        ###Peliculas disponibles en el cine
                     info.append(horariodispo.getValue("Hora"))
+
+                    try:
+                        if info[3] not in self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1])):
+                            x=1/0
+                    except:
+                        info.pop()
+                        raise NotIn()
+
                     horariodispo.pack_forget()
                     disponibles.pack_forget()
 
@@ -226,7 +249,13 @@ class ZonaB:
 
                     def creacionfinal(action):
                         info.append(pelisdispo.getValue("Pelicula"))
-                        funcion=Funcion(int(info[0]),int(info[1]),Horario.getHorario(info[3]),self.cine.BuscadorPelicula(info[4]),self.cine.buscarSala(int(info[2])),self.cine) 
+                        titles = [i.getNombre() for i in self.cine.getPeliculas()]
+                        try:
+                            self.cine.getPeliculas().pop(titles.index(pelisdispo.getValue("Pelicula")))
+                        except:
+                            raise NotIn()
+
+                        Funcion.crearFuncion(int(info[0]),int(info[1]),Horario.getHorario(info[3]),self.cine.BuscadorPelicula(info[4]),self.cine.buscarSala(int(info[2])).getNumero(),self.cine)
 
                         picklefile = open('pcs', 'wb')
                         pickle.dump(self.cine,picklefile) #Bloque de serialización
@@ -311,6 +340,7 @@ class ZonaB:
             textosalas=""
 
             for sala in self.cine.getSalas():
+
                 if sala.verificarDisponibilidad(int(info[0]),int(info[1])):
                     textosalas+= "Sala "+ str(sala.getNumero()) +"\n"
             disponibles=Label(self.cuerpo,text=textosalas)
