@@ -15,6 +15,7 @@ from gestionAplicacion.boleteria.horario import Horario
 from uimain.user.excepciones.notin import NotIn
 from uimain.user.excepciones.notipo import NoTipo
 from uimain.user.excepciones.rangonoper import RangoNoPer
+from uimain.user.excepciones.nodisp import NoDisp
 import pickle
 
 class ZonaB: 
@@ -370,6 +371,29 @@ class ZonaB:
         def funcdispo(action):
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
+
+            try:
+                int(info[0])
+                int(info[1])
+            except:
+                info.pop()
+                info.pop()
+                raise NoTipo()
+
+            try:
+                [i for i in range(1, 13)].index(int(info[1]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer()
+
+            try:
+                [i for i in range(1, 32)].index(int(info[0]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer()
+
             diames.pack_forget()
 
             funcdia=FieldFrame("Funcion", ["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
@@ -377,8 +401,10 @@ class ZonaB:
             funcdia.button.configure(text="Rifar")
 
             if len(self.cine.verFuncion(int(info[0]),int(info[1])))==0:
-                messagebox.showinfo(title="Error",message="No hay funciones disponibles para ese dia")
+                info.pop()
+                info.pop()
                 self.cambiar()
+                raise NoDisp()
 
             else:
                 funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))
@@ -387,6 +413,14 @@ class ZonaB:
 
             def resultado(action):
                 info.append(funcdia.getValue("Numero"))
+
+                try:
+                    fdeldia=self.cine.verFuncion(int(info[0]),int(info[1]))
+                    fdeldia.remove(self.cine.BuscadorFuncion(int(info[2])))
+                except:
+                    info.pop()
+                    raise NotIn()
+
                 candidatos="Clientes fieles candidatos a la rifa: "
 
                 for c in self.cine.clientesValiosos():
@@ -395,8 +429,9 @@ class ZonaB:
                 ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))
 
                 messagebox.showinfo(title='Rifa de Boleto!', message=candidatos,
-                                    detail=ganador)  ###FALTA MOSTRAR LOS CANDIDATOS A GANAR Y EL GANADOR QUE ESO ES LO DE LA CAPA LOGICA
+                                    detail=ganador)
                 self.cambiar()
+
             funcdia.button.bind("<ButtonRelease>",resultado)        ##Segundo boton
 
         diames.button.bind("<ButtonRelease>",funcdispo)  ##Primer boton
