@@ -263,12 +263,10 @@ class ZonaB:
                             self.cine.getPeliculas().copy().pop(titles.index(pelisdispo.getValue("Pelicula")))
                         except:
                             raise NotIn()
+                        a = self.cine.BuscadorPelicula(info[4])
+                        Funcion.crearFuncion(int(info[0]),int(info[1]),Horario.getHorario(info[3]), self.cine.BuscadorPelicula(info[4]), self.cine.buscarSala(int(info[2])).getNumero(),self.cine)
 
-                        Funcion.crearFuncion(int(info[0]),int(info[1]),Horario.getHorario(info[3]),self.cine.BuscadorPelicula(info[4]),self.cine.buscarSala(int(info[2])).getNumero(),self.cine)
 
-                        picklefile = open('pcs', 'wb')
-                        pickle.dump(self.cine,picklefile) #Bloque de serialización
-                        picklefile.close()
                         self.cambiar()
                         messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
 

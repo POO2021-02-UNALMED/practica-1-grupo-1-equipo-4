@@ -209,7 +209,7 @@ class Cine:
 
         lista = self.getPeliculas()
         for pelicula in lista:
-            if (str(pelicula.getNombre()==nombre)):
+            if (str(pelicula.getNombre())==nombre):
                 return pelicula
         return None
 

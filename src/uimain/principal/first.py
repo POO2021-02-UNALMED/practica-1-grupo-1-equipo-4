@@ -38,15 +38,15 @@ class First(Frame):
         frame4.grid(column = 0, row= 1, padx=3, pady=3,columnspan=4)
 
         self.label1=Label(frame4)
-        self.img1=PhotoImage(file=self.getPath('cinepng.png'),width=600,height=600)
+        self.img1=PhotoImage(file=self.getPath('cinepng.png'),width=400,height=400)
         self.label1['image']=self.img1
         self.label1.grid(column=0,row=0,padx=3, pady=3)
         
         #Fotos del cine asignados a los self.img
-        self.img2=PhotoImage(file=self.getPath('cinebahia.png'),width=600,height=600)   
-        self.img3=PhotoImage(file=self.getPath('cine1.png'),width=600,height=600)
-        self.img4=PhotoImage(file=self.getPath('cine2.png'),width=600,height=600)
-        self.img5=PhotoImage(file=self.getPath('cine4.png'),width=600,height=600)
+        self.img2=PhotoImage(file=self.getPath('cinebahia.png'),width=400,height=400)   
+        self.img3=PhotoImage(file=self.getPath('cine1.png'),width=400,height=400)
+        self.img4=PhotoImage(file=self.getPath('cine2.png'),width=400,height=400)
+        self.img5=PhotoImage(file=self.getPath('cine4.png'),width=400,height=400)
 
         self.label1.bind('<ButtonPress-1>', self.cambioAImg2)
 

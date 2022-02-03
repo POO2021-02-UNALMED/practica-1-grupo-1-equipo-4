@@ -89,3 +89,7 @@ first=First(window,cine)
 first.pack()
 
 window.mainloop()
+
+picklefile = open('pcs', 'wb')
+pickle.dump(cine,picklefile) #Bloque de serialización
+picklefile.close()
