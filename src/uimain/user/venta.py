@@ -123,10 +123,8 @@ def ventana(variable, window, cine):
             try:
                 boton_recomendada.pack_forget()
                 boton_funcion.pack_forget()
-                boton_pelicula.pack_forget()
             except AttributeError:
                 boton_funcion.pack_forget()
-                boton_pelicula.pack_forget()
             
 
                          
@@ -156,20 +154,7 @@ def ventana(variable, window, cine):
             nueva.button.bind('<ButtonRelease>', lambda x: funcionesxfuncion())
             
             
-        def llamar_pelicula():
-            
-            nonlocal nueva
-            nonlocal cine
 
-            pelicula = FieldFrame("Fecha", ["Nombre"], "Ingrese datos", None, None, venta)
-            pelicula.pack()
-            try:
-                nueva.pack_forget()
-            except AttributeError:
-                pass
-            nueva = pelicula
-            funciones = None
-            nueva.button.bind('<ButtonRelease>', lambda x: mostrar_funciones(funciones))
 
         if(existente):
 
@@ -177,14 +162,10 @@ def ventana(variable, window, cine):
             boton_recomendada.pack()
             boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
             boton_funcion.pack()
-            boton_pelicula=Radiobutton(venta,text="Pelicula",value=2,command=llamar_pelicula)
-            boton_pelicula.pack()
         else:
 
             boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
-            boton_funcion.pack()
-            boton_pelicula=Radiobutton(venta,text="Pelicula",value=2,command=llamar_pelicula)
-            boton_pelicula.pack()            
+            boton_funcion.pack()          
     
     def cedula(numero):
         nonlocal cine
@@ -198,21 +179,37 @@ def ventana(variable, window, cine):
         if(cine.buscadorCliente(numero) == None):
             
             frame.pack_forget()
-            frame = FieldFrame("Inscripción", ["Referido","Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
+            frame = FieldFrame("Inscripción", ["Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
             frame.pack()
             def crearCliente():
-                try:
-
-                    [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
-                    [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
-                    int(frame.getValue("Edad"))
-
-                except:
-                    raise NoTipo
-
                 nonlocal cliente
-                cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
-                vender(False)
+                if (frame.getValue("Cedula referido") != 0):
+                    try:
+                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        int(frame.getValue("Edad"))
+                        cine.buscadorCliente(int(frame.getValue("Cedula referido"))).getDescuento()
+
+                    except:
+                        raise NoTipo
+
+                    
+                    
+                    cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
+                    cliente.referidos()
+                    vender(False)
+                else:
+                    try:
+                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        int(frame.getValue("Edad"))
+
+                    except:
+                        raise NoTipo
+
+
+                    cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
+                    vender(False)                    
             
             frame.button.bind('<ButtonRelease>',lambda x: crearCliente())
             

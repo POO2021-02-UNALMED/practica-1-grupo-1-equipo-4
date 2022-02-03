@@ -3,7 +3,7 @@ from collections import Counter
 
 class Cliente:
 
-    def __init__(self,cedula,nombre,edad,ocupacion,cine):
+    def __init__(self,cedula,nombre,edad,ocupacion,cine, referido = None):
         self._historialCompras = []
         self._cedula = cedula
         self._nombre = nombre
@@ -12,6 +12,7 @@ class Cliente:
         cine.agregarCliente(self)
         self._cine = cine
         self._descuento = 0
+        self._referidos = 0
         if (self._ocupacion == "Estudiante"):
             self._descuento += 0.1
         #!!! Aqui falta la variable del serializador
