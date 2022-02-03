@@ -128,6 +128,13 @@ class ZonaB:
 
         quitarPelicula.button.bind('<ButtonRelease>',removePeli)
 
+        peliculasdisponibles = "Peliculas disponibles en el cine:\n"
+        for p in self.cine.getPeliculas():
+            peliculasdisponibles += p.getNombre() + "\n"
+
+        disponibles=Label(self.cuerpo,text=peliculasdisponibles)
+        disponibles.pack()
+
 
         #TODO: Luego de quitar la película ¿qué?
         #TODO: Mostrar los nombres de las peliculas por hacer
