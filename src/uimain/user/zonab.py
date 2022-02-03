@@ -12,6 +12,9 @@ from gestionAplicacion.salas.sala3D import Sala3D
 from uimain.user.fieldFrame import FieldFrame
 import uimain.user.venta as venta
 from gestionAplicacion.boleteria.horario import Horario
+from uimain.user.excepciones.notin import NotIn
+from uimain.user.excepciones.notipo import NoTipo
+from uimain.user.excepciones.rangonoper import RangoNoPer
 import pickle
 
 class ZonaB: 
@@ -93,6 +96,7 @@ class ZonaB:
             pickle.dump(self.cine,picklefile) #Bloque de serialización
             picklefile.close()
             
+            self.cambiar()
             messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
 
         agregarPelicula.button.bind('<ButtonRelease>',addPeli)
@@ -118,12 +122,16 @@ class ZonaB:
 
         def removePeli(action):
             titles=[i.getNombre() for i in self.cine.getPeliculas()]
-            self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
+            try:
+                self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
+            except:
+                raise NotIn()
             
             # picklefile = open('pcs', 'wb')
             # pickle.dump(self.cine,picklefile) #Bloque de serialización
             # picklefile.close()
-
+            
+            self.cambiar()
             messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
 
         quitarPelicula.button.bind('<ButtonRelease>',removePeli)
@@ -155,9 +163,35 @@ class ZonaB:
 
         info=[]      #[0]=dia, [1]=mes, [2]=sala, [3]=hora, [4]=pelicula
 
+
         def salasdia(action):       ##Aca se muestran las salas disponibles segun el dia seleccionado
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
+            
+            try:
+                info[0]
+                info[1]
+            except:
+                info.pop()
+                info.pop()
+                raise NotIn()
+            
+            try:
+                int(info[0])
+                int(info[1])
+            except:
+                info.pop()
+                info.pop()
+                raise NoTipo()
+
+            try:
+                [1,2,3,4,5,6,7,8,9,10,11,12].index(int(info[1]))
+            except:
+                info.pop()
+                info.pop()
+                raise RangoNoPer
+
+            
             diames.pack_forget()
 
             salasdispo=FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
