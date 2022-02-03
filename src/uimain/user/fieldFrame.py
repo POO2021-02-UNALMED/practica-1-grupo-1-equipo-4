@@ -18,11 +18,11 @@ class FieldFrame(Frame):
 
 
         criteriosName = tk.Label(self,  text= tituloCriterio ,          #Titulo de los criterios 
-                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" )  #Color del fondo
+                    font=('Microsoft Himalaya', 17), width=20,anchor="c",bg = "#E0FFFF" )  #Color del fondo
         criteriosName.grid(row=1,column=1) 
 
         valuesName = tk.Label(self,  text=tituloValores, #Color azul claro
-                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" ) #Titulo valores de los criterios
+                    font=('Microsoft Himalaya', 17), width=20,anchor="c",bg = "#E0FFFF" ) #Titulo valores de los criterios
         valuesName.grid(row=1, column = 2)  #Darle ubicacion al lado de el titulo de los criterios 
 
         self.entries = [] # Lista de entradas vacías 
@@ -34,24 +34,24 @@ class FieldFrame(Frame):
 
         for (row, ejemplo),valor in zip(enumerate(criterios),valores): #Con los criterios ingresados hacer la malla del formulario
             row+=2
-            l1 = tk.Label(self,  text=ejemplo+" :", width=10,anchor="c", bg = "white")  
+            l1 = tk.Label(self,  text=ejemplo+" :", width=15,anchor="c", bg = "white")
             l1.grid(row=row,column=1) 
 
             # add one text box
             if((row-2) not in habilitado):
-                t1 = tk.Entry(self, width=10,bg='white') #Campo 
+                t1 = tk.Entry(self, width=15,bg='white') #Campo
                 t1.insert(END, valor)
                 t1.grid(row=row,column=2)
                 self.entries.append(t1)
             else:
-                t1 = tk.Label(self,text=valor, font=('Microsoft Himalaya', 16), height=1, width=10,bg='white') 
+                t1 = tk.Label(self,text=valor, font=('Microsoft Himalaya', 16), height=1, width=15,bg='white')
                 t1.grid(row=row,column=2)
                 self.entries.append(None)
 
-        self.button = tk.Button(self,  text='Aceptar', width=10)
+        self.button = tk.Button(self,  text='Aceptar', width=15)
         self.button.bind('<ButtonPress-1>',self.add_data) #Boton que llama a la funcion de agregar informacion
         self.button.grid(row=7,column=2)
-        self.button2 = tk.Button(self, text='Borrar', width=10)
+        self.button2 = tk.Button(self, text='Borrar', width=15)
         self.button2.bind('<ButtonPress-1>',self.clear) #Limpiar lo que se ingresa de la celda 
         self.button2.grid(row=7,column=1)
 

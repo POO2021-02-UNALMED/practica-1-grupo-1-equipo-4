@@ -176,7 +176,7 @@ class First(Frame):
 
     def descripcion(self):
             global greetings    #Descripcion del sistema 
-            greetings="En esta aplicación usted podrá registrar un cliente si este es nuevo\nrecomendarle peliculas a clientes viejos o buscar funciones por dia o por pelicula\ntambien podrán seleccionar su asiento y ver cuales estan ocupados.\nUsted también podrá añadir y quitar peliculas, añadir salas\n agregar funciones automatica o manualmente \ny rifar boletos entre los clientes mas fieles"
+            greetings="En esta aplicación usted podrá registrar un cliente si este es nuevo\nrecomendarle peliculas a clientes viejos o buscar funciones por dia\ntambien podrán seleccionar su asiento y ver cuales estan ocupados.\nUsted también podrá añadir y quitar peliculas, añadir salas\n agregar funciones automatica o manualmente \ny rifar boletos entre los clientes mas fieles"
             self.saludo.config(text = greetings)
 
 class Fotos(Frame):
