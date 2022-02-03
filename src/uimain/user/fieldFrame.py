@@ -7,7 +7,7 @@ Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 import tkinter  as tk 
 from tkinter import * 
 from tkinter import messagebox
-
+from uimain.user.excepciones.notfull import NotFull
 
 class FieldFrame(Frame):
 
@@ -68,7 +68,8 @@ class FieldFrame(Frame):
         self.respuesta = {}
 
         for i, entry in enumerate(self.entries):
-            
+            if entry.get()=="":
+                raise NotFull
             if(entry != None):
                 self.respuesta[self.criterios[i]] = entry.get()
 

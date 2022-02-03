@@ -168,13 +168,6 @@ class ZonaB:
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
             
-            try:
-                info[0]
-                info[1]
-            except:
-                info.pop()
-                info.pop()
-                raise NotIn()
             
             try:
                 int(info[0])
