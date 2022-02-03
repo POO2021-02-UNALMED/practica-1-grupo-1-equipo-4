@@ -65,10 +65,10 @@ class First(Frame):
 
         frameHoja=Frame(frame2,height=50,bg="gray")
         self.hojaIns=Label(frameHoja, text="Pulse sobre cada \n text para cambiar")
-        self.hoja1=Label(frameHoja, text="Daniel Daza")
-        self.hoja2=Label(frameHoja, text="Ochoa")
-        self.hoja3=Label(frameHoja, text="Daniel Santiago")
-        self.hoja4=Label(frameHoja, text="Marlon Calle")
+        self.hoja1=Label(frameHoja, text="Soy Daniel Daza Macías tengo 20 años\nHabilidades y conocimientos:\nPython: Alto\nRstudio: Básico\nJava: Bueno\nExcel: Básico\nTrabajo en equipo: Bueno \nInglés: Bueno")
+        self.hoja2=Label(frameHoja, text="Soy Juan Esteban Ochoa Gómez tengo 20 años\nHabilidades y conocimientos:\nPython: Intermedio\nRstudio: Intermedio\nExcel: Básico\nTrabajo en equipo: Bueno \nInglés: Bueno\n")
+        self.hoja3=Label(frameHoja, text="Soy Daniel Santiago Cadavid Montoya  tengo 20 años\nHabilidades y conocimientos:\nPython: Intermedio\nRstudio: Intermedio\nExcel: Intermedio\nTrabajo en equipo: Bueno \nInglés: Bueno\nFrancés: Básico")
+        self.hoja4=Label(frameHoja, text="Soy Marlon Calle Areiza tengo 19 años\nHabilidades y conocimientos:\nPython: Bueno\nRstudio: Intermedio\nExcel: Básico\nEnsamblador: Intermedio\nTrabajo en equipo: Bueno \nInglés: Bueno\nFrancés: Bueno")
 
 
         self.hojaFotos1=Fotos(frame2,"1")

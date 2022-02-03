@@ -61,6 +61,8 @@ class Funcion:
         return resultado
 
     def crearBoleteria(self):
+        #Se crea la boletería de las sillas de una sala
+
         sillas = self._sala.getSillas()
         disponibles:int=self._sala.cantidadSillas() #ignorar, catidadSillas() se encuentra en cada subclase, por lo que acá marca el error
         total:int=len(self._sala.getSillas())
@@ -82,11 +84,13 @@ class Funcion:
         return total
 
     def VentaBoleto(self,boleto,cliente)->bool:
+        #Retorna un booleano aumenta las ganancias del cine y añade a cantidad de boletos vendidos de la pelicula
+
         if (boleto.isDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
-            boleto.setDisponibilidad(False)
-            cliente.getHistorialCompras().append(boleto)
-            self._cantidadBoletosVendidos+=1
-            boleto.calcularPrecioDefinitivo(cliente)
+            boleto.setDisponibilidad(False) #Cuando se vende cambia la disponibilidad del boleto a false
+            cliente.getHistorialCompras().append(boleto)    #Se añade al historial de compra del cliente 
+            self._cantidadBoletosVendidos+=1        #Se suma uno al atributo cantidadBoletosVendidos
+            boleto.calcularPrecioDefinitivo(cliente)    #Se mira si el cliente posee un descuento para aplicar
 
             ganancia:float=self._cine.getDineroGanado()+boleto.getPrecioTotal()
 
