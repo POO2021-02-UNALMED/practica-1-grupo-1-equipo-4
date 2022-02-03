@@ -19,7 +19,7 @@ class ZonaB:
     def __init__(self, user,cine):
         
         self.cine=cine
-        self.todo = Frame(user,  bg = "black") #Este es lo que contiene toda la zona 2
+        self.todo = Frame(user,  bg = "#FAFAD2") #Este es lo que contiene toda la zona 2
         self.todo.pack(fill=X)
 
         self.funciones = {"Venta":self.venta,
@@ -33,15 +33,15 @@ class ZonaB:
         self.titulo_texto = Frame(self.todo)   
         self.titulo_texto.pack()
 
-        self.titulo = Label(self.titulo_texto, bg="grey",text = "titulo")  #label del titulo
+        self.titulo = Label(self.titulo_texto,font=('Microsoft Himalaya', 18), bg="#7A378B",text = "titulo")  #label del titulo
         self.titulo.pack(fill=X)
 
-        self.texto = Label(self.titulo_texto, bg = "red",text = "texto")   #label del titulo
+        self.texto = Label(self.titulo_texto,font=('Microsoft Himalaya', 16), bg = "#6959CD",text = "texto")   #label del titulo
         self.texto.pack(fill=X)
 
 
 
-        self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green") #este es el cuerpo, se inicializa vacio
+        self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "#FAFAD2") #este es el cuerpo, se inicializa vacio
         self.cuerpo.pack(fill=X)
         
     
