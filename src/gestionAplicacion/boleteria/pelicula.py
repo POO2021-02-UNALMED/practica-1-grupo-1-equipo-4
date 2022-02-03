@@ -18,6 +18,7 @@ class Pelicula:
         self._cine= cine #!!! pendiente para corregir
         self._cantidadTotalBoletosVendidos:int =0
         self._expectativaVentas:int =0
+        cine.agregarPelicula(self)
 
     def anadirCantidadBoletos(self):
         

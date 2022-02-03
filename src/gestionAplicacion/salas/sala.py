@@ -125,7 +125,7 @@ class Sala:
         
         for i in range (len(fechas)):                   #Si la fecha de las funciones coincide con la fecha y hora de la consulta, se almacena
             if fechas[i]==consulta:
-                horarios.append(self._funciones[i].getHorario())
+                horarios.append(self._funciones[i].getHorario().getHora())
         
         for horario in horarios:
             disponibles.remove(horario)        # Se quita los horarios disponibles
@@ -155,7 +155,7 @@ class Sala:
             
         for i in range(len(fechas)):
             if (fechas[i] == consulta):
-                horarios.append(str(self._funciones[i].getHorario()));	
+                horarios.append(str(self._funciones[i].getHorario().getHora()));	
                 
         for horario in horarios:
             disponibles.remove(horario)

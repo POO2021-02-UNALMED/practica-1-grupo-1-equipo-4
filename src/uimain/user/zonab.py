@@ -11,6 +11,7 @@ from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.salas.sala3D import Sala3D
 from uimain.user.fieldFrame import FieldFrame
 import uimain.user.venta as venta
+from gestionAplicacion.boleteria.horario import Horario
 import pickle
 
 class ZonaB: 
@@ -84,10 +85,9 @@ class ZonaB:
                 agregarPelicula.getValue("Duración"),
                 agregarPelicula.getValue("Idioma"),
                 agregarPelicula.getValue("Edad mínima"),
-                self.cine) #TODO: ¿Cuál es nuestro cine? Creo que va a tocar meter el argumento de cine en esta función o en la clase en general
+                self.cine) 
         
-            self.cine.agregarPelicula(pelicula) #TODO: Esto no sé que tan correcto esté pero creo que al guardarlo en Cine el garbage collector no lo termina de matar
-            #print([i.getNombre() for i in self.cine.getPeliculas()])
+            
             
             picklefile = open('pcs', 'wb')
             pickle.dump(self.cine,picklefile) #Bloque de serialización
@@ -120,9 +120,9 @@ class ZonaB:
             titles=[i.getNombre() for i in self.cine.getPeliculas()]
             self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
             
-            picklefile = open('pcs', 'wb')
-            pickle.dump(self.cine,picklefile) #Bloque de serialización
-            picklefile.close()
+            # picklefile = open('pcs', 'wb')
+            # pickle.dump(self.cine,picklefile) #Bloque de serialización
+            # picklefile.close()
 
             messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
 
@@ -169,7 +169,7 @@ class ZonaB:
                 #print(self.cine.buscarSala(int(info[2])))
 
                 horarioslibres=self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1]))
-
+                
                 disponibles.configure(text="Horarios disponibles de la sala " + str(info[2])+":" + "\n"+horarioslibres)
                 disponibles.pack()
 
@@ -191,12 +191,12 @@ class ZonaB:
 
                     def creacionfinal(action):
                         info.append(pelisdispo.getValue("Pelicula"))
-                        funcion=Funcion(int(info[0]),int(info[1]),info[3],info[4],self.cine.buscarSala(int(info[2])),self.cine) 
+                        funcion=Funcion(int(info[0]),int(info[1]),Horario.getHorario(info[3]),self.cine.BuscadorPelicula(info[4]),self.cine.buscarSala(int(info[2])),self.cine) 
 
                         picklefile = open('pcs', 'wb')
                         pickle.dump(self.cine,picklefile) #Bloque de serialización
                         picklefile.close()
-
+                        self.cambiar()
                         messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
 
                     pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
@@ -205,7 +205,7 @@ class ZonaB:
 
             salasdispo.button.bind("<ButtonRelease>",horariosala)       #Segundo boton
 
-            salaslibres=self.cine.salasDisponibles(int(diames.getValue("Dia")),int(diames.getValue("Dia")))
+            salaslibres=self.cine.salasDisponibles(int(diames.getValue("Dia")),int(diames.getValue("Mes")))
             textosalas="Salas disponibles del dia/mes "+str(diames.getValue("Dia"))+"/"+str(diames.getValue("Mes"))+" :\n"
             for d in salaslibres:
                 textosalas+="Sala "+str(d.getNumero())+"\n"

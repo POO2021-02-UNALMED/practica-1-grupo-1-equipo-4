@@ -42,6 +42,9 @@ sala4 =  Sala3D(8, 9, 36,cine);
 funcion_1 = Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine);
 funcion_2 = Funcion.crearFuncion(17, 12, Horario.DOS, naranja, 1, cine);
 funcion_3 = Funcion.crearFuncion(17, 12, Horario.TRES, naranja, 1, cine);
+funcion_11 = Funcion.crearFuncion(17, 12, Horario.CUATRO, rey_leon, 1, cine);
+funcion_22 = Funcion.crearFuncion(17, 12, Horario.CINCO, naranja, 1, cine);
+funcion_33 = Funcion.crearFuncion(17, 12, Horario.SEIS, naranja, 1, cine);
 funcion_4 = Funcion.crearFuncion(17, 12, Horario.CINCO, resplandor, 3, cine);
 funcion_5 = Funcion.crearFuncion(17, 12, Horario.SEIS, avengers, 3, cine);
 funcion_7 = Funcion.crearFuncion(16, 12, Horario.UNO, toystory, 4, cine);
@@ -83,3 +86,4 @@ first=First(window,cine)
 first.pack()
 
 window.mainloop()
+print("hello world")
