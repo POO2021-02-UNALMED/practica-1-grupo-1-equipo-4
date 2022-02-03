@@ -13,6 +13,8 @@ import os
 from tkinter import *
 from uimain.user.usuario import Usuario
 
+
+
 class First(Frame):
     def __init__(self,master,cine):
         self.cine=cine
@@ -96,7 +98,7 @@ class First(Frame):
 
     def cambioDeInstrucciones(self,action):
         #Cambio de hojas
-        
+
         self.hojaIns.pack_forget()
         self.hoja1.pack()
         self.hojaFotos1.pack()
@@ -181,7 +183,7 @@ class Fotos(Frame):
     def __init__(self,a,hoja):
         super().__init__(a)
         self.fot=[]
-        self.hoja1Foto1=[Label(self,width=50, height=50) for i in range(4)]
+        self.hoja1Foto1=[Label(self,width=200, height=200) for i in range(4)]
         for i in range(1,5):
             fil="hoja"+hoja+"Foto"+str(i)+".png"
             self.fot.append(PhotoImage(file=self.getPath(fil)))
