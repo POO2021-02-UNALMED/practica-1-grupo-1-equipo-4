@@ -1,5 +1,5 @@
 class Agregar:
 
-    @staticmethod
-    def agregarFuncion(funcion):
+
+    def agregarFuncion(self,funcion):
         pass

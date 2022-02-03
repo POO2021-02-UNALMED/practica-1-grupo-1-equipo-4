@@ -4,9 +4,11 @@
 
 from sys import int_info
 
+from gestionAplicacion.salas.agregar import Agregar
 
 
-class Sala:
+
+class Sala(Agregar):
 
 
     def __init__(self,filas,columnas,filasvip,precio,cine):
