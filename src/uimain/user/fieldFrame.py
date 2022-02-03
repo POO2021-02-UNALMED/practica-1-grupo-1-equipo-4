@@ -18,11 +18,11 @@ class FieldFrame(Frame):
 
 
         criteriosName = tk.Label(self,  text= tituloCriterio ,          #Titulo de los criterios 
-                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#8470FF" )  #Rojo claro
+                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" )  #Rojo claro
         criteriosName.grid(row=1,column=1) 
 
         valuesName = tk.Label(self,  text=tituloValores, #Color azul claro
-                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#009ACD" ) #Titulo valores de los criterios
+                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" ) #Titulo valores de los criterios
         valuesName.grid(row=1, column = 2)  #Darle ubicacion al lado de el titulo de los criterios 
 
         self.entries = []

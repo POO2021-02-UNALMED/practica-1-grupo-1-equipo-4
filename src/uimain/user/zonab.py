@@ -36,10 +36,10 @@ class ZonaB:
         self.titulo_texto = Frame(self.todo)   
         self.titulo_texto.pack()
 
-        self.titulo = Label(self.titulo_texto,font=('Microsoft Himalaya', 18), bg="#7A378B",text = "titulo")  #label del titulo
+        self.titulo = Label(self.titulo_texto,font=('Microsoft Himalaya', 18), bg="#FAFAD2",text = "titulo")  #label del titulo
         self.titulo.pack(fill=X)
 
-        self.texto = Label(self.titulo_texto,font=('Microsoft Himalaya', 16), bg = "#6959CD",text = "texto")   #label del titulo
+        self.texto = Label(self.titulo_texto,font=('Microsoft Himalaya', 16), bg = "#FAFAD2",text = "texto")   #label del titulo
         self.texto.pack(fill=X)
 
 
@@ -50,7 +50,7 @@ class ZonaB:
     
     def cambiar(self):
         self.cuerpo.pack_forget()
-        self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "green")
+        self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "#FAFAD2")
 
         self.titulo.configure(text = "Cine Bahía")
         self.texto.configure(text = "Bienvendio al cine, seleccione lo que quiera hacer")

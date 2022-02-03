@@ -51,11 +51,13 @@ class First(Frame):
         boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5,command=self.ventanaUsuario)
         boton.grid(column=0,row=1)
 
+
+        #Opciones que se tendrán en el menú
         menubar=Menu(master)
         menu1=Menu(menubar)
         menubar.add_cascade(menu=menu1,label="Opciones")
-        menu1.add_command(label="Descripcion",command=self.descripcion)
-        menu1.add_command(label="Salir",command=master.destroy)
+        menu1.add_command(label="Descripcion",command=self.descripcion) #Para informacion acerca del sistema
+        menu1.add_command(label="Salir",command=master.destroy) #Salir del programa
 
         master['menu']=menubar
 
@@ -93,6 +95,8 @@ class First(Frame):
         return os.path.join(sys.path[0],txt)
 
     def cambioDeInstrucciones(self,action):
+        #Cambio de hojas
+        
         self.hojaIns.pack_forget()
         self.hoja1.pack()
         self.hojaFotos1.pack()
