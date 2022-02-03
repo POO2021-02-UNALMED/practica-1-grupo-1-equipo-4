@@ -18,20 +18,21 @@ class First(Frame):
         self.cine=cine
         super().__init__(master)
         
-        frame1=Frame(self,width=100,height=200,bg="red")
-        frame1.pack(fill=Y, side=LEFT)   
+        frame1=Frame(self,width=100,height=200,bg="#FFA07A")#Frame naranja 
+        frame1.pack(fill=Y, side=LEFT)   #Se hace responsive verticalmente
 
         WAndH={"height":200, "width":100}
         frame2=Frame(self, **WAndH) 
 
-        frame3=Frame(frame1,width=100,height=70,bg="yellow")
+        frame3=Frame(frame1,width=100,height=70,bg="yellow") #Frame del saludo de bienvenida
         frame3.grid(column = 0, row= 0, padx=3, pady=3,columnspan=4)
 
-        greetings="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris commodo interdum blandit. Vestibulum ante ipsum primis in\n faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempor accumsan libero, eget rhoncus erat ullamcorper quis.\nSed eget lobortis libero. Cras ac elit sed elit luctus auctor. Vivamus nisi augue, efficitur eu finibus et, convallis ut lectus.\nPhasellus bibendum eget risus a luctus. Sed congue diam id erat tincidunt, id tincidunt velit vulputate. Donec felis quam, egestas a\nlibero vel, egestas tempus ex. Quisque a massa commodo, mattis risus vel, facilisis velit. Lorem ipsum dolor sit amet, consectetur\nadipiscing elit. Mauris at aliquet lacus, eget efficitur sapien."
-        self.saludo=Label(frame3,text=greetings)
+        #Se brinda un saludo de bienvenida 
+        greetings="Te damos la bienvenida a Cine Bahía, poseemos una amplia cartelera y excelente precios todo en un solo lugar"
+        self.saludo=Label(frame3,text=greetings,font=('Microsoft Himalaya', 18))
         self.saludo.grid(column=0,row=0, padx=3, pady=3)
 
-        frame4=Frame(frame1,width=100,height=130,bg="green")
+        frame4=Frame(frame1,width=100,height=130,bg="#FF6A6A")  #El que es rojo
         frame4.grid(column = 0, row= 1, padx=3, pady=3,columnspan=4)
 
         self.label1=Label(frame4)
@@ -50,11 +51,13 @@ class First(Frame):
         boton=Button(master=frame4,text="Acceder a ventana de usuario",width=25,height=5,command=self.ventanaUsuario)
         boton.grid(column=0,row=1)
 
+
+        #Opciones que se tendrán en el menú
         menubar=Menu(master)
         menu1=Menu(menubar)
         menubar.add_cascade(menu=menu1,label="Opciones")
-        menu1.add_command(label="Descripcion",command=self.descripcion)
-        menu1.add_command(label="Salir",command=master.destroy)
+        menu1.add_command(label="Descripcion",command=self.descripcion) #Para informacion acerca del sistema
+        menu1.add_command(label="Salir",command=master.destroy) #Salir del programa
 
         master['menu']=menubar
 
@@ -92,6 +95,8 @@ class First(Frame):
         return os.path.join(sys.path[0],txt)
 
     def cambioDeInstrucciones(self,action):
+        #Cambio de hojas
+        
         self.hojaIns.pack_forget()
         self.hoja1.pack()
         self.hojaFotos1.pack()
@@ -168,7 +173,7 @@ class First(Frame):
             ventana_usuario=Usuario(self.cine)
 
     def descripcion(self):
-            global greetings
+            global greetings    #Descripcion del sistema 
             greetings="Buena la rata"
             self.saludo.config(text = greetings)
 

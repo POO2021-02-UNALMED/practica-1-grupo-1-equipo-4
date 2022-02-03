@@ -7,6 +7,9 @@ from gestionAplicacion.salas.sala3D import Sala3D
 from gestionAplicacion.salas.sala2D import Sala2D
 from gestionAplicacion.boleteria.funcion import Funcion
 from gestionAplicacion.boleteria.horario import Horario
+from uimain.user.excepciones.notin import NotIn
+from uimain.user.excepciones.notipo import NoTipo
+from uimain.user.excepciones.rangonoper import RangoNoPer
 import pickle
 
 #entana=Usuario()

@@ -1,7 +1,13 @@
+'''Funcionalidad de la clase: En FieldFrame será la clase en donde se generará el formulario para 
+                              el ingreso de los datos da cada consulta o proceso
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+'''
+
 import tkinter  as tk 
 from tkinter import * 
 from tkinter import messagebox
-
+from uimain.user.excepciones.notfull import NotFull
 
 class FieldFrame(Frame):
 
@@ -11,13 +17,13 @@ class FieldFrame(Frame):
         self.criterios = criterios
 
 
-        criteriosName = tk.Label(self,  text= tituloCriterio ,
-                    font=('Helvetica', 12), width=15,anchor="c",bg = "red" )  
+        criteriosName = tk.Label(self,  text= tituloCriterio ,          #Titulo de los criterios 
+                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" )  #Rojo claro
         criteriosName.grid(row=1,column=1) 
 
-        valuesName = tk.Label(self,  text=tituloValores,
-                    font=('Helvetica', 12), width=15,anchor="c",bg = "blue" ) 
-        valuesName.grid(row=1, column = 2)
+        valuesName = tk.Label(self,  text=tituloValores, #Color azul claro
+                    font=('Microsoft Himalaya', 17), width=15,anchor="c",bg = "#E0FFFF" ) #Titulo valores de los criterios
+        valuesName.grid(row=1, column = 2)  #Darle ubicacion al lado de el titulo de los criterios 
 
         self.entries = []
 
@@ -38,7 +44,7 @@ class FieldFrame(Frame):
                 t1.grid(row=row,column=2)
                 self.entries.append(t1)
             else:
-                t1 = tk.Label(self,text=valor,  height=1, width=10,bg='white') 
+                t1 = tk.Label(self,text=valor, font=('Microsoft Himalaya', 16), height=1, width=10,bg='white') 
                 t1.grid(row=row,column=2)
                 self.entries.append(None)
 
@@ -62,7 +68,8 @@ class FieldFrame(Frame):
         self.respuesta = {}
 
         for i, entry in enumerate(self.entries):
-            
+            if entry.get()=="":
+                raise NotFull
             if(entry != None):
                 self.respuesta[self.criterios[i]] = entry.get()
 
