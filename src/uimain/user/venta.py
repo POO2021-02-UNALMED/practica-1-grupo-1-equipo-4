@@ -108,13 +108,10 @@ def ventana(variable, window, cine):
 
             def obtenerFuncion():
                 nonlocal nueva
-
-                numero = nueva.getValue("Número de Funcion")
-                mostrar_sillas(cine.BuscadorFuncion(numero))
+                
 
 
             nueva.button.bind('<ButtonRelease>', lambda x: obtenerFuncion())
-            
             label = Label(venta,text = str(Funcion.formatearFunciones(funciones)))
             label.pack()
 
