@@ -1,3 +1,4 @@
+from ast import NotIn
 from tkinter import *
 from uimain.user.fieldFrame import FieldFrame
 from gestionAplicacion.cinemas.cliente import Cliente
@@ -7,8 +8,8 @@ from gestionAplicacion.boleteria.pelicula import Pelicula
 from gestionAplicacion.boleteria.horario import Horario
 from gestionAplicacion.salas.sala2D import Sala2D
 from uimain.user.excepciones.notipo import NoTipo
-
-
+from uimain.user.excepciones.notin import NotIn
+from uimain.user.excepciones.notchair import NotChair
 
 """/*window = Tk()
 
@@ -73,6 +74,8 @@ def ventana(variable, window, cine):
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>', lambda x = variable: variable.cambiar())
             
+            def holi():
+                raise NotChair
 
             num = 0
             botones = []
@@ -85,7 +88,7 @@ def ventana(variable, window, cine):
                             funciones.append(lambda: vender_boleto(num))
                             a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, command = lambda x = (columnas*i + j): vender_boleto(x))   
                         else:
-                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue")
+                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue", command = holi )
                         botones.append(a)
                         botones[num].grid(column= j, row = i, padx = 3, pady = 3)
                         num += 1
@@ -109,9 +112,13 @@ def ventana(variable, window, cine):
 
             def obtenerFuncion():
                 nonlocal nueva
-
-
                 numero = nueva.getValue("Número de Funcion")
+                try:
+                    cine.BuscadorFuncion(numero).getHorario()
+                except:
+                    raise NotIn
+
+                
                 mostrar_sillas(cine.BuscadorFuncion(numero))
                 
 
@@ -123,10 +130,8 @@ def ventana(variable, window, cine):
             try:
                 boton_recomendada.pack_forget()
                 boton_funcion.pack_forget()
-                boton_pelicula.pack_forget()
             except AttributeError:
                 boton_funcion.pack_forget()
-                boton_pelicula.pack_forget()
             
 
                          
@@ -156,20 +161,7 @@ def ventana(variable, window, cine):
             nueva.button.bind('<ButtonRelease>', lambda x: funcionesxfuncion())
             
             
-        def llamar_pelicula():
-            
-            nonlocal nueva
-            nonlocal cine
 
-            pelicula = FieldFrame("Fecha", ["Nombre"], "Ingrese datos", None, None, venta)
-            pelicula.pack()
-            try:
-                nueva.pack_forget()
-            except AttributeError:
-                pass
-            nueva = pelicula
-            funciones = None
-            nueva.button.bind('<ButtonRelease>', lambda x: mostrar_funciones(funciones))
 
         if(existente):
 
@@ -177,14 +169,10 @@ def ventana(variable, window, cine):
             boton_recomendada.pack()
             boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
             boton_funcion.pack()
-            boton_pelicula=Radiobutton(venta,text="Pelicula",value=2,command=llamar_pelicula)
-            boton_pelicula.pack()
         else:
 
             boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
-            boton_funcion.pack()
-            boton_pelicula=Radiobutton(venta,text="Pelicula",value=2,command=llamar_pelicula)
-            boton_pelicula.pack()            
+            boton_funcion.pack()          
     
     def cedula(numero):
         nonlocal cine
@@ -198,21 +186,38 @@ def ventana(variable, window, cine):
         if(cine.buscadorCliente(numero) == None):
             
             frame.pack_forget()
-            frame = FieldFrame("Inscripción", ["Referido","Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
+            frame = FieldFrame("Inscripción", ["Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
             frame.pack()
+
             def crearCliente():
-                try:
-
-                    [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
-                    [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
-                    int(frame.getValue("Edad"))
-
-                except:
-                    raise NoTipo
-
                 nonlocal cliente
-                cliente = Cliente(cedula, frame.getValue("Nombre"), frame.getValue("Edad"), frame.getValue("Ocupacion"), cine)
-                vender(False)
+                if (int(frame.getValue("Cedula referido")) != 0):
+                    try:
+                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        int(frame.getValue("Edad"))
+                        cine.buscadorCliente(int(frame.getValue("Cedula referido"))).getDescuento()
+
+                    except:
+                        raise NoTipo
+
+                    
+                    
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
+                    cliente.referidos()
+                    vender(False)
+                else:
+                    try:
+                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        int(frame.getValue("Edad"))
+
+                    except:
+                        raise NoTipo
+
+
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
+                    vender(False)                    
             
             frame.button.bind('<ButtonRelease>',lambda x: crearCliente())
             
