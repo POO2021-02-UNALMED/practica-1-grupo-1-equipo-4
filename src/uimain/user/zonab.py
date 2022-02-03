@@ -492,13 +492,41 @@ class ZonaB:
 
         global nueva
 
-        def create(action):         ###En teoria funciona, falta capturar excepciones
+        def create(action):
             if checked.get()==2:
+
+                try:
+                    int(nueva.getValue("Filas"))
+                    int(nueva.getValue("Columnas"))
+                    int(nueva.getValue("Filas VIP"))
+                except:
+                    raise NoTipo()
+
+                try:
+                    if int(nueva.getValue("Filas"))<int(nueva.getValue("Filas VIP")):
+                        x=1/0
+                except:
+                    raise RangoNoPer()
+
                 Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)
-                print("Se creó sala 2D")
+
+
             elif checked.get()==3:
+
+                try:
+                    int(nueva.getValue("Filas"))
+                    int(nueva.getValue("Columnas"))
+                    int(nueva.getValue("Gafas disponibles"))
+                except:
+                    raise NoTipo()
+
+                try:
+                    total=int(nueva.getValue("Filas"))*int(nueva.getValue("Columnas"))
+                    if total<int(nueva.getValue("Gafas disponibles")):
+                        x=1/0
+                except:
+                    raise RangoNoPer()
                 Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
-                print("Se creó sala 3D")
 
             picklefile = open('pcs', 'wb')
             pickle.dump(self.cine,picklefile) #Bloque de serialización
@@ -516,6 +544,7 @@ class ZonaB:
             except NameError:
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
+
                 nueva.button.bind('<ButtonRelease>',create)
             else:
                 nueva.pack_forget()
