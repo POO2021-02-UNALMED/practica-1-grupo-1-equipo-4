@@ -24,7 +24,7 @@ class Horario(Enum):
                 return horario      #Retorna el horario  en string
         return Horario(None)
 
-    def getHora(self)->str:
+    def getHora(self)->str:    
         return self._hora
     def setHora(self,hora):
         self._hora=hora

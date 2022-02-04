@@ -1,11 +1,8 @@
-"""
-Funcionalidad de la clase: En esta clase Cine el cliente 
+"""Funcionalidad de la clase: Albergar las salas, funciones, peliculas, clientes y metodos para
+ la creacion , modificacion y observacion de los clientes, peliculas y funciones
 
 Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
-
-
 """
-
 import random
 
 from gestionAplicacion.boleteria.funcion import Funcion
@@ -25,25 +22,31 @@ class Cine:
         self._peliculas = []
         self._salas= []
         self._dineroGanado= 0
-        self._DESCUENTOMVC = 0.2
+        self._DESCUENTOMVC = 0.2  #Descuento al cliente mas fiel
         #TODO:Take care of this constant
         #!!! Aqui falta la variable del serializador
 
 
     def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
+        """      Recibe los parametros mes, dia y sala, devuelve una lista de funciones. Su proposito es recibir un dia, un mes y una sala para 
+		 programar de forma automatica en esa sala, para todos los horarios disponibles de acuerdo al numero de peliculas con mayor 
+		 cantidad de boletos vendidos, una funcion para ese dia."""
+
         programadas  = []
         funciones : list = self.verFuncion(mes)
-        peliculasMes : list = list(set([funcion.getPelicula() for funcion in funciones]))
+        peliculasMes : list = list(set([funcion.getPelicula() for funcion in funciones])) #realizo una lista de las funciones dadas ese mes sin repeticiones
         pelicula_boletos = []
         disponibles = ["22:00","20:00","18:00","16:00","14:00","12:00"]
 
-        for i in range(len(peliculasMes)):
+        """	lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes"""
+
+        for i in range(len(peliculasMes)):           #se recorre la lista pelicula
             pelicula_boletos.append([peliculasMes,0])
-            for funcion in funciones:
+            for funcion in funciones: 
                 if(peliculasMes[i] == funcion.getPelicula()):
                     pelicula_boletos[i][1]+= funcion.getCantidadBoletosVendidos()
                    
-        pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
+        pelicula_boletos.sort(key = lambda x:x[1], reverse = True)# se hace ordenamiento con respecto 
 		
         if(len(peliculasMes)>=6):
             for i in range(6):
