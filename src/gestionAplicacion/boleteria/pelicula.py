@@ -14,7 +14,7 @@ class Pelicula:
         self._genero:str = genero
         self._duracion:int = duracion
         self._lenguaje:str = lenguaje
-        self._clasificacion:int = clasificacion
+        self._clasificacion:int = int(clasificacion)
         self._cine= cine
         self._cantidadTotalBoletosVendidos:int =0
         self._expectativaVentas:int =0
