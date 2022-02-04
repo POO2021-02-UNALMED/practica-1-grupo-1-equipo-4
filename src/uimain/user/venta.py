@@ -19,18 +19,19 @@ rey_leon = Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine)
 Sala2D(7, 8, 2,cine)
 Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine)*/"""
 
+
 def ventana(variable, window, cine):
     venta = Frame()
     cliente = None
-    frame  = FieldFrame("Cedula Cliente",["Cedula"],"Ingrese Dato",None, None,window)
-    
+    frame = FieldFrame("Cedula Cliente", ["Cedula"], "Ingrese Dato", None, None, window)
+
     def vender(existente):
-        
+
         nonlocal frame
         nonlocal venta
         nonlocal cliente
         nonlocal cine
-            
+
         boton_recomendada = None
         boton_funcion = None
         boton_pelicula = None
@@ -41,39 +42,38 @@ def ventana(variable, window, cine):
         frame.pack()
         venta = Frame(frame)
         venta.pack()
-        texto = Label(venta,text="Busqueda por : ")
+        texto = Label(venta, text="Busqueda por : ")
         texto.pack()
 
-
         nueva = None
-
 
         def mostrar_sillas(funcion):
             nonlocal nueva
             nonlocal cliente
             nonlocal cine
             nonlocal label
-            
+
             sillas = funcion.verDisponibilidad()
             filas = funcion.getSala().getFilas()
             columnas = funcion.getSala().getColumnas()
             nueva.pack_forget()
             label.pack_forget()
-            label = Label(venta, text = "Seleccione la silla que desea")
+            label = Label(venta, text="Seleccione la silla que desea")
             label.pack()
             nueva = Frame(venta)
             nueva.pack()
+
             def vender_boleto(numero):
                 nonlocal nueva
-                funcion.VentaBoleto(funcion.getBoletos()[numero],cliente)
+                funcion.VentaBoleto(funcion.getBoletos()[numero], cliente)
                 nueva.pack_forget()
                 nueva = FieldFrame("Se ha vendido el boleto",
-                                    ["El precio es"],
-                                    "numero "+str(numero+1),
-                                    [str((funcion.getBoletos()[numero].getPrecioTotal()))],None, venta)
+                                   ["El precio es"],
+                                   "numero " + str(numero + 1),
+                                   [str((funcion.getBoletos()[numero].getPrecioTotal()))], None, venta)
                 nueva.pack()
-                nueva.button.bind('<ButtonRelease>', lambda x = variable: variable.cambiar())
-            
+                nueva.button.bind('<ButtonRelease>', lambda x=variable: variable.cambiar())
+
             def holi():
                 raise NotChair
 
@@ -82,20 +82,21 @@ def ventana(variable, window, cine):
             funciones = []
             for i in range(filas):
                 for j in range(columnas):
-                    if (num<funcion.getSala().getCantidadSillas()):
-                        
-                        if(sillas[num][0] == True):
+                    if (num < funcion.getSala().getCantidadSillas()):
+
+                        if (sillas[num][0] == True):
                             funciones.append(lambda: vender_boleto(num))
-                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, command = lambda x = (columnas*i + j): vender_boleto(x))   
+                            a = Button(master=nueva, text=str(sillas[num][1]), height=2, width=4,
+                                       command=lambda x=(columnas * i + j): vender_boleto(x))
                         else:
-                            a = Button(master = nueva, text=str(sillas[num][1]), height=2, width = 4, bg = "blue", command = holi )
+                            a = Button(master=nueva, text=str(sillas[num][1]), height=2, width=4, bg="blue",
+                                       command=holi)
                         botones.append(a)
-                        botones[num].grid(column= j, row = i, padx = 3, pady = 3)
+                        botones[num].grid(column=j, row=i, padx=3, pady=3)
                         num += 1
-                                   
 
         def mostrar_funciones(funciones):
-            #se usa funciones para mostrar en pantalla las funciones disponibles
+            # se usa funciones para mostrar en pantalla las funciones disponibles
             nonlocal nueva
             nonlocal texto
             nonlocal cliente
@@ -116,15 +117,12 @@ def ventana(variable, window, cine):
                 try:
                     cine.BuscadorFuncion(numero).getHorario()
                 except:
-                    raise NotIn
+                    raise NotIn()
 
-                
                 mostrar_sillas(cine.BuscadorFuncion(numero))
-                
-
 
             nueva.button.bind('<ButtonRelease>', lambda x: obtenerFuncion())
-            label = Label(venta,text = str(Funcion.formatearFunciones(funciones)))
+            label = Label(venta, text=str(Funcion.formatearFunciones(funciones)))
             label.pack()
 
             try:
@@ -132,19 +130,13 @@ def ventana(variable, window, cine):
                 boton_funcion.pack_forget()
             except AttributeError:
                 boton_funcion.pack_forget()
-            
-
-                         
-
-
-
 
         def llamar_funcion():
-            
+
             nonlocal nueva
             nonlocal cine
 
-            funcion = FieldFrame("Fecha", ["Dia","Mes"], "Ingrese datos", None, None, venta)
+            funcion = FieldFrame("Fecha", ["Dia", "Mes"], "Ingrese datos", None, None, venta)
             funcion.pack()
             try:
                 nueva.pack_forget()
@@ -152,28 +144,27 @@ def ventana(variable, window, cine):
                 pass
             nueva = funcion
             funciones = None
+
             def funcionesxfuncion():
                 nonlocal funciones
-                
-                funciones = cine.verFuncion(int(funcion.getValue("Dia")),int(funcion.getValue("Mes")))
+
+                funciones = cine.verFuncion(int(funcion.getValue("Dia")), int(funcion.getValue("Mes")))
                 mostrar_funciones(funciones)
-                
+
             nueva.button.bind('<ButtonRelease>', lambda x: funcionesxfuncion())
-            
-            
 
+        if (existente):
 
-        if(existente):
-
-            boton_recomendada = Radiobutton(venta,text="Recomendada",value=1, command = lambda: mostrar_funciones(cine.verFuncion(cliente)))
+            boton_recomendada = Radiobutton(venta, text="Recomendada", value=1,
+                                            command=lambda: mostrar_funciones(cine.verFuncion(cliente)))
             boton_recomendada.pack()
-            boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
+            boton_funcion = Radiobutton(venta, text="Funcion", value=3, command=llamar_funcion)
             boton_funcion.pack()
         else:
 
-            boton_funcion=Radiobutton(venta,text="Funcion",value=3,command=llamar_funcion)
-            boton_funcion.pack()          
-    
+            boton_funcion = Radiobutton(venta, text="Funcion", value=3, command=llamar_funcion)
+            boton_funcion.pack()
+
     def cedula(numero):
         nonlocal cine
         nonlocal frame
@@ -183,54 +174,52 @@ def ventana(variable, window, cine):
         except:
             raise NoTipo
 
-        if(cine.buscadorCliente(numero) == None):
-            
+        if (cine.buscadorCliente(numero) == None):
+
             frame.pack_forget()
-            frame = FieldFrame("Inscripción", ["Cedula referido","Nombre","Edad", "Ocupacion"],"ingrese datos", None, None, window)
+            frame = FieldFrame("Inscripción", ["Cedula referido", "Nombre", "Edad", "Ocupacion"], "ingrese datos", None,
+                               None, window)
             frame.pack()
 
             def crearCliente():
                 nonlocal cliente
                 if (int(frame.getValue("Cedula referido")) != 0):
                     try:
-                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
-                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        [int(i) / 0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i) / 0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
                         int(frame.getValue("Edad"))
                         cine.buscadorCliente(int(frame.getValue("Cedula referido"))).getDescuento()
 
                     except:
                         raise NoTipo
 
-                    
-                    
-                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")),
+                                      frame.getValue("Ocupacion"), cine)
                     cliente.referidos()
                     vender(False)
                 else:
                     try:
-                        [int(i)/0 for i in frame.getValue("Nombre") if i in list("123456789")]
-                        [int(i)/0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
+                        [int(i) / 0 for i in frame.getValue("Nombre") if i in list("123456789")]
+                        [int(i) / 0 for i in frame.getValue("Ocupacion") if i in list("123456789")]
                         int(frame.getValue("Edad"))
 
                     except:
                         raise NoTipo
 
+                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")),
+                                      frame.getValue("Ocupacion"), cine)
+                    vender(False)
 
-                    cliente = Cliente(numero, str(frame.getValue("Nombre")), int(frame.getValue("Edad")), frame.getValue("Ocupacion"), cine)
-                    vender(False)                    
-            
-            frame.button.bind('<ButtonRelease>',lambda x: crearCliente())
-            
+            frame.button.bind('<ButtonRelease>', lambda x: crearCliente())
+
         else:
 
             cliente = cine.buscadorCliente(numero)
             vender(True)
 
-    
     frame.pack()
-    
-    
-    frame.button.bind('<ButtonRelease>',lambda x: cedula(frame.getValue("Cedula")))
+
+    frame.button.bind('<ButtonRelease>', lambda x: cedula(frame.getValue("Cedula")))
 
 
 

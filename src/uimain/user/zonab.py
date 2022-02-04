@@ -16,7 +16,6 @@ from uimain.user.excepciones.notin import NotIn
 from uimain.user.excepciones.notipo import NoTipo
 from uimain.user.excepciones.rangonoper import RangoNoPer
 from uimain.user.excepciones.nodisp import NoDisp
-import pickle
 
 class ZonaB: 
    
@@ -101,10 +100,7 @@ class ZonaB:
             except:
                 raise NoTipo
             
-            
-            # picklefile = open('pcs', 'wb')
-            # pickle.dump(self.cine,picklefile) #Bloque de serialización
-            # picklefile.close()
+
             
             self.cambiar()
             messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
@@ -136,10 +132,7 @@ class ZonaB:
                 self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
             except:
                 raise NotIn()
-            
-            # picklefile = open('pcs', 'wb')
-            # pickle.dump(self.cine,picklefile) #Bloque de serialización
-            # picklefile.close()
+
             
             self.cambiar()
             messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
@@ -367,10 +360,7 @@ class ZonaB:
                     raise NotIn()
 
                 self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
-                
-                picklefile = open('pcs', 'wb')
-                pickle.dump(self.cine,picklefile) #Bloque de serialización
-                picklefile.close()
+
 
                 messagebox.showinfo(title="Información",message="Función generada con éxito")
                 self.cambiar()
@@ -526,9 +516,6 @@ class ZonaB:
                     raise RangoNoPer()
                 Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
 
-            picklefile = open('pcs', 'wb')
-            pickle.dump(self.cine,picklefile) #Bloque de serialización
-            picklefile.close()
 
             messagebox.showinfo(title="Información",message="Sala creada con éxito!")
             #for i in self.cine.getSalas():

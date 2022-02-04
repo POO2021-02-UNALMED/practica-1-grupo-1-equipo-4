@@ -50,6 +50,7 @@ class Funcion:
 
     @classmethod
     def formatearFunciones(cls,funciones):
+        #Recibe unas funciones y procede a organizarlas de forma adecuada para el cliente
 
         """No recibe parametros pero trabaja con los atributos sala y boletos
 		Se encarga de crear un boleto para cada silla de la sala de la funcion correspondiente,
@@ -116,7 +117,7 @@ class Funcion:
 
 
         
-
+#Getter y Setter
 
     def getDia(self):
         return self._dia
