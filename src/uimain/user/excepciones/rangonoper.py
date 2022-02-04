@@ -1,6 +1,13 @@
 from uimain.user.excepciones.ingresodatos import IngresoDatos
 from tkinter import messagebox
 
+"""
+Clase de excepcion relacionada a los datos ingresados
+Centrada para cuando el tipo de datos no se encuentra en el rando de datos esperados
+
+"""
+
+
 class RangoNoPer(IngresoDatos):
 
     def __init__(self):
