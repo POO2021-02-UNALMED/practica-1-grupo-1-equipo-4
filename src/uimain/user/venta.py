@@ -66,15 +66,20 @@ def ventana(variable, window, cine):
 
             def vender_boleto(numero):
                 nonlocal nueva
+                funcion.getBoletos()[numero].calcularPrecioDefinitivo(cliente)
                 funcion.VentaBoleto(funcion.getBoletos()[numero], cliente)
+                
                 nueva.pack_forget()
                 nueva = FieldFrame("Se ha vendido el boleto",                #aca se copia el precio de la boleta en pantalla 
-                                   ["El precio es"],
+                                   [],
                                    "numero " + str(numero + 1),
-                                   [str((funcion.getBoletos()[numero].getPrecioTotal()))], None, venta)
+                                   [], None, venta)
+                precio = Label(venta,text = "El precio es "+str(funcion.getBoletos()[numero].getPrecioTotal()))
+                
                 nueva.pack()
+                precio.pack()
                 nueva.button.bind('<ButtonRelease>', lambda x=variable: variable.cambiar())
-                descuento_aplicado = Label(venta, text = "Descuento aplicado \n" + str((cliente.getDescuento())*funcion.getBoletos()[numero].getPrecioTotal())) # se muestra el descuento aplicado
+                descuento_aplicado = Label(venta, text = "Descuento aplicado \n" + str((cliente.getDescuento())*funcion.getBoletos()[numero].calcularPrecio())) # se muestra el descuento aplicado
                 descuento_aplicado.pack()
 
             def holi():
