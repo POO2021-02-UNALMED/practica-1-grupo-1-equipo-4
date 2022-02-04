@@ -13,7 +13,7 @@ from uimain.user.excepciones.rangonoper import RangoNoPer
 import pickle
 
 #entana=Usuario()
-cine = Cine("Bahia")
+"""cine = Cine("Bahia")
 rey_leon =  Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine)
 avengers =  Pelicula("Avengers", "Accion", 2, "Espanol", 12, cine)
 naranja =  Pelicula("La Naranja Mecanica", "Clasica", 2, "Espanol", 18, cine)
@@ -31,6 +31,7 @@ cliente5 =  Cliente(1005, "Jose Daniel Bustamante", 21, "Estudiante", cine)
 cliente6 =  Cliente(1006, "Jaime Guzman", 40, "Trabajador", cine)
 cliente7 =  Cliente(1007, "Luisa Guarin", 30, "Trabajadora", cine)
 cliente8 =  Cliente(1008, "Pedro Gomez", 15, "Estudiante", cine)
+cliente9 =  Cliente(1009, "Juan Esteban", 15, "Estudiante", cine)
 cliente10 =  Cliente(1010, "Alejandra", 20, "Trabajadora", cine)
 cliente11 =  Cliente(1011, "Sofia", 25, "Estudiante", cine)
 cliente12 =  Cliente(1012, "Jose Daniel Bustamante", 21, "Trabajadora", cine)
@@ -38,7 +39,7 @@ cliente13 =  Cliente(1013, "Luisa Guarin", 30, "Trabajadora", cine)
 
 sala1 =  Sala2D(7, 8, 2,cine)
 sala2 =  Sala2D(9, 8, 2,cine)
-sala3 =  Sala3D(9, 9, 2,cine)
+sala3 =  Sala3D(9, 9, 50,cine)
 sala4 =  Sala3D(8, 9, 36,cine)
 
 
@@ -62,27 +63,27 @@ funcion_1.VentaBoleto(funcion_1.getBoletos()[5],cliente2)
 funcion_1.VentaBoleto(funcion_1.getBoletos()[6],cliente3)
 funcion_2.VentaBoleto(funcion_2.getBoletos()[7],cliente3)
 funcion_2.VentaBoleto(funcion_2.getBoletos()[8],cliente3)
-funcion_1.VentaBoleto(funcion_1.getBoletos()[9],cliente3)
-funcion_1.VentaBoleto(funcion_1.getBoletos()[25], cliente3)
-funcion_2.VentaBoleto(funcion_2.getBoletos()[15], cliente11)
+funcion_1.VentaBoleto(funcion_1.getBoletos()[9],cliente4)
+funcion_1.VentaBoleto(funcion_1.getBoletos()[25], cliente5)
+funcion_2.VentaBoleto(funcion_2.getBoletos()[15], cliente6)
 funcion_2.VentaBoleto(funcion_2.getBoletos()[17], cliente5)
 
 
-funcion_4.VentaBoleto(funcion_4.getBoletos()[0], cliente13)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[45], cliente7)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[3],cliente7)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[5],cliente5)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[6],cliente6)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[9],cliente6)
-funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente12)
+funcion_4.VentaBoleto(funcion_4.getBoletos()[0], cliente7)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[45], cliente8)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[3],cliente9)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[5],cliente10)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[6],cliente11)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[9],cliente12)
+funcion_3.VentaBoleto(funcion_3.getBoletos()[25], cliente13)"""
 
 
 window = Tk()
 window.option_add('*tearOff', FALSE)
 
-# picklefile = open('pcs', 'rb')
-# cine = pickle.load(picklefile) #Bloque de deserialzación
-# picklefile.close()
+picklefile = open('pcs', 'rb')
+cine = pickle.load(picklefile) #Bloque de deserialzación
+picklefile.close()
 
 first=First(window,cine)
 first.pack()
