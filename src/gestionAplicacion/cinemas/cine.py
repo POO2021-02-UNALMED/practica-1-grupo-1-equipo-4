@@ -1,3 +1,11 @@
+"""
+Funcionalidad de la clase: En esta clase Cine el cliente 
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
+"""
+
 import random
 
 from gestionAplicacion.boleteria.funcion import Funcion

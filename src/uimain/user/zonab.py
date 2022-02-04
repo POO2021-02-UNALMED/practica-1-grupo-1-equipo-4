@@ -36,10 +36,10 @@ class ZonaB:
         self.titulo_texto = Frame(self.todo)   
         self.titulo_texto.pack()
 
-        self.titulo = Label(self.titulo_texto,font=('Microsoft Himalaya', 18), bg="#FAFAD2",text = "titulo")  #label del titulo
+        self.titulo = Label(self.titulo_texto,font=('Microsoft Himalaya', 32), bg="#FAFAD2",text = "¡Bienvenido a la ventana de usuario!")  #label del titulo
         self.titulo.pack(fill=X)
 
-        self.texto = Label(self.titulo_texto,font=('Microsoft Himalaya', 16), bg = "#FAFAD2",text = "texto")   #label del titulo
+        self.texto = Label(self.titulo_texto,font=('Microsoft Himalaya', 24 ), bg = "#FAFAD2",text = "Por favor selecciona una opción del menú para continuar")   #label del titulo
         self.texto.pack(fill=X)
 
 
