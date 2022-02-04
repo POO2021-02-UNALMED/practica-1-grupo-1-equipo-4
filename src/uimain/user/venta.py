@@ -240,6 +240,3 @@ def ventana(variable, window, cine):
     frame.pack()
 
     frame.button.bind('<ButtonRelease>', lambda x: cedula(frame.getValue("Cedula")))
-
-
-
