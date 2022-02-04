@@ -504,7 +504,7 @@ class ZonaB:
                 except:
                     raise RangoNoPer()
 
-                Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)    #se crea la sala cuando se cumplan las condiciones
+                Sala2D(int(nueva.getValue("Filas")),int(nueva.getValue("Columnas")),int(nueva.getValue("Filas VIP")),self.cine)    #se crea la sala cuando se cumplan las condiciones
 
 
             elif checked.get()==3:  #Si la sala seleccionada es 3D
@@ -522,7 +522,7 @@ class ZonaB:
                         x=1/0
                 except:
                     raise RangoNoPer()
-                Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)      #se crea la sala cuando se cumplan las condiciones
+                Sala3D(int(nueva.getValue("Filas")), int(nueva.getValue("Columnas")),int(nueva.getValue("Gafas disponibles")), self.cine)      #se crea la sala cuando se cumplan las condiciones
 
 
             messagebox.showinfo(title="Información",message="Sala creada con éxito!")       #Se muestra un messagebox cuando se termina la operacion
