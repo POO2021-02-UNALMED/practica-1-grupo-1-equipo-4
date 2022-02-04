@@ -9,13 +9,13 @@ Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 """
 
 class Pelicula:
-    def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,  cine= None): #!!! pendiente para corregir
+    def __init__(self,nombre="",genero="",duracion=0,lenguaje="",clasificacion=0,  cine= None):
         self._nombre:str = nombre
         self._genero:str = genero
         self._duracion:int = duracion
         self._lenguaje:str = lenguaje
         self._clasificacion:int = clasificacion
-        self._cine= cine #!!! pendiente para corregir
+        self._cine= cine
         self._cantidadTotalBoletosVendidos:int =0
         self._expectativaVentas:int =0
         cine.agregarPelicula(self)

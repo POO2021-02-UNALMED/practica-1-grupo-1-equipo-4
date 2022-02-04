@@ -1,6 +1,7 @@
 '''
-Funcionalidad de la clase: Albergar los atributos de la función la cual está ligado a un horario, película,sala y cine específico
-
+Funcionalidad de la clase: Es la funcion que se presenta de una pelicula respectiva
+esta va asociada a una sala en la que se presenta la pelicula y cuenta con una fecha y
+horario, esta cuenta con una cantidad de boletos los cuales son los vendidos a los clientes
 
 Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
 '''
@@ -17,19 +18,19 @@ from gestionAplicacion.salas.sala import Sala
 class Funcion:
     
     def __init__(self,dia,mes,horario,pelicula,sala,cine):
-        self._boletos = []
+        self._boletos = []  #lista de los boletos correspondientes a las sillas de la sala de la funcion
         self._dia:int = dia
         self._mes:int = mes
         self._horario = horario
         self._pelicula = pelicula
-        self.setSala(sala)
+        self.setSala(sala)  #agrega la funcion a sala y a el cine
         self.setCine(cine)
         
         sala.agregarFuncion(self)
-        self._numero = len(cine.getCartelera()) +1
+        self._numero = len(cine.getCartelera()) +1 #aumenta la cantidad de funciones creadas
         self._cantidadBoletosVendidos:int=0
         cine.agregarFuncion(self)
-        self.crearBoleteria()
+        self.crearBoleteria()           #Se crea la boleteria de la funcion
 
     @classmethod
     def crearFuncion(cls,dia:int,mes:int,horario:Horario,pelicula,num_sala:int,cine): #devuelve una funcion o none
@@ -63,22 +64,23 @@ class Funcion:
     def crearBoleteria(self):
         #Se crea la boletería de las sillas de una sala
 
-        sillas = self._sala.getSillas()
+        sillas = self._sala.getSillas()     #lista de las sillas de la sala correspondiente
         disponibles:int=self._sala.cantidadSillas() #ignorar, catidadSillas() se encuentra en cada subclase, por lo que acá marca el error
         total:int=len(self._sala.getSillas())
         for i in range(total):
             if(disponibles>0):
-                boleto:Boleto= Boleto(self,sillas[i])
+                boleto:Boleto= Boleto(self,sillas[i])       #si es mayor que 0 crea el boleto, lo anade a la lista boletos y disponibles-
                 self._boletos.append(boleto)
                 disponibles-=1
     
     def verDisponibilidad(self):
         # En este caso la funcion devuelve una lista de strings, para agregar cada strings
-        total =[]
+        total =[]   #lista de filas
 
+        #for para hacer una lista de listas, cada lista corresponde a una fila de boletos
         for boleto in self._boletos:
-            if boleto!=None:
-                tupla_boleto:tuple=(boleto.isDisponibilidad(),boleto.tipoString()+str(boleto.getNum_silla()))
+            if boleto!=None:                                #si el boleto no es nulo, crea el string y se anade a la fila
+                tupla_boleto:tuple=(boleto.isDisponibilidad(),boleto.tipoString()+str(boleto.getNum_silla()))       #se crea un string de la forma disponibilidad/tipo/numerosilla
                 total.append(tupla_boleto)
 
         return total
