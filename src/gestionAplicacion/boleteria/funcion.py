@@ -72,6 +72,8 @@ class Funcion:
         return resultado
 
     def crearBoleteria(self):
+        #Se crea la boletería de las sillas de una sala
+
         sillas = self._sala.getSillas()
         disponibles:int=self._sala.cantidadSillas() #ignorar, catidadSillas() se encuentra en cada subclase, por lo que acá marca el error
         total:int=len(self._sala.getSillas())
@@ -95,16 +97,13 @@ class Funcion:
         return total                                #retorna el total de 
 
     def VentaBoleto(self,boleto,cliente)->bool:
-
-        """Recibe boleto al que se le cambiara el estado, y el cliente al que se le agregara la compra,
-	Metodo que vende un boleto, es decir, cambia valores, y devuelve un bool de si se pudo vender o no el boleto
-	retorna true o false dependiendo si pudo hacerse la venta o no """
+        #Retorna un booleano aumenta las ganancias del cine y añade a cantidad de boletos vendidos de la pelicula
 
         if (boleto.isDisponibilidad()==True and cliente.getEdad()>=self.getPelicula().getClasificacion()):
-            boleto.setDisponibilidad(False)                             #Al comprar el boleto se quita su disponibilidad
-            cliente.getHistorialCompras().append(boleto)                #Agregamos el boleto que se comprar� al historial del cliente
-            self._cantidadBoletosVendidos+=1                            
-            boleto.calcularPrecioDefinitivo(cliente)                    #//le calculamos el precio del boleto al cliente si este posee un descuento o algo
+            boleto.setDisponibilidad(False) #Cuando se vende cambia la disponibilidad del boleto a false
+            cliente.getHistorialCompras().append(boleto)    #Se añade al historial de compra del cliente 
+            self._cantidadBoletosVendidos+=1        #Se suma uno al atributo cantidadBoletosVendidos
+            boleto.calcularPrecioDefinitivo(cliente)    #Se mira si el cliente posee un descuento para aplicar
 
             ganancia:float=self._cine.getDineroGanado()+boleto.getPrecioTotal() #Se suma las ganancias que se tienen hasta el momento con el precio total del boleto
 
