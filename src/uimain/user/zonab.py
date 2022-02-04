@@ -523,38 +523,40 @@ class ZonaB:
             #    print(i.getNumero())
             self.cambiar()      #Se devuelve al inicio
 
+        #Metodo para la creacion del fieldframe cuando se selecciona 3D
         def tres():
             global nueva
             try:
-                nueva
+                nueva       #Si no existe un fieldframe, que lo cree con los atributos para sala 3D
             except NameError:
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
 
                 nueva.button.bind('<ButtonRelease>',create)
             else:
-                nueva.pack_forget()
+                nueva.pack_forget()     #Si si existe, que borre el que habia y cree uno nuevo para sala 3D
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Gafas disponibles"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>',create)
-        
+
+        # Metodo para la creacion del fieldframe cuando se selecciona 3D
         def dos():
             global nueva
             try:
-                nueva
+                nueva       #Si no existe un fieldframe, que lo cree con los atributos para sala 2D
             except NameError:
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Filas VIP"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>',create)
             else:
-                nueva.pack_forget()
+                nueva.pack_forget()     #Si si existe, que borre el que habia y cree uno nuevo para sala 2D
                 nueva = FieldFrame("Tamaño", ["Filas","Columnas","Filas VIP"],"Cantidad",None,None,self.cuerpo)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>',create)
 
-        tresd=Radiobutton(self.cuerpo,text="3D",variable=checked,value=3,command=tres)
+        tresd=Radiobutton(self.cuerpo,text="3D",variable=checked,value=3,command=tres)      #Radiobutton para seleccionar sala 3D que ejecuta su respectivo metodo
         tresd.pack()
-        dosd=Radiobutton(self.cuerpo,text="2D",variable=checked,value=2,command=dos)
+        dosd=Radiobutton(self.cuerpo,text="2D",variable=checked,value=2,command=dos)    #Radiobutton para seleccionar sala 2D que ejecuta su respectivo metodo
         dosd.pack()
 
 
