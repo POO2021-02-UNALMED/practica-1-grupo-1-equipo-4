@@ -1,6 +1,13 @@
 from uimain.user.excepciones.funcionamiento import Funcionamiento
 from tkinter import messagebox
 
+"""
+Clase de excepcion relacionada al funcionamiento del programa
+Centrada en la selección de funciones y la no disponibilidad
+
+"""
+
+
 class NoDisp(Funcionamiento):
 
     def __init__(self):
