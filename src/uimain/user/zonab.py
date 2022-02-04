@@ -1,3 +1,14 @@
+"""Funcionalidad de la clase: En esta clase esta lo del frame principal de la ventana
+    en donde se mostraran los procesos principales de la aplicacion, donde se pediran los datos
+    y en donde están los botones que permiten enviar la informacion
+
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+"""
+
+
+
+
 from dataclasses import field
 from textwrap import fill
 from tkinter import *
@@ -47,7 +58,7 @@ class ZonaB:
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "#FAFAD2") #este es el cuerpo, se inicializa vacio
         self.cuerpo.pack(fill=X)
         
-    
+    #Metodo para devolverse a la ventana inicial de usuario
     def cambiar(self):
         self.cuerpo.pack_forget()
         self.cuerpo = Frame(self.todo,width=800, height = 350, bg= "#FAFAD2")
@@ -59,13 +70,14 @@ class ZonaB:
 
     ## Procesos y consultas
 
+    #Metodo para la ejecucion de lo respectivo a la venta de boletos
     def venta(self):
         self.cambiar()
         self.titulo.configure(text = "Venta")
         self.texto.configure(text = "Permite vender buscando por diferentes peliculas")
-        venta.ventana(self, self.cuerpo, self.cine)
+        venta.ventana(self, self.cuerpo, self.cine)         #Se llama a la clase venta pasandole frame y cine como argumentos
        
-    #TODO: Agregar serializador a venta
+    #Metodo para agregar pelicula
     def agregarPelicula(self):
 
         self.cambiar()
@@ -77,11 +89,12 @@ class ZonaB:
         criterios=["Nombre","Genero","Duración","Idioma","Edad mínima"]
         nomValores="Información"
         valIniciales=None
-        valHabilitados=None
+        valHabilitados=None     #Los valores son editables
         agregarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
         
         agregarPelicula.pack()
 
+        #Metodo para crear un objeto de tipo pelicula
         def addPeli(action):
             pelicula=Pelicula(agregarPelicula.getValue("Nombre"),
                 agregarPelicula.getValue("Genero"),
@@ -93,8 +106,8 @@ class ZonaB:
             
             try:
 
-                [int(i)/0 for i in agregarPelicula.getValue("Genero") if i in list("123456789")]
-                [int(i)/0 for i in agregarPelicula.getValue("Idioma") if i in list("123456789")]
+                [int(i)/0 for i in agregarPelicula.getValue("Genero") if i in list("123456789")]        #Se verifica que el genero y el idioma no tengan numero en lo ingresado
+                [int(i)/0 for i in agregarPelicula.getValue("Idioma") if i in list("123456789")]        #para lo cual si está en la lista se genera un error y se llama la excepcion
                 int(agregarPelicula.getValue("Duración"))
                 int(agregarPelicula.getValue("Edad mínima"))
             except:
@@ -102,13 +115,13 @@ class ZonaB:
             
 
             
-            self.cambiar()
-            messagebox.showinfo(title="Información",message="Pelicula chimbita agregada, la buena pai")
+            self.cambiar()      #Se devuelva a la ventana inicial
+            messagebox.showinfo(title="Información",message="Pelicula creada con éxito")     #Se muestra un messagebox al crear la pelicula
 
-        agregarPelicula.button.bind('<ButtonRelease>',addPeli)
+        agregarPelicula.button.bind('<ButtonRelease>',addPeli)      #Se liga el boton con el metodo para crear las peliculas
 
         
-
+    #Metodo para quitar una pelicula de las que están disponibles en el cine
     def quitarPelicula(self):
         
         
@@ -121,36 +134,34 @@ class ZonaB:
         criterios=["Nombre"]
         nomValores="Información"
         valIniciales=None
-        valHabilitados=None
+        valHabilitados=None     #Los valores son editables
         quitarPelicula = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
         
         quitarPelicula.pack()
 
         def removePeli(action):
-            titles=[i.getNombre() for i in self.cine.getPeliculas()]
+            titles=[i.getNombre() for i in self.cine.getPeliculas()]        #Se hace una lista con las peliculas que hay en el cine
             try:
-                self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))
-            except:
+                self.cine.getPeliculas().pop(titles.index(quitarPelicula.getValue("Nombre")))       #Si no se puede quitar el nombre ingresado es porque no está en el cine entonces
+            except:                                                                                 #Se lanza la excepción
                 raise NotIn()
 
             
-            self.cambiar()
-            messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
+            self.cambiar()  #Se devuelve a la ventana principal
+            messagebox.showinfo(title="Información",message="Pelicula eliminada del cine con éxito!")   #Se muestra un messagebox al crear la pelicula
 
-        quitarPelicula.button.bind('<ButtonRelease>',removePeli)
+        quitarPelicula.button.bind('<ButtonRelease>',removePeli)    #Se liga el boton al metodo que elimina la pelicula
 
         peliculasdisponibles = "Peliculas disponibles en el cine:\n"
         for p in self.cine.getPeliculas():
-            peliculasdisponibles += p.getNombre() + "\n"
+            peliculasdisponibles += p.getNombre() + "\n"        #Se muestran los nombres de las peliculas disponibles para que se sepa cuales son las que existen
 
         disponibles=Label(self.cuerpo,text=peliculasdisponibles)
         disponibles.pack()
 
 
-        #TODO: Luego de quitar la película ¿qué?
-        #TODO: Mostrar los nombres de las peliculas por hacer
-        #TODO: Falta serializar.
 
+    #Metodo para agregar una funcion manualmente ingresando los valores requeridos
     def agregarFuncion(self):
         self.cambiar()
 
@@ -160,108 +171,108 @@ class ZonaB:
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
-        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)      #Primero se pide el día y el mes
         diames.pack()
         diames.button.configure(text="Siguiente")
 
         info=[]      #[0]=dia, [1]=mes, [2]=sala, [3]=hora, [4]=pelicula
 
 
-        def salasdia(action):       ##Aca se muestran las salas disponibles segun el dia seleccionado
+        def salasdia(action):       ##Aca se muestran las salas disponibles segun el dia y mes seleccionado
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
             
             
             try:
-                int(info[0])
+                int(info[0])        #Se verifica que lo ingresado en dia y mes si sean enteros
                 int(info[1])
             except:
-                info.pop()
+                info.pop()          #Se eliminan para que los vuelva a ingresar si no son y se lanza la excepcion
                 info.pop()
                 raise NoTipo()
 
             try:
-                [i for i in range(1, 13)].index(int(info[1]))
+                [i for i in range(1, 13)].index(int(info[1]))       #Se verifica que sea un mes valido, sino se lanza la excepcion
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
             try:
-                [i for i in range(1, 32)].index(int(info[0]))
+                [i for i in range(1, 32)].index(int(info[0]))       #Se verifica que sea un dia valido, sino se lanza la excepcion
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
             
-            diames.pack_forget()
+            diames.pack_forget()        #se elimina el fielfframe para pedir el dia y el mes
 
-            salasdispo=FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            salasdispo=FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)     #Se crea un fieldframe para pedir la sala
             salasdispo.pack()
             salasdispo.button.configure(text="Siguente")
 
-            def horariosala(action):        ##Aca se muestran los horarios disponibles de la sala escogida
+            def horariosala(action):        ##Aca se muestran los horarios disponibles de la sala escogida en la fecha escogida
                 info.append(salasdispo.getValue("Numero"))
 
                 try:
-                    disp = self.cine.salasDisponibles(int(info[0]), int(info[1])).copy()
-                    disp.remove(self.cine.buscarSala(int(info[2])))
+                    disp = self.cine.salasDisponibles(int(info[0]), int(info[1])).copy()        #se hace una lista de las salas disponibles
+                    disp.remove(self.cine.buscarSala(int(info[2])))         #si no se puede quitar es que no está disponible y se lanza la excepción
                 except:
                     info.pop()
                     raise NotIn()
 
-                salasdispo.pack_forget()
-                disponibles.pack_forget()
+                salasdispo.pack_forget()        #Se elimina el fieldframe para pedir las salas
+                disponibles.pack_forget()       #Se elimina el label que muestra las salas disponibles
 
-                horariodispo=FieldFrame("Horarios",["Hora"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+                horariodispo=FieldFrame("Horarios",["Hora"],nomValores,valIniciales,valHabilitados,self.cuerpo)     #Se hace un fieldframe para pedir el horario para la funcion
                 horariodispo.pack()
                 horariodispo.button.configure(text="Siguiente")
 
                 #print(self.cine.buscarSala(int(info[2])))
 
-                horarioslibres=self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1]))
+                horarioslibres=self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1]))        #Se almacenan los horarios libres de la sala
                 
-                disponibles.configure(text="Horarios disponibles de la sala " + str(info[2])+":" + "\n"+horarioslibres)
+                disponibles.configure(text="Horarios disponibles de la sala " + str(info[2])+":" + "\n"+horarioslibres)     #Se muestran los horarios disponibles
                 disponibles.pack()
 
                 def peliscine(action):        ###Peliculas disponibles en el cine
                     info.append(horariodispo.getValue("Hora"))
 
                     try:
-                        if info[3] not in self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1])):
+                        if info[3] not in self.cine.buscarSala(int(info[2])).verHorarios(int(info[0]),int(info[1])):        #Si el horario seleccionado no está entre los disponibles, se genera un error y se lanza la excepcion
                             x=1/0
                     except:
                         info.pop()
                         raise NotIn()
 
-                    horariodispo.pack_forget()
-                    disponibles.pack_forget()
+                    horariodispo.pack_forget()          #Se elimina el fieldframe para las horas disponibles
+                    disponibles.pack_forget()           #Se elimina el label con los horarios disponibles
 
-                    pelisdispo=FieldFrame("Titulo",["Pelicula"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+                    pelisdispo=FieldFrame("Titulo",["Pelicula"],nomValores,valIniciales,valHabilitados,self.cuerpo)     #Se hace un fieldframe para pedir el nombre de la pelicula para la funcion
                     pelisdispo.pack()
                     pelisdispo.button.configure(text="Finalizar creacion")
                     
                     peliculasdisponibles=""
-                    for p in self.cine.getPeliculas():
+                    for p in self.cine.getPeliculas():              #Se almacenan las peliculas disponibles en el cine
                         peliculasdisponibles+=p.getNombre()+"\n"
 
-                    disponibles.configure(text=peliculasdisponibles)
+                    disponibles.configure(text=peliculasdisponibles)        #Se muestran
                     disponibles.pack()
 
                     def creacionfinal(action):
                         info.append(pelisdispo.getValue("Pelicula"))
-                        titles = [i.getNombre() for i in self.cine.getPeliculas()]
+                        titles = [i.getNombre() for i in self.cine.getPeliculas()]      #Se hace una lista con las peliculas del cine
                         try:
-                            self.cine.getPeliculas().copy().pop(titles.index(pelisdispo.getValue("Pelicula")))
+                            self.cine.getPeliculas().copy().pop(titles.index(pelisdispo.getValue("Pelicula")))      #Se mira si se puede quitar de la lista de disponibles, sino se lanza la excepcion
                         except:
                             raise NotIn()
                         a = self.cine.BuscadorPelicula(info[4])
-                        Funcion.crearFuncion(int(info[0]),int(info[1]),Horario.getHorario(info[3]), self.cine.BuscadorPelicula(info[4]), self.cine.buscarSala(int(info[2])).getNumero(),self.cine)
+                        Funcion.crearFuncion(int(info[0]),int(info[1]),Horario.getHorario(info[3]), self.cine.BuscadorPelicula(info[4]), self.cine.buscarSala(int(info[2])).getNumero(),self.cine)      #Se llama al metodo de crear funcion
 
 
-                        self.cambiar()
-                        messagebox.showinfo(title="Información",message="Como me dejo meter este ganso ciego ome,quite la pelicula.Yo si soy mucha loca")
+                        self.cambiar()      #Se devuelve a la principal
+                        messagebox.showinfo(title="Información",message="Funcion creada con éxito!")    #Se muestra un mensaje cuando se completó la transacción
 
                     pelisdispo.button.bind("<ButtonRelease>", creacionfinal)       #Cuarto boton
 
@@ -269,23 +280,21 @@ class ZonaB:
 
             salasdispo.button.bind("<ButtonRelease>",horariosala)       #Segundo boton
 
-            salaslibres=self.cine.salasDisponibles(int(diames.getValue("Dia")),int(diames.getValue("Mes")))
+            salaslibres=self.cine.salasDisponibles(int(diames.getValue("Dia")),int(diames.getValue("Mes")))         #Se guardan las salas disponibles
             textosalas="Salas disponibles del dia/mes "+str(diames.getValue("Dia"))+"/"+str(diames.getValue("Mes"))+" :\n"
             for d in salaslibres:
-                textosalas+="Sala "+str(d.getNumero())+"\n"
+                textosalas+="Sala "+str(d.getNumero())+"\n"     #Se almacenan en un string
 
-            disponibles=Label(self.cuerpo,text=textosalas)
+            disponibles=Label(self.cuerpo,text=textosalas)      #Se muestran
             disponibles.pack()
 
         diames.button.bind("<ButtonRelease>",salasdia)      ###Primer boton
 
-        #TODO:Falta agregar que si no hay horarios disponibles para la sala saque un error
 
 
-        #TODO: Luego de quitar la película ¿qué?
-        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una
-        #TODO: Falta serializar.
 
+
+    #Metodo para añadir una funcion automaticamente
     def agregarAuto(self):
         self.cambiar()
 
@@ -297,7 +306,7 @@ class ZonaB:
         valIniciales=None
         valHabilitados=None
 
-        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames = FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)      #Se hace un fieldframe para pedir el dia y el mes
         diames.button.configure(text="Siguiente")
         diames.pack()
         
@@ -308,7 +317,7 @@ class ZonaB:
             info.append(diames.getValue("Dia"))
             info.append(diames.getValue("Mes"))
 
-            try:
+            try:                #Se verifica que los datos ingresados si sean enteros
                 int(info[0])
                 int(info[1])
             except:
@@ -317,22 +326,22 @@ class ZonaB:
                 raise NoTipo()
 
             try:
-                [i for i in range(1, 13)].index(int(info[1]))
+                [i for i in range(1, 13)].index(int(info[1]))       #Se verifica que el mes sea válido
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
             try:
-                [i for i in range(1, 32)].index(int(info[0]))
+                [i for i in range(1, 32)].index(int(info[0]))       #Se verifica que le día sea válido
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
-            diames.pack_forget()
+            diames.pack_forget()        #Se elimina el fieldframe para el dia y mes
 
-            salas = FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            salas = FieldFrame("Sala",["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)    #Se hace un field frame para la sala
             salas.button.configure(text="Siguiente")
 
             salas.pack()
@@ -341,10 +350,10 @@ class ZonaB:
 
             for sala in self.cine.getSalas():
 
-                if sala.verificarDisponibilidad(int(info[0]),int(info[1])):
+                if sala.verificarDisponibilidad(int(info[0]),int(info[1])):     #Se hace un string con las salas disponibles
                     textosalas+= "Sala "+ str(sala.getNumero()) +"\n"
             disponibles=Label(self.cuerpo,text=textosalas)
-            disponibles.pack()
+            disponibles.pack()                      #Se muestran las salas disponibles en un label
 
             def funcionesAuto(action):
                 info.append(salas.getValue("Numero"))
@@ -352,28 +361,27 @@ class ZonaB:
                 try:
                     disp=[]
                     for sala in self.cine.getSalas():
-                        if sala.verificarDisponibilidad(int(info[0]), int(info[1])):
-                            disp.append(sala)
+                        if sala.verificarDisponibilidad(int(info[0]), int(info[1])):        #Se verifica que la sala escogida en efecto sea de las disponibles para ese dia
+                            disp.append(sala)                                               #Si no, se lanza la excepcion
                     disp.remove(self.cine.buscarSala(int(info[2])))
                 except:
                     info.pop()
                     raise NotIn()
 
-                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
+                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #Se llama al método de la capa logica que crea la funcion automaticamente
 
 
-                messagebox.showinfo(title="Información",message="Función generada con éxito")
+                messagebox.showinfo(title="Información",message="Función generada con éxito")   #Se muestra el mensaje cuando se termina la operacion
                 self.cambiar()
 
 
             
-            salas.button.bind("<ButtonRelease>",funcionesAuto)
+            salas.button.bind("<ButtonRelease>",funcionesAuto)      ##Boton 2
 
-        diames.button.bind("<ButtonRelease>", salasDisponibles)
+        diames.button.bind("<ButtonRelease>", salasDisponibles)     ##Boton 1
 
         
         #TODO: Revisar que esté funcionando
-        #TODO: Mostrar los nombres de las salas, las peliculas y los horarios para cada una?
 
     
     #TODO: Falta serializar rifa
