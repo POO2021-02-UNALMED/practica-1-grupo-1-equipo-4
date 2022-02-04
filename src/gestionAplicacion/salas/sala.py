@@ -13,8 +13,8 @@ class Sala(Agregar):
 
     def __init__(self,filas,columnas,filasvip,precio,cine):
         self._numero = len(cine.getSalas())+1
-        self._sillas = []
-        self._funciones = []
+        self._sillas = []       #contiene objetos silla que corresponden a las sillas de la sala esta depende de las filas y las columnas
+        self._funciones = []    #contiene las funciones creadas en dicho cine
 
         self._filas : int = filas
         self._columnas : int = columnas
@@ -78,38 +78,38 @@ class Sala(Agregar):
 	
             consulta : str = ""+str(dia)+str(mes);					
             
-            fechas: list[str] = []	
+            fechas: list[str] = []	    #lista para guardar las fechas de todas las funciones dadas en dicha sala
 
-            horarios: list[str] = [] 
+            horarios: list[str] = []    #lista que guarda los horarios en los cuales la sala tiene funcion dicho dia
 
             
-            disponibles: list[str]= ["12:00","14:00","16:00","18:00","20:00","22:00"]				
+            disponibles: list[str]= ["12:00","14:00","16:00","18:00","20:00","22:00"]   #lista con todos los horarios, a la cual se le restara los horarios disponibles
             
             for func in self._funciones:
 
-                info : str=""+str(func.getDia())+str(func.getMes())		
-                fechas.append(info)								
-                info=""								
+                info : str=""+str(func.getDia())+str(func.getMes())		#se crea el string de la fecha de la funcion
+                fechas.append(info)								        #y se añade a fechasfunciones
+                info=""								                    #se resetea el strin
                 
             
             
             for i in range(len(fechas)):
-                if (fechas[i] == consulta):				
-                    horarios.append(str(self._funciones[i].getHorario().getHora()))
+                if (fechas[i] == consulta):				               #si la fecha de las funciones que hay coincide con la fecha y hora de consulta
+                    horarios.append(str(self._funciones[i].getHorario().getHora()))     #se almacena
                 
             
             
             for horario in horarios:
-                disponibles.remove(horario);		
+                disponibles.remove(horario);		#se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
             
             
             respuesta=""
             
             for d in disponibles:
-                respuesta+=d+"\n"
+                respuesta+=d+"\n"       #se hace un string que devuelve los horarios disponibles
             
             
-            return respuesta == "12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n"
+            return respuesta == "12:00\n14:00\n16:00\n18:00\n20:00\n22:00\n"    #devuelve un valor de verdad si todos los horarios estan disponibles
         
         return False
     
@@ -141,33 +141,36 @@ class Sala(Agregar):
 
     
     def almenosUnoDisponible(self, dia: int, mes: int) ->  bool:
+        """
+        recibe dia y mes devueve un boolean diciendo si la sala tiene almenos un horario disponible
+	    dicha fecha o no
+        """
+        consulta: str   =   ""  + str(dia) + str(mes)			#crea un estring con la fecha
         
-        consulta: str   =   ""  + str(dia) + str(mes)					
+        fechas : list[str] = []	    #lista para guardar las fechas de todas las funciones dadas en dicha sala
         
-        fechas : list[str] = []	 
+        horarios: list[str] = []    #lista que guarda los horarios en los cuales la sala tiene funcion dicho dia
         
-        horarios: list[str] = []
-        
-        disponibles: list[str] = ["12:00","14:00","16:00","18:00","20:00","22:00"];				
+        disponibles: list[str] = ["12:00","14:00","16:00","18:00","20:00","22:00"];		#lista con todos los horarios, a la cual se le restara	los horarios disponibles
         
         for func in self._funciones:
-            info : str =""+str(func.getDia())+str(func.getMes())	
+            info : str =""+str(func.getDia())+str(func.getMes())	    #del atributo funcion se almacenan en modo string el dia y mes de las funciones
             fechas.append(info)							
             info = ""								
             
         for i in range(len(fechas)):
-            if (fechas[i] == consulta):
-                horarios.append(str(self._funciones[i].getHorario().getHora()))
+            if (fechas[i] == consulta):     #si la fecha de las funciones que hay coincide con la fecha y hora de consulta
+                horarios.append(str(self._funciones[i].getHorario().getHora()))     #se almacena
                 
         for horario in horarios:
-            disponibles.remove(horario)
+            disponibles.remove(horario)     #se quita de los horarios disponibles, los que ya estan ocupados en ese dia de ese mes
             
         respuesta : str =""
         
         for d in disponibles:
-            respuesta+=d+"\n"
+            respuesta+=d+"\n"       #se hace un string que devuelve los horarios disponibles
             
-        if(len(respuesta) >= 5):
+        if(len(respuesta) >= 5):    #si el string contiene por lo menos un horario devuelve true
             return True
         else:
             return False

@@ -9,7 +9,7 @@ from gestionAplicacion.salas.tipo import Tipo
 
 class Silla:
     def __init__(self,tipo,numero):
-        self._tipo:Tipo = tipo
+        self._tipo:Tipo = tipo      #se debe establecer el precio depende del tipo
         self._numero:int = numero
 
 
