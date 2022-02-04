@@ -13,6 +13,7 @@ from dataclasses import field
 from textwrap import fill
 from tkinter import *
 from tkinter import messagebox
+from uimain.user.excepciones.notchair import NotChair
 from uimain.user.zonaa import ZonaA
 from gestionAplicacion.cinemas.cine import Cine
 from gestionAplicacion.boleteria.pelicula import Pelicula
@@ -354,6 +355,12 @@ class ZonaB:
                     textosalas+= "Sala "+ str(sala.getNumero()) +"\n"
             disponibles=Label(self.cuerpo,text=textosalas)
             disponibles.pack()                      #Se muestran las salas disponibles en un label
+
+            try:
+                if textosalas=="":
+                    x=1/0
+            except:
+                raise NotChair()
 
             def funcionesAuto(action):
                 info.append(salas.getValue("Numero"))
