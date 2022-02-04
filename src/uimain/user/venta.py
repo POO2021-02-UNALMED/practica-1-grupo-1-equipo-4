@@ -43,7 +43,7 @@ def ventana(variable, window, cine):
         venta = Frame(frame)
         venta.pack()
         texto = Label(venta, text="Busqueda por : ")
-        texto.pack()
+        
 
         nueva = None
 
@@ -73,6 +73,8 @@ def ventana(variable, window, cine):
                                    [str((funcion.getBoletos()[numero].getPrecioTotal()))], None, venta)
                 nueva.pack()
                 nueva.button.bind('<ButtonRelease>', lambda x=variable: variable.cambiar())
+                descuento_aplicado = Label(venta, text = "Descuento aplicado \n" + str((cliente.getDescuento())*funcion.getBoletos()[numero].getPrecioTotal()))
+                descuento_aplicado.pack()
 
             def holi():
                 raise NotChair
@@ -102,11 +104,16 @@ def ventana(variable, window, cine):
             nonlocal cliente
             nonlocal cine
             nonlocal label
+            
 
+            
             try:
                 nueva.pack_forget()
+                label.pack_forget()
             except AttributeError:
                 pass
+
+
             nueva = FieldFrame("Mostrar", ["Número de Funcion"], "Ingrese Dato", None, None, venta)
             nueva.pack()
             texto.pack_forget()
@@ -117,7 +124,7 @@ def ventana(variable, window, cine):
                 try:
                     cine.BuscadorFuncion(numero).getHorario()
                 except:
-                    raise NotIn()
+                    raise NotIn
 
                 mostrar_sillas(cine.BuscadorFuncion(numero))
 
@@ -132,10 +139,11 @@ def ventana(variable, window, cine):
                 boton_funcion.pack_forget()
 
         def llamar_funcion():
-
+            nonlocal label
             nonlocal nueva
             nonlocal cine
 
+            label.pack_forget()
             funcion = FieldFrame("Fecha", ["Dia", "Mes"], "Ingrese datos", None, None, venta)
             funcion.pack()
             try:
@@ -154,13 +162,25 @@ def ventana(variable, window, cine):
             nueva.button.bind('<ButtonRelease>', lambda x: funcionesxfuncion())
 
         if (existente):
+            
+            nombre = cliente.getNombre()
+            puesto = cliente.getOcupacion()
 
+            label = Label(venta, text = str(nombre)+" / "+ str(puesto))
+            label.pack()
+            texto.pack()
             boton_recomendada = Radiobutton(venta, text="Recomendada", value=1,
                                             command=lambda: mostrar_funciones(cine.verFuncion(cliente)))
             boton_recomendada.pack()
             boton_funcion = Radiobutton(venta, text="Funcion", value=3, command=llamar_funcion)
             boton_funcion.pack()
         else:
+            
+            nombre = cliente.getNombre()
+            puesto = cliente.getOcupacion()
+
+            label = Label(venta, text = str(nombre)+" / "+ str(puesto))
+            label.pack()
 
             boton_funcion = Radiobutton(venta, text="Funcion", value=3, command=llamar_funcion)
             boton_funcion.pack()
