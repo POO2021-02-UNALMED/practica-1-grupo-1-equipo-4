@@ -1,3 +1,11 @@
+"""Funcionalidad de la clase: En esta clase se alberga lo correspondiente a la barra superior
+    donde estan los menus de archivo, procesos y consultas y ayuda
+
+
+Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+"""
+
+
 from tkinter import *
 
 class ZonaA(Menu):
@@ -5,7 +13,7 @@ class ZonaA(Menu):
         super().__init__(user)
         self.user = user
         self.zona2 = zona2
-        self.archivos()
+        self.archivos()     #Se ejecuta cada uno de los metodos que crean cada menu de la barra
         self.procesos()
         self.ayuda()
         self.user["menu"] = self
