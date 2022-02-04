@@ -384,7 +384,7 @@ class ZonaB:
         #TODO: Revisar que esté funcionando
 
     
-    #TODO: Falta serializar rifa
+    #Metodo para realizar la rifa entre los clientes fieles
     def rifa(self):
 
         self.cambiar()
@@ -392,14 +392,13 @@ class ZonaB:
         self.titulo.configure(text = "Rifar Boleto")
         self.texto.configure(text = "Permite rifar un boleto a una función deseada entre los clientes mas fieles")
 
-        nomCriterios="Función"
-        criterios=["Dia","Mes","Codigo"]
+
         nomValores="Información"
         valIniciales=None
         valHabilitados=None
         info=[]
 
-        diames=FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+        diames=FieldFrame("Fecha", ["Dia","Mes"],nomValores,valIniciales,valHabilitados,self.cuerpo)        #Se hace un fieldframe para el dia y el mes
         diames.pack()
         diames.button.configure(text="Siguiente")
 
@@ -408,7 +407,7 @@ class ZonaB:
             info.append(diames.getValue("Mes"))
 
             try:
-                int(info[0])
+                int(info[0])            #Se verifica que los datos ingresados si sean enteros
                 int(info[1])
             except:
                 info.pop()
@@ -416,33 +415,33 @@ class ZonaB:
                 raise NoTipo()
 
             try:
-                [i for i in range(1, 13)].index(int(info[1]))
+                [i for i in range(1, 13)].index(int(info[1]))       #Se verifica que sea un mes valido
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
             try:
-                [i for i in range(1, 32)].index(int(info[0]))
+                [i for i in range(1, 32)].index(int(info[0]))       #Se verifica que sea un dia valido
             except:
                 info.pop()
                 info.pop()
                 raise RangoNoPer()
 
-            diames.pack_forget()
+            diames.pack_forget()        #Se elimina el field frame para el mes y el dia
 
-            funcdia=FieldFrame("Funcion", ["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)
+            funcdia=FieldFrame("Funcion", ["Numero"],nomValores,valIniciales,valHabilitados,self.cuerpo)    #Se crea un fieldframe para el numero de la funcion
             funcdia.pack()
             funcdia.button.configure(text="Rifar")
 
-            if len(self.cine.verFuncion(int(info[0]),int(info[1])))==0:
+            if len(self.cine.verFuncion(int(info[0]),int(info[1])))==0:         #Si no hay funciones disponibles para ese dia, se lanza la excpecion y se devuelve a la parte principal de la ventana
                 info.pop()
                 info.pop()
                 self.cambiar()
                 raise NoDisp()
 
             else:
-                funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))
+                funcioneslibres="Funciones del dia\n"+Funcion.formatearFunciones(self.cine.verFuncion(int(info[0]),int(info[1])))       #Se muestran las funciones del dia en un label
                 textofunc=Label(self.cuerpo,text=funcioneslibres)
                 textofunc.pack()
 
@@ -450,7 +449,7 @@ class ZonaB:
                 info.append(funcdia.getValue("Numero"))
 
                 try:
-                    fdeldia=self.cine.verFuncion(int(info[0]),int(info[1]))
+                    fdeldia=self.cine.verFuncion(int(info[0]),int(info[1]))         #Se verifica que el numero ingresado si corresponda a una de las funciones disponibles
                     fdeldia.remove(self.cine.BuscadorFuncion(int(info[2])))
                 except:
                     info.pop()
@@ -461,9 +460,9 @@ class ZonaB:
                 for c in self.cine.clientesValiosos():
                     candidatos+=c.getNombre()+" "
 
-                ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))
+                ganador="GANADOR: "+self.cine.rifarBoleto(int(info[2]))     #Se rifa el boleto para la funcion seleccionada pasandole el numero de funcion como argumento
 
-                messagebox.showinfo(title='Rifa de Boleto!', message=candidatos,
+                messagebox.showinfo(title='Rifa de Boleto!', message=candidatos,    #Se hace un messagebox donde se muestran los clientes fieles candidatos a la rifa y se meustra el nombre del ganador
                                     detail=ganador)
                 self.cambiar()
 
@@ -471,64 +470,58 @@ class ZonaB:
 
         diames.button.bind("<ButtonRelease>",funcdispo)  ##Primer boton
 
-        #rifa = FieldFrame(nomCriterios, criterios,nomValores,valIniciales,valHabilitados,self.cuerpo)
-        
-        #rifa.pack()
-
-        #funciones=Label(self.cuerpo,text="Aca irian las funciones disponibles")     ###FALTA ENLAZAR CON LAS FUNCIONES DISPONIBLES QUE BOTA LA CAPA LOGICA
-        #funciones.pack()
-
+    #Metodo para la adicion de salas al cine
     def agregarSala(self):
         self.cambiar()
 
         self.titulo.configure(text = "Agregar una sala")
         self.texto.configure(text = "Permite agregar una sala segun su tipo (2D o 3D)")
 
-        checked=IntVar()
+        checked=IntVar()    #Se haceuna variable para ver que radiobutton esta seleccionado
 
-        global nueva
+        global nueva        #Se hace una variable global para los fieldframe
 
         def create(action):
-            if checked.get()==2:
+            if checked.get()==2:    #Si la sala seleccionada es 2D
 
-                try:
+                try:                #Se revisa que los datos ingresados sean enteros
                     int(nueva.getValue("Filas"))
                     int(nueva.getValue("Columnas"))
                     int(nueva.getValue("Filas VIP"))
                 except:
                     raise NoTipo()
 
-                try:
+                try:            #Se revisa que no sean más filas VIP que filas normales, sino se genera un error y se lanza la excepcion
                     if int(nueva.getValue("Filas"))<int(nueva.getValue("Filas VIP")):
                         x=1/0
                 except:
                     raise RangoNoPer()
 
-                Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)
+                Sala2D(nueva.getValue("Filas"),nueva.getValue("Columnas"),nueva.getValue("Filas VIP"),self.cine)    #se crea la sala cuando se cumplan las condiciones
 
 
-            elif checked.get()==3:
+            elif checked.get()==3:  #Si la sala seleccionada es 3D
 
-                try:
+                try:        #Se revisa que los datos ingresados sean enteros
                     int(nueva.getValue("Filas"))
                     int(nueva.getValue("Columnas"))
                     int(nueva.getValue("Gafas disponibles"))
                 except:
                     raise NoTipo()
 
-                try:
+                try:        #Se revisa que no sean más gafas disponibles que asientos, sino se genera un error y se lanza la excepcion
                     total=int(nueva.getValue("Filas"))*int(nueva.getValue("Columnas"))
                     if total<int(nueva.getValue("Gafas disponibles")):
                         x=1/0
                 except:
                     raise RangoNoPer()
-                Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)
+                Sala3D(nueva.getValue("Filas"), nueva.getValue("Columnas"),nueva.getValue("Gafas disponibles"), self.cine)      #se crea la sala cuando se cumplan las condiciones
 
 
-            messagebox.showinfo(title="Información",message="Sala creada con éxito!")
+            messagebox.showinfo(title="Información",message="Sala creada con éxito!")       #Se muestra un messagebox cuando se termina la operacion
             #for i in self.cine.getSalas():
             #    print(i.getNumero())
-            self.cambiar()
+            self.cambiar()      #Se devuelve al inicio
 
         def tres():
             global nueva
