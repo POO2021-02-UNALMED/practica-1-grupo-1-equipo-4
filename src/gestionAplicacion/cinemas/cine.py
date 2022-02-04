@@ -1,8 +1,12 @@
-"""Funcionalidad de la clase: Albergar las salas, funciones, peliculas, clientes y metodos para
- la creacion , modificacion y observacion de los clientes, peliculas y funciones
+"""
+Funcionalidad de la clase: Albergar las salas, funciones, peliculas, clientes y metodos para
+    la creacion , modificacion y observacion de los clientes, peliculas y funciones
 
 Autores: Daniel Santiago Cadavid, Marlon Calle, Daniel Daza, Juan Esteban Ochoa
+
+
 """
+
 import random
 
 from gestionAplicacion.boleteria.funcion import Funcion
@@ -22,33 +26,32 @@ class Cine:
         self._peliculas = []
         self._salas= []
         self._dineroGanado= 0
-        self._DESCUENTOMVC = 0.2  #Descuento al cliente mas fiel
-        #TODO:Take care of this constant
-        #!!! Aqui falta la variable del serializador
+        self._DESCUENTOMVC = 0.2
+
 
 
     def programarFuncionesAuto( self, mes: int, dia: int, sala: Sala):
-        """      Recibe los parametros mes, dia y sala, devuelve una lista de funciones. Su proposito es recibir un dia, un mes y una sala para 
+        '''
+        Recibe los parametros mes, dia y sala, devuelve una lista de funciones. Su proposito es recibir un dia, un mes y una sala para 
 		 programar de forma automatica en esa sala, para todos los horarios disponibles de acuerdo al numero de peliculas con mayor 
-		 cantidad de boletos vendidos, una funcion para ese dia."""
-
+		 cantidad de boletos vendidos, una funcion para ese dia.
+        '''
+        
         programadas  = []
-        funciones : list = self.verFuncion(mes)
-        peliculasMes : list = list(set([funcion.getPelicula() for funcion in funciones])) #realizo una lista de las funciones dadas ese mes sin repeticiones
-        pelicula_boletos = []
+        funciones : list = self.verFuncion(mes) #realizo una lista de las funciones dadas ese mes
+        peliculasMes : list = list(set([funcion.getPelicula() for funcion in funciones]))
+        pelicula_boletos = []                          # lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes
         disponibles = ["22:00","20:00","18:00","16:00","14:00","12:00"]
 
-        """	lista que obtiene las peliculas por la cantidad de boletos vendidos por esta pelicula dicho mes"""
-
-        for i in range(len(peliculasMes)):           #se recorre la lista pelicula
+        for i in range(len(peliculasMes)):
             pelicula_boletos.append([peliculasMes,0])
-            for funcion in funciones: 
+            for funcion in funciones:                          # se recorren las funciones de dicho mes para hacer cuenta de cuantas boletas ha vendido la pelicula i
                 if(peliculasMes[i] == funcion.getPelicula()):
-                    pelicula_boletos[i][1]+= funcion.getCantidadBoletosVendidos()
+                    pelicula_boletos[i][1]+= funcion.getCantidadBoletosVendidos()       # se suman la cantidad de boletos
                    
-        pelicula_boletos.sort(key = lambda x:x[1], reverse = True)# se hace ordenamiento con respecto 
+        pelicula_boletos.sort(key = lambda x:x[1], reverse = True)
 		
-        if(len(peliculasMes)>=6):
+        if(len(peliculasMes)>=6):       #Se revisa que hacer para cuando la cantidad de peliculas es menor a la cantidad de horarios disponibles
             for i in range(6):
                 p : Pelicula = peliculasMes[i]
                 h : Horario = Horario.getHorario(disponibles[i])
@@ -66,6 +69,8 @@ class Cine:
            
     
     def salasDisponibles(self, mes: int, dia: int):
+        #Recibe un mes y un dia y retorna una lista de salas que tengan al menos un horario disponible ese dia
+
         disponibles=list()
         
         for sala in self._salas:
@@ -75,15 +80,20 @@ class Cine:
         return disponibles
 
     def mostValueClient(self) -> str:
+        '''
+        No recibe nada y retorna una String con el nombre del cliente mas fiel al que le fue
+		 aplicado el descuento. Su proposito es calcular el cliente que más compras ha hecho
+		 para dar un descuento del 0.2.
+        '''
         clienteList=list()
         
         for client in self._clientes:
-            clienteList.append(len(client.getHistorialCompras()))
+            clienteList.append(len(client.getHistorialCompras()))   #Recorre el historial de compras del cliente y anexa el tamano de su historial de compra
         
-        valormax=max(clienteList)
+        valormax=max(clienteList)   #Se establece el mayor numero de boletos comprados por parte de un cliente
 
         for client in self._clientes:
-            if(valormax==len(client.getHistorialCompras())):
+            if(valormax==len(client.getHistorialCompras())):    #Si la cantidad de boletos comprados es igual a valor max conseguir el nombre de este
                 client.setDescuento(self._DESCUENTOMVC)
                 return client.getNombre()
 
@@ -132,8 +142,14 @@ class Cine:
 
         return funciones
 
+
+    #Al 10 por ciento de los clientes mas fieles aplicarle un 10% de descuento a cada uno de ellos 
+
     def clientesValiosos(self)-> list:
-        
+        '''
+        Recibe nada y retorna una List des objetos tipo Cliente. Su proposito es calcular
+	    de entre la lista de clientes el 0.1 que tiene mayor cantidad de compras en historialCompras
+        '''    
         clienteList=[]		#Aca estaran los tamanos de historial de compra de cada cliente
         
         for cliente in self._clientes:
@@ -157,7 +173,12 @@ class Cine:
 
 
     def verificarCliente(self, num: int) -> bool:
-        lista : list = []
+        '''
+        Recibe un numero de cedula, retorna un boolean. Su proposito es verificar
+		que un cliente este en la lista de clientes de acuerdo a su numero de cedula
+        '''
+
+        lista : list = []   #Lista de cédulas
         
         for cliente in self.getClientes():
             lista.append(cliente.getCedula())
@@ -167,6 +188,10 @@ class Cine:
     
     
     def rifarBoleto(self, numeroFuncion: int):
+        '''
+        Recibe el numero de la funcion que se va a rifar y retorna un String con el ganador. 
+		Su proposito es de entre los clientes valiosos, rifar un boleto a una funcion deseada
+        '''
         top10: list= self.clientesValiosos();	#Saco la lista del 10% de los clientes mas fieles
         
         tamano: int= len(top10)			#tamano de esa lista
@@ -202,6 +227,11 @@ class Cine:
         return panitaGanador.getNombre()
 
     def buscadorCliente(self, num : int):
+        '''
+        Recibe un numero de cedula, retorna un objeto de clase Cliente. Su proposito es retornar el
+		cliente cuyo numero de cedula concuerde con el ingresado al metodo
+        '''
+
         lista = self.getClientes()
         for cliente in lista:
             if (int(cliente._cedula)== int(num)):
@@ -209,6 +239,10 @@ class Cine:
         return None
 
     def buscarSala(self, num):
+        '''
+        Recibe el numero de una sala, retorna un objeto de clase Sala. Su proposito es retornar la
+		sala cuyo numero coincida con el numero ingresado
+        '''
         lista = self.getSalas()
         for sala in lista:
             if (int(sala.getNumero())== int(num)):
@@ -217,7 +251,10 @@ class Cine:
 
     
     def BuscadorPelicula(self, nombre):
-
+        '''
+        Recibe el nombre de una pelicula, retorna un objeto de clase Pelicula. Su proposito es retornar la
+		pelicula cuyo nombre coincida con el nombre ingresado
+        '''
         lista = self.getPeliculas()
         for pelicula in lista:
             if (str(pelicula.getNombre())==nombre):
@@ -227,20 +264,28 @@ class Cine:
 
 
     def BuscadorFuncion(self,numero):
+        '''
+        Recibe un numero de funcion, retorna un objeto de clase Funcion. Su propósito es retornar la
+		funcion cuyo numero de cedula concuerde con el ingresado al metodo
+        '''
         lista=[]
         for funcion in self._cartelera:
             lista.append(funcion.getNumero())
 
-            if funcion.getNumero()==int(numero):
+            if funcion.getNumero()==int(numero):    #Si el numero de la funcion es igual al numero que se ingreso es la que se estaba buscando
                 return funcion
         return None
 
     def BuscadorBoleto (self,num_silla: int,funcion:Funcion):
+        '''
+        Recibe un numero de silla y una funcion, retorna un objeto de clase Boleto. Su proposito es retornar el
+		boleto cuyo numero de silla asociado a una funcion ingresada concuerde con el ingresado.
+        '''
         lista=[]
         for boleto in funcion.getBoletos():
             lista.append(boleto.getNum_silla())
 
-            if boleto.getNum_silla==num_silla:
+            if boleto.getNum_silla==num_silla:  #Si el numero que se ingreso concuerda con el numero de la silla del boleto es el que se estaba buscando
                 return boleto
         return None
 
