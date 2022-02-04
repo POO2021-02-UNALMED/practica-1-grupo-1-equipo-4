@@ -11,13 +11,11 @@ from uimain.user.excepciones.notipo import NoTipo
 from uimain.user.excepciones.notin import NotIn
 from uimain.user.excepciones.notchair import NotChair
 
-"""/*window = Tk()
+"""
+Zona donde se trabajan todas las ventanas relacionadas a Venta
+Aquí se incluye inscripción de cliente, venta de boleta por recomendación y por función.
 
-cine = Cine("pene")
-cine.agregarCliente(Cliente(1001, "Pedro", 15, "Estudiante", cine))
-rey_leon = Pelicula("Rey Leon", "Animada", 2, "Espanol", 0, cine)
-Sala2D(7, 8, 2,cine)
-Funcion.crearFuncion(17, 12, Horario.UNO, rey_leon, 1, cine)*/"""
+"""
 
 
 def ventana(variable, window, cine):
