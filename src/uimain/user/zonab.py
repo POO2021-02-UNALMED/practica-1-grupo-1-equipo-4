@@ -99,9 +99,9 @@ class ZonaB:
         def addPeli(action):
             pelicula=Pelicula(agregarPelicula.getValue("Nombre"),
                 agregarPelicula.getValue("Genero"),
-                agregarPelicula.getValue("Duración"),
+                int(agregarPelicula.getValue("Duración")),
                 agregarPelicula.getValue("Idioma"),
-                agregarPelicula.getValue("Edad mínima"),
+                int(agregarPelicula.getValue("Edad mínima")),
                 self.cine) 
             
             
