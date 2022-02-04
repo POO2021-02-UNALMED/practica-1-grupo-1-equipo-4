@@ -368,7 +368,7 @@ class ZonaB:
                     info.pop()
                     raise NotIn()
 
-                self.cine.programarFuncionesAuto(int(info[0]),int(info[1]),self.cine.buscarSala(int(info[2])))  #Se llama al método de la capa logica que crea la funcion automaticamente
+                self.cine.programarFuncionesAuto(int(info[1]),int(info[0]),self.cine.buscarSala(int(info[2])))  #TODO: Revisar que funcione
 
 
                 messagebox.showinfo(title="Información",message="Función generada con éxito")   #Se muestra el mensaje cuando se termina la operacion
